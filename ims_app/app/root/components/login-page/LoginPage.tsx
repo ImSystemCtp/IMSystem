@@ -2,11 +2,9 @@ import { Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { CustomInput } from "../Formik";
-import { faDoorOpen, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { loginMessage } from "@/schemas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useUserActions } from "@/root/hooks/useUserActions";
+import { loginMessage } from "../../schemas";
 
 interface FormValues {
     email: string;
@@ -19,11 +17,9 @@ export default function LoginPage() {
         password: "",
     };
 
-    const { loginUser } = useUserActions();
 
     const handleSubmit = async (values: FormValues) => {
         const { email, password } = values;
-        loginUser(email,password);
     };
 
     return (
@@ -36,12 +32,11 @@ export default function LoginPage() {
                                 <h1 className="w-full font-bold mb-4 text-center border-2 border-slate-950 rounded-lg p-4">Welcome</h1>
                             </div>
                             <Form className="flex flex-col justify-center items-center w-full">
-                                <CustomInput label="Email:" name="email" inputType="email" icon={faEnvelope} />
-                                <CustomInput label="Password:" inputType="password" name="password" icon={faLock} />
+                                <CustomInput label="Email:" name="email" inputType="email"  />
+                                <CustomInput label="Password:" inputType="password" name="password"  />
                                 <div className="flex justify-center w-full">
                                     <button type="submit" className="bg-blue-700 hover:bg-blue-500 rounded-md p-2 w-full flex items-center justify-center text-white">
                                         <span className="mr-2">Log In</span>
-                                        <FontAwesomeIcon icon={faDoorOpen} />
                                     </button>
                                 </div>
                             </Form>

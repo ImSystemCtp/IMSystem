@@ -1,4 +1,5 @@
-import { User } from "@/root/types";
+
+import { User } from "@/app/root";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {

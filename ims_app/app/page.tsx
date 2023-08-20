@@ -1,7 +1,7 @@
 'use client'
-import { LoginPage } from '@/root/components';
-import { store } from '@/root/redux';
 import { Provider } from 'react-redux';
+import { store } from './root/redux';
+import { LoginPage } from './root/components';
 export default function Home() {
   return (
     <Provider store={store}>
