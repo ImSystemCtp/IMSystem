@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ims_details_good {
+  deta_id          Int         @id(map: "pk_ims_details_good") @default(autoincrement())
+  deta_description String?     @db.VarChar(100)
+  deta_req_id      Int
+  deta_goods_no    Int
+  ims_goods        ims_goods   @relation(fields: [deta_goods_no], references: [goods_no], onDelete: NoAction, onUpdate: NoAction, map: "goods_details")
+  ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: NoAction, onUpdate: NoAction, map: "request_details")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ims_goods {
+  goods_no               Int                  @id(map: "pk_ims_goods")
+  goods_description      String               @db.VarChar(30)
+  goods_brand            String               @db.VarChar(15)
+  goods_model            String               @db.VarChar(20)
+  goods_series           String               @db.VarChar(20)
+  goods_active           String               @default("Y") @db.VarChar(1)
+  goods_acquisition_mode String               @db.VarChar(30)
+  goods_price            String               @db.VarChar(30)
+  goods_location_id      Int
+  ims_details_good       ims_details_good[]
+  ims_locations          ims_locations        @relation(fields: [goods_location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction, map: "good_location")
+  ims_hist_location      ims_hist_location[]
+  ims_register_goods     ims_register_goods[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ims_hist_location {
+  hist_id       Int           @id(map: "pk_ims_hist_location") @default(autoincrement())
+  hist_date     DateTime      @db.Timestamptz(6)
+  hist_current  String        @default("Y") @db.VarChar(1)
+  ubi_id        Int
+  goods_no      Int
+  ims_goods     ims_goods     @relation(fields: [goods_no], references: [goods_no], onDelete: NoAction, onUpdate: NoAction, map: "goods_location")
+  ims_locations ims_locations @relation(fields: [ubi_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction, map: "locations_history")
+}
+
+model ims_locations {
+  location_id       Int                 @id(map: "pk_ims_locations") @default(autoincrement())
+  location_name     String              @db.VarChar(30)
+  ims_goods         ims_goods[]
+  ims_hist_location ims_hist_location[]
+  ims_request       ims_request[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ims_register {
+  reg_id             Int                  @id(map: "pk_ims_register") @default(autoincrement())
+  reg_folio          Int
+  reg_tomo           Int
+  reg_asiento        Int
+  reg_type           String               @db.VarChar(1)
+  reg_observation    String?              @db.VarChar(300)
+  reg_usu_id         Int
+  ims_users          ims_users            @relation(fields: [reg_usu_id], references: [usu_id], onDelete: NoAction, onUpdate: NoAction, map: "sgi_usuario_registro")
+  ims_register_goods ims_register_goods[]
+}
+
+model ims_register_goods {
+  goods_no     Int
+  reg_id       Int
+  ims_goods    ims_goods    @relation(fields: [goods_no], references: [goods_no], onDelete: NoAction, onUpdate: NoAction, map: "register_goods_fk01")
+  ims_register ims_register @relation(fields: [reg_id], references: [reg_id], onDelete: NoAction, onUpdate: NoAction, map: "register_goods_fk02")
+
+  @@id([goods_no, reg_id], map: "pk_ims_register_goods")
+}
+
+model ims_registered_in {
+  tomo    Int
+  folio   Int
+  asiento Int
+
+  @@id([tomo, folio, asiento], map: "pk_ims_registered_in")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ims_request {
+  req_id              Int                @id(map: "pk_ims_request") @default(autoincrement())
+  req_description     String             @db.VarChar(100)
+  req_state           String?            @db.VarChar(1)
+  req_date            DateTime           @db.Timestamp(6)
+  req_type            String             @db.VarChar(1)
+  req_usu_id          Int
+  req_location_id_new Int?
+  ims_details_good    ims_details_good[]
+  ims_locations       ims_locations?     @relation(fields: [req_location_id_new], references: [location_id], onDelete: Restrict, onUpdate: Restrict, map: "location_request")
+  ims_users           ims_users          @relation(fields: [req_usu_id], references: [usu_id], onDelete: NoAction, onUpdate: NoAction, map: "user_request")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ims_users {
+  usu_id       Int            @id(map: "pk_ims_users") @default(autoincrement())
+  usu_admin    String         @db.VarChar(1)
+  usu_name     String         @db.VarChar(60)
+  usu_surnames String         @db.VarChar(60)
+  usu_email    String         @db.VarChar(60)
+  usu_password String         @db.VarChar(20)
+  usu_state    String?        @default("A") @db.VarChar(1)
+  ims_register ims_register[]
+  ims_request  ims_request[]
+}
+
+model sgi_leyes {
+  ley_id Int @id(map: "pk_sgi_leyes")
+}
