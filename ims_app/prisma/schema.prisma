@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ims_details_good {
+  deta_id          Int         @id @default(autoincrement())
+  deta_description String?     @db.VarChar(100)
+  deta_req_id      Int
+  deta_goods_no    Int
+  ims_goods        ims_goods   @relation(fields: [deta_goods_no], references: [goods_no], onDelete: Cascade, onUpdate: Cascade, map: "goods_details")
+  ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: Cascade, onUpdate: Cascade, map: "request_details")
+}
+
+model ims_goods {
+  goods_regis_location                                        Int
+  goods_no                                                    Int                  @id
+  goods_description                                           String               @db.VarChar(30)
+  goods_brand                                                 String               @db.VarChar(15)
+  goods_model                                                 String               @db.VarChar(20)
+  goods_series                                                String               @db.VarChar(20)
+  goods_active                                                String               @default("Y") @db.VarChar(1)
+  goods_acquisition_mode                                      String               @db.VarChar(30)
+  goods_price                                                 String               @db.VarChar(30)
+  goods_curr_location                                         Int?
+  ley_id                                                      Int?
+  goods_invoice_number                                        Int?
+  ims_details_good                                            ims_details_good[]
+  ims_locations_ims_goods_goods_regis_locationToims_locations ims_locations        @relation("ims_goods_goods_regis_locationToims_locations", fields: [goods_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
+  ims_locations_ims_goods_goods_curr_locationToims_locations  ims_locations?       @relation("ims_goods_goods_curr_locationToims_locations", fields: [goods_curr_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_loc_curr")
+  ims_register_goods                                          ims_register_goods[]
+}
+
+model ims_locations {
+  location_id                                             Int           @id @default(autoincrement())
+  location_name                                           String        @db.VarChar(30)
+  ims_goods_ims_goods_goods_regis_locationToims_locations ims_goods[]   @relation("ims_goods_goods_regis_locationToims_locations")
+  ims_goods_ims_goods_goods_curr_locationToims_locations  ims_goods[]   @relation("ims_goods_goods_curr_locationToims_locations")
+  ims_request                                             ims_request[]
+}
+
+model ims_register {
+  reg_id             Int                  @id @default(autoincrement())
+  reg_tomo           Int
+  reg_folio          Int
+  reg_asiento        Int
+  reg_type           EnumRegisterType
+  reg_date           DateTime?            @db.Date
+  reg_observation    String?              @db.VarChar(3000)
+  reg_usu_id         Int
+  ims_users          ims_users            @relation(fields: [reg_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "sgi_usuario_registro")
+  ims_register_goods ims_register_goods[]
+}
+enum EnumRegisterType {
+  Register
+  Low
+  Transfer
+}
+model ims_register_goods {
+  goods_no     Int
+  reg_id       Int
+  ims_goods    ims_goods    @relation(fields: [goods_no], references: [goods_no], onDelete: Cascade, onUpdate: Cascade, map: "register_goods_fk01")
+  ims_register ims_register @relation(fields: [reg_id], references: [reg_id], onDelete: Cascade, onUpdate: Cascade, map: "register_goods_fk02")
+
+  @@id([goods_no, reg_id])
+}
+
+model ims_registered_in {
+  tomo    Int
+  folio   Int
+  asiento Int
+
+  @@id([tomo, folio, asiento])
+}
+
+model ims_request {
+  req_id              Int                @id @default(autoincrement())
+  req_description     String             @db.VarChar(100)
+  req_state           EnumReqState
+  req_date            DateTime           @db.Timestamp(6)
+  req_type            EnumReqType
+  req_usu_id          Int
+  req_location_id_new Int?
+  ims_details_good    ims_details_good[]
+  ims_locations       ims_locations?     @relation(fields: [req_location_id_new], references: [location_id], onDelete: Restrict, onUpdate: Restrict, map: "location_request")
+  ims_users           ims_users          @relation(fields: [req_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "user_request")
+}
+enum EnumReqState {
+  Accepted
+  Denied
+  Pending
+}
+
+enum EnumReqType {
+  Low
+  Transfer
+}
+
+
+
+model ims_users {
+  usu_id       Int            @id @default(autoincrement())
+  usu_admin    EnumAdmin
+  usu_name     String         @db.VarChar(60)
+  usu_surnames String         @db.VarChar(60)
+  usu_email    String         @db.VarChar(60)
+  usu_password String         @db.VarChar(20)
+  usu_state    EnumUserState
+  ims_register ims_register[]
+  ims_request  ims_request[]
+}
+enum EnumAdmin {
+  Yes
+  No
+}
+
+enum EnumUserState {
+  Active
+  Unactive
+}
+
+model ims_laws {
+  law_id          Int     @id
+  law_description String? @db.VarChar(20)
+}
