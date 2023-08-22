@@ -1,14 +1,13 @@
 import prismaDB from "@/lib/prisma/prismadb";
-import {  ims_locations } from "@prisma/client";
 import { NextResponse } from "next/server";
+
 export async function POST(req: Request) {
     try {
-        console.log(req)
         const body = await req.json();
-        console.log(body)
-        const response = await prismaDB.ims_locations.create({
+
+        const response = await prismaDB.ims_users.create({
             data: {
-                ...(body as ims_locations)
+                ...body
             }
         });
         return NextResponse.json(response);
@@ -16,15 +15,13 @@ export async function POST(req: Request) {
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }
+
 export async function GET(req: Request) {
     try {
-        const response = await prismaDB.ims_locations.findMany();
-        if (response.length > 0) {
-            return NextResponse.json(response);
-        }
-        return new NextResponse("No data found", { status: 404 });
+        const response = await prismaDB.ims_users.findMany();
+        return NextResponse.json(response);
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });
     }
-
 }
+
