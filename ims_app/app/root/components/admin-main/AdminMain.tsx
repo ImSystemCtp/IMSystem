@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import AdminOption from "../admin-options/AdminOptions";
 
 export default function AdminMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -91,6 +92,7 @@ export default function AdminMain() {
                     </ul>
                 </div>
             </div>
+            <AdminOption />
         </div>
     )
 }
