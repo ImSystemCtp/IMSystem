@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NotificationDropdown } from "../notification-dropdown";
 import { DropdownButton } from "../dropdown-button";
-export default function AdminMain () {
+export default function AdminNavBar () {
     return(
     <nav className="text-gray-600 body-font">
     <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">

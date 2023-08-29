@@ -1,5 +1,5 @@
+"use client"
 import React, { useState } from 'react';
-
 const DropdownButton = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

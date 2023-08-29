@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { CustomInput } from "../Formik";
 import Image from "next/image";
 import { loginMessage } from "@/app/schemas";
@@ -10,7 +10,7 @@ interface FormValues {
     password: string;
 }
 export default function LoginPage() {
-
+    const router = useRouter();
     const initialValues: FormValues = {
         email: "",
         password: "",
@@ -20,6 +20,7 @@ export default function LoginPage() {
 
     const handleSubmit = async (values: FormValues) => {
         const { email, password } = values;
+        router.push("/admin");
         //loginUser(email,password);
     };
 

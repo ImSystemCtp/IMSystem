@@ -1,1 +1,1 @@
-export {default as AdminMain} from './AdminNavBar';
+export {default as AdminNavBar} from './AdminNavBar';

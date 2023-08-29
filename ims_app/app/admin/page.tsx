@@ -1,8 +1,9 @@
 'use client'
-import { AdminMain } from "../root/components";
+import { AdminMain, AdminNavBar } from "../root/components";
 export default function AdminHome() {
   return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className=" min-h-screen ">
+        <AdminNavBar />
         <AdminMain/>
       </main>
   );

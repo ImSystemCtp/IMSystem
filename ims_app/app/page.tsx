@@ -9,8 +9,6 @@ export default function Home() {
     <Provider store={store}>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <LoginPage />
-        <AdminNavBar/>
-        <AdminMain/>
       </main>
     </Provider>
   );
