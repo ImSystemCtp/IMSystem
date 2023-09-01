@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react";
 import Link from "next/link";
-import AdminOption from "../admin-options/AdminOptions";
-export default function AdminMain() {
+import { AdminOption } from "../../admin-options";
+export default function UsersManagementMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const handleShowNavigation = () => {
@@ -17,10 +17,8 @@ export default function AdminMain() {
         link: string;
     }
     const menuItems: MenuItem[] = [
-        { text: "Registrar Bienes", link: "/admin/register-goods" },
-        { text: "Gestion de Usuarios", link: "/admin/users-management" },
-        { text: "Gestion de Ubicaciones", link: "/admin/locations-management" },
-        { text: "Gestion de Leyes", link: "/admin/register-laws" },
+        { text: "Registrar Usuarios", link: "/admin/register-users" },
+        { text: "Editar Usuarios", link: "/admin/edit-users" },
     ];
     return (
         <main className="relative flex">

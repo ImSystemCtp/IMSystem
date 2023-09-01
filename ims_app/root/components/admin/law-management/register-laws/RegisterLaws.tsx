@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { Formik, Form } from "formik";
-import { CustomInput } from "../../Formik";
+import { CustomInput } from "../../../Formik";
 import { locationMessage } from "@/schemas";
 interface FormValues {
     name: string;
 }
-export default function RegisterLocation() {
+export default function RegisterLaw() {
     let initialValues: FormValues = {
         name: "",
     };

@@ -4,20 +4,15 @@ interface MenuItem {
   text: string;
   link: string;
 }
-const menuItems: MenuItem[] = [
-  { text: "Registrar Bienes", link: "/admin/register-woods" },
-  { text: "Registrar Usuarios", link: "/admin/register-users" },
-  { text: "Editar Usuarios", link: "/admin/edit-users" },
-  { text: "Registrar Ubicaciones", link: "/admin/register-location" },
-  { text: "Registrar Leyes", link: "/admin/register-laws" },
-  { text: "Register Buses", link: "/private/admin/register-buses" },
-];
+interface OptionsProps {
+  options: MenuItem[];
+}
 
-export default function AdminOption  ()  {
+export default function AdminOption  ({ options }: OptionsProps)  {
   return (
     <div className="md:h-[570px] h-auto background-image w-full flex justify-center items-center">
       <div className="m-10 grid grid-cols-1 md:grid-cols-3 gap-5 sm:grid-cols-2">
-        {menuItems.map((menuItem, index) => (
+        {options.map((menuItem, index) => (
           <div key={index} className="flex items-center justify-center">
             <button className="shadow-drop-bottom-right hover:bg-blue-50 flex flex-col justify-center items-center border-4 border-gray p-6 md:p-3 lg:px-8 rounded-lg bg-white">
               <div className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-blue-500 mb-4 border-2 border-blue-500"></div>

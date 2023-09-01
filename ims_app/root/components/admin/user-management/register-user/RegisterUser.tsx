@@ -1,7 +1,7 @@
 "use client";
 import { Form, Formik } from "formik";
-import CustomInput from "../../Formik/CustomInput";
-import CustomSelect from "../../Formik/CustomSelect";
+import CustomInput from "../../../Formik/CustomInput";
+import CustomSelect from "../../../Formik/CustomSelect";
 import { registerUserMessage } from "@/schemas";
 interface FormValues {
     email: string;
