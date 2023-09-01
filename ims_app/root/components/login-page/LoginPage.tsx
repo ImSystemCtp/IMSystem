@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CustomInput } from "../Formik";
 import Image from "next/image";
-import { loginMessage } from "@/app/schemas";
-
+import { loginMessage } from "@/schemas";
 interface FormValues {
     email: string;
     password: string;
@@ -38,7 +37,6 @@ export default function LoginPage() {
                                 <div className="flex justify-center w-full">
                                     <button type="submit" className="bg-blue-700 hover:bg-blue-500 rounded-md p-2 w-full flex items-center justify-center text-white">
                                         <span className="mr-2">Log In</span>
-                                        
                                     </button>
                                 </div>
                             </Form>

@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { NotificationDropdown } from "../notification-dropdown";
 import { DropdownButton } from "../dropdown-button";

@@ -1,7 +1,7 @@
+"use client"
 import React, { useState } from "react";
 import Link from "next/link";
 import AdminOption from "../admin-options/AdminOptions";
-
 export default function AdminMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -15,7 +15,7 @@ export default function AdminMain() {
 
     return (
         <div className="relative flex">
-            <div className="text-center">
+           {/* <div className="text-center">
                 <button
                     className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     type="button"
@@ -91,7 +91,7 @@ export default function AdminMain() {
                         </li>
                     </ul>
                 </div>
-            </div>
+                </div>*/}
             <AdminOption />
         </div>
     )
