@@ -1,17 +1,15 @@
 import React from "react";
 import Link from "next/link";
-
 interface MenuItem {
   text: string;
   link: string;
 }
-
 const menuItems: MenuItem[] = [
-  { text: "Register Goods", link: "/admin/register-woods" },
-  { text: "Register Users", link: "/admin/register-users" },
-  { text: "Edit Users", link: "/admin/edit-users" },
-  { text: "Register Routes", link: "/private/admin/register-routes" },
-  { text: "Edit Routes", link: "/private/admin/edit-routes" },
+  { text: "Registrar Bienes", link: "/admin/register-woods" },
+  { text: "Registrar Usuarios", link: "/admin/register-users" },
+  { text: "Editar Usuarios", link: "/admin/edit-users" },
+  { text: "Registrar Ubicaciones", link: "/admin/register-location" },
+  { text: "Registrar Leyes", link: "/admin/register-laws" },
   { text: "Register Buses", link: "/private/admin/register-buses" },
 ];
 
