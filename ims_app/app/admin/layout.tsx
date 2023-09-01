@@ -1,3 +1,4 @@
+"use client";
 import { AdminNavBar } from '@/root/components'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
@@ -13,8 +14,10 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <main>
+      <AdminNavBar />
+      <div >{children}</div>
+    </main>
   )
+
 }

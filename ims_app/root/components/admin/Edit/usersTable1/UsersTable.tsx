@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { User } from "@/root/types";
 import UserForm from "../UserForm";

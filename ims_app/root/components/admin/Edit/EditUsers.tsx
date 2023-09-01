@@ -1,3 +1,4 @@
+"use client";
 import { SetStateAction, useState } from "react";
 import UserList from "./UserList";
 
