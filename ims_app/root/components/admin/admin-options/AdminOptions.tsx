@@ -7,7 +7,7 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { text: "Home", link: "/private/admin" },
+  { text: "Register Goods", link: "/admin/register-woods" },
   { text: "Register Users", link: "/private/admin/register-users" },
   { text: "Edit Users", link: "/private/admin/edit-users" },
   { text: "Register Routes", link: "/private/admin/register-routes" },

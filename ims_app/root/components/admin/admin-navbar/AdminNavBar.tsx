@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
-import { NotificationDropdown } from "../notification-dropdown";
-import { DropdownButton } from "../dropdown-button";
+import { NotificationDropdown } from "../../notification-dropdown";
+import { DropdownButton } from "../../dropdown-button";
 export default function AdminNavBar () {
     return(
       <nav className="text-gray-600 body-font absolute right-0 top-0">
