@@ -8,8 +8,8 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { text: "Register Goods", link: "/admin/register-woods" },
-  { text: "Register Users", link: "/private/admin/register-users" },
-  { text: "Edit Users", link: "/private/admin/edit-users" },
+  { text: "Register Users", link: "/admin/register-users" },
+  { text: "Edit Users", link: "/admin/edit-users" },
   { text: "Register Routes", link: "/private/admin/register-routes" },
   { text: "Edit Routes", link: "/private/admin/edit-routes" },
   { text: "Register Buses", link: "/private/admin/register-buses" },
