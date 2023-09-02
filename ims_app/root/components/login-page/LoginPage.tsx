@@ -25,17 +25,17 @@ export default function LoginPage() {
 
     return (
         <Formik initialValues={initialValues} validationSchema={loginMessage} onSubmit={handleSubmit}>
-                <div className=" flex justify-center items-center sm:w-1/2 md:w-2/4 lg:w-3/4 xl:w-full">
-                    <div className="w-full max-w-md flex justify-center items-center">
-                        <div className="m-4 p-4 bg-slate-200 rounded-lg shadow-inner pltrb-11 flex flex-col justify-center items-center shadow-drop-bottom-right w-full sm:w-full md:w-3/4 lg:w-10/12 xl:w-full ">
-                            <div className="flex flex-col justify-start -mt-5 items-center">
+                <div className=" bg-slate-200 flex justify-center items-center  h-screen">
+                    <div className="border-2 border-black rounded-lg w-full flex justify-center items-center sm:w-1/2 md:w-2/4 lg:w-1/2  ">
+                        <div className="    flex flex-col justify-center items-center shadow-drop-bottom-right w-full sm:w-full md:w-3/4 lg:w-10/12 xl:w-full ">
+                            <div className="flex flex-col justify-start items-center">
                                 <h1 className="w-full font-bold mb-4 text-center border-2 border-slate-950 rounded-lg p-4 m-4">BIENVENIDO</h1>
                             </div>
-                            <Form className="flex flex-col justify-center items-center w-full">
+                            <Form className="flex flex-col  w-full p-4">
                                 <CustomInput label="Email:" name="email" inputType="email"  />
                                 <CustomInput label="Password:" inputType="password" name="password"  />
                                 <div className="flex justify-center w-full">
-                                    <button type="submit" className="bg-blue-700 hover:bg-blue-500 rounded-md p-2 w-full flex items-center justify-center text-white">
+                                    <button type="submit" className="mt-4 bg-blue-700 hover:bg-blue-500 rounded-md p-2 w-full flex items-center justify-center text-white">
                                         <span className="mr-2">Log In</span>
                                     </button>
                                 </div>

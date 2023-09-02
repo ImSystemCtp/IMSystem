@@ -13,8 +13,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ label, ...selectProps }) =>
     });
     return (
         <>
-            <div className="mb-4">
-                <label htmlFor={field.name} className="">
+            <div >
+                <label htmlFor={field.name} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     {label}
                 </label>
                 <select {...field} {...selectProps} className={selectClassName} placeholder={selectProps.placeholder} />

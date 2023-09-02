@@ -21,8 +21,8 @@ const CustomInput: React.FC<CustomInputProps> = ({ label, inputType, icon, ...in
 
     return (
         <>
-            <div className="mb-2 flex flex-col items-start w-full">
-                <label className="text-start ">{label}</label>
+            <div >
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">{label}</label>
                 <div className="relative flex items-center w-full">
                     {icon && (
                         <span className="absolute -left-6 top-2 text-gray-400">
