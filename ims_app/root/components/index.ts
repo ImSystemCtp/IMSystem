@@ -3,3 +3,4 @@ export * from './dropdown-button';
 export * from './Formik';
 export * from './login-page';
 export * from './notification-dropdown';
+export * from './sidebar';

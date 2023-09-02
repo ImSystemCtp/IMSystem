@@ -10,6 +10,8 @@ export default function AdminMain() {
         { text: "Gestion de Usuarios", link: "/admin/users-management" },
         { text: "Gestion de Ubicaciones", link: "/admin/locations-management" },
         { text: "Gestion de Leyes", link: "/admin/register-laws" },
+        { text: "Registrar Bajas", link: "/admin/register-lows" },
+        { text: "Registrar Traslados", link: "/admin/register-laws" },
     ];
     return (
         <main className="relative flex">
