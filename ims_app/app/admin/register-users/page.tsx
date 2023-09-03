@@ -2,8 +2,8 @@
 import { RegisterUsers } from "@/root/components";
 export default function RegisterUsersPage() {
     return (
-        <main className="">
+        <div className="justify-center items-center h-full">
             <RegisterUsers/>
-        </main>
+        </div>
     );
 }

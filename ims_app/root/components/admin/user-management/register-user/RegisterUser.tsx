@@ -15,9 +15,9 @@ export default function RegisterUsers() {
         const { email, username, contact, type } = values;
     };
     return (
-            <main className="w-3/4  mx-auto p-2">
+            <div className="h-full w-3/4 m-auto my-20 lg:my-10 p-2">
                 <Formik initialValues={initialValues} validationSchema={registerUserMessage} onSubmit={handleSubmit}>
-                    <div className="border-2  rounded-lg border-slate-300 shadow-lg shadow-slate-300 flex flex-col bg-gradient-to-br from-slate-300 to-white justify-center items-center p-2 w-full">
+                    <div className="h-full border-2  rounded-lg border-slate-300 shadow-lg shadow-slate-300 flex flex-col bg-gradient-to-br from-slate-300 to-white justify-center items-center p-2 w-full">
                         <Form className="w-3/4 ">
                             <h1 className="text-center text-2xl font-bold m-4 pb-12"> Registrar Usuarios </h1>
                             <div className="w-full flex flex-col mt-4 mx-auto">
@@ -39,6 +39,6 @@ export default function RegisterUsers() {
                         </Form>
                     </div>
                 </Formik>
-            </main>
+            </div>
     );
 }
