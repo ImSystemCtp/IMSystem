@@ -35,11 +35,11 @@ export default function RegisterGoods() {
                 onSubmit={handleSubmit}
             >
                 <div className="border-2 rounded-lg border-slate-300 shadow-lg shadow-slate-300 bg-gradient-to-br from-slate-300 to-white p-4 lg:w-3/4 lg:h-full">
-                    <Form>
-                        <h1 className="text-center text-lg font-bold mb-6">
+                    <Form className="  ">
+                        <h1 className="text-center text-lg font-bold ">
                             Registrar Bienes
                         </h1>
-                            <div className="justify-center  w-full flex flex-col sm:flex-row lg:p-2 lg:m-4 lg:w-3/4 ">
+                            <div className=" w-full flex flex-col sm:flex-row lg:p-2 lg:m-4 lg:w-3/4 ">
                                 <div className="w-full h-full sm:m-2">
                                     <CustomInput
                                         label="Número de Patrimonio:"
