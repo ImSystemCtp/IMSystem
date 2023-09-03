@@ -17,7 +17,7 @@ export default function AdminLayout({
   return (
     <main>
       <AdminNavBar />
-      <SideBar />
+      {/*<SideBar />*/}
       <div >{children}</div>
     </main>
   )

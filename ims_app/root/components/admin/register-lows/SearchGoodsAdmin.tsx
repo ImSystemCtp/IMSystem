@@ -1,8 +1,7 @@
 
 export default function SearchGoodsAdmin() {
     return (
-        <div>
-            <div>
+        <div className="w-full">
                 <input
                     type="text"
                     className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -15,7 +14,7 @@ export default function SearchGoodsAdmin() {
                                 <th scope="col" className="px-6 py-3">
                                     Product name
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="hidden md:table-cell  px-6 py-3">
                                     Color
                                 </th>
                                 <th scope="col" className="px-6 py-3">
@@ -31,16 +30,15 @@ export default function SearchGoodsAdmin() {
                                 >
                                     Apple MacBook Pro 17
                                 </th>
-                                <td className="px-6 py-4">Silver</td>
+                                <td className="px-6 py-4 hidden md:table-cell  ">Silver</td>
                                 <td>
-                                    <button className="bg-blue-600 text-slate-800">Seleccionar</button>
+                                    <button className="bg-blue-600 text-slate-800 m-4 p-2">Seleccionar</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
 
                 </div>
-            </div>
         </div>
     )
 }

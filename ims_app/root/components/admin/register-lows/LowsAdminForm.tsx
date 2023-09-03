@@ -16,7 +16,7 @@ const handleSubmit = async (values: FormValues) => {
 };
 export default function LowsAdminForm() {
     return (
-        <div>
+        <div className="w-full">
             <Formik
                 initialValues={initialValues}
                 validationSchema={lowsAdminFormMessage}
@@ -33,8 +33,8 @@ export default function LowsAdminForm() {
                                 />
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
                             </div>
-                            <div className=" ">
-                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5">
+                            <div className=" text-right">
+                                <button className="ml-auto  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5">
                                     Register
                                 </button>
                             </div>
