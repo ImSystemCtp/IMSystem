@@ -6,7 +6,7 @@ import { locationMessage } from "@/schemas";
 interface FormValues {
     name: string;
 }
-export default function RegisterLaw() {
+export default function RegisterLocation() {
     let initialValues: FormValues = {
         name: "",
     };
@@ -15,11 +15,11 @@ export default function RegisterLaw() {
 
     };
     return (
-            <main className="h-screen bg-gradient-to-br from-slate-300 to-white py-8">
+            <main className=" bg-gradient-to-br from-slate-300 to-white ">
                 <Formik initialValues={initialValues} validationSchema={locationMessage} onSubmit={handleSubmit}>
-                    <div className="  flex flex-col justify-center items-center  h-screen w-screen p-10">
+                    <div className="  flex flex-col justify-center items-center   p-10">
                         <Form className="border-2  rounded-lg border-slate-300 shadow-lg shadow-slate-300 p-4 w-3/4">
-                            <h1 className="text-center text-2xl font-bold m-4 pb-12">Registrar Ubicaciones</h1>
+                            <h2 className="lg:w-full lg:m-4 text-center text-2xl font-bold m-4 pb-12">Registrar Leyes</h2>
                             <div className="w-full flex flex-col mt-4 mx-auto">
                                 <CustomInput label="Nombre de Ubicacion" name="plateNumber" inputType="text" />
                             </div>

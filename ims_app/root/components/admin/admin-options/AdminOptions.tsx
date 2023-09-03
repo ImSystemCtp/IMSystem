@@ -3,6 +3,7 @@ import Link from "next/link";
 interface MenuItem {
   text: string;
   link: string;
+  icon: JSX.Element;
 }
 interface OptionsProps {
   options: MenuItem[];
@@ -15,7 +16,9 @@ export default function AdminOption  ({ options }: OptionsProps)  {
         {options.map((menuItem, index) => (
           <div key={index} className="flex items-center justify-center">
             <button className="shadow-drop-bottom-right hover:bg-blue-50 flex flex-col justify-center items-center border-4 border-gray p-6 md:p-3 lg:px-8 rounded-lg bg-white">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-blue-500 mb-4 border-2 border-blue-500"></div>
+              <div className="w-10 h-10 flex items-center justify-center rounded-full  text-blue-500 mb-4 border-2 border-blue-500">
+                {menuItem.icon}
+              </div>
               <h2 className="text-lg text-gray-900 font-medium title-font mb-2 text-center">
                 {menuItem.text}
               </h2>

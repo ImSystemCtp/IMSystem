@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from "react";
 import { AdminOption } from "../../admin-options";
+import { RegisterGoods, RegisterLaw } from "../..";
+import EditLaw from "../edit-laws/EditLaw";
 export default function LawsManagementMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -11,17 +13,17 @@ export default function LawsManagementMain() {
     const handleHideNavigation = () => {
         setSidebarOpen(false);
     };
-    interface MenuItem {
-        text: string;
-        link: string;
-    }
-    const menuItems: MenuItem[] = [
-        { text: "Registrar Leyes", link: "/admin/register-laws" },
-        { text: "Editar Leyes", link: "/admin/edit-users" },
-    ];
     return (
-        <div className="relative flex">
-            <AdminOption options={menuItems}></AdminOption>
+        <div className="w-full h-full">
+            <h1 className="text-2xl font-bold pb-12 text-center m-4">Gestión de Leyes</h1>
+            <div className="flex flex-col lg:flex-row">
+                <div className="w-full lg:w-1/2">
+                    <RegisterLaw />
+                </div>
+                <div className="w-full lg:w-1/2">
+                    <EditLaw />
+                </div>
+            </div>
         </div>
     )
 }
