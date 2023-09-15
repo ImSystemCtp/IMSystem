@@ -28,19 +28,19 @@ const initialValues: FormValues = {
 const handleSubmit = async (values: FormValues) => { };
 export default function RegisterGoods() {
     return (
-        <div className="justify-center items-center ">
+        <div className="justify-center items-center  ">
             <Formik
                 initialValues={initialValues}
                 validationSchema={registerGoodsMessage}
                 onSubmit={handleSubmit}
             >
-                <div className="">
+                <div className="mt-10">
                     <Form>
                         <h1 className="text-center text-lg font-bold mb-6">
                             Registrar Bienes
                         </h1>
-                            <div className="justify-center  w-full flex flex-col sm:flex-row lg:m-4 lg:px-40 ">
-                                <div className="w-full h-full sm:m-2">
+                            <div className="justify-center  w-full flex flex-col sm:flex-row lg:p-4 lg:px-20 ">
+                                <div className="w-full h-full p-2">
                                     <CustomInput
                                         label="Número de Patrimonio:"
                                         name="email"
@@ -54,7 +54,7 @@ export default function RegisterGoods() {
                                     <CustomInput label="Serie:" name="contact" inputType="text" />
                                     <CustomInput label="Marca:" name="contact" inputType="text" />
                                 </div>
-                                <div className="w-full sm:m-2">
+                                <div className="w-full p-2">
                                     <CustomInput
                                         label="Modelo:"
                                         name="contact"
@@ -80,7 +80,7 @@ export default function RegisterGoods() {
                                     </CustomSelect>
                                 </div>
                             </div>
-                        <div className="mt-6 flex justify-center">
+                        <div className="my-6 flex justify-center">
                             <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5">
                                 Register
                             </button>

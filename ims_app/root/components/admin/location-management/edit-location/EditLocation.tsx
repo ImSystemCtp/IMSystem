@@ -1,7 +1,7 @@
 
 export default function EditLocation() {
     return (
-        <div className="bg-gradient-to-br from-slate-300 to-white">
+        <div className="rounded-lg border-b-2 border-r-2  border-slate-300 shadow-lg shadow-slate-300 p-2">
             <h2 className="text-center text-2xl font-bold  pb-12 p-2 ">Editar Leyes</h2>
             <div className="w-full ">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
