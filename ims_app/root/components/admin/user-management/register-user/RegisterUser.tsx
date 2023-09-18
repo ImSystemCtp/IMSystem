@@ -17,7 +17,7 @@ export default function RegisterUsers() {
     return (
             <div className="h-full w-3/4 m-auto my-20 lg:my-10 p-2">
                 <Formik initialValues={initialValues} validationSchema={registerUserMessage} onSubmit={handleSubmit}>
-                    <div className="h-full border-b-2 border-r-2  rounded-lg border-slate-300 shadow-lg shadow-slate-300 dark:shadow-slate-700 flex flex-col bg-gradient-to-br from-slate-300 to-white dark:bg-gradient-to-br dark:from-slate-600 dark:to-slate-500 justify-center items-center p-2 w-full">
+                    <div className="h-full border-2 border-r-2  rounded-lg border-slate-300 shadow-lg shadow-slate-300 dark:shadow-slate-700 flex flex-col   justify-center items-center p-2 w-full">
                         <Form className="w-3/4 ">
                             <h1 className="text-center text-2xl font-bold m-4 pb-12"> Registrar Usuarios </h1>
                             <div className="w-full flex flex-col mt-4 mx-auto">

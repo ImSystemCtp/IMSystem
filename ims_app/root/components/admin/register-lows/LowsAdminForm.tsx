@@ -22,19 +22,19 @@ export default function LowsAdminForm() {
                 validationSchema={lowsAdminFormMessage}
                 onSubmit={handleSubmit}
             >
-                <div className=" lg:w-3/4 lg:h-full">
+                <div className=" lg:h-full">
                     <Form>
                         <div className="flex flex-col   w-full  ">
-                            <div className="w-full h-full sm:m-2">
+                            <div className="w-full h-full ">
                                 <CustomInput
                                     label="Número de Patrimonio:"
                                     name="number"
-                                    inputType="text" // Asumiendo que es un campo de texto
+                                    inputType="text"
                                 />
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
                             </div>
-                            <div className=" text-right">
-                                <button className=" text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm  ">
+                            <div className="w-full text-center justify-center items-center">
+                                <button className="px-4 py-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm  ">
                                     Register
                                 </button>
                             </div>

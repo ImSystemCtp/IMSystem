@@ -16,19 +16,19 @@ export default function AdminNavBar () {
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        <div className="justify-center items-center text-center hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-            <Link href="/admin/register-goods" className="mr-5 hover:text-gray-900">Registrar Bienes</Link>
+            <li className="text-center">
+            <Link href="/admin/register-goods" className=" mr-5 hover:text-gray-500 dark:hover:text-gray-700 ">Registrar Bienes</Link>
             </li>
             <li>
-            <Link href="/admin/users-management" className="mr-5 hover:text-gray-900">Gestion de Usuarios</Link>
+            <Link href="/admin/users-management" className="mr-5  hover:text-gray-500 dark:hover:text-gray-700 ">Gestion de Usuarios</Link>
             </li>
             <li>
-            <Link href="/admin/locations-management" className="mr-5 hover:text-gray-900">Gestion de Ubicaciones</Link>
+            <Link href="/admin/locations-management" className="mr-5 hover:text-gray-500 dark:hover:text-gray-700 ">Gestion de Ubicaciones</Link>
             </li>
             <li>
-            <Link href="/admin/laws-management" className="mr-5 hover:text-gray-900">Gestion de Leyes</Link>
+            <Link href="/admin/laws-management" className="mr-5 hover:text-gray-500 dark:hover:text-gray-700 ">Gestion de Leyes</Link>
             </li>
             <li><NotificationDropdown/></li>
             <li><DropdownButton/></li>

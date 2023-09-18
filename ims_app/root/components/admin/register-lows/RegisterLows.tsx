@@ -6,7 +6,7 @@ export default function RegisterLows() {
         <div className="w-full">
             <h1 className="m-2 text-center">Registrar Bajas</h1>
             <div className=" flex flex-col  lg:flex-row  lg:m-4 lg:p-4">
-                <div className="w-full m-2 p-2 border-2   border-slate-300 shadow-lg shadow-slate-300  rounded-lg ">
+                <div className="w-full m-2 p-2 border-2   border-slate-300 shadow-sm shadow-slate-300  rounded-lg ">
                     <SearchGoodsAdmin />
                     <LowsAdminForm/>
                 </div>

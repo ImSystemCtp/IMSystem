@@ -4,10 +4,10 @@ export default function SearchGoodsAdmin() {
         <div className="w-full">
                 <input
                     type="text"
-                    className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search User"
                 />
-                <div className="p-2  w-full rounded-lg relative overflow-x-auto">
+                <div className="my-2 w-full rounded-lg relative overflow-x-auto">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -32,7 +32,9 @@ export default function SearchGoodsAdmin() {
                                 </th>
                                 <td className="px-6 py-4 hidden md:table-cell  ">Silver</td>
                                 <td>
-                                    <button className="bg-blue-600 text-slate-800 m-4 p-2">Seleccionar</button>
+                                <button className="px-4 py-2 text-white bg-green-600 font-medium rounded-lg text-sm  ">
+                                    Seleccionar
+                                </button>
                                 </td>
                             </tr>
                         </tbody>
