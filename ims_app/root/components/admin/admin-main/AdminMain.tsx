@@ -46,7 +46,7 @@ export default function AdminMain() {
             ),
         },
         {
-            text: "Registrar Bajas",
+            text: "Registrar Bajas/Traslados",
             link: "/admin/register-lows",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -55,8 +55,8 @@ export default function AdminMain() {
             ),
         },
         {
-            text: "Registrar Traslados",
-            link: "/admin/register-laws",
+            text: "Gestion de Solicitudes",
+            link: "/admin/request-management",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
