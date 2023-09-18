@@ -15,7 +15,7 @@ export default function RegisterLocation() {
 
     };
     return (
-            <main className=" bg-gradient-to-br from-slate-300 to-white ">
+            <main className=" ">
                 <Formik initialValues={initialValues} validationSchema={locationMessage} onSubmit={handleSubmit}>
                     <div className="  flex flex-col justify-center items-center   p-10">
                         <Form className="border-2  rounded-lg border-slate-300 shadow-lg shadow-slate-300 p-4 w-3/4">

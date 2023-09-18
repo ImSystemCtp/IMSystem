@@ -35,7 +35,7 @@ export default function RegisterGoods() {
                 onSubmit={handleSubmit}
             >
                 <div className="">
-                    <Form>
+                    <Form className="">
                         <h1 className="text-center text-lg font-bold mb-6">
                             Registrar Bienes
                         </h1>
@@ -51,30 +51,30 @@ export default function RegisterGoods() {
                                         name="username"
                                         inputType="text"
                                     />
-                                    <CustomInput label="Serie:" name="contact" inputType="text" />
-                                    <CustomInput label="Marca:" name="contact" inputType="text" />
+                                    <CustomInput label="Serie:" name="serie" inputType="text" />
+                                    <CustomInput label="Marca:" name="brand" inputType="text" />
                                 </div>
                                 <div className="w-full sm:m-2">
                                     <CustomInput
                                         label="Modelo:"
-                                        name="contact"
+                                        name="model"
                                         inputType="text"
                                     />
                                     <CustomInput
                                         label="Número de Factura:"
-                                        name="contact"
+                                        name="invoice"
                                         inputType="text"
                                     />
                                     <CustomInput
                                         label="Valor de adquisición:"
-                                        name="contact"
+                                        name="value"
                                         inputType="text"
                                     />
-                                    <CustomSelect label="Ubicación:" name="type">
+                                    <CustomSelect label="Ubicación:" name="location">
                                         <option value="admin">Ubicacion1</option>
                                         <option value="driver">Ubicacion2</option>
                                     </CustomSelect>
-                                    <CustomSelect label="Ley que financió:" name="type">
+                                    <CustomSelect label="Ley que financió:" name="law">
                                         <option value="admin">Ley1</option>
                                         <option value="driver">Ley2</option>
                                     </CustomSelect>
