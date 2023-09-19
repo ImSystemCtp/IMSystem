@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import { NotificationDropdown } from "../../notification-dropdown";
-import { DropdownButton } from "../../dropdown-button";
+import DropDownButtonX from "../../dropdown-button/DropDownButtonX";
 export default function AdminNavBar () {
   const toggleMenu = () => {
     const navbarDefault = document.getElementById("navbar-default");
@@ -37,7 +37,7 @@ export default function AdminNavBar () {
             <Link href="/admin/laws-management" className="mr-5 hover:text-gray-500 dark:hover:text-gray-700 ">Gestion de Leyes</Link>
             </li>
             <li ><NotificationDropdown/></li>
-            <li ><DropdownButton/></li>
+            <li ><DropDownButtonX/></li>
           </ul>
         </div>
       </div>
