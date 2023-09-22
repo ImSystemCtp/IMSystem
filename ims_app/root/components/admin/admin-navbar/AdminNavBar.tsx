@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { NotificationDropdown } from "../../notification-dropdown";
 import DropDownButtonX from "../../dropdown-button/DropDownButtonX";
+import { UserButton } from "@clerk/nextjs";
 export default function AdminNavBar () {
   const toggleMenu = () => {
     const navbarDefault = document.getElementById("navbar-default");
@@ -37,7 +38,7 @@ export default function AdminNavBar () {
             <Link href="/admin/laws-management" className="mr-5 hover:text-gray-500 dark:hover:text-gray-700 ">Gestion de Leyes</Link>
             </li>
             <li ><NotificationDropdown/></li>
-            <li ><DropDownButtonX/></li>
+            <li ><UserButton/></li>
           </ul>
         </div>
       </div>

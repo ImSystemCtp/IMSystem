@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-
+import { ClerkProvider } from '@clerk/nextjs'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -15,8 +15,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={"min-h-screen bg-slate-200  dark:bg-slate-800  "+inter.className}  >{children}</body>
-    </html>
+    <ClerkProvider
+    >
+      <html lang="es">
+        <body className={"min-h-screen bg-slate-200  dark:bg-slate-800  " + inter.className}  >
+          <main className=' mx-auto'>
+            <div className=''>
+              <div>{children}</div>
+            </div>
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
