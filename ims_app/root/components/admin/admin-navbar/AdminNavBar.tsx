@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import { NotificationDropdown } from "../../notification-dropdown";
 import DropDownButtonX from "../../dropdown-button/DropDownButtonX";
 import { UserButton } from "@clerk/nextjs";
@@ -14,7 +15,7 @@ export default function AdminNavBar () {
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/admin" className="flex items-center">
-            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
+            <Image src="/ims_app/public/ctp-preview.png" className="h-8 mr-3" alt="CTPP Logo" width={100} height={100}/>
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IM_System</span>
         </Link>
         <button onClick={toggleMenu} data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
