@@ -1,1 +1,1 @@
-export {default as RegisterLaw} from './RegisterLaws';
+export {default as RegisterLocation} from './RegisterLaws';

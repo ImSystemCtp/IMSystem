@@ -11,6 +11,7 @@ export async function POST(req: Request) {
                 ...(body as ims_locations)
             }
         });
+        console.log("hola"+response)
         return NextResponse.json(response);
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });
