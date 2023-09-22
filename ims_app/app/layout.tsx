@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
+import { esES } from "@clerk/localizations";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider
+    <ClerkProvider localization={esES}
     >
       <html lang="es">
         <body className={"min-h-screen bg-slate-200  dark:bg-slate-800  " + inter.className}  >
