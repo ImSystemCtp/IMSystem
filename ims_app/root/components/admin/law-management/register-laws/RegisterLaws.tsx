@@ -6,7 +6,7 @@ import { locationMessage } from "@/schemas";
 interface FormValues {
     name: string;
 }
-export default function RegisterLocation() {
+export default function RegisterLaw() {
     let initialValues: FormValues = {
         name: "",
     };

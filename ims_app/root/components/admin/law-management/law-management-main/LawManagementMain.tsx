@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react";
 import { AdminOption } from "../../admin-options";
-import { RegisterGoods, RegisterLaw } from "../..";
 import EditLaw from "../edit-laws/EditLaw";
+import { RegisterLaw } from "../register-laws";
 export default function LawsManagementMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
