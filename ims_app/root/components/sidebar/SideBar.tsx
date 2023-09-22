@@ -1,43 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { SideBarState, useSideBarStore } from "../../zustand/provider/siderbar-state/sidebar-state";
 export default function SideBar() {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-
-    const handleShowNavigation = () => {
-        setSidebarOpen(true);
-    };
-
+    const isOpenSideBar = useSideBarStore((state) => state.isOpenSideBar);
     const handleHideNavigation = () => {
-        setSidebarOpen(false);
+        useSideBarStore.setState({ sidebarOpen: false });
     };
     return (
         <div>
-            <div className="text-center">
-                <button
-                    className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    type="button"
-                    onClick={handleShowNavigation} // Call the handler to show the navigation
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-                        />
-                    </svg>
-                </button>
-            </div>
             <div
                 id="drawer-navigation"
-                className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform ${sidebarOpen ? "translate-x-0 " : "-translate-x-full"
+                className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform ${isOpenSideBar ? "translate-x-0 " : "-translate-x-full"
                     } bg-white dark:bg-gray-800`}
                 aria-labelledby="drawer-navigation-label"
             >

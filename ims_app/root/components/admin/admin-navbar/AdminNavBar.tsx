@@ -4,7 +4,14 @@ import Image from "next/image";
 import { NotificationDropdown } from "../../notification-dropdown";
 import DropDownButtonX from "../../dropdown-button/DropDownButtonX";
 import { UserButton } from "@clerk/nextjs";
+import { useState } from "react";
+import { useSideBarStore } from "@/root/zustand/provider/siderbar-state/sidebar-state";
 export default function AdminNavBar() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const handleShowNavigation = () => {
+        useSideBarStore.setState({ sidebarOpen: true });
+    };
   const toggleMenu = () => {
     const navbarDefault = document.getElementById("navbar-default");
     if (navbarDefault) {
@@ -14,6 +21,28 @@ export default function AdminNavBar() {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="text-center">
+                <button
+                    className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    type="button"
+                    onClick={handleShowNavigation} // Call the handler to show the navigation
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                        />
+                    </svg>
+                </button>
+            </div>
         <Link href="/admin" className="flex items-center">
           <Image src="/ctp-preview.png" alt="Logo" className="h-10 w-auto mr-3" width={400} height={400} />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IM_System</span>
