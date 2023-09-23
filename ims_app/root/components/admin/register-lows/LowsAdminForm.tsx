@@ -1,3 +1,4 @@
+"use client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { CustomInput, CustomTextArea } from "../../Formik";

@@ -1,30 +1,5 @@
-import { Form, Formik } from "formik";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { CustomInput } from "../Formik";
-import Image from "next/image";
-import { loginMessage } from "@/schemas";
-interface FormValues {
-    email: string;
-    password: string;
-}
 export default function LoginPage() {
-    const router = useRouter();
-    const initialValues: FormValues = {
-        email: "",
-        password: "",
-    };
-
-    //const { loginUser } = useUserActions();
-
-    const handleSubmit = async (values: FormValues) => {
-        const { email, password } = values;
-        router.push("/admin");
-        //loginUser(email,password);
-    };
-
     return (
-        <Formik initialValues={initialValues} validationSchema={loginMessage} onSubmit={handleSubmit}>
                 <div className=" bg-slate-200  dark:bg-slate-800  flex justify-center items-center  h-screen">
                     <div className="border-2 border-black dark:border-gray-600 rounded-lg w-full flex justify-center items-center sm:w-1/2 md:w-2/4 lg:w-1/2  ">
                         <div className="    flex flex-col justify-center items-center shadow-drop-bottom-right w-full sm:w-full md:w-3/4 lg:w-10/12 xl:w-full">
@@ -34,6 +9,5 @@ export default function LoginPage() {
                         </div>
                     </div>
                 </div>
-        </Formik>
     );
 }

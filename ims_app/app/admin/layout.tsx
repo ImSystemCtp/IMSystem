@@ -1,5 +1,5 @@
 "use client";
-import { AdminNavBar } from '@/root/components'
+import { AdminNavBar, Footer } from '@/root/components'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import SideBar from '@/root/components/sidebar/SideBar';
