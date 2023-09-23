@@ -55,18 +55,6 @@ export default function AdminNavBar() {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium text-center  flex flex-col py-10 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className="py-2">
-              <Link href="/admin/register-goods" className=" p-3 mr-5 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-300">Registrar Bienes</Link>
-            </li>
-            <li className="py-2">
-              <Link href="/admin/users-management" className="mr-5 dark:text-gray-500  hover:text-gray-500 dark:hover:text-gray-300">Gestion de Usuarios</Link>
-            </li>
-            <li className="py-2">
-              <Link href="/admin/locations-management" className="mr-5 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-300">Gestion de Ubicaciones</Link>
-            </li>
-            <li className="py-2">
-              <Link href="/admin/laws-management" className="mr-5 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-300">Gestion de Leyes</Link>
-            </li>
             <li ><NotificationDropdown /></li>
             <li ><UserButton /></li>
           </ul>

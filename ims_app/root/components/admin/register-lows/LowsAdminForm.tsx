@@ -26,11 +26,6 @@ export default function LowsAdminForm() {
                     <Form>
                         <div className="flex flex-col   w-full  ">
                             <div className="w-full h-full ">
-                                <CustomInput
-                                    label="Número de Patrimonio:"
-                                    name="number"
-                                    inputType="text"
-                                />
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
                             </div>
                             <div className="w-full text-center justify-center items-center">
