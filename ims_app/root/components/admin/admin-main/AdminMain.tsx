@@ -33,7 +33,7 @@ export default function AdminMain() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 p-2">
                     <div className="bg-white p-4 rounded-md">
-                        <h2 className="text-gray-500 text-lg font-semibold pb-1">Usuarios</h2>
+                        <h2 className="text-gray-500 text-lg font-semibold pb-1">Grafica #1</h2>
                         <div className="my-1"></div> {/* Espacio de separación */}
                         <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
                         <div className="chart-container" style={{ position: "relative", height: "150px", width: "100%" }}>
@@ -42,7 +42,7 @@ export default function AdminMain() {
                     </div>
 
                     <div className="bg-white p-4 rounded-md">
-                        <h2 className="text-gray-500 text-lg font-semibold pb-1">Comercios</h2>
+                        <h2 className="text-gray-500 text-lg font-semibold pb-1">Grafica #2</h2>
                         <div className="my-1"></div> {/* Espacio de separación */}
                         <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
                         <div className="chart-container" style={{ position: "relative", height: "150px", width: "100%" }}>
@@ -52,7 +52,7 @@ export default function AdminMain() {
                     </div>
                 </div>
                 <div className="bg-white p-4 rounded-md mt-4">
-                    <h2 className="text-gray-500 text-lg font-semibold pb-4">Autorizaciones Pendientes</h2>
+                    <h2 className="text-gray-500 text-lg font-semibold pb-4">Solicitudes Pendientes</h2>
                     <div className="my-1"></div>
                     <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
                     <table className="w-full table-auto text-sm">

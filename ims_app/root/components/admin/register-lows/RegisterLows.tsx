@@ -24,7 +24,7 @@ export default function RegisterLows() {
           </select>
         </div>
       </div>
-      <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-4 lg:p-4">
+      <div className=" flex flex-col lg:flex-row lg:m-4 lg:p-4">
         <div className=" w-full lg:w-3/5 pr-0 lg:pr-4">
           {/* RegisterTable ocupa más de la mitad de la pantalla */}
           <RegisterTable />
