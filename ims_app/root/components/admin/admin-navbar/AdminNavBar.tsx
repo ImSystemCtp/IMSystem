@@ -58,7 +58,7 @@ export default function AdminNavBar() {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium text-center  flex flex-col py-10 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className=" flex justify-center items-center w-9 h-9 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationDropdown /></li>
+            <li className=" flex justify-center items-center w-9 h-9 rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationDropdown /></li>
             <li ><UserButton /></li>
           </ul>
         </div>

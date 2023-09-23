@@ -17,7 +17,9 @@ export default function AdminLayout({
   return (
     <main>
       <AdminNavBar />
-      <Navigation/>
+      <div className='mx-10'>
+        <Navigation/>
+      </div>
       <div className="flex-1 flex">
         <SideBar className="w-1/6" />
         <div className="flex-1 pl-4 pr-4">{children}</div>

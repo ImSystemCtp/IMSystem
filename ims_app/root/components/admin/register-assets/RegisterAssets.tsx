@@ -2,7 +2,7 @@
 import { Form, Formik } from "formik";
 import CustomInput from "../../Formik/CustomInput";
 import CustomSelect from "../../Formik/CustomSelect";
-import { registerGoodsMessage } from "@/schemas";
+import registerAssetsMessage from "@/schemas/registerAssetsMessage";
 interface FormValues {
     number: string;
     description: string;
@@ -26,12 +26,12 @@ const initialValues: FormValues = {
     law: "",
 };
 const handleSubmit = async (values: FormValues) => { };
-export default function RegisterGoods() {
+export default function RegisterAssets() {
     return (
         <div className="justify-center items-center  ">
             <Formik
                 initialValues={initialValues}
-                validationSchema={registerGoodsMessage}
+                validationSchema={registerAssetsMessage}
                 onSubmit={handleSubmit}
             >
                 <div className="">

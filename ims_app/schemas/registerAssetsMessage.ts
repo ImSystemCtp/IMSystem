@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-const registerGoodsMessage = Yup.object({
+const registerAssetsMessage = Yup.object({
     number: Yup.string().email("Invalid number format").required("Number is required"),
     description: Yup.string().required("Description is required"),
     series: Yup.string().required("series is required"),
@@ -10,4 +10,4 @@ const registerGoodsMessage = Yup.object({
     location: Yup.string().required("Location is required"),
     law: Yup.string().required("Law is required"),
 });
-export default registerGoodsMessage;
+export default registerAssetsMessage;
