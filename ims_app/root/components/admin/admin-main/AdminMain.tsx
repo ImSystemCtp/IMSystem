@@ -1,4 +1,4 @@
-
+import { motion } from "framer-motion";
 export default function AdminMain() {
     return (
         <div className="relative flex">
@@ -32,16 +32,24 @@ export default function AdminMain() {
 
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 p-2">
-                    <div className="bg-white p-4 rounded-md">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }} className="bg-white p-4 rounded-md">
                         <h2 className="text-gray-500 text-lg font-semibold pb-1">Grafica #1</h2>
                         <div className="my-1"></div> {/* Espacio de separación */}
                         <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
                         <div className="chart-container" style={{ position: "relative", height: "150px", width: "100%" }}>
-                            <canvas id="usersChart"></canvas>
+                            {/* El canvas para la gráfica */}
+                            <canvas id="commercesChart"></canvas>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="bg-white p-4 rounded-md">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-white p-4 rounded-md">
                         <h2 className="text-gray-500 text-lg font-semibold pb-1">Grafica #2</h2>
                         <div className="my-1"></div> {/* Espacio de separación */}
                         <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
@@ -49,9 +57,12 @@ export default function AdminMain() {
                             {/* El canvas para la gráfica */}
                             <canvas id="commercesChart"></canvas>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
-                <div className="bg-white p-4 rounded-md mt-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }} className="bg-white p-4 rounded-md mt-4">
                     <h2 className="text-gray-500 text-lg font-semibold pb-4">Solicitudes Pendientes</h2>
                     <div className="my-1"></div>
                     <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
@@ -71,7 +82,7 @@ export default function AdminMain() {
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </motion.div>
             </div>
         </div>
     );
