@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }
-export async function GET(req: Request) {
+export async function GET() {
     try {
         const response = await prismaDB.ims_locations.findMany();
         if (response.length > 0) {

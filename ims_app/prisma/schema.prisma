@@ -7,39 +7,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model ims_details_good {
+model ims_institution {
+  inst_id          Int     @id @default(autoincrement())
+  inst_name        String  @db.VarChar(60)
+  inst_description String? @db.VarChar(100)
+  inst_location    String? @db.VarChar(60)
+  inst_phone       String? @db.VarChar(20)
+  inst_email       String? @db.VarChar(60)
+  ims_registers    ims_register[] 
+  ims_registers_in ims_registered_in[]
+}
+
+model ims_details_asset {
   deta_id          Int         @id @default(autoincrement())
   deta_description String?     @db.VarChar(100)
   deta_req_id      Int
-  deta_goods_no    Int
-  ims_goods        ims_goods   @relation(fields: [deta_goods_no], references: [goods_no], onDelete: Cascade, onUpdate: Cascade, map: "goods_details")
+  deta_assets_no    Int
+  ims_assets        ims_assets   @relation(fields: [deta_assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "assets_details")
   ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: Cascade, onUpdate: Cascade, map: "request_details")
 }
 
-model ims_goods {
-  goods_regis_location                                        Int
-  goods_no                                                    Int                  @id
-  goods_description                                           String               @db.VarChar(30)
-  goods_brand                                                 String               @db.VarChar(15)
-  goods_model                                                 String               @db.VarChar(20)
-  goods_series                                                String               @db.VarChar(20)
-  goods_active                                                String               @default("Y") @db.VarChar(1)
-  goods_acquisition_mode                                      String               @db.VarChar(30)
-  goods_price                                                 String               @db.VarChar(30)
-  goods_curr_location                                         Int?
-  ley_id                                                      Int?
-  goods_invoice_number                                        Int?
-  ims_details_good                                            ims_details_good[]
-  ims_locations_ims_goods_goods_regis_locationToims_locations ims_locations        @relation("ims_goods_goods_regis_locationToims_locations", fields: [goods_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
-  ims_locations_ims_goods_goods_curr_locationToims_locations  ims_locations?       @relation("ims_goods_goods_curr_locationToims_locations", fields: [goods_curr_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_loc_curr")
-  ims_register_goods                                          ims_register_goods[]
+model ims_assets { 
+  assets_regis_location                                         Int
+  assets_no                                                     Int                  @id
+  assets_description                                            String               @db.VarChar(30)
+  assets_brand                                                  String               @db.VarChar(15)
+  assets_model                                                  String               @db.VarChar(20)
+  assets_series                                                 String               @db.VarChar(20)
+  assets_active                                                 String               @default("Y") @db.VarChar(1)
+  assets_acquisition_mode                                       String               @db.VarChar(30)
+  assets_price                                                  String               @db.VarChar(30)
+  assets_curr_location                                          Int?
+  assets_invoice_number                                         Int?
+  assent_law_id Int?
+  ims_laws                                                      ims_laws? @relation(fields: [assent_law_id], references: [law_id])
+  ims_details_good                                              ims_details_asset[]
+  ims_locations_ims_assets_assets_regis_locationToims_locations ims_locations        @relation("ims_assets_assets_regis_locationToims_locations", fields: [assets_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
+  ims_locations_ims_assets_assets_curr_locationToims_locations  ims_locations?       @relation("ims_assets_assets_curr_locationToims_locations", fields: [assets_curr_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_loc_curr")
+  ims_register_assets                                           ims_register_assets[]
 }
 
 model ims_locations {
   location_id                                             Int           @id @default(autoincrement())
   location_name                                           String        @db.VarChar(30)
-  ims_goods_ims_goods_goods_regis_locationToims_locations ims_goods[]   @relation("ims_goods_goods_regis_locationToims_locations")
-  ims_goods_ims_goods_goods_curr_locationToims_locations  ims_goods[]   @relation("ims_goods_goods_curr_locationToims_locations")
+  ims_assets_ims_assets_assets_regis_locationToims_locations ims_assets[]   @relation("ims_assets_assets_regis_locationToims_locations")
+  ims_assets_ims_assets_assets_curr_locationToims_locations  ims_assets[]   @relation("ims_assets_assets_curr_locationToims_locations")
   ims_request                                             ims_request[]
 }
 
@@ -53,20 +65,22 @@ model ims_register {
   reg_observation    String?              @db.VarChar(3000)
   reg_usu_id         Int
   ims_users          ims_users            @relation(fields: [reg_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "sgi_usuario_registro")
-  ims_register_goods ims_register_goods[]
+  ims_register_assets ims_register_assets[]
+  reg_inst_id        Int
+  ims_institution     ims_institution     @relation(fields: [reg_inst_id], references: [inst_id], onDelete: Cascade, onUpdate: Cascade, map: "sgi_register_institution")
 }
 enum EnumRegisterType {
   Register
   Low
   Transfer
 }
-model ims_register_goods {
-  goods_no     Int
+model ims_register_assets {
+  assets_no     Int
   reg_id       Int
-  ims_goods    ims_goods    @relation(fields: [goods_no], references: [goods_no], onDelete: Cascade, onUpdate: Cascade, map: "register_goods_fk01")
-  ims_register ims_register @relation(fields: [reg_id], references: [reg_id], onDelete: Cascade, onUpdate: Cascade, map: "register_goods_fk02")
+  ims_assets    ims_assets    @relation(fields: [assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "register_assets_fk01")
+  ims_register ims_register @relation(fields: [reg_id], references: [reg_id], onDelete: Cascade, onUpdate: Cascade, map: "register_assets_fk02")
 
-  @@id([goods_no, reg_id])
+  @@id([assets_no, reg_id])
 }
 
 model ims_registered_in {
@@ -75,6 +89,10 @@ model ims_registered_in {
   asiento Int
 
   @@id([tomo, folio, asiento])
+  inst_id Int
+  ims_institution ims_institution @relation(fields: [inst_id], references: [inst_id])
+  
+
 }
 
 model ims_request {
@@ -85,7 +103,7 @@ model ims_request {
   req_type            EnumReqType
   req_usu_id          Int
   req_location_id_new Int?
-  ims_details_good    ims_details_good[]
+  ims_details_asset    ims_details_asset[]
   ims_locations       ims_locations?     @relation(fields: [req_location_id_new], references: [location_id], onDelete: Restrict, onUpdate: Restrict, map: "location_request")
   ims_users           ims_users          @relation(fields: [req_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "user_request")
 }
@@ -126,4 +144,6 @@ enum EnumUserState {
 model ims_laws {
   law_id          Int     @id
   law_description String? @db.VarChar(20)
+  
+  ims_assets ims_assets[]
 }

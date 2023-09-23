@@ -1,10 +1,8 @@
-import { ParameterId } from "@/app/root";
 import { prismaDB } from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request, {params}:ParameterId) {
+export async function GET( {params}:ParameterId) {
     try {
         const id= Number.parseInt(params.id);
 
