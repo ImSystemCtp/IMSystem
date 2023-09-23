@@ -4,7 +4,8 @@ export default function EditLocation() {
     const locationState = useLocationStore();
     const locations = locationState.locations;
     return (
-        <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300 p-4 w-3/4">
+        
+        <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
             <h2 className="text-center text-2xl font-bold pb-12 p-2">Ubicaciones</h2>
             <div className="w-full">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -13,7 +14,7 @@ export default function EditLocation() {
                             <th scope="col" className="px-6 py-3">
                                 Ubicacion
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th scope="col" className=" px-6 py-3">
                                 Eliminar
                             </th>
                         </tr>

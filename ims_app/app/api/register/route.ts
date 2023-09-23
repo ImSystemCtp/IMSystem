@@ -1,6 +1,4 @@
 import { prismaDB } from "@/lib";
-import increment_registerIn from "../function";
-import { registerGood } from "@/app/root";
 import { NextResponse } from "next/server";
 
 
@@ -20,19 +18,19 @@ export async function POST(req: Request) {
         });
         const registerId = response.reg_id;
         const type = body.reg_type;
-        const goods = body.goods;
+        const assets = body.assets;
         if (type == 'Register') {
-            goods.forEach(async (element: any) => {
-                const resp = await prismaDB.ims_goods.create({ data: element })
-                await prismaDB.ims_register_goods.create({ data: { reg_id: registerId, goods_no: element.goods_no } })
+            assets.forEach(async (element: any) => {
+                const resp = await prismaDB.ims_assets.create({ data: element })
+                await prismaDB.ims_register_assets.create({ data: { reg_id: registerId, assets_no: element.assets_no } })
             });
         } else if (type == 'Transfer') {
-            goods.forEach(async (good: any) => {
-                prismaDB.ims_goods.update({ where: { goods_no: good.goods_no }, data: good })
+            assets.forEach(async (good: any) => {
+                prismaDB.ims_assets.update({ where: { assets_no: good.assets_no }, data: good })
             });
         } else if (type == 'Low') {
-            goods.forEach(async (good: any) => {
-                prismaDB.ims_goods.update({ where: { goods_no: good.goods_no }, data: good })
+            assets.forEach(async (good: any) => {
+                prismaDB.ims_assets.update({ where: { assets_no: good.assets_no }, data: good })
             })
         }
         return NextResponse.json(response);

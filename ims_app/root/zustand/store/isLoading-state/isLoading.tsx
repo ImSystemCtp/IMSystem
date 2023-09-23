@@ -1,7 +1,4 @@
-import React from "react";
-import create from "zustand";
-
-// Define tu almacén de estado y las acciones
+import {create} from "zustand";
 export interface SideBarState {
   isOpen: boolean;
   toggle: () => void;

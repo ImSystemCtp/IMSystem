@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { SideBarState, useSideBarStore } from "../../zustand/provider/siderbar-state/sidebar-state";
+import { SideBarState, useSideBarStore } from "../../zustand/store/siderbar-state/sidebar-state";
 interface SideBarProps {
     className?: string;
 }
@@ -20,7 +20,7 @@ export default function SideBar({ className }: SideBarProps) {
             >
                 <h5
                     id="drawer-navigation-label"
-                    className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+                    className="text-base font-semibold text-blue-900 uppercase dark:text-gray-400"
                 >
                     Menu
                 </h5>

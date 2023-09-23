@@ -8,7 +8,7 @@ const createLocation = async (location: ims_locations) => {
 };
 const getLocation = async () => {
     const response = await axios.get('/api/locations');
-    return response.data as ims_locations[]; 
+    return response.data as ims_locations[];
 }
 export const locationProvider = {
     createLocation,

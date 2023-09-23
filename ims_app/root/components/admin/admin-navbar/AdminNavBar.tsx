@@ -5,7 +5,7 @@ import Link from "next/link";
 import { NotificationDropdown } from "../../notification-dropdown";
 import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
-import { useSideBarStore } from "@/root/zustand/provider/siderbar-state/sidebar-state";
+import { useSideBarStore } from "@/root/zustand/store/siderbar-state/sidebar-state";
 export default function AdminNavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

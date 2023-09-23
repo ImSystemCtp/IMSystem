@@ -1,6 +1,6 @@
 import { prismaDB } from "@/lib";
 import { NextResponse } from "next/server";
-import { ims_goods, ims_registered_in } from "@prisma/client";
+import { ims_assets, ims_registered_in } from "@prisma/client";
 import { registerGood } from "@/root/types";
 import getNumRegister from "../../function/getNumRegister";
 import { getNextNumber, updateRegisterNumber } from "../../function";
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
         const body = await req.json() as registerGood;
         console.log(body)
         const type = body.register.reg_type;
-        const goods = body.goods;
+        const assets = body.assets;
         console.log(type)
         let tomoNew: number;
         let folioNew: number;
@@ -22,12 +22,13 @@ export async function POST(req: Request) {
             folioNew = registerIN.folio;
             asientoNew = registerIN.asiento;
 
-            goods.forEach(async (element: ims_goods) => {
+            assets.forEach(async (element: ims_assets) => {
 
                 console.log(tomoNew, folioNew, asientoNew)
                 const response = await prismaDB.ims_register.create({
                     data: {
                         reg_folio: folioNew,
+                        reg_inst_id:1,
                         reg_tomo: tomoNew,
                         reg_asiento: asientoNew,
                         reg_type: body.register.reg_type,
@@ -38,8 +39,8 @@ export async function POST(req: Request) {
                 console.log(response)
                 const registerId = response.reg_id;
 
-                await prismaDB.ims_goods.create({ data: element })
-                await prismaDB.ims_register_goods.create({ data: { reg_id: registerId, goods_no: element.goods_no } })
+                await prismaDB.ims_assets.create({ data: element })
+                await prismaDB.ims_register_assets.create({ data: { reg_id: registerId, assets_no: element.assets_no } })
 
                 const newNumber = await getNextNumber(tomoNew, folioNew, asientoNew) as ims_registered_in;
                 tomoNew = newNumber.tomo;

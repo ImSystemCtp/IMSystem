@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     try {
         console.log(req.body)
         const body = await req.json();
-        const response = await prismaDB.ims_goods.create({ data:{
+        const response = await prismaDB.ims_assets.create({ data:{
             ...body
         }  });
         console.log("RESPONSE",response)
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
 export async function GET() {
     try {
-        const response = await prismaDB.ims_goods.findMany();
+        const response = await prismaDB.ims_assets.findMany();
         return NextResponse.json(response);
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });

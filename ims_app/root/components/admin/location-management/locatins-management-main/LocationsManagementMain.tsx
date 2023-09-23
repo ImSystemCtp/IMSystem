@@ -1,17 +1,13 @@
 "use client"
+import { EditLocation, RegisterLocation } from "@/root/components";
+import { useLocations } from "@/root/hook";
 import React, { useState } from "react";
-import Link from "next/link";
-import { AdminOption } from "../../admin-options";
-import { RegisterLocation } from "..";
-import EditLocation from "../edit-location/EditLocation";
-import { useLocations } from "@/root";
 export default function LocationsManagementMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    useLocations()
+    useLocations();
     const handleShowNavigation = () => {
         setSidebarOpen(true);
     };
-
     const handleHideNavigation = () => {
         setSidebarOpen(false);
     };
