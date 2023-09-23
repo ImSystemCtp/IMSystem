@@ -1,14 +1,11 @@
-import {create} from "zustand";
-export interface SideBarState {
-  isOpen: boolean;
-  toggle: () => void;
-  close: () => void;
-  open: () => void;
+import { create } from 'zustand';
+
+interface LoadingState {
+    isLoading: boolean;
+    setIsLoading: (isLoading: boolean) => void;
 }
 
-export const useSideBarStore = create<SideBarState>((set) => ({
-  isOpen: false,
-  toggle: () => set((state) => ({ isOpen: !state.isOpen })),
-  close: () => set({ isOpen: false }),
-  open: () => set({ isOpen: true }),
+export const useLoadingStore = create<LoadingState>((set) => ({
+    isLoading: false,
+    setIsLoading: (isLoading: boolean) => set({ isLoading }),
 }));

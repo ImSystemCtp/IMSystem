@@ -10,7 +10,7 @@ export default function AdminNavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleToggle = () => {
-    useSideBarStore.getState().toggle(); // Alternar entre abierto y cerrado
+    useSideBarStore.getState().toggle();
   };
   const toggleMenu = () => {
     const navbarDefault = document.getElementById("navbar-default");

@@ -1,5 +1,6 @@
 import { ims_locations } from "@prisma/client";
 import axios from 'axios';
+import { useLoadingStore } from "../../store/isLoading-state";
 const createLocation = async (location: ims_locations) => {
     console.log(location)
     const response = await axios.post('/api/locations', location);
@@ -7,7 +8,9 @@ const createLocation = async (location: ims_locations) => {
     return response.data as ims_locations;
 };
 const getLocation = async () => {
+    useLoadingStore.getState().setIsLoading(true);
     const response = await axios.get('/api/locations');
+    useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_locations[];
 }
 export const locationProvider = {

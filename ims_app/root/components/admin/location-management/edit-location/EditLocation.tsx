@@ -1,10 +1,12 @@
-import { useLocationStore } from "@/root/zustand";
+import { LoadingComponent } from "@/root/components/loading";
+import {  useLoadingStore, useLocationStore } from "@/root/zustand";
 import { ims_locations } from "@prisma/client";
 export default function EditLocation() {
     const locationState = useLocationStore();
     const locations = locationState.locations;
+    const isLoading = useLoadingStore((state) => state.isLoading);
     return (
-        
+        isLoading ? <LoadingComponent /> :
         <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
             <h2 className="text-center text-2xl font-bold pb-12 p-2">Ubicaciones</h2>
             <div className="w-full">
