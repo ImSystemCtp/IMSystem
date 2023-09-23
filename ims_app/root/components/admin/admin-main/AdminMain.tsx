@@ -1,74 +1,90 @@
-"use client"
-import AdminOption from "../admin-options/AdminOptions";
+"use client";
+import { motion } from "framer-motion";
 export default function AdminMain() {
-    interface MenuItem {
-        text: string;
-        link: string;
-        icon: JSX.Element;
-    }
-    const menuItems: MenuItem[] = [
-        {
-            text: "Registrar Bienes",
-            link: "/admin/register-goods",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                </svg>
-            ),
-        },
-        {
-            text: "Gestion de Usuarios",
-            link: "/admin/users-management",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                </svg>
-            ),
-        },
-        {
-            text: "Gestion de Ubicaciones",
-            link: "/admin/locations-management",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-
-            ),
-        },
-        {
-            text: "Gestion de Leyes",
-            link: "/admin/laws-management",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                </svg>
-            ),
-        },
-        {
-            text: "Registrar Bajas/Traslados",
-            link: "/admin/register-lows",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" />
-                </svg>
-            ),
-        },
-        {
-            text: "Gestion de Solicitudes",
-            link: "/admin/request-management",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-
-            ),
-        },
-    ];
     return (
-        <main className="relative flex">
-            <AdminOption options={menuItems}></AdminOption>
-        </main>
-    )
+        <div className="relative flex">
+            <div className="flex-1 p-4">
+                <div className="relative max-w-md w-full">
+                    <div className="absolute top-1 left-2 inline-flex items-center p-2">
+                        <i className="fas fa-search text-gray-400"></i>
+                    </div>
+                    <div className="relative">
+                        <input
+                            className="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
+                            type="search"
+                            placeholder="Buscar Bien..."
+                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6 absolute top-3 left-3"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                            />
+                        </svg>
+                    </div>
+
+
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 p-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }} className="bg-white p-4 rounded-md">
+                        <h2 className="text-gray-500 text-lg font-semibold pb-1">Grafica #1</h2>
+                        <div className="my-1"></div> {/* Espacio de separación */}
+                        <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
+                        <div className="chart-container" style={{ position: "relative", height: "150px", width: "100%" }}>
+                            {/* El canvas para la gráfica */}
+                            <canvas id="commercesChart"></canvas>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-white p-4 rounded-md">
+                        <h2 className="text-gray-500 text-lg font-semibold pb-1">Grafica #2</h2>
+                        <div className="my-1"></div> {/* Espacio de separación */}
+                        <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
+                        <div className="chart-container" style={{ position: "relative", height: "150px", width: "100%" }}>
+                            {/* El canvas para la gráfica */}
+                            <canvas id="commercesChart"></canvas>
+                        </div>
+                    </motion.div>
+                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }} className="bg-white p-4 rounded-md mt-4">
+                    <h2 className="text-gray-500 text-lg font-semibold pb-4">Solicitudes Pendientes</h2>
+                    <div className="my-1"></div>
+                    <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> {/* Línea con gradiente */}
+                    <table className="w-full table-auto text-sm">
+                        <thead>
+                            <tr className="text-sm leading-normal">
+                                <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-center">NOMBRE</th>
+                                <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-center">TIPO DE SOLICITUD</th>
+                                <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-center">ESTADO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="hover:bg-grey-lighter">
+                                <td className="py-2 px-4 border-b border-grey-light text-center">Juan Pérez</td>
+                                <td className="py-2 px-4 border-b border-grey-light text-center">Baja</td>
+                                <td className="py-2 px-4 border-b border-grey-light text-center">Activa</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </motion.div>
+            </div>
+        </div>
+    );
 }
