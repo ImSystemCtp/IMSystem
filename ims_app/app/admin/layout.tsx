@@ -1,5 +1,5 @@
 "use client";
-import { AdminNavBar, Footer } from '@/root/components'
+import { AdminNavBar, Footer, Navigation } from '@/root/components'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import SideBar from '@/root/components/sidebar/SideBar';
@@ -17,6 +17,7 @@ export default function AdminLayout({
   return (
     <main>
       <AdminNavBar />
+      <Navigation/>
       <div className="flex-1 flex">
         <SideBar className="w-1/6" />
         <div className="flex-1 pl-4 pr-4">{children}</div>

@@ -19,10 +19,12 @@ export default function AdminNavBar() {
     }
   };
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-blue-500 border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="text-center">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             type="button"
             onClick={handleToggle} // Call the handler to show the navigation
@@ -41,7 +43,7 @@ export default function AdminNavBar() {
                 d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
               />
             </svg>
-          </button>
+          </motion.button>
         </div>
         <Link href="/admin" className="flex items-center">
           <Image src="/ctp-preview.png" alt="Logo" className="h-10 w-auto mr-3" width={400} height={400} />
@@ -55,8 +57,8 @@ export default function AdminNavBar() {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium text-center  flex flex-col py-10 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li ><NotificationDropdown /></li>
+          <ul className="font-medium text-center  flex flex-col py-10 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li className=" flex justify-center items-center w-9 h-9 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationDropdown /></li>
             <li ><UserButton /></li>
           </ul>
         </div>
