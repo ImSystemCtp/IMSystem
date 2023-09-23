@@ -19,7 +19,7 @@ export default function AdminNavBar() {
     }
   };
   return (
-    <nav className="bg-blue-500 border-gray-200 dark:bg-gray-900">
+    <nav className="bg-sky-400 border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="text-center">
           <motion.button
@@ -29,23 +29,13 @@ export default function AdminNavBar() {
             type="button"
             onClick={handleToggle} // Call the handler to show the navigation
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
+
           </motion.button>
         </div>
-        <Link href="/admin" className="flex items-center">
+        <Link href="/admin" className="text-white flex items-center">
           <Image src="/ctp-preview.png" alt="Logo" className="h-10 w-auto mr-3" width={400} height={400} />
           <motion.button whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }} className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IM_System</motion.button>

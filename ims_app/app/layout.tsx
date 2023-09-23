@@ -20,7 +20,7 @@ export default function RootLayout({
     <ClerkProvider localization={esES}
     >
       <html lang="es">
-        <body className={"min-h-screen bg-slate-200  dark:bg-slate-800  " + inter.className}  >
+        <body className={"min-h-screen bg-slate-50  dark:bg-slate-800  " + inter.className}  >
           <main className=' mx-auto'>
             <div className=''>
               <div className='h-screen'>{children}</div>

@@ -7,7 +7,7 @@ export default function RegisterLows() {
     <div className="w-full">
       <h1 className="m-2 text-center">Registrar Bajas</h1>
       <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-4 lg:p-4">
-        <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 w-full lg:w-1/2 mb-4 lg:mb-0">
+        <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
           <SearchAssetsAdmin />
         </div>
         <div className="w-full lg:w-1/4 lg:pl-4 mx-20">

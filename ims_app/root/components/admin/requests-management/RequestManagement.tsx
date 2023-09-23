@@ -16,7 +16,7 @@ export default function RequestManagement() {
                 Solicitudes Pendientes
             </h2>
             <div className="my-1"></div>
-            <div className="bg-blue-500 h-px mb-6"></div>
+            <div className="bg-sky-400 h-px mb-6"></div>
             <div className="w-full overflow-hidden rounded-lg shadow-xs">
                 <div className="w-full overflow-x-auto">
                     <table className="w-full">
