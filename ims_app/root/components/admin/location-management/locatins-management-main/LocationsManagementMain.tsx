@@ -4,9 +4,10 @@ import Link from "next/link";
 import { AdminOption } from "../../admin-options";
 import { RegisterLocation } from "..";
 import EditLocation from "../edit-location/EditLocation";
+import { useLocations } from "@/root";
 export default function LocationsManagementMain() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
+    useLocations()
     const handleShowNavigation = () => {
         setSidebarOpen(true);
     };
@@ -19,10 +20,10 @@ export default function LocationsManagementMain() {
             <h1 className="text-2xl font-bold pb-12 text-center m-4">Gestión de Ubicaciones</h1>
             <div className="flex flex-col lg:flex-row">
                 <div className="w-full lg:w-1/2">
-                    <RegisterLocation />
+                    <EditLocation />
                     </div>
                 <div className="w-full lg:w-1/2">
-                    <EditLocation />
+                    <RegisterLocation />
                 </div>
             </div>
         </div>
