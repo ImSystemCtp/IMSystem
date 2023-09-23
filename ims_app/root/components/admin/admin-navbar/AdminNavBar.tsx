@@ -9,9 +9,9 @@ import { useSideBarStore } from "@/root/zustand/provider/siderbar-state/sidebar-
 export default function AdminNavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const handleShowNavigation = () => {
-        useSideBarStore.setState({ sidebarOpen: true });
-    };
+  const handleToggle = () => {
+    useSideBarStore.getState().toggle(); // Alternar entre abierto y cerrado
+};
   const toggleMenu = () => {
     const navbarDefault = document.getElementById("navbar-default");
     if (navbarDefault) {
@@ -25,7 +25,7 @@ export default function AdminNavBar() {
                 <button
                     className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     type="button"
-                    onClick={handleShowNavigation} // Call the handler to show the navigation
+                    onClick={handleToggle} // Call the handler to show the navigation
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
