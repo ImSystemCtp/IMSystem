@@ -6,10 +6,11 @@ import { prismaDB } from "./prisma";
 
 const hasMatchingRole = (roles: string, permissions: USER_ROLES[]) => {
     const rolesArray = roles.split(',');
-    return rolesArray.some(role => permissions.includes(role.trim() as USER_ROLES));
+    console.log(rolesArray)
+    const algo = rolesArray.some(role => permissions.includes(role.trim() as USER_ROLES));
+    console.log(algo)
+    return algo
 }
-
-
 
 export const checkAuthorization = async (
     email: string,
@@ -26,7 +27,7 @@ export const checkAuthorization = async (
         return false;
     }
 
-    const isAuthorized = userAuthorized.usu_is_active && hasMatchingRole(userAuthorized.usu_role, permissions)
+    const isAuthorized = hasMatchingRole(userAuthorized.usu_role, permissions)
 
 
     return isAuthorized;

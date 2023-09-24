@@ -1,1 +1,1 @@
-
+export * from './registerAsset.provider';

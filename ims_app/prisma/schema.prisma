@@ -126,7 +126,6 @@ model ims_users {
   usu_is_active Boolean       @default(false)
   usu_surnames String         @db.VarChar(60)
   usu_email    String         @db.VarChar(60)
-  usu_password String         @db.VarChar(20)
   usu_role    EnumUserRole    @default(noRole)
   ims_register ims_register[]
   ims_request  ims_request[]

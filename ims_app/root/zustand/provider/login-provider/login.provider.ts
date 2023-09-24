@@ -1,18 +1,15 @@
+
+import { ims_users } from "@prisma/client";
 import axios, { AxiosError } from "axios";
 
 
-const login = async (email: string, password: string) => {
+const isAuth = async () => {
     try {
-        const url = process.env.NEXT_PUBLIC_API_URL;
-        console.log(url)
-        const response = await axios.post(url+"auth", {
-            usu_email: email,
-            usu_password: password,
-        });
-        console.log(response+"responseAPI")
+
+        const response = await axios.get("api/auth");
         if (response.status === 200) {
-            const user = response.data;
-            return user;
+
+            return response.data as ims_users;
         }
         if (response.status === 401) {
             return response;
@@ -30,5 +27,5 @@ const login = async (email: string, password: string) => {
 
 
 export const loginProvider = {
-    login,
+    isAuth,
 };

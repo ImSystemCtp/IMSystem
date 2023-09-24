@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 export enum USER_ROLES { 
-    ADMIN = "admin",
-    BASIC = "basic",
+    ADMIN = "Admin",
+    USER = "User",
     NOROLE = "noRole"
 }
