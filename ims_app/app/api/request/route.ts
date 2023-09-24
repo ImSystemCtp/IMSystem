@@ -1,16 +1,28 @@
 import { prismaDB } from "@/lib";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, ims_details_asset } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { RequestType } from "@/root/types";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     try {
-        const body = await req.json();
+        const body = await req.json() as RequestType;
+        const newRequest = body.request
+        const detailsAssets = body.assets
         const response = await prismaDB.ims_request.create({
             data: {
-                ...body
+                ...newRequest,
             }
         });
+        const requestId = response.req_id;
+        await prismaDB.ims_details_asset.createMany({
+            data: detailsAssets.map((element: ims_details_asset) => {
+                return {
+                    ...element,
+                    deta_req_id: requestId
+                }   
+            })
+        })
         if (response) {
             return NextResponse.json(response);
         }

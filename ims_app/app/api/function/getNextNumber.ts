@@ -1,26 +1,24 @@
+import { prismaDB } from "@/lib/prisma";
+import { ims_registered_in } from "@prisma/client";
 
-export default  async function getNextNumber<ims_registered_in> ( tomoNew:number, folioNew: number , asientoNew: number  ) {
-    let tomo: number;
-    let folio: number;
-    let asiento: number;
+export default async function getNextNumber<ims_registered_in>() {
+    const response = await prismaDB.$queryRaw`SELECT increment_register_in()` as any[];
 
-    tomo = tomoNew;
-    folio = folioNew;
-    asiento = asientoNew + 1;
+    if (response && response[0]['increment_register_in()']) {
+        const result = JSON.parse(response[0]['increment_register_in()']);
+        console.log(result);
 
-    if (asiento > 25) {
-        asiento = 1;
-        folio++;
-
-        if (folio > 500) {
-            folio = 1;
-            tomo++;
-        }
+        return {
+            tomo: parseInt(result.tomo_actual),
+            folio: parseInt(result.folio_actual),
+            asiento: parseInt(result.asiento_actual),
+            inst_id: 1
+        } as ims_registered_in;
     }
-    console.log(tomo, folio, asiento)
-    return {
-        tomo,
-        folio,
-        asiento,
+    return {    
+        tomo: 1,
+        folio: 1,
+        asiento: 1,
+        inst_id: 1
     } as ims_registered_in;
 }
