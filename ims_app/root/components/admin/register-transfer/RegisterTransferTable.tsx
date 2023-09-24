@@ -1,8 +1,8 @@
 
-export default function RegisterTable() {
+export default function RegisterTransferTable() {
     return (
         <div>
-            <div className=" border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+            <div className="my-2 w-full rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

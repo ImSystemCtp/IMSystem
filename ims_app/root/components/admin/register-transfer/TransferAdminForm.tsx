@@ -1,26 +1,26 @@
 "use client";
 import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
-import { CustomInput, CustomSelect, CustomTextArea } from "../../Formik";
-import lowsAdminFormMessage from "@/schemas/lows-admin-form-message";
+import {  CustomSelect, CustomTextArea } from "../../Formik";
+import { transferAdminFormMessage } from "@/schemas";
 interface FormValues {
-    number: string;
+    newUbication: string;
     observation: string;
 }
 
 const initialValues: FormValues = {
-    number: "",
+    newUbication: "",
     observation: "",
 };
 const handleSubmit = async (values: FormValues) => {
     // Lógica para manejar el envío del formulario
 };
-export default function LowsAdminForm() {
+export default function TransferAdminForm() {
     return (
         <div className="w-full">
             <Formik
                 initialValues={initialValues}
-                validationSchema={lowsAdminFormMessage}
+                validationSchema={transferAdminFormMessage}
                 onSubmit={handleSubmit}
             >
                 <div className=" lg:h-full">
@@ -28,6 +28,7 @@ export default function LowsAdminForm() {
                         <div className="flex flex-col   w-full  ">
                             <div className="p-2 w-full h-full ">
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
+                                <CustomSelect label="Nueva ubicación del bien:" name="newUbication" placeholder="Nueva ubicación del bien" />
                             </div>
                             <div className="w-full text-center justify-center items-center">
                                 <motion.button

@@ -1,5 +1,5 @@
 
-export default function SearchAssetsAdmin() {
+export default function SearchAssetsAdminTransfer() {
     return (
         <div className="w-full">
             <form>

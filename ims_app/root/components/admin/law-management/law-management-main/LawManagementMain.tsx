@@ -18,10 +18,10 @@ export default function LawsManagementMain() {
             <h1 className="text-2xl font-bold pb-12 text-center m-4">Gestión de Leyes</h1>
             <div className="flex flex-col lg:flex-row">
                 <div className="w-full lg:w-1/2">
-                    <RegisterLaw />
+                    <EditLaw />
                 </div>
                 <div className="w-full lg:w-1/2">
-                    <EditLaw />
+                    <RegisterLaw />
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import { CustomInput } from "../../../Formik";
 import { locationMessage } from "@/schemas";
+import { motion } from "framer-motion";
 interface FormValues {
     name: string;
 }
@@ -24,9 +25,12 @@ export default function RegisterLaw() {
                                 <CustomInput label="Nombre de Ubicacion" name="plateNumber" inputType="text" />
                             </div>
                             <div className="w-full mt-4 flex justify-center">
-                                <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit">
-                                    Registrar
-                                </button>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="submit">
+                                Registrar
+                            </motion.button>
                             </div>
                         </Form>
                     </div>

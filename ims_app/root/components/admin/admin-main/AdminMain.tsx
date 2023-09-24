@@ -1,13 +1,13 @@
 "use client";
 import RequestManagement from "../requests-management/RequestManagement";
 import InfoCards from "../../info-cards/InfoCards";
-import Navigation from "../../navigation/Navigation";
+import { RequestUserManagement } from "../request-user-management";
 export default function AdminMain() {
     return (
         <div className="relative flex">
             <div className="flex-1 p-4">
                 <div className="justify-end items-end w-full ">
-                    <div className="justify-end items-end relative max-w-md w-full">
+                    <div className="mx-4 justify-end items-end relative max-w-md w-full">
                         <input
                             className="w-full h-10 pl-4 pr-10 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
                             type="search"
@@ -29,9 +29,9 @@ export default function AdminMain() {
                         </svg>
                     </div>
                 </div>
-
                 <InfoCards />
                 <RequestManagement />
+                <RequestUserManagement />
             </div>
         </div>
 

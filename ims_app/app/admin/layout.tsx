@@ -17,7 +17,7 @@ export default function AdminLayout({
   return (
     <main>
       <AdminNavBar />
-      <div className='mx-10'>
+      <div className='mx-16'>
         <Navigation/>
       </div>
       <div className="flex-1 flex">

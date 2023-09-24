@@ -1,14 +1,14 @@
 import React from "react";
-import SearchAssetsAdmin from "./SearchAssetsAdmin";
-import { LowsAdminForm, RegisterTable } from ".";
-
-export default function RegisterLows() {
+import SearchAssetsAdminTransfer from "./SearchAssetsAdminTransfer";
+import RegisterTransferTable from "./RegisterTransferTable";
+import TransferAdminForm from "./TransferAdminForm";
+export default function RegisterTransfer() {
   return (
     <div className="w-full">
       <h1 className="m-2 text-center">Registrar Bajas</h1>
       <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-4 lg:p-4">
         <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
-          <SearchAssetsAdmin />
+          <SearchAssetsAdminTransfer />
         </div>
         <div className="w-full lg:w-1/4 lg:pl-4 mx-20">
           <select
@@ -26,11 +26,11 @@ export default function RegisterLows() {
       <div className=" flex flex-col lg:flex-row lg:m-4 lg:p-4">
         <div className=" w-full lg:w-3/5 pr-0 lg:pr-4">
           {/* RegisterTable ocupa más de la mitad de la pantalla */}
-          <RegisterTable />
+          <RegisterTransferTable />
         </div>
         <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300  w-full lg:w-2/5">
           {/* LowsAdminForm ocupa lo que queda */}
-          <LowsAdminForm />
+          <TransferAdminForm />
         </div>
       </div>
     </div>

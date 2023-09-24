@@ -2,10 +2,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { NotificationDropdown } from "../../notification-dropdown";
 import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
 import { useSideBarStore } from "@/root/zustand/store/siderbar-state/sidebar-state";
+import NotificationRequestDropdown from "../../notification-request-dropdown/NotificationRequestDropdown";
+import { NotificationUserDropDown } from "../..";
 export default function AdminNavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -19,7 +20,7 @@ export default function AdminNavBar() {
     }
   };
   return (
-    <nav className="bg-blue-500 border-gray-200 dark:bg-gray-900">
+    <nav className="bg-sky-400 border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="text-center">
           <motion.button
@@ -29,23 +30,13 @@ export default function AdminNavBar() {
             type="button"
             onClick={handleToggle} // Call the handler to show the navigation
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
+
           </motion.button>
         </div>
-        <Link href="/admin" className="flex items-center">
+        <Link href="/admin" className="text-white flex items-center">
           <Image src="/ctp-preview.png" alt="Logo" className="h-10 w-auto mr-3" width={400} height={400} />
           <motion.button whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }} className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IM_System</motion.button>
@@ -58,7 +49,8 @@ export default function AdminNavBar() {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium text-center  flex flex-col py-10 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className=" flex justify-center items-center w-9 h-9 rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationDropdown /></li>
+          <li className=" flex justify-center items-center w-9 h-9 rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationUserDropDown /></li>
+            <li className=" flex justify-center items-center w-9 h-9 rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationRequestDropdown /></li>
             <li ><UserButton /></li>
           </ul>
         </div>
