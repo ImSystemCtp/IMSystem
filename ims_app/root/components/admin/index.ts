@@ -6,5 +6,6 @@ export * from './location-management';
 export * from './register-assets';
 export * from './register-lows';
 export * from './register-transfer';
+export * from './request-user-management';
 export * from './requests-management';
 export * from './user-management';

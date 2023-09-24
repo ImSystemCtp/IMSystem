@@ -1,7 +1,7 @@
 "use client";
 import RequestManagement from "../requests-management/RequestManagement";
 import InfoCards from "../../info-cards/InfoCards";
-import Navigation from "../../navigation/Navigation";
+import { RequestUserManagement } from "../request-user-management";
 export default function AdminMain() {
     return (
         <div className="relative flex">
@@ -29,9 +29,9 @@ export default function AdminMain() {
                         </svg>
                     </div>
                 </div>
-
                 <InfoCards />
                 <RequestManagement />
+                <RequestUserManagement />
             </div>
         </div>
 

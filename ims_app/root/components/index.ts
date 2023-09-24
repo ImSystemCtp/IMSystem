@@ -6,5 +6,6 @@ export * from './info-cards';
 export * from './loading';
 export * from './login-page';
 export * from './navigation';
-export * from './notification-dropdown';
+export * from './notification-request-dropdown';
+export * from './notification-user-dropdown';
 export * from './sidebar';

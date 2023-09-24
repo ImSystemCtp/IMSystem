@@ -23,7 +23,7 @@ export default function RootLayout({
         <body className={"min-h-screen bg-slate-50  dark:bg-slate-800  " + inter.className}  >
           <main className=' mx-auto'>
             <div className=''>
-              <div className='h-screen'>{children}</div>
+              <div className=''>{children}</div>
             </div>
           </main>
           <Footer/>

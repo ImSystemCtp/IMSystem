@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-export default function NotificationDropdown() {
+export default function NotificationRequestDropdown() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
