@@ -2,7 +2,9 @@
 import RequestManagement from "../requests-management/RequestManagement";
 import InfoCards from "../../info-cards/InfoCards";
 import { RequestUserManagement } from "../request-user-management";
+import { useAssets } from "@/root/hooks";
 export default function AdminMain() {
+    useAssets();
     return (
         <div className="relative flex">
             <div className="flex-1 p-4">
