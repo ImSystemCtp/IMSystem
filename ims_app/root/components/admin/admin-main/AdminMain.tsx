@@ -4,6 +4,7 @@ import InfoCards from "../../info-cards/InfoCards";
 import { RequestUserManagement } from "../request-user-management";
 import { useAssets } from "@/root/hooks";
 import { useRegisterIn } from "@/root/hooks/useRegisterIn";
+import { InfoRequestCard } from "../../info-request-card";
 export default function AdminMain() {
     useAssets();
     useRegisterIn();
@@ -34,10 +35,11 @@ export default function AdminMain() {
                     </div>
                 </div>
                 <InfoCards />
+                <InfoRequestCard />
                 <RequestManagement />
                 <RequestUserManagement />
             </div>
-        </div>
+        </div >
 
     );
 
