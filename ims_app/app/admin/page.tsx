@@ -1,7 +1,8 @@
 'use client'
 import { AdminMain } from "@/root/components";
-export default function AdminHome() {
+import { useUserStore } from "@/root/zustand/store/users-State/userState";
 
+export default function AdminHome() {
   return (
       <div className=" ">
         <AdminMain/>

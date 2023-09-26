@@ -1,15 +1,19 @@
 "use client"
 import { USER_ROLES } from "@/app/api/enums/roles";
+import { QueryOptions } from "@/app/types";
 import { useAuthStore } from "@/root/zustand/store/auth-State/auth";
+import { useUserStore } from "@/root/zustand/store/users-State/userState";
 import { useEffect } from "react";
 
 
 export default function LoginPage() {
 
     const getAuth = useAuthStore(state => state.getUsetAuth)!;
+    const getUsers = useUserStore(state => state.getUsers)!;
 
     useEffect(() => {
         async function checkUserRole() {
+            const usersActions = await getUsers({ orderBy : "usu_id" , order: "desc"} as QueryOptions);
             const authActions = await getAuth();
             if(authActions.usu_role === USER_ROLES.ADMIN){
                 console.log(authActions)
@@ -21,7 +25,7 @@ export default function LoginPage() {
             }
         }
         checkUserRole();
-    }, [getAuth]);
+    }, [getAuth, getUsers]);
 
     return (
         <div className=" bg-slate-200  dark:bg-slate-800  flex justify-center items-center  h-screen">

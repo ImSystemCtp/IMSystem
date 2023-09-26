@@ -1,36 +1,41 @@
-// import { checkAuthorization } from "@/lib/authorization";
-// import { USER_ROLES } from "../enums/roles";
-// import { QueryOptions } from "@/app/types";
+import { checkAuthorization } from "@/lib/authorization";
+import { USER_ROLES } from "../enums/roles";
+import { QueryOptions } from "@/app/types";
 import prismaDB from "@/lib/prisma/prismadb";
 import { currentUser } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";
+import { NextApiRequest } from "next";
 
-export async function GET() {
+
+/* export async function GET() {
     try {
         const response = await prismaDB.ims_users.findMany();
         return NextResponse.json(response);
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });
     }
-}
-/* 
-export async function GET(req: Request) {
+} */
+
+export async function GET(_req: Request) {
+
     try {
-        const body = await req.json();
-        const {
-            offset,
-            limit,
-            orderBy,
-            order,
-            filterBy,
-            filterValue,
-            filterCondition,
-        } = body as QueryOptions;
+        console.log("jajaj")
+        const { searchParams } = new URL(_req.url)
 
-        const user = await currentUser();
+        const limit = searchParams.get('limit') || false
+        const offset = searchParams.get('offset') || false
+        const orderBy = searchParams.get('orderBy') || false
+        const order = searchParams.get('order') || false    
+        const filterBy = searchParams.get('filterBy') || false
+        const filterValue = searchParams.get('filterValue') || false
+        const filterCondition = searchParams.get('filterCondition') || false
 
-        const loginEmail = user!.emailAddresses[0].emailAddress || null;
+        console.log(limit, offset, orderBy, order, filterBy, filterValue, filterCondition)
+
+    /*     const user = await currentUser();
+
+      const loginEmail = user!.emailAddresses[0].emailAddress || null;
         if (!loginEmail) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
@@ -40,53 +45,63 @@ export async function GET(req: Request) {
             return new NextResponse("Additional Permissions Required", {
                 status: 403,
             });
-        }
+        } */
         // Verifica si se proporcionan datos de paginación
-        const hasPaginationData = offset && limit;
-
-        // Verifica si se proporcionan datos de ordenamiento
-        const hasOrderData = orderBy && order;
-
-        // Construye la condición de filtrado si se proporciona
-        const whereCondition = (filterBy && filterCondition && filterValue)
-            ? {
-                where: {
-                    [filterBy]: {
-                        [filterCondition]: filterValue,
-                    },
-                },
-            }
-            : {};
-        // Realiza la consulta a la base de datos usando Prisma
-        let users;
-        if (hasPaginationData && hasOrderData) {
-            users = await prismaDB.ims_users.findMany({
-                skip: offset,
-                take: limit,
-                orderBy: {
-                    [orderBy]: order,
-                },
-                where: whereCondition.where || undefined,
-            });
-        } else if (hasPaginationData) {
-            users = await prismaDB.ims_users.findMany({
-                skip: offset,
-                take: limit,
-                where: whereCondition?.where ?? {},
-            });
-        } else {
-            // Si no se proporciona paginación ni ordenamiento, realiza una consulta sin ellos.
-            users = await prismaDB.ims_users.findMany({
-                where: whereCondition.where ?? {},
-            });
-        }
+            const hasPaginationData = offset && limit;
+            console.log(hasPaginationData)
+            // Verifica si se proporcionan datos de ordenamiento
+            const hasOrderData = orderBy && order;
     
+            // Construye la condición de filtrado si se proporciona
+            const whereCondition = (filterBy && filterCondition && filterValue)
+                ? {
+                    where: {
+                        [filterBy]: {
+                            [filterCondition]: filterValue,
+                        },
+                    },
+                }
+                : {};
+            // Realiza la consulta a la base de datos usando Prisma
+            let users;
+            if (hasPaginationData && hasOrderData) {
+                users = await prismaDB.ims_users.findMany({
+                    skip: parseInt(offset),
+                    take: parseInt(limit),
+                    orderBy: {
+                        [orderBy]: order,
+                    },
+                    where: whereCondition.where || undefined,
+                });
+            } else if (hasPaginationData) {
+                users = await prismaDB.ims_users.findMany({
+                    skip: parseInt(offset),
+                    take: parseInt(limit),
+                });
+            } else if ( hasOrderData ) {
+                users = await prismaDB.ims_users.findMany({
+                    orderBy: {
+                        [orderBy]: order,
+                    },
+                    where: whereCondition.where || undefined,
+                });
+            } 
+            
+            /* else { */
+        // Si no se proporciona paginación ni ordenamiento, realiza una consulta sin ellos.
+      //  const users = await prismaDB.ims_users.findMany();
+        // }
+        
+        console.log(users)
+        return NextResponse.json(users);
+        //     }
+
     } catch (error) {
         console.log(error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
- */
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
@@ -110,4 +125,17 @@ export async function POST(req: Request) {
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
+export async function PUT(req: Request) {
 
+    const body = await req.json() as ims_users;
+    const response = await prismaDB.ims_users.update({
+        where: { usu_id: body.usu_id },
+        data: {
+            ...body
+        },
+    });
+    if (response) {
+        return NextResponse.json(response);
+    }
+    return new NextResponse("Not found", { status: 404 });
+}

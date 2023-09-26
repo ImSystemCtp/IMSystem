@@ -39,7 +39,7 @@ model ims_assets {
   assets_price                                                  String               @db.VarChar(30)
   assets_curr_location                                          Int?
   assets_invoice_number                                         Int?
-  assent_law_id Int?
+  assent_law_id                                                 Int?
   ims_laws                                                      ims_laws? @relation(fields: [assent_law_id], references: [law_id])
   ims_details_good                                              ims_details_asset[]
   ims_locations_ims_assets_assets_regis_locationToims_locations ims_locations        @relation("ims_assets_assets_regis_locationToims_locations", fields: [assets_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
@@ -98,7 +98,7 @@ model ims_registered_in {
 model ims_request {
   req_id              Int                @id @default(autoincrement())
   req_description     String             @db.VarChar(100)
-  req_state           EnumReqState
+  req_state           EnumReqState       @default(Pending)
   req_date            DateTime           @db.Timestamp(6)
   req_type            EnumReqType
   req_usu_id          Int
@@ -123,7 +123,6 @@ enum EnumReqType {
 model ims_users {
   usu_id       Int            @id @default(autoincrement())
   usu_name     String         @db.VarChar(60)
-  usu_is_active Boolean       @default(false)
   usu_surnames String         @db.VarChar(60)
   usu_email    String         @db.VarChar(60)
   usu_role    EnumUserRole    @default(noRole)
@@ -140,7 +139,8 @@ enum EnumUserRole {
 
 model ims_laws {
   law_id          Int     @id
-  law_description String? @db.VarChar(20)
+  law_name        String  @db.VarChar(20)
+  law_description String? @db.VarChar(60)
   
   ims_assets ims_assets[]
 }
