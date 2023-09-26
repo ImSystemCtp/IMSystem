@@ -4,30 +4,28 @@ import CustomInput from "../../Formik/CustomInput";
 import CustomSelect from "../../Formik/CustomSelect";
 import { motion } from "framer-motion";
 import registerAssetsMessage from "@/schemas/registerAssetsMessage";
+import { useAssetStore } from "@/root/zustand";
+import { ims_assets } from "@prisma/client";
+import RegisterAssetsTable from "./RegisterAssetsTable";
 interface FormValues {
-    number: string;
-    description: string;
-    series: string;
-    brand: string;
-    model: string;
-    invoice: string;
-    value: string;
-    location: string;
-    law: string;
+    assets_no: number,
+    assets_description: string,
+    assets_series: string,
+    assets_brand: string,
+    assets_model: string,
+    assets_invoice_number: number,
+    assets_regis_location: number,
+    assent_law_id: number,
+    assets_acquisition_mode: string,
 }
-const initialValues: FormValues = {
-    number: "",
-    description: "",
-    series: "",
-    brand: "",
-    model: "",
-    invoice: "",
-    value: "",
-    location: "",
-    law: "",
-};
-const handleSubmit = async (values: FormValues) => { };
+const initialValues = {} as FormValues;
+
 export default function RegisterAssets() {
+    const {addAssets} = useAssetStore()
+    const handleSubmit = async (values: FormValues) => {
+        values as FormValues;
+        addAssets(values as ims_assets);
+    };
     return (
         <div className="justify-center items-center">
             <div className="flex flex-row">
@@ -47,36 +45,36 @@ export default function RegisterAssets() {
                                 <div className="w-full h-full p-2">
                                     <CustomInput
                                         label="Número de Patrimonio:"
-                                        name="email"
-                                        inputType="email"
+                                        name="assets_no"
+                                        inputType="number"
                                     />
                                     <CustomInput
                                         label="Descripción del Bien:"
-                                        name="username"
+                                        name="assets_description"
                                         inputType="text"
                                     />
-                                    <CustomInput label="Serie:" name="serie" inputType="text" />
-                                    <CustomInput label="Marca:" name="brand" inputType="text" />
+                                    <CustomInput label="Serie:" name="assets_series" inputType="text" />
+                                    <CustomInput label="Marca:" name="assets_brand" inputType="text" />
                                 </div>
                                 <div className="w-full p-2">
-                                    <CustomInput label="Modelo:" name="model" inputType="text" />
+                                    <CustomInput label="Modelo:" name="assets_model" inputType="text" />
                                     <CustomInput
                                         label="Número de Factura:"
-                                        name="invoice"
+                                        name="assets_invoice_number"
                                         inputType="text"
                                     />
                                     <CustomInput
                                         label="Valor de adquisición:"
-                                        name="value"
-                                        inputType="text"
+                                        name="assets_acquisition_mode"
+                                        inputType="number"
                                     />
-                                    <CustomSelect label="Ubicación:" name="location">
-                                        <option value="admin">Ubicacion1</option>
-                                        <option value="driver">Ubicacion2</option>
+                                    <CustomSelect label="Ubicación:" name="assets_regis_location" >
+                                        <option value={1}>Ubicacion1</option>
+                                        <option value={1}>Ubicacion2</option>
                                     </CustomSelect>
-                                    <CustomSelect label="Ley que financió:" name="law">
-                                        <option value="admin">Ley1</option>
-                                        <option value="driver">Ley2</option>
+                                    <CustomSelect label="Ley que financió:" name="assent_law_id">
+                                        <option value={1}>Ley1</option>
+                                        <option value={1}>Ley2</option>
                                     </CustomSelect>
                                 </div>
                             </div>
@@ -92,41 +90,8 @@ export default function RegisterAssets() {
                         </Form>
                     </Formik>
                 </div>
-
-                <div className="w-1/3 rounded-lg border border-gray-300 p-4 m-2 ">
-                    <h2 className="text-center text-gray-500 text-lg font-semibold pb-4">
-                        Bienes Registrados
-                    </h2>
-                    <div className="my-1"></div>
-                    <div className="bg-sky-400 h-px mb-6"></div>
-                    <div className="w-full overflow-hidden rounded-lg shadow-xs">
-                        <div className="w-full overflow-x-auto">
-                            <table className="w-full">
-                                <thead>
-                                    <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                        <th className="px-4 py-3">Numero de Placa</th>
-                                        <th className="px-4 py-3">Nombre</th>
-                                        <th className="px-4 py-3">Ubicacion</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="h-80 bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                    {/* Aquí deberías colocar tus filas de datos, si tienes datos para mostrar */}
-                                </tbody>
-                            </table>
-                            <div className="w-full flex justify-center items-center ">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="m-2 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Registrar Bienes
-                                </motion.button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <RegisterAssetsTable />
             </div>
-
         </div >
     );
 }

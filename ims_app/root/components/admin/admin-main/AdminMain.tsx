@@ -36,12 +36,15 @@ export default function AdminMain() {
                     </div>
                 </div>
                 <InfoCards />
-                <div className="w-full flex flex-row">
+                <div className="w-full  flex flex-row">
+                    <div className="w-1/2 flex justify-center items-center">
                     <PieChart data={[110, 20, 300]} />
+                    </div>
+                    <div className="w-1/2 mt-4">
                     <InfoRequestCard />
+                    </div>
                 </div>
                 <RequestManagement />
-                <RequestUserManagement />
             </div>
         </div >
 

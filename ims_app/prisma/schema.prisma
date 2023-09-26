@@ -35,8 +35,7 @@ model ims_assets {
   assets_model                                                  String               @db.VarChar(20)
   assets_series                                                 String               @db.VarChar(20)
   assets_active                                                 String               @default("Y") @db.VarChar(1)
-  assets_acquisition_mode                                       String               @db.VarChar(30)
-  assets_price                                                  String               @db.VarChar(30)
+  assets_acquisition_value                                       String               @db.VarChar(30)
   assets_curr_location                                          Int?
   assets_invoice_number                                         Int?
   assent_law_id                                                 Int?

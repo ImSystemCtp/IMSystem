@@ -13,11 +13,11 @@ const PieChart: React.FC<PieChartProps> = ({ data }) => {
     const labels = ["Activos", "Bjas", "Traslados"]; // Define the labels variable
     const customColors = ["#FF5733", "#3399FF", "#FFFF66"];
     const chartData = {
+        labels,
         datasets: [{
             data,
             backgroundColor: customColors,
         }],
-        labels,
     };
     const chartOptions = {
         plugins: {
@@ -28,7 +28,7 @@ const PieChart: React.FC<PieChartProps> = ({ data }) => {
         },
     };
     return (
-        <div className='w-1/2 flex justify-center items-center m-4 '>
+        <div className='w-2/3 flex justify-center items-center '>
             <Doughnut data={chartData} options={chartOptions} />
         </div>
     );
