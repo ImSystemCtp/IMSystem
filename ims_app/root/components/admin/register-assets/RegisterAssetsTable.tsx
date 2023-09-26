@@ -1,9 +1,21 @@
 "use client"
-import { useAssetStore } from "@/root/zustand";
-import { ims_assets } from "@prisma/client";
+import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
+import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
 import { motion } from "framer-motion";
 export default function RegisterAssetsTable() {
+    const { userAuth } = useAuthStore();
+    const {addRegisterAssets} = useRegisterAssetStore
     const { assets } = useAssetStore();
+    const register: ims_register = {
+        reg_type: EnumRegisterType.Register,
+        reg_date: new Date(),
+        reg_observation: null,
+        reg_usu_id: userAuth.usu_id,
+        reg_inst_id: 1,
+    }
+    const handleRegisterAssets = () => {
+        addRegisterAssets(register, assets)
+    }
     return (
         <div className="w-1/3 rounded-lg border border-gray-300 p-4 m-2 ">
             <h2 className="text-center text-gray-500 text-lg font-semibold pb-4">
@@ -21,7 +33,7 @@ export default function RegisterAssetsTable() {
                                 <th className="px-4 py-3">Ubicacion</th>
                             </tr>
                         </thead>
-                        <tbody className="h-80 bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        <tbody className=" bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                             {assets.map((asset, index) => (
                                 <tr key={index} className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                                     <td className="px-4 py-3">
@@ -32,8 +44,8 @@ export default function RegisterAssetsTable() {
                                         </div>
                                     </td>
                                     <td className="px-4 py-3 text-sm">{asset.assets_model}</td>
-                                    <td className="px-4 py-3 text-xs">
-                                        <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    <td className="flex justify-center items-center  px-4 py-3 text-xs">
+                                        <span className="px-2 py-1 font-semibold leading-tight text-center">
                                             {asset.assets_regis_location}
                                         </span>
                                     </td>
@@ -45,6 +57,7 @@ export default function RegisterAssetsTable() {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={handleRegisterAssets}
                             className="m-2 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                         >
                             Registrar Bienes

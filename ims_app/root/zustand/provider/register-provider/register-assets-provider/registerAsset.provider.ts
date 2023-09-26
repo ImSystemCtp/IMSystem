@@ -4,9 +4,7 @@ import { ims_register } from '@prisma/client';
 import axios from 'axios';
 
 const createRegister = async (register: registerGood) => {
-    console.log(register)
     const response = await axios.post('/api/register/assets', register);
-    console.log(response.data)
     return response.data as ims_register;
 };
 const getRegister = async () => {
@@ -15,7 +13,7 @@ const getRegister = async () => {
 
     return response.data as ims_register[];
 }
-export const registerProvider = {
+export const registerAssetProvider = {
     createRegister,
     getRegister,
 };
