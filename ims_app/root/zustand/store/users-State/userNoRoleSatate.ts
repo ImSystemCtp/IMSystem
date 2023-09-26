@@ -12,7 +12,7 @@ interface userNoRoleState {
     haveNextPage: boolean
     getUserPending: () => Promise<void>
     getNextPage: () => Promise<void>
-    getPeviusPage: () => Promise<void>
+    getPreviousPage: () => Promise<void>
 }
 
 export const useUserNoRoleStore = create<userNoRoleState>((set, get) => {
@@ -45,7 +45,7 @@ export const useUserNoRoleStore = create<userNoRoleState>((set, get) => {
                 }
             }
         },
-        getPeviusPage: async () => {
+        getPreviousPage: async () => {
             if (get().pagine > 0) {
                 const usersPending = get().users.slice(get().pagine - 1 * 5, get().pagine * 5)
                 set({ usersPending, cursorPending: get().cursorPending + 5, pagine: get().pagine - 1, haveNextPage: true })
