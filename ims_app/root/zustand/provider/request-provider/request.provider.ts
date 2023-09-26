@@ -8,3 +8,7 @@ const createRequest = async (request: RequestType) => {
     console.log(response.data)
     return response.data as ims_request;
 }
+
+export const requestProvider = {
+    createRequest
+}
