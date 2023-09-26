@@ -14,7 +14,7 @@ model ims_institution {
   inst_location    String? @db.VarChar(60)
   inst_phone       String? @db.VarChar(20)
   inst_email       String? @db.VarChar(60)
-  ims_registers    ims_register[] 
+  ims_registers    ims_register[]
   ims_registers_in ims_registered_in[]
 }
 
@@ -27,7 +27,7 @@ model ims_details_asset {
   ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: Cascade, onUpdate: Cascade, map: "request_details")
 }
 
-model ims_assets { 
+model ims_assets {
   assets_regis_location                                         Int
   assets_no                                                     Int                  @id
   assets_description                                            String               @db.VarChar(30)
@@ -41,7 +41,7 @@ model ims_assets {
   assets_invoice_number                                         Int?
   assent_law_id                                                 Int?
   ims_laws                                                      ims_laws? @relation(fields: [assent_law_id], references: [law_id])
-  ims_details_good                                              ims_details_asset[]
+  ims_details_assets                                              ims_details_asset[]
   ims_locations_ims_assets_assets_regis_locationToims_locations ims_locations        @relation("ims_assets_assets_regis_locationToims_locations", fields: [assets_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
   ims_locations_ims_assets_assets_curr_locationToims_locations  ims_locations?       @relation("ims_assets_assets_curr_locationToims_locations", fields: [assets_curr_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_loc_curr")
   ims_register_assets                                           ims_register_assets[]
@@ -91,8 +91,6 @@ model ims_registered_in {
   @@id([tomo, folio, asiento])
   inst_id Int
   ims_institution ims_institution @relation(fields: [inst_id], references: [inst_id])
-  
-
 }
 
 model ims_request {
@@ -138,9 +136,8 @@ enum EnumUserRole {
 }
 
 model ims_laws {
-  law_id          Int     @id
+  law_id          Int     @id @default(autoincrement())
   law_name        String  @db.VarChar(20)
   law_description String? @db.VarChar(60)
-  
   ims_assets ims_assets[]
 }

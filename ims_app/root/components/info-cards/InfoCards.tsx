@@ -1,6 +1,12 @@
 "use client"
+import { useLoadingStore } from "@/root/zustand";
+import { useAssetStore } from "@/root/zustand/store/aseets-state/aseetState";
 import { motion } from "framer-motion";
+import LoadingComponent from "../loading/LoadingComponent";
 export default function InfoCards() {
+    const assetState = useAssetStore();
+    const assets = assetState.assets;
+    const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <motion.div initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -11,10 +17,14 @@ export default function InfoCards() {
                         <path fillRule="evenodd" d="M2.25 5.25a3 3 0 013-3h13.5a3 3 0 013 3V15a3 3 0 01-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 01-.53 1.28h-9a.75.75 0 01-.53-1.28l.621-.622a2.25 2.25 0 00.659-1.59V18h-3a3 3 0 01-3-3V5.25zm1.5 0v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5z" clipRule="evenodd" />
                     </svg>
                 </div>
-                <div className="text-right">
-                    <p className="text-2xl">1,257</p>
-                    <p>Bienes</p>
-                </div>
+                {isLoading ? (
+                    <LoadingComponent />
+                ) : (
+                    <div className="text-right">
+                        <p className="text-2xl">{assets.length}</p>
+                        <p>Bienes</p>
+                    </div>
+                )}
             </div>
             <div className="bg-sky-400 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
                 <div className="flex justify-center items-center w-14 h-14  rounded-full transition-all duration-300 transform group-hover:rotate-12">

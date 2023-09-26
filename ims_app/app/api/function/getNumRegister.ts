@@ -10,7 +10,7 @@ export default async function getNumRegister<ims_registered_in>() {
             tomo: true,
             folio: true,
             asiento: true,
-            inst_id: true,  
+            inst_id: true,
         },
     });
 
