@@ -19,7 +19,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ label, ...selectProps }) =>
                     {label}
                 </label>
                 <select {...field} {...selectProps} className={selectClassName} placeholder={selectProps.placeholder} />
-                {meta.touched && meta.error && <div className="border-red-600 text-red-950">{meta.error}</div>}
+                {meta.touched && meta.error && <div className="border-red-600 text-red-500">{meta.error}</div>}
             </div>
         </>
     );
