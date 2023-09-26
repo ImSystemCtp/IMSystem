@@ -39,7 +39,7 @@ export const useUserNoRoleStore = create<userNoRoleState>((set, get) => {
                     set({ haveNextPage: false })
                 }
             } else if (get().countPage > get().pagine) {
-                const usersPending = get().users.slice(get().pagine + 1 * 5, get().pagine + 2 * 5)
+                const usersPending = get().users.slice((get().pagine + 1) * 5, (get().pagine + 2 )* 5)
                 set({ usersPending, cursorPending: get().cursorPending + 5, pagine: get().pagine + 1, haveNextPage: true })
                 if (usersPending.length < 5) {
                     set({ haveNextPage: false })
