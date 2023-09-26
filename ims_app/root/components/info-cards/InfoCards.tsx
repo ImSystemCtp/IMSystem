@@ -1,11 +1,13 @@
 "use client"
-import { useLoadingStore } from "@/root/zustand";
+import { useLoadingStore, useRegisterInStore } from "@/root/zustand";
 import { useAssetStore } from "@/root/zustand/store/aseets-state/aseetState";
 import { motion } from "framer-motion";
 import LoadingComponent from "../loading/LoadingComponent";
 export default function InfoCards() {
     const assetState = useAssetStore();
     const assets = assetState.assets;
+    const registerInState = useRegisterInStore();
+    const currentRegisterIn = registerInState.registerIn;
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <motion.div initial={{ opacity: 0, y: 20 }}
@@ -58,10 +60,16 @@ export default function InfoCards() {
                         <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
                     </svg>
                 </div>
-                <div className="text-right">
-                    <p className="text-2xl">192.12.5</p>
-                    <p>Registro en actual</p>
-                </div>
+                {isLoading ? (
+                    <LoadingComponent />
+                ) : (
+                    <div className="text-right">
+                        <p className="text-2xl">
+                            {`${currentRegisterIn.tomo}, ${currentRegisterIn.folio}, ${currentRegisterIn.asiento}`}
+                        </p>
+                        <p>Registro-en actual</p>
+                    </div>
+                )}
             </div>
         </motion.div>
     )
