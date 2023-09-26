@@ -6,7 +6,9 @@ export default function RequestUserManagement() {
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine } = useUserNoRoleStore();
     const handleNextPage = () => {
         if (haveNextPage) {
+
             getNextPage();
+            console.log(haveNextPage)
         }
     }
     const handlePreviousPage = () => {
@@ -53,7 +55,7 @@ export default function RequestUserManagement() {
                                     <td className="px-4 py-3 text-sm">Pendiente</td>
                                     <td className="px-4 py-3 text-xs">
                                         <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            Sin asignar
+                                            {pagine}
                                         </span>
                                     </td>
                                     <td className="px-4 py-3 text-sm">

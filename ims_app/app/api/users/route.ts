@@ -31,7 +31,7 @@ export async function GET(_req: Request) {
         const filterValue = searchParams.get('filterValue') || false
         const filterCondition = searchParams.get('filterCondition') || false
 
-        console.log(limit, offset, orderBy, order, filterBy, filterValue, filterCondition)
+        console.log(offset, limit, orderBy, order, filterBy, filterValue, filterCondition)
 
     /*     const user = await currentUser();
 
@@ -53,6 +53,7 @@ export async function GET(_req: Request) {
             const hasOrderData = orderBy && order;
     
             // Construye la condición de filtrado si se proporciona
+
             const whereCondition = (filterBy && filterCondition && filterValue)
                 ? {
                     where: {
@@ -62,6 +63,7 @@ export async function GET(_req: Request) {
                     },
                 }
                 : {};
+              
             // Realiza la consulta a la base de datos usando Prisma
             let users;
             if (hasPaginationData && hasOrderData) {
@@ -71,19 +73,20 @@ export async function GET(_req: Request) {
                     orderBy: {
                         [orderBy]: order,
                     },
-                    where: whereCondition.where || undefined,
+                    where: whereCondition.where ,
                 });
             } else if (hasPaginationData) {
                 users = await prismaDB.ims_users.findMany({
                     skip: parseInt(offset),
                     take: parseInt(limit),
+                    where: whereCondition.where,
                 });
             } else if ( hasOrderData ) {
                 users = await prismaDB.ims_users.findMany({
                     orderBy: {
                         [orderBy]: order,
                     },
-                    where: whereCondition.where || undefined,
+                    where: whereCondition.where,
                 });
             } 
             
