@@ -1,19 +1,19 @@
 "use client"
 import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
-import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
+import { EnumRegisterType,  ims_register } from "@prisma/client";
 import { motion } from "framer-motion";
 export default function RegisterAssetsTable() {
     const { userAuth } = useAuthStore();
-    const {addRegisterAssets} = useRegisterAssetStore
+    const {addRegisterAssets} = useRegisterAssetStore();
     const { assets } = useAssetStore();
-    const register: ims_register = {
+    const register = {
         reg_type: EnumRegisterType.Register,
         reg_date: new Date(),
-        reg_observation: null,
-        reg_usu_id: userAuth.usu_id,
+        reg_usu_id: 1,
         reg_inst_id: 1,
-    }
+    } as  ims_register
     const handleRegisterAssets = () => {
+        console.log(assets)
         addRegisterAssets(register, assets)
     }
     return (
