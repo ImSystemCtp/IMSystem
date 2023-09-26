@@ -96,7 +96,7 @@ model ims_registered_in {
 model ims_request {
   req_id              Int                @id @default(autoincrement())
   req_description     String             @db.VarChar(100)
-  req_state           EnumReqState
+  req_state           EnumReqState       @default(Pending)
   req_date            DateTime           @db.Timestamp(6)
   req_type            EnumReqType
   req_usu_id          Int
@@ -121,7 +121,6 @@ enum EnumReqType {
 model ims_users {
   usu_id       Int            @id @default(autoincrement())
   usu_name     String         @db.VarChar(60)
-  usu_is_active Boolean       @default(false)
   usu_surnames String         @db.VarChar(60)
   usu_email    String         @db.VarChar(60)
   usu_role    EnumUserRole    @default(noRole)

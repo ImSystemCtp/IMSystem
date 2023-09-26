@@ -1,3 +1,4 @@
+export * from './count-data-provider';
 export * from './assets-provider';
 export * from './law-provider';
 export * from './locations-provider';

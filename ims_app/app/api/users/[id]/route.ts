@@ -5,10 +5,11 @@ import { USER_ROLES } from "../../enums/roles";
 import { currentUser } from "@clerk/nextjs";
 import { checkAuthorization } from "@/lib/authorization";
 
-export async function GET({ params }: ParameterId) {
+export async function GET(_request: Request, { params }: ParameterId) {
     try {
+        console.log(params)
         const id = Number.parseInt(params.id);
-
+        console.log(id)
         const response = await prismaDB.ims_users.findUnique({
             where: {
                 usu_id: id
