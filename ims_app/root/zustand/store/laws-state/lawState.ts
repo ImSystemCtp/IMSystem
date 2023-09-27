@@ -4,14 +4,16 @@ import { lawProvider } from "../../provider"
 
 interface lawState {
     laws: ims_laws[];
+    lawToEdit: ims_laws | null;
     getLaws: () => Promise<void>;
     addLaws: (law: ims_laws) => Promise<void>;
+    selectLawToEdit: (law: ims_laws) => void;
 }
 
-export const useLawStore = create<lawState>((set) => {
+export const useLawStore = create<lawState>((set,get) => {
     return {
         laws: [],
-
+        lawToEdit: null,
         getLaws: async () => {
             const laws = await lawProvider.getLaw()
             set({ laws })
@@ -22,6 +24,9 @@ export const useLawStore = create<lawState>((set) => {
             console.log(newLaw)
             set((state: lawState) => ({ laws: [...state.laws, newLaw] }));
         },
+        selectLawToEdit: (law: ims_laws) => {
+            set({ lawToEdit: law })
+        }
 
     }
 });
