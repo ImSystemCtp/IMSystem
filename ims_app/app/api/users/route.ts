@@ -6,6 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";
 import { NextApiRequest } from "next";
+import getParams from "../function/getParams";
 
 
 /* export async function GET() {
@@ -20,8 +21,8 @@ import { NextApiRequest } from "next";
 export async function GET(_req: Request) {
 
     try {
-        console.log("jajaj")
-        const { searchParams } = new URL(_req.url)
+    
+     /*    const { searchParams } = new URL(_req.url)
 
         const limit = searchParams.get('limit') || false
         const offset = searchParams.get('offset') || false
@@ -29,8 +30,12 @@ export async function GET(_req: Request) {
         const order = searchParams.get('order') || false    
         const filterBy = searchParams.get('filterBy') || false
         const filterValue = searchParams.get('filterValue') || false
-        const filterCondition = searchParams.get('filterCondition') || false
-
+        const filterCondition = searchParams.get('filterCondition') || false */
+        const objete = {} as QueryOptions  
+        console.log(objete)
+        const parameters = getParams(_req.url, objete ) as QueryOptions
+        console.log(parameters)
+        const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
         console.log(offset, limit, orderBy, order, filterBy, filterValue, filterCondition)
 
     /*     const user = await currentUser();
@@ -68,8 +73,8 @@ export async function GET(_req: Request) {
             let users;
             if (hasPaginationData && hasOrderData) {
                 users = await prismaDB.ims_users.findMany({
-                    skip: parseInt(offset),
-                    take: parseInt(limit),
+                    skip: offset,
+                    take: limit,
                     orderBy: {
                         [orderBy]: order,
                     },
@@ -77,8 +82,8 @@ export async function GET(_req: Request) {
                 });
             } else if (hasPaginationData) {
                 users = await prismaDB.ims_users.findMany({
-                    skip: parseInt(offset),
-                    take: parseInt(limit),
+                    skip: offset,
+                    take: limit,
                     where: whereCondition.where,
                 });
             } else if ( hasOrderData ) {
@@ -108,11 +113,11 @@ export async function GET(_req: Request) {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { usu_id, usu_name, usu_email, usu_is_active } = body as ims_users;
+        const { usu_id, usu_name, usu_email } = body as ims_users;
 
         const user = await currentUser();
 
-        if (!usu_name || !usu_email || !usu_is_active) {
+        if (!usu_name || !usu_email ) {
             return new NextResponse("Missing required fields", { status: 400 });
         }
 

@@ -22,36 +22,36 @@ model ims_details_asset {
   deta_id          Int         @id @default(autoincrement())
   deta_description String?     @db.VarChar(100)
   deta_req_id      Int
-  deta_assets_no    Int
+  deta_assets_no    String
   ims_assets        ims_assets   @relation(fields: [deta_assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "assets_details")
   ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: Cascade, onUpdate: Cascade, map: "request_details")
 }
 
 model ims_assets {
   assets_regis_location                                         Int
-  assets_no                                                     Int                  @id
+  assets_no                                                     String                  @id
   assets_description                                            String               @db.VarChar(30)
   assets_brand                                                  String               @db.VarChar(15)
   assets_model                                                  String               @db.VarChar(20)
   assets_series                                                 String               @db.VarChar(20)
   assets_active                                                 String               @default("Y") @db.VarChar(1)
-  assets_acquisition_value                                       String               @db.VarChar(30)
+  assets_acquisition_value                                      String               @db.VarChar(30)
   assets_curr_location                                          Int?
   assets_invoice_number                                         Int?
   assent_law_id                                                 Int?
   ims_laws                                                      ims_laws? @relation(fields: [assent_law_id], references: [law_id])
-  ims_details_assets                                              ims_details_asset[]
+  ims_details_assets                                            ims_details_asset[]
   ims_locations_ims_assets_assets_regis_locationToims_locations ims_locations        @relation("ims_assets_assets_regis_locationToims_locations", fields: [assets_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
   ims_locations_ims_assets_assets_curr_locationToims_locations  ims_locations?       @relation("ims_assets_assets_curr_locationToims_locations", fields: [assets_curr_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_loc_curr")
   ims_register_assets                                           ims_register_assets[]
 }
 
 model ims_locations {
-  location_id                                             Int           @id @default(autoincrement())
-  location_name                                           String        @db.VarChar(30)
+  location_id                                                   Int           @id @default(autoincrement())
+  location_name                                               String        @db.VarChar(30)
   ims_assets_ims_assets_assets_regis_locationToims_locations ims_assets[]   @relation("ims_assets_assets_regis_locationToims_locations")
   ims_assets_ims_assets_assets_curr_locationToims_locations  ims_assets[]   @relation("ims_assets_assets_curr_locationToims_locations")
-  ims_request                                             ims_request[]
+  ims_request                                               ims_request[] 
 }
 
 model ims_register {
@@ -74,7 +74,7 @@ enum EnumRegisterType {
   Transfer
 }
 model ims_register_assets {
-  assets_no     Int
+  assets_no     String
   reg_id       Int
   ims_assets    ims_assets    @relation(fields: [assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "register_assets_fk01")
   ims_register ims_register @relation(fields: [reg_id], references: [reg_id], onDelete: Cascade, onUpdate: Cascade, map: "register_assets_fk02")
@@ -93,16 +93,16 @@ model ims_registered_in {
 }
 
 model ims_request {
-  req_id              Int                @id @default(autoincrement())
-  req_description     String             @db.VarChar(100)
-  req_state           EnumReqState       @default(Pending)
-  req_date            DateTime           @db.Timestamp(6)
-  req_type            EnumReqType
-  req_usu_id          Int
-  req_location_id_new Int?
-  ims_details_asset    ims_details_asset[]
-  ims_locations       ims_locations?     @relation(fields: [req_location_id_new], references: [location_id], onDelete: Restrict, onUpdate: Restrict, map: "location_request")
-  ims_users           ims_users          @relation(fields: [req_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "user_request")
+  req_id                            Int                @id @default(autoincrement())
+  req_description                   String             @db.VarChar(100)
+  req_state                         EnumReqState       @default(Pending)
+  req_date                          DateTime           @db.Timestamp(6)
+  req_type                          EnumReqType
+  req_usu_id                        Int
+  req_location_id_new               Int?
+  ims_details_asset                  ims_details_asset[]
+  ims_locations                     ims_locations?     @relation(fields: [req_location_id_new], references: [location_id], onDelete: Restrict, onUpdate: Restrict, map: "location_request")
+  ims_users                         ims_users          @relation(fields: [req_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "user_request")
 }
 enum EnumReqState {
   Accepted
