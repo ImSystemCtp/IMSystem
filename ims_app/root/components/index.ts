@@ -3,6 +3,7 @@ export * from './dropdown-button';
 export * from './footer';
 export * from './Formik';
 export * from './info-cards';
+export * from './info-request-card';
 export * from './loading';
 export * from './login-page';
 export * from './navigation';

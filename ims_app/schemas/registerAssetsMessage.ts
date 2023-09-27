@@ -1,14 +1,14 @@
 import * as Yup from "yup";
 const registerAssetsMessage  = Yup.object({
-    number: Yup.string().email("Formato de número inválido").required("El número es obligatorio"),
-    description: Yup.string().required("La descripción es obligatoria"),
-    series: Yup.string().required("La serie es obligatoria"),
-    brand: Yup.string().required("La marca es obligatoria"),
-    model: Yup.string().required("El modelo es obligatorio"),
-    invoice: Yup.string().required("La factura es obligatoria"),
-    value: Yup.string().required("El valor es obligatorio"),
-    location: Yup.string().required("La ubicación es obligatoria"),
-    law: Yup.string().required("La ley es obligatoria"),
+    assets_no: Yup.number().required("El número es obligatorio"),
+    assets_description: Yup.string().required("La descripción es obligatoria"),
+    assets_series: Yup.string().required("La serie es obligatoria"),
+    assets_brand: Yup.string().required("La marca es obligatoria"),
+    assets_model: Yup.string().required("El modelo es obligatorio"),
+    assets_invoice_number: Yup.string().required("La factura es obligatoria"),
+    assets_acquisition_mode:  Yup.number().required("El valor es obligatorio"),
+    assets_regis_location:  Yup.number().required("La ubicación es obligatoria"),
+    assent_law_id:  Yup.number().required("La ley es obligatoria"),
 });
 
 export default registerAssetsMessage ;

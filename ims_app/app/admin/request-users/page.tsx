@@ -1,9 +1,9 @@
 "use client";
-import { EditUserPage } from "@/root/components";
+import { RequestUserManagement } from "@/root/components";
 export default function RegisterUsersPage() {
     return (
         <main className="">
-            <EditUserPage />;
+            <RequestUserManagement />
         </main>
     );
 }

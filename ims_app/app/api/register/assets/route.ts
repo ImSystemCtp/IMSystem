@@ -12,14 +12,14 @@ export async function POST(req: Request) {
         const assets = body.assets;
         if (type == 'Register') {
             assets.forEach(async (element: ims_assets) => {
-                const newRegister = await getNextNumber() as ims_registered_in;
-                console.log(newRegister)
+                //const newRegister = await getNextNumber() as ims_registered_in;
+                //console.log(newRegister)
                 const response = await prismaDB.ims_register.create({
                     data: {
-                        reg_folio: newRegister.folio,
-                        reg_inst_id: newRegister.inst_id,
-                        reg_tomo:  newRegister.tomo,
-                        reg_asiento: newRegister.asiento,
+                        reg_folio: 1,
+                        reg_inst_id: 1,
+                        reg_tomo:  1,
+                        reg_asiento: 1,
                         reg_type: body.register.reg_type,
                         reg_observation: body.register.reg_observation,
                         reg_usu_id: body.register.reg_usu_id,

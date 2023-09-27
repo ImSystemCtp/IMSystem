@@ -4,6 +4,8 @@ import InfoCards from "../../info-cards/InfoCards";
 import { RequestUserManagement } from "../request-user-management";
 import { useAssets } from "@/root/hooks";
 import { useRegisterIn } from "@/root/hooks/useRegisterIn";
+import { InfoRequestCard } from "../../info-request-card";
+import PieChart from "../pie-chart/PieChart";
 export default function AdminMain() {
     useAssets();
     useRegisterIn();
@@ -34,10 +36,17 @@ export default function AdminMain() {
                     </div>
                 </div>
                 <InfoCards />
+                <div className="w-full  flex flex-row">
+                    <div className="w-1/2 flex justify-center items-center">
+                    <PieChart data={[110, 20, 300]} />
+                    </div>
+                    <div className="w-1/2 mt-4">
+                    <InfoRequestCard />
+                    </div>
+                </div>
                 <RequestManagement />
-                <RequestUserManagement />
             </div>
-        </div>
+        </div >
 
     );
 
