@@ -4,9 +4,10 @@ import CustomInput from "../../Formik/CustomInput";
 import CustomSelect from "../../Formik/CustomSelect";
 import { motion } from "framer-motion";
 import registerAssetsMessage from "@/schemas/registerAssetsMessage";
-import { useAssetStore } from "@/root/zustand";
+import { useAssetStore, useLawStore, useLocationStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import RegisterAssetsTable from "./RegisterAssetsTable";
+import { useLocation } from "@/root/hooks";
 interface FormValues {
     assets_no: number,
     assets_description: string,
@@ -14,17 +15,22 @@ interface FormValues {
     assets_brand: string,
     assets_model: string,
     assets_invoice_number: number,
-    assets_regis_location: number,
-    assent_law_id: number,
-    assets_acquisition_mode: string,
+    assets_regis_location: string,
+    assent_law_id: string,
+    assets_acquisition_value: string,
 }
 const initialValues = {} as FormValues;
 
 export default function RegisterAssets() {
-    const {addAssets} = useAssetStore()
+    useLocation()
+    const lawState = useLawStore();
+    const laws = lawState.laws;
+    const locationState = useLocationStore();
+    const locations = locationState.locations;
+    const { addAssets } = useAssetStore()
     const handleSubmit = async (values: FormValues) => {
-        values as FormValues;
-        addAssets(values as ims_assets);
+        const { assent_law_id, assets_regis_location } = values
+        addAssets({ ...values, assent_law_id: parseInt(assent_law_id), assets_regis_location: parseInt(assets_regis_location) } as ims_assets);
     };
     return (
         <div className="justify-center items-center">
@@ -35,7 +41,7 @@ export default function RegisterAssets() {
                         validationSchema={registerAssetsMessage}
                         onSubmit={handleSubmit}
                     >
-                        <Form  className="w-full ">
+                        <Form className="w-full ">
                             <div>
                                 <h1 className="text-center text-lg font-bold mb-6">
                                     Registrar Bienes
@@ -61,20 +67,24 @@ export default function RegisterAssets() {
                                     <CustomInput
                                         label="Número de Factura:"
                                         name="assets_invoice_number"
-                                        inputType="text"
+                                        inputType="number"
                                     />
                                     <CustomInput
                                         label="Valor de adquisición:"
-                                        name="assets_acquisition_mode"
-                                        inputType="number"
+                                        name="assets_acquisition_value"
+                                        inputType="text"
                                     />
                                     <CustomSelect label="Ubicación:" name="assets_regis_location" >
-                                        <option value={1}>Ubicacion1</option>
-                                        <option value={1}>Ubicacion2</option>
+                                        {!initialValues.assets_regis_location ? <option value="">Seleccione una ubicacion</option> : ""}
+                                        {locations.map((location) => {
+                                            return <option key={location.location_id} value={location.location_id}>{location.location_name}</option>;
+                                        })}
                                     </CustomSelect>
-                                    <CustomSelect label="Ley que financió:" name="assent_law_id">
-                                        <option value={1}>Ley1</option>
-                                        <option value={1}>Ley2</option>
+                                    <CustomSelect label="Ley que financió:" name="assent_law_id" >
+                                        {!initialValues.assent_law_id ? <option value="">Seleccione una ley</option> : ""}
+                                        {laws.map((law) => {
+                                            return <option key={law.law_id} value={law.law_id}>{law.law_name}</option>;
+                                        })}
                                     </CustomSelect>
                                 </div>
                             </div>

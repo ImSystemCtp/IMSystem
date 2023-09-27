@@ -4,8 +4,7 @@ import { useAssetStore } from "@/root/zustand/store/aseets-state/aseetState";
 import { motion } from "framer-motion";
 import LoadingComponent from "../loading/LoadingComponent";
 export default function InfoCards() {
-    const assetState = useAssetStore();
-    const assets = assetState.assets;
+   
     const registerInState = useRegisterInStore();
     const currentRegisterIn = registerInState.registerIn;
     const isLoading = useLoadingStore((state) => state.isLoading);
@@ -23,7 +22,7 @@ export default function InfoCards() {
                     <LoadingComponent />
                 ) : (
                     <div className="text-right">
-                        <p className="text-2xl">{assets.length}</p>
+                        <p className="text-2xl">{1}</p>
                         <p>Bienes</p>
                     </div>
                 )}

@@ -3,6 +3,7 @@ import { useField } from "formik";
 import React, { SelectHTMLAttributes } from "react";
 import classNames from "classnames";
 import { formsClassesCustomSelect } from "./formsClasses";
+type InputType = "text" | "number" | "password" | "email" | "date" | "time" | "file" | "radio" | "searchTerm";
 interface CustomSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     label: string;
 }

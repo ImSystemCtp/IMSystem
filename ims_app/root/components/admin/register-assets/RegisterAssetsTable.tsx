@@ -9,7 +9,7 @@ export default function RegisterAssetsTable() {
     const register = {
         reg_type: EnumRegisterType.Register,
         reg_date: new Date(),
-        reg_usu_id: 1,
+        reg_usu_id: 2,
         reg_inst_id: 1,
     } as  ims_register
     const handleRegisterAssets = () => {

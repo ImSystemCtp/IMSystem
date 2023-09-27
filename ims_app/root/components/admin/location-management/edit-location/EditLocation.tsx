@@ -4,8 +4,7 @@ import { useLoadingStore, useLocationStore } from "@/root/zustand";
 import { ims_locations } from "@prisma/client";
 import { motion } from "framer-motion";
 export default function EditLocation() {
-    const locationState = useLocationStore();
-    const locations = locationState.locations;
+    const {selectLocationToEdit,locations} = useLocationStore();
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         isLoading ? <LoadingComponent /> :
@@ -19,7 +18,7 @@ export default function EditLocation() {
                                     Ubicacion
                                 </th>
                                 <th scope="col" className=" px-6 py-3">
-                                    Eliminar
+                                    Editar
                                 </th>
                             </tr>
                         </thead>
@@ -31,6 +30,7 @@ export default function EditLocation() {
                                     </td>
                                     <td className="px-6 py-4">
                                         <motion.button
+                                        onClick={()=> selectLocationToEdit(location)}
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
                                             className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="submit">

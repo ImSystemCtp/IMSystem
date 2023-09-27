@@ -76,7 +76,7 @@ export default function SideBar({ className }: SideBarProps) {
                                     </svg>
                                 </div>
                                 <span className="text-blue-400  flex-1 ml-3 whitespace-nowrap">
-                                    Ubicaiones
+                                    Ubicaciones
                                 </span>
                             </Link>
                         </li>
