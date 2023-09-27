@@ -1,1 +1,1 @@
-
+export * from './transfer.provider';

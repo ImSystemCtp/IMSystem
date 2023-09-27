@@ -33,8 +33,8 @@ export default function RequestUserManagement() {
                         <thead>
                             <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                 <th className="px-4 py-3">Usuario</th>
-                                <th className="px-4 py-3">Estado</th>
                                 <th className="px-4 py-3">Role</th>
+                                <th className="px-4 py-3">Estado</th>
                                 <th className="px-4 py-3">Rechazar</th>
                                 <th className="px-4 py-3">Aceptar</th>
                             </tr>
@@ -52,17 +52,17 @@ export default function RequestUserManagement() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-4 py-3 text-sm">Pendiente</td>
+                                    <td className="px-4 py-3 text-sm">{pagine}</td>
                                     <td className="px-4 py-3 text-xs">
-                                        <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            {pagine}
+                                        <span className="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
+                                            Pendiente
                                         </span>
                                     </td>
                                     <td className="px-4 py-3 text-sm">
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                         >
                                             Rechazar
                                         </motion.button>

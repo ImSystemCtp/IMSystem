@@ -2,15 +2,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { SideBarState, useSideBarStore } from "../../zustand/store/siderbar-state/sidebar-state";
-import { useLocationStore } from "@/root/zustand";
-import { useLawStore } from "@/root/zustand/store/laws-state/lawState";
 interface SideBarProps {
     className?: string;
 }
 export default function SideBar({ className }: SideBarProps) {
     const isOpen = useSideBarStore((state) => state.isOpen);
-    const locationState = useLocationStore();
-    const lawState = useLawStore();
     const handleToggle = () => {
         useSideBarStore.getState().toggle(); // Alternar entre abierto y cerrado
     };
@@ -66,7 +62,6 @@ export default function SideBar({ className }: SideBarProps) {
                         <li>
                             <Link
                                 href={"/admin/locations-management"}
-                                onClick={() => { locationState.getLocation(); }}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <div className="flex justify-center items-center w-14 h-14  rounded-full transition-all duration-300 transform group-hover:rotate-12">
@@ -83,7 +78,6 @@ export default function SideBar({ className }: SideBarProps) {
                         <li>
                             <Link
                                 href="/admin/laws-management"
-                                onClick={() => { lawState.getLaws(); }}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <div className="flex justify-center items-center w-14 h-14  rounded-full transition-all duration-300 transform group-hover:rotate-12">
