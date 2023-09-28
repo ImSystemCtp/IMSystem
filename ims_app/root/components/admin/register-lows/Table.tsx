@@ -2,7 +2,6 @@ import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 export default function RegisterTable() {
     const { assetsByLocation } = useAssetStore();
-    
     return (
         <div>
             <div className=" border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
@@ -21,7 +20,7 @@ export default function RegisterTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        {assetsByLocation.map((asset: ims_assets, index:number) => (
+                        { assetsByLocation?.map((asset: ims_assets, index:number) => (
                             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td
                                     scope="row"

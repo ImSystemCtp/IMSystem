@@ -1,6 +1,6 @@
 "use client";
 import { InfoCards, InfoRequestCard, PieChart, RequestManagement } from "@/root";
-import { useAssets, useRegisterIn } from "@/root/hooks";
+import { useAssets, useRegisterIn } from "@/root";
 export default function AdminMain() {
     useAssets();
     useRegisterIn();
