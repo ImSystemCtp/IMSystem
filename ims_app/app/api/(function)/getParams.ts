@@ -10,7 +10,7 @@ export default function getParams(url: string, objete: any) {
         console.log(key)
         const param = searchParams.get(key)
         if (param) {
-            params = { ...params, [key]: param }
+            params = { ...params, [key]:  param }
         }
     }
     console.log("params", params)

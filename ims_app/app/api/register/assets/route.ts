@@ -2,7 +2,7 @@ import { prismaDB } from "@/lib";
 import { NextResponse } from "next/server";
 import { ims_assets, ims_registered_in } from "@prisma/client";
 import { registerGood } from "@/root/types";
-import { getNextNumber } from "../../function";
+import { getNextNumber } from "../../(function)";
 export async function POST(req: Request) {
     try {
         console.log("hola")

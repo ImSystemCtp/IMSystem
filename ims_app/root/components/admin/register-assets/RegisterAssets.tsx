@@ -8,7 +8,7 @@ import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import RegisterAssetsTable from "./RegisterAssetsTable";
 interface FormValues {
-    assets_no: number,
+    assets_no: string,
     assets_description: string,
     assets_series: string,
     assets_brand: string,
@@ -16,7 +16,7 @@ interface FormValues {
     assets_invoice_number: number,
     assets_regis_location: number,
     assent_law_id: number,
-    assets_acquisition_mode: string,
+    assets_acquisition_value: string,
 }
 const initialValues = {} as FormValues;
 

@@ -29,7 +29,7 @@ const PieChart: React.FC<PieChartProps> = ({ data }) => {
     };
     return (
         <div className='w-2/3 flex justify-center items-center '>
-            <Doughnut data={chartData} options={chartOptions} />
+            {/* <Doughnut data={chartData} options={chartOptions} /> */}
         </div>
     );
 };

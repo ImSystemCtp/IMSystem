@@ -1,1 +1,1 @@
-export {default as EditLocation} from './EditLaw';
+export {default as EditLaw} from './EditLaw';

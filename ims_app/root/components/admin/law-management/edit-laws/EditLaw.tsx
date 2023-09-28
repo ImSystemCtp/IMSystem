@@ -4,7 +4,7 @@ import { useLoadingStore } from "@/root/zustand";
 import { useLawStore } from "@/root/zustand/store/laws-state/lawState";
 import { ims_laws } from "@prisma/client";
 import { motion } from "framer-motion";
-export default function EditLocation() {
+export default function EditLaw() {
     const lawState = useLawStore();
     const laws = lawState.laws;
     const isLoading = useLoadingStore((state) => state.isLoading);
