@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function ListAssets() {
     return (
         <div>
-            <h1 className="text-center">Lista de Bienes</h1>
+            <h2 className="text-center">Lista de Bienes</h2>
             <div className="justify-center items-center flex flex-col">
                 <div className="mb-4">
                     <textarea
