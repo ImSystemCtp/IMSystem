@@ -1,5 +1,7 @@
-
+import { useAssetStore } from "@/root";
+import { ims_assets } from "@prisma/client";
 export default function RegisterTransferTable() {
+    const { assetsByLocation } = useAssetStore();
     return (
         <div>
             <div className="my-2 w-full rounded-lg relative overflow-x-auto">
@@ -18,26 +20,28 @@ export default function RegisterTransferTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th
-                                scope="row"
-                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            >
-                                Apple MacBook Pro 17
-                            </th>
-                            <td className="px-6 py-4 hidden md:table-cell  ">Silver</td>
-                            <td className="px-6 py-4 hidden md:table-cell">
-                                <div className="flex items-center justify-center mb-4">
-                                    <input
-                                        id="default-checkbox"
-                                        type="checkbox"
-                                        value=""
-                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                    />
-                                </div>
-                            </td>
+                        {assetsByLocation?.map((asset: ims_assets, index: number) => (
+                            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                >
+                                    {asset.assets_no}
+                                </td>
+                                <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
+                                <td className="px-6 py-4 hidden md:table-cell">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <input
+                                            id="default-checkbox"
+                                            type="checkbox"
+                                            value=""
+                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        />
+                                    </div>
+                                </td>
 
-                        </tr>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
 

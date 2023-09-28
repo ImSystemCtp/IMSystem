@@ -6,9 +6,9 @@ import { NextResponse } from "next/server";
 export async function GET(_req: Request , { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const response = await prismaDB.ims_locations.findMany({
+        const response = await prismaDB.ims_assets.findMany({
             where: {
-                location_id: id
+                assets_regis_location: id
             }
         });
         return NextResponse.json(response);
