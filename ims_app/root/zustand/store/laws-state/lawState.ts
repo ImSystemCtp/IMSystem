@@ -6,11 +6,12 @@ interface lawState {
     laws: ims_laws[];
     lawToEdit: ims_laws | null;
     getLaws: () => Promise<void>;
-    addLaws: (law: ims_laws) => Promise<void>;
+    createLaw: (law: ims_laws) => Promise<void>;
     selectLawToEdit: (law: ims_laws) => void;
+    updateLaw: (lawToUpdate: ims_laws) => Promise<void>;
 }
 
-export const useLawStore = create<lawState>((set,get) => {
+export const useLawStore = create<lawState>((set) => {
     return {
         laws: [],
         lawToEdit: null,
@@ -18,7 +19,7 @@ export const useLawStore = create<lawState>((set,get) => {
             const laws = await lawProvider.getLaw()
             set({ laws })
         },
-        addLaws: async (law: ims_laws) => {
+        createLaw: async (law: ims_laws) => {
             console.log(law)
             const newLaw = await lawProvider.createLaw(law);
             console.log(newLaw)
@@ -26,7 +27,16 @@ export const useLawStore = create<lawState>((set,get) => {
         },
         selectLawToEdit: (law: ims_laws) => {
             set({ lawToEdit: law })
-        }
+        },
+        updateLaw: async (lawToUpdate: ims_laws) => {
+            const updatedLaw = await lawProvider.updateLaw(lawToUpdate);
+            set((state: lawState) => ({
+                ...state,
+                laws: state.laws.map((law) =>
+                    law.law_id === updatedLaw.law_id ? updatedLaw : law
+                ),
+            }));
+        },
 
     }
 });

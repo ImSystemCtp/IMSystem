@@ -1,10 +1,9 @@
 "use client"
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
-import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 export default function RegisterTable() {
-    const { assetsByLocation, seeMore , idLocation } = useAssetStore();
+    const { assetsByLocation,addAssetsCheck, seeMore , idLocation } = useAssetStore();
     console.log(assetsByLocation)
     //   const { assetsByLocation, seeMore } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -61,7 +60,7 @@ export default function RegisterTable() {
                                 </td>
                                 <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
                                 <td className="px-6 py-4 hidden md:table-cell">
-                                    <div className="flex items-center justify-center mb-4">
+                                    <div className="flex items-center justify-center mb-4" onClick={() => addAssetsCheck(asset)}>
                                         <input
                                             id="default-checkbox"
                                             type="checkbox"

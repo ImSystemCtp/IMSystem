@@ -26,7 +26,7 @@ export default function EditLaw() {
                             {laws.map((law: ims_laws) => (
                                 <tr key={law.law_id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {law.law_description}
+                                        {law.law_name}
                                     </td>
                                     <td className="px-6 py-4">
                                         <motion.button

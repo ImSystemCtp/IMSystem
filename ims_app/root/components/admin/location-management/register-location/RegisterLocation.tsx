@@ -5,7 +5,7 @@ import { ims_locations } from "@prisma/client";
 import { motion } from "framer-motion";
 
 export default function RegisterLocation() {
-    const { selectLocationToEdit,addLocation, locationToEdit } = useLocationStore();
+    const { selectLocationToEdit,createLocation, locationToEdit,updateLocation } = useLocationStore();
     const [locationName, setLocationName] = useState(
         locationToEdit ? locationToEdit.location_name : ""
     );
@@ -25,7 +25,12 @@ export default function RegisterLocation() {
         if (!locationName.trim()) {
             setError("Por favor, complete el campo.");
         } else {
-            addLocation({ location_name: locationName } as ims_locations);
+            if(locationToEdit){
+                updateLocation({ location_id: locationToEdit.location_id, location_name: locationName } as ims_locations);
+            }
+            else{
+                createLocation({ location_name: locationName } as ims_locations);
+            }
         }
     };
     const handleCancel = () => {

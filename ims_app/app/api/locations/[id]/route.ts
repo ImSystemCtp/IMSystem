@@ -25,7 +25,6 @@ export async function PUT(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
         const body = await _request.json();
-        console.log(id, body)
         const response = await prismaDB.ims_locations.update({
             where: { location_id: Number(id) },
             data: body,

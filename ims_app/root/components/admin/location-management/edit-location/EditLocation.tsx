@@ -9,7 +9,7 @@ export default function EditLocation() {
     return (
         isLoading ? <LoadingComponent /> :
             <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
-                <h2 className="text-center text-2xl font-bold pb-12 p-2">Ubicaciones</h2>
+                <h2 className="text-center text-2xl font-bold  p-2">Ubicaciones</h2>
                 <div className="w-full">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
