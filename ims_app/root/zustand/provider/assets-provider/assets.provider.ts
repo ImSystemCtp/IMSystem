@@ -1,6 +1,6 @@
 import { ims_assets } from "@prisma/client";
 import axios from 'axios';
-import { useLoadingStore } from "../../store/isLoading-state";
+import { useLoadingStore } from "@/root/zustand";
 const getAssets = async () => {
     useLoadingStore.getState().setIsLoading(true);
     console.log('getAssets');

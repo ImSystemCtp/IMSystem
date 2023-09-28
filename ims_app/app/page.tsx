@@ -1,5 +1,5 @@
 'use client'
-import { LoginPage } from '@/root/components';
+import { LoginPage } from '@/root';
 export default function Home() {
   return (
       <div>

@@ -1,9 +1,7 @@
 "use client"
 import React, { useState } from "react";
-import { AdminOption } from "../../admin-options";
-import EditLaw from "../edit-laws/EditLaw";
-import { RegisterLaw } from "../register-laws";
 import { useLocation } from "@/root/hooks";
+import { EditLaw, RegisterLaw } from "@/root/components";
 export default function LawsManagementMain() {
     useLocation();
     const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -1,10 +1,8 @@
 "use client"
+import { LoadingComponent } from "@/root/components";
 import { useLoadingStore, useRegisterInStore } from "@/root/zustand";
-import { useAssetStore } from "@/root/zustand/store/aseets-state/aseetState";
 import { motion } from "framer-motion";
-import LoadingComponent from "../loading/LoadingComponent";
 export default function InfoCards() {
-   
     const registerInState = useRegisterInStore();
     const currentRegisterIn = registerInState.registerIn;
     const isLoading = useLoadingStore((state) => state.isLoading);

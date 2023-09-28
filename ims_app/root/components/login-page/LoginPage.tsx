@@ -1,11 +1,8 @@
 "use client"
 import { USER_ROLES } from "@/app/api/enums/roles";
 import { QueryOptions } from "@/app/types";
-import { useAuthStore } from "@/root/zustand/store/auth-State/auth";
-import { useUserStore } from "@/root/zustand/store/users-State/userState";
+import { useAuthStore, useUserStore } from "@/root/zustand";
 import { useEffect } from "react";
-
-
 export default function LoginPage() {
 
     const getAuth = useAuthStore(state => state.getUsetAuth)!;

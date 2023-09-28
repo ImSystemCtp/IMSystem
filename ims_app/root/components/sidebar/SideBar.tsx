@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { SideBarState, useSideBarStore } from "../../zustand/store/siderbar-state/sidebar-state";
+import { useSideBarStore } from "@/root/zustand";
 interface SideBarProps {
     className?: string;
 }

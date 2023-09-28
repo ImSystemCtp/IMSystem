@@ -1,5 +1,5 @@
 import { ims_registered_in } from "@prisma/client";
-import { registerInProvider } from "../../provider/register-in-provider/register-in.provider";
+import { registerInProvider } from "@/root/zustand/provider";
 import { create } from "zustand";
 interface RegisterInState {
     registerIn: ims_registered_in;

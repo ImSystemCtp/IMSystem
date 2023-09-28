@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
-import React, { useState } from 'react';
 import { motion } from "framer-motion";
+import { useState } from "react";
 export default function NotificationUserDropDown() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

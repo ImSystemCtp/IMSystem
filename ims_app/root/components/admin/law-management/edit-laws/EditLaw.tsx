@@ -1,7 +1,6 @@
 "use client"
-import { LoadingComponent } from "@/root/components/loading";
-import { useLoadingStore } from "@/root/zustand";
-import { useLawStore } from "@/root/zustand/store/laws-state/lawState";
+import { LoadingComponent } from "@/root/components";
+import { useLawStore, useLoadingStore } from "@/root/zustand";
 import { ims_laws } from "@prisma/client";
 import { motion } from "framer-motion";
 export default function EditLaw() {

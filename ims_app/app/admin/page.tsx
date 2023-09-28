@@ -1,7 +1,5 @@
 'use client'
-import { AdminMain } from "@/root/components";
-import { useUserStore } from "@/root/zustand/store/users-State/userState";
-
+import { AdminMain } from "@/root";
 export default function AdminHome() {
   return (
       <div className=" ">

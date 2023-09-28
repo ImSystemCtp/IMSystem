@@ -1,5 +1,5 @@
 "use client"
-import { LoadingComponent } from "@/root/components/loading";
+import { LoadingComponent } from "@/root/components";
 import { useLoadingStore, useLocationStore } from "@/root/zustand";
 import { ims_locations } from "@prisma/client";
 import { motion } from "framer-motion";

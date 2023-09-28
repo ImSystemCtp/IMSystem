@@ -1,8 +1,7 @@
 "use client";
-import { AdminNavBar, Footer, Navigation } from '@/root/components'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
-import SideBar from '@/root/components/sidebar/SideBar';
+import { AdminNavBar, Navigation, SideBar } from '@/root';
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Create Next App',

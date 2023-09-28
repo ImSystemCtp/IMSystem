@@ -1,6 +1,6 @@
 import { ims_assets } from "@prisma/client"
 import { create } from 'zustand'
-import { assetsProvider } from "../../provider"
+import { assetsProvider } from "@/root/zustand/provider"
 
 interface assetState {
     assets: ims_assets[];

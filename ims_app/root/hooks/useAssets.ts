@@ -1,7 +1,6 @@
 "use client"
 import { useEffect } from "react";
-import { useAssetStore, useLoadingStore } from "../zustand/store";
-import { useUserNoRoleStore } from "../zustand/store/users-State/userNoRoleSatate";
+import { useUserNoRoleStore } from "@/root/zustand";
 export const useAssets= () => {
     const getUserPending = useUserNoRoleStore(state => state.getUserPending)!;
     useEffect(() => {

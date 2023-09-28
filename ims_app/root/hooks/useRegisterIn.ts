@@ -1,6 +1,6 @@
 "use client"
 import { useEffect } from "react";
-import { useLoadingStore, useRegisterInStore } from "../zustand/store";
+import { useLoadingStore, useRegisterInStore } from "@/root/zustand";
 export const useRegisterIn= () => {
     const getRegisterIn = useRegisterInStore(state => state.getRegisterIn)!;
 

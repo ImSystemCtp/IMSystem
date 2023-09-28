@@ -1,6 +1,6 @@
+import { locationProvider } from "@/root/zustand/provider";
 import { ims_locations } from "@prisma/client"
 import { create } from 'zustand'
-import { locationProvider } from "../../provider"
 
 interface LocationState {
     locations: ims_locations[];

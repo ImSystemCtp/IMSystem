@@ -1,6 +1,6 @@
 "use client"
 import { useEffect } from "react";
-import { useLawStore, useLoadingStore, useLocationStore, useRegisterInStore } from "../zustand/store";
+import { useLawStore, useLoadingStore, useLocationStore } from "@/root/zustand";
 export const useLocation= () => {
     const getLocation = useLocationStore(state => state.getLocation)!;
     const geLaw = useLawStore(state => state.getLaws)!;

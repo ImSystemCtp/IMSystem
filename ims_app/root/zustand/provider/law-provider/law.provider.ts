@@ -1,6 +1,6 @@
 import { ims_laws } from "@prisma/client";
 import axios from 'axios';
-import { useLoadingStore } from "../../store/isLoading-state";
+import { useLoadingStore } from "@/root/zustand";
 const createLaw = async (law: ims_laws) => {
     console.log(law)
     const response = await axios.post('/api/law', law);

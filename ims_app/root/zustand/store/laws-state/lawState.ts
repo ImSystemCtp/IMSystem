@@ -1,6 +1,6 @@
 import { ims_laws } from "@prisma/client"
 import { create } from 'zustand'
-import { lawProvider } from "../../provider"
+import { lawProvider } from "@/root/zustand/provider"
 
 interface lawState {
     laws: ims_laws[];
