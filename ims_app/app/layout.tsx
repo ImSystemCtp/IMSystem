@@ -17,18 +17,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider localization={esES}
-    >
+    <ClerkProvider localization={esES}>
       <html lang="es">
-        <body className={"min-h-screen bg-slate-50  dark:bg-slate-800  " + inter.className}  >
-          <main className=' mx-auto'>
-            <div className=''>
-              <div className=''>{children}</div>
-            </div>
-          </main>
-          <Footer/>
+        <body className="min-h-screen bg-slate-50 dark:bg-slate-800 flex flex-col">
+          <main className="flex-grow">{children}</main>
+          <Footer  />
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

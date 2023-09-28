@@ -22,7 +22,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({ label, ...textareaProps
                 <textarea {...field} {...textareaProps} className={textareaClassName} />
                 {meta.touched && meta.error && (
                     <div className=" w-full rounded-lg p-5">
-                        <p className="text-red-950">{meta.error}</p>
+                        <p className="text-red-500">{meta.error}</p>
                     </div>
                 )}
             </div>

@@ -18,7 +18,7 @@ export default function RegisterAssetsTable() {
     }
     return (
         <div className="w-1/3 rounded-lg border border-gray-300 p-4 m-2 ">
-            <h2 className="text-center text-gray-500 text-lg font-semibold pb-4">
+            <h2 className="text-2xl font-bold  text-center ">
                 Bienes Registrados
             </h2>
             <div className="my-1"></div>

@@ -26,3 +26,34 @@ VALUES
 (1, '1236458', 'Descripción del activo 3', 'Marca3', 'Modelo3', 'Serie3', 'Inactivo', '750.00', 1, 12347, 1),
 (1, '1236459', 'Descripción del activo 4', 'Marca4', 'Modelo4', 'Serie4', 'Activo', '2000.00', 1, 12348, NULL),
 (1, '1236460', 'Descripción del activo 5', 'Marca5', 'Modelo5', 'Serie5', 'Activo', '900.00', 1, 12349, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset016', 'Descripción del activo 16', 'Marca16', 'Modelo16', 'Serie16', 'Y', 'Valor16', 1, 98765, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset017', 'Descripción del activo 17', 'Marca17', 'Modelo17', 'Serie17', 'Y', 'Valor17', 1, 23456, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset018', 'Descripción del activo 18', 'Marca18', 'Modelo18', 'Serie18', 'Y', 'Valor18', 1, 54321, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset019', 'Descripción del activo 19', 'Marca19', 'Modelo19', 'Serie19', 'Y', 'Valor19', 1, 98765, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset020', 'Descripción del activo 20', 'Marca20', 'Modelo20', 'Serie20', 'Y', 'Valor20', 1, 23456, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset021', 'Descripción del activo 21', 'Marca21', 'Modelo21', 'Serie21', 'Y', 'Valor21', 1, 54321, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset022', 'Descripción del activo 22', 'Marca22', 'Modelo22', 'Serie22', 'Y', 'Valor22', 1, 98765, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset023', 'Descripción del activo 23', 'Marca23', 'Modelo23', 'Serie23', 'Y', 'Valor23', 1, 23456, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset024', 'Descripción del activo 24', 'Marca24', 'Modelo24', 'Serie24', 'Y', 'Valor24', 1, 54321, 1);
+
+INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
+VALUES (1, 'Asset025', 'Descripción del activo 25', 'Marca25', 'Modelo25', 'Serie25', 'Y', 'Valor25', 1, 98765, 1);
+

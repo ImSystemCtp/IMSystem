@@ -1,10 +1,36 @@
+"use client"
 import { useAssetStore } from "@/root";
 import { ims_assets } from "@prisma/client";
+import { useEffect, useRef } from "react";
 export default function RegisterTransferTable() {
-    const { assetsByLocation } = useAssetStore();
+    const { assetsByLocation,addAssetsCheck, seeMore , idLocation } = useAssetStore();
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        const container = containerRef.current;
+        function handleScroll() {
+
+            if (container) {
+                const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
+
+                if (isAtBottom) {
+                    seeMore();
+                }
+            }
+        }
+
+        if (container) {
+            container.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [seeMore]);
     return (
         <div>
-            <div className="my-2 w-full rounded-lg relative overflow-x-auto">
+            <div  ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -30,7 +56,7 @@ export default function RegisterTransferTable() {
                                 </td>
                                 <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
                                 <td className="px-6 py-4 hidden md:table-cell">
-                                    <div className="flex items-center justify-center mb-4">
+                                    <div className="flex items-center justify-center mb-4" onClick={() => addAssetsCheck(asset)}>
                                         <input
                                             id="default-checkbox"
                                             type="checkbox"

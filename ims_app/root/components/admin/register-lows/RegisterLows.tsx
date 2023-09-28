@@ -15,8 +15,8 @@ export default function RegisterLows() {
   }
   return (
     <div className="w-full">
-      <h1 className="m-2 text-center">Registrar Bajas</h1>
-      <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-4 lg:p-4">
+      <h2 className="text-2xl font-bold  text-center">Registrar Bajas</h2>
+      <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-2 lg:p-2">
         <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
           <SearchAssetsAdmin />
         </div>
@@ -33,7 +33,7 @@ export default function RegisterLows() {
           </select>
         </div>
       </div>
-      <div className=" flex flex-col lg:flex-row lg:m-4 lg:p-4">
+      <div className=" flex flex-col lg:flex-row lg:m-2 lg:p-2">
         <div className=" w-full lg:w-3/5 pr-0 lg:pr-4">
           <RegisterTable />
         </div>

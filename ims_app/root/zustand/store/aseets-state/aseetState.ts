@@ -6,6 +6,7 @@ const LIMIT = 5
 interface assetState {
     assets: ims_assets[];
     assetsByLocation: ims_assets[];
+    assetsCheck: ims_assets[];
     count: number;
     idLocation: number;
     cursor: number
@@ -15,6 +16,7 @@ interface assetState {
     addAssets: (asset: ims_assets) => Promise<void>;
     countAssets: () => Promise<number>;
     seeMore: () => Promise<void>;
+    addAssetsCheck: (asset: ims_assets) => Promise<void>;
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -24,7 +26,7 @@ export const useAssetStore = create<assetState>((set, get) => {
         count: 0,
         idLocation: 0,
         cursor: 0,
-
+        assetsCheck: [],
         getAssets: async () => {
             const assets = await assetsProvider.getAssets()
             set({ assets })
@@ -53,7 +55,10 @@ export const useAssetStore = create<assetState>((set, get) => {
             const assetsByLocationQr = await assetsProvider.getAssetsByLocationQuery(query);
             const assets = [...get().assetsByLocation, ...assetsByLocationQr];
             set({ assetsByLocation: assets , cursor: get().cursor + LIMIT });
-        }
-        
+        },
+        addAssetsCheck: async (asset: ims_assets) => {
+            console.log(asset)
+            set((state: assetState) => ({ assetsCheck: [...state.assetsCheck, asset] }));
+        },
     }
 });

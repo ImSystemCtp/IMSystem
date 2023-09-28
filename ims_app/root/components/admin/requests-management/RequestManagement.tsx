@@ -13,7 +13,7 @@ export default function RequestManagement() {
             transition={{ duration: 0.5 }}
             className=" p-4 rounded-md mt-4"
         >
-            <h2 className="text-gray-500 text-lg font-semibold pb-4">
+            <h2 className="text-gray-500 text-2xl font-bold  text-center">
                 Solicitudes Pendientes
             </h2>
             <div className="my-1"></div>

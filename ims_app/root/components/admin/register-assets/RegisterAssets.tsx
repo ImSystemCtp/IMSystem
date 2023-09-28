@@ -43,9 +43,9 @@ export default function RegisterAssets() {
                     >
                         <Form className="w-full ">
                             <div>
-                                <h1 className="text-center text-lg font-bold mb-6">
+                                <h2 className="text-2xl font-bold  text-center">
                                     Registrar Bienes
-                                </h1>
+                                </h2>
                             </div>
                             <div className=" justify-center w-full flex flex-col sm:flex-row lg:p-4 lg:px-10">
                                 <div className="w-full h-full p-2">
