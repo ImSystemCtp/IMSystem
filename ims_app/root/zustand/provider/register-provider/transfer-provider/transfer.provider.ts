@@ -2,7 +2,7 @@ import { registerGood } from '@/root/types'
 import { ims_register } from '@prisma/client'
 import axios from 'axios'
 
-const createLow = async ( register : registerGood) => {
+const createTransfer = async ( register : registerGood) => {
 
     const response =  await axios.post('/api/register/transfer', register)
 
@@ -12,7 +12,7 @@ const createLow = async ( register : registerGood) => {
 }
 
 
-export const lowProvider= {
-    createLow,
+export const transferProvider= {
+    createTransfer,
 
 }

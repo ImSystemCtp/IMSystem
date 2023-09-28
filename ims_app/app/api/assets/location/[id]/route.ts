@@ -3,12 +3,12 @@ import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 
 
-export async function GET({ params }: ParameterId) {
+export async function GET(_req: Request , { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const response = await prismaDB.ims_assets.findMany({
+        const response = await prismaDB.ims_locations.findMany({
             where: {
-                assets_curr_location: id
+                location_id: id
             }
         });
         return NextResponse.json(response);

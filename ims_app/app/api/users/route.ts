@@ -6,6 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";
 import { NextApiRequest } from "next";
+import getParams from "../(function)/getParams";
 
 
 /* export async function GET() {
@@ -20,81 +21,83 @@ import { NextApiRequest } from "next";
 export async function GET(_req: Request) {
 
     try {
-        console.log("jajaj")
-        const { searchParams } = new URL(_req.url)
 
-        const limit = searchParams.get('limit') || false
-        const offset = searchParams.get('offset') || false
-        const orderBy = searchParams.get('orderBy') || false
-        const order = searchParams.get('order') || false    
-        const filterBy = searchParams.get('filterBy') || false
-        const filterValue = searchParams.get('filterValue') || false
-        const filterCondition = searchParams.get('filterCondition') || false
-
+        /*    const { searchParams } = new URL(_req.url)
+   
+           const limit = searchParams.get('limit') || false
+           const offset = searchParams.get('offset') || false
+           const orderBy = searchParams.get('orderBy') || false
+           const order = searchParams.get('order') || false    
+           const filterBy = searchParams.get('filterBy') || false
+           const filterValue = searchParams.get('filterValue') || false
+           const filterCondition = searchParams.get('filterCondition') || false */
+        const objete = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
+        console.log(objete)
+        const parameters = getParams(_req.url, objete)
+        console.log(parameters)
+        const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
         console.log(offset, limit, orderBy, order, filterBy, filterValue, filterCondition)
 
-    /*     const user = await currentUser();
-
-      const loginEmail = user!.emailAddresses[0].emailAddress || null;
-        if (!loginEmail) {
-            return new NextResponse("Unauthorized", { status: 401 });
-        }
-
-        const hasPermision = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
-        if (!hasPermision) {
-            return new NextResponse("Additional Permissions Required", {
-                status: 403,
-            });
-        } */
-        // Verifica si se proporcionan datos de paginación
-            const hasPaginationData = offset && limit;
-            console.log(hasPaginationData)
-            // Verifica si se proporcionan datos de ordenamiento
-            const hasOrderData = orderBy && order;
+        /*     const user = await currentUser();
     
-            // Construye la condición de filtrado si se proporciona
+          const loginEmail = user!.emailAddresses[0].emailAddress || null;
+            if (!loginEmail) {
+                return new NextResponse("Unauthorized", { status: 401 });
+            }
+    
+            const hasPermision = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
+            if (!hasPermision) {
+                return new NextResponse("Additional Permissions Required", {
+                    status: 403,
+                });
+            } */
+        // Verifica si se proporcionan datos de paginación
+        const hasPaginationData = offset && limit;
+        console.log(hasPaginationData)
+        // Verifica si se proporcionan datos de ordenamiento
+        const hasOrderData = orderBy && order;
 
-            const whereCondition = (filterBy && filterCondition && filterValue)
-                ? {
-                    where: {
-                        [filterBy]: {
-                            [filterCondition]: filterValue,
-                        },
+        // Construye la condición de filtrado si se proporciona
+
+        const whereCondition = (filterBy && filterCondition && filterValue)
+            ? {
+                where: {
+                    [filterBy]: {
+                        [filterCondition]: filterValue,
                     },
-                }
-                : {};
-              
-            // Realiza la consulta a la base de datos usando Prisma
-            let users;
-            if (hasPaginationData && hasOrderData) {
-                users = await prismaDB.ims_users.findMany({
-                    skip: parseInt(offset),
-                    take: parseInt(limit),
-                    orderBy: {
-                        [orderBy]: order,
-                    },
-                    where: whereCondition.where ,
-                });
-            } else if (hasPaginationData) {
-                users = await prismaDB.ims_users.findMany({
-                    skip: parseInt(offset),
-                    take: parseInt(limit),
-                    where: whereCondition.where,
-                });
-            } else if ( hasOrderData ) {
-                users = await prismaDB.ims_users.findMany({
-                    orderBy: {
-                        [orderBy]: order,
-                    },
-                    where: whereCondition.where,
-                });
-            } 
-            
-            /* else { */
-        // Si no se proporciona paginación ni ordenamiento, realiza una consulta sin ellos.
-      //  const users = await prismaDB.ims_users.findMany();
-        // }
-        
+                },
+            }
+            : {};
+
+        // Realiza la consulta a la base de datos usando Prisma
+        let users;
+        if (hasPaginationData && hasOrderData) {
+            users = await prismaDB.ims_users.findMany({
+                skip: offset,
+                take: limit,
+                orderBy: {
+                    [orderBy]: order,
+                },
+                where: whereCondition.where,
+            });
+        } else if (hasPaginationData) {
+            users = await prismaDB.ims_users.findMany({
+                skip: offset,
+                take: limit,
+                where: whereCondition.where,
+            });
+        } else if (hasOrderData) {
+            users = await prismaDB.ims_users.findMany({
+                orderBy: {
+                    [orderBy]: order,
+                },
+                where: whereCondition.where,
+            });
+        }
+        else {
+
+            users = await prismaDB.ims_users.findMany();
+        }
         console.log(users)
         return NextResponse.json(users);
         //     }
@@ -108,11 +111,11 @@ export async function GET(_req: Request) {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { usu_id, usu_name, usu_email, usu_is_active } = body as ims_users;
+        const { usu_id, usu_name, usu_email } = body as ims_users;
 
         const user = await currentUser();
 
-        if (!usu_name || !usu_email || !usu_is_active) {
+        if (!usu_name || !usu_email) {
             return new NextResponse("Missing required fields", { status: 400 });
         }
 

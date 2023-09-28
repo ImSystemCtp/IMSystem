@@ -9,14 +9,14 @@ import { ims_assets } from "@prisma/client";
 import RegisterAssetsTable from "./RegisterAssetsTable";
 import { useLocation } from "@/root/hooks";
 interface FormValues {
-    assets_no: number,
+    assets_no: string,
     assets_description: string,
     assets_series: string,
     assets_brand: string,
     assets_model: string,
     assets_invoice_number: number,
-    assets_regis_location: string,
-    assent_law_id: string,
+    assets_regis_location: number,
+    assent_law_id: number,
     assets_acquisition_value: string,
 }
 const initialValues = {} as FormValues;
