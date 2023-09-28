@@ -21,16 +21,6 @@ import getParams from "../(function)/getParams";
 export async function GET(_req: Request) {
 
     try {
-
-        /*    const { searchParams } = new URL(_req.url)
-   
-           const limit = searchParams.get('limit') || false
-           const offset = searchParams.get('offset') || false
-           const orderBy = searchParams.get('orderBy') || false
-           const order = searchParams.get('order') || false    
-           const filterBy = searchParams.get('filterBy') || false
-           const filterValue = searchParams.get('filterValue') || false
-           const filterCondition = searchParams.get('filterCondition') || false */
         const objete = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
         console.log(objete)
         const parameters = getParams(_req.url, objete)
@@ -40,7 +30,7 @@ export async function GET(_req: Request) {
 
         /*     const user = await currentUser();
     
-          const loginEmail = user!.emailAddresses[0].emailAddress || null;
+            const loginEmail = user!.emailAddresses[0].emailAddress || null;
             if (!loginEmail) {
                 return new NextResponse("Unauthorized", { status: 401 });
             }
@@ -51,13 +41,11 @@ export async function GET(_req: Request) {
                     status: 403,
                 });
             } */
-        // Verifica si se proporcionan datos de paginación
         const hasPaginationData = offset && limit;
         console.log(hasPaginationData)
-        // Verifica si se proporcionan datos de ordenamiento
+
         const hasOrderData = orderBy && order;
 
-        // Construye la condición de filtrado si se proporciona
 
         const whereCondition = (filterBy && filterCondition && filterValue)
             ? {
@@ -69,7 +57,7 @@ export async function GET(_req: Request) {
             }
             : {};
 
-        // Realiza la consulta a la base de datos usando Prisma
+
         let users;
         if (hasPaginationData && hasOrderData) {
             users = await prismaDB.ims_users.findMany({
@@ -100,7 +88,7 @@ export async function GET(_req: Request) {
         }
         console.log(users)
         return NextResponse.json(users);
-        //     }
+
 
     } catch (error) {
         console.log(error);

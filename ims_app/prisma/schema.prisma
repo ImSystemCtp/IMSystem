@@ -29,7 +29,7 @@ model ims_details_asset {
 
 model ims_assets {
   assets_regis_location                                         Int
-  assets_no                                                     String                  @id
+  assets_no                                                     String               @id
   assets_description                                            String               @db.VarChar(30)
   assets_brand                                                  String               @db.VarChar(15)
   assets_model                                                  String               @db.VarChar(20)
