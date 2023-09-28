@@ -15,8 +15,8 @@ interface FormValues {
     assets_brand: string,
     assets_model: string,
     assets_invoice_number: number,
-    assets_regis_location: number,
-    assent_law_id: number,
+    assets_regis_location: string,
+    assent_law_id: string,
     assets_acquisition_value: string,
 }
 const initialValues = {} as FormValues;
