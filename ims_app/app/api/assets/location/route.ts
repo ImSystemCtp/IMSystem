@@ -7,22 +7,21 @@ import { NextResponse } from "next/server";
 
 export async function GET(_req: Request ) {
     try {
-        const objete = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
+        const objete = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "content" } as QueryOptions
         console.log(objete)
         const parameters = getParams(_req.url, objete) 
-        console.log(parameters)
+        console.log(parameters)  
         const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
         console.log(offset, limit, orderBy, order, filterBy, filterValue, filterCondition)
         const hasPaginationData = offset && limit;
         console.log(hasPaginationData)
-
         const hasOrderData = orderBy && order;
-
+        
         const whereCondition = (filterBy && filterCondition && filterValue)
             ? {
                 where: {
                     [filterBy]: {
-                        [filterCondition]: parseInt(filterValue),
+                        [filterCondition]: !isNaN(filterValue)?parseInt(filterValue,10):filterValue,
                     },
                 },
             }

@@ -10,11 +10,14 @@ export interface QueryOptions {
     | "lte"
     | "gt"
     | "gte"
-    | "contains"
+    | "content"
     | "startsWith"
     | "endsWith"
     | "equals"
     | "notEquals"
     | "in"
-    | "notIn";
+    | "notIn"
+    | "contains"
+    | "notContains"
+    | "like";
 }
