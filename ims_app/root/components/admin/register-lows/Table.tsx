@@ -2,14 +2,40 @@
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 export default function RegisterTable() {
-    const { assetsByLocation } = useAssetStore();
-    const handleViewMore = () => {
-        console.log("Ver mas")
-    }
+    const { assetsByLocation, seeMore , idLocation } = useAssetStore();
+    console.log(assetsByLocation)
+    //   const { assetsByLocation, seeMore } = useAssetStore();
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        function handleScroll() {
+
+            if (container) {
+                const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
+
+                if (isAtBottom) {
+                    seeMore();
+                }
+            }
+        }
+
+        if (container) {
+            container.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [seeMore]);
+
     return (
         <div>
-            <div className=" border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+            <div  ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -50,13 +76,6 @@ export default function RegisterTable() {
                     </tbody>
                 </table>
             </div>
-            <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleViewMore}
-                    className="flex right text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="submit">
-                    Ver mas...
-                </motion.button>
         </div>
     )
 }
