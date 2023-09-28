@@ -20,9 +20,11 @@ export async function POST(req: Request) {
 }
 export async function GET() {
     try {
+        console.log("nose")
         const user = await currentUser()
         console.log(user);
         const response = await prismaDB.ims_locations.findMany();
+        console.log(response)
         if (response.length > 0) {
             return NextResponse.json(response);
         }

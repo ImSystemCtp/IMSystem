@@ -73,8 +73,8 @@ export async function GET(_req: Request) {
         let users;
         if (hasPaginationData && hasOrderData) {
             users = await prismaDB.ims_users.findMany({
-                skip: offset,
-                take: limit,
+                skip: parseInt(offset),
+                take: parseInt(limit),
                 orderBy: {
                     [orderBy]: order,
                 },
@@ -82,8 +82,8 @@ export async function GET(_req: Request) {
             });
         } else if (hasPaginationData) {
             users = await prismaDB.ims_users.findMany({
-                skip: offset,
-                take: limit,
+                skip: parseInt(offset),
+                take: parseInt(limit),
                 where: whereCondition.where,
             });
         } else if (hasOrderData) {
