@@ -20,6 +20,7 @@ interface assetState {
     countAssets: () => Promise<number>
     seeMore: () => Promise<void>
     addAssetsCheck: (asset: ims_assets) => Promise<void>
+    deleteAssetsCheck: (asset: ims_assets) => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -66,8 +67,13 @@ export const useAssetStore = create<assetState>((set, get) => {
             set({ assetsByLocation: assets, cursor: get().cursor + LIMIT })
         },
         addAssetsCheck: async (asset: ims_assets) => {
-            console.log(asset)
             set((state: assetState) => ({ assetsCheck: [...state.assetsCheck, asset] }))
+            console.log(get().assetsCheck)
         },
+        deleteAssetsCheck: async (asset: ims_assets) => {
+            const assetsCheck = get().assetsCheck.filter((item) => item.assets_no !== asset.assets_no)
+            set({ assetsCheck })
+            console.log(get().assetsCheck)
+        }
     }
 })
