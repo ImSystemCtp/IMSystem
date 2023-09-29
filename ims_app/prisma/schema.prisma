@@ -37,7 +37,7 @@ model ims_assets {
   assets_state                                                  EnumAssetsState       @default(Bueno)
   assets_acquisition_value                                      String                @db.VarChar(30)
   assets_curr_location                                          Int?
-  assets_invoice_number                                         Int?
+  assets_invoice_number                                         String?
   assent_law_id                                                 Int?
   ims_laws                                                      ims_laws?             @relation(fields: [assent_law_id], references: [law_id])
   ims_details_assets                                            ims_details_asset[]

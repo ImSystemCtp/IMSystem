@@ -8,13 +8,22 @@ import { useAssetStore, useLawStore, useLocationStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import RegisterAssetsTable from "./RegisterAssetsTable";
 import { useLocation } from "@/root/hooks";
+
+
+
+
+
+
+
+
+
 interface FormValues {
     assets_no: string,
     assets_description: string,
     assets_series: string,
     assets_brand: string,
     assets_model: string,
-    assets_invoice_number: number,
+    assets_invoice_number: string,
     assets_regis_location: string,
     assent_law_id: string,
     assets_acquisition_value: string,
@@ -29,8 +38,8 @@ export default function RegisterAssets() {
     const locations = locationState.locations;
     const { addAssets } = useAssetStore()
     const handleSubmit = async (values: FormValues) => {
-        const { assent_law_id, assets_regis_location } = values
-        addAssets({ ...values, assent_law_id: parseInt(assent_law_id), assets_regis_location: parseInt(assets_regis_location) } as ims_assets);
+        const { assent_law_id, assets_regis_location, assets_invoice_number } = values
+        addAssets({ ...values,assets_invoice_number:Number.parseInt(assets_invoice_number) , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: Number.parseInt(assets_regis_location) } as ims_assets);
     };
     return (
         <div className="justify-center items-center">
@@ -52,7 +61,7 @@ export default function RegisterAssets() {
                                     <CustomInput
                                         label="Número de Patrimonio:"
                                         name="assets_no"
-                                        inputType="number"
+                                        inputType="text"
                                     />
                                     <CustomInput
                                         label="Descripción del Bien:"
@@ -67,7 +76,7 @@ export default function RegisterAssets() {
                                     <CustomInput
                                         label="Número de Factura:"
                                         name="assets_invoice_number"
-                                        inputType="number"
+                                        inputType="text"
                                     />
                                     <CustomInput
                                         label="Valor de adquisición:"

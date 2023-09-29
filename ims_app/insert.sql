@@ -57,3 +57,8 @@ VALUES (1, 'Asset024', 'Descripción del activo 24', 'Marca24', 'Modelo24', 'Ser
 INSERT INTO ims_assets (assets_regis_location, assets_no, assets_description, assets_brand, assets_model, assets_series, assets_active, assets_acquisition_value, assets_curr_location, assets_invoice_number, assent_law_id)
 VALUES (1, 'Asset025', 'Descripción del activo 25', 'Marca25', 'Modelo25', 'Serie25', 'Y', 'Valor25', 1, 98765, 1);
 
+
+
+SELECT r.* FROM ims_register r JOIN ims_register_assets rs on r.reg_id = rs.reg_id JOIN ims_assets a on a.assets_no= rs.assets_no
+WHERE a.assets_no = 11655641 and r.reg_type = 'Register'
+
