@@ -1,13 +1,11 @@
 "use client"
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 export default function RegisterTable() {
-    const { assetsByLocation,addAssetsCheck, seeMore , idLocation } = useAssetStore();
-    console.log(assetsByLocation)
-    //   const { assetsByLocation, seeMore } = useAssetStore();
+    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, idLocation } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
-
+    const [assetCheck, setAssetCheck] = useState<ims_assets[]>([])
     useEffect(() => {
         const container = containerRef.current;
         function handleScroll() {
@@ -31,10 +29,9 @@ export default function RegisterTable() {
             }
         };
     }, [seeMore]);
-
     return (
         <div>
-            <div  ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+            <div ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -60,14 +57,24 @@ export default function RegisterTable() {
                                 </td>
                                 <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
                                 <td className="px-6 py-4 hidden md:table-cell">
-                                    <div className="flex items-center justify-center mb-4" onClick={() => addAssetsCheck(asset)}>
+                                    <div className="flex items-center justify-center mb-4" onClick={() => {
+                                        const checkbox = document.getElementById(`checkbox-${asset.assets_no}`) as HTMLInputElement;
+                                        if (checkbox) {
+                                            if (!checkbox.checked) {
+                                                deleteAssetsCheck(asset);
+                                            } else {
+                                                addAssetsCheck(asset);
+                                            }
+                                        }
+                                    }}>
                                         <input
-                                            id="default-checkbox"
+                                            id={`checkbox-${asset.assets_no}`}
                                             type="checkbox"
                                             value=""
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         />
                                     </div>
+
                                 </td>
 
                             </tr>
