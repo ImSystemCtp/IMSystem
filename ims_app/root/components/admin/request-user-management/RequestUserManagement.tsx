@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import RoleSelectionModal from "./RoleSelectionModal";
 import { EnumUserRole, ims_users } from "@prisma/client";
-import { useUserStore } from "@/root";
+import { useUserPending, useUserStore } from "@/root";
 export default function RequestUserManagement() {
+    useUserPending();
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine } = useUserNoRoleStore();
     const { updateUser,deleteUser } = useUserStore();
     const [showModal, setShowModal] = useState(false);

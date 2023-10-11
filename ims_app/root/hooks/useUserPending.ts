@@ -1,12 +1,12 @@
 "use client"
 import { useEffect } from "react";
 import { useUserNoRoleStore } from "@/root/zustand";
-export const useAssets= () => {
+export const useUserPending= () => {
     const getUserPending = useUserNoRoleStore(state => state.getUserPending)!;
     useEffect(() => {
-        async function checkAssetsChanges() {
+        async function checkUserPendingChanges() {
             getUserPending();
         }
-        checkAssetsChanges();
+        checkUserPendingChanges();
     }, [ getUserPending]);
 }

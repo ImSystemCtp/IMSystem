@@ -1,8 +1,8 @@
 "use client";
-import { InfoCards, InfoRequestCard, PieChart, RequestManagement } from "@/root";
-import { useAssets, useRegisterIn } from "@/root";
+import { InfoCards, InfoRequestCard, PieChart, RequestManagement, useUserPending } from "@/root";
+import { useRegisterIn } from "@/root";
 export default function AdminMain() {
-    useAssets();
+    useUserPending();
     useRegisterIn();
     return (
         <div className="relative flex">
