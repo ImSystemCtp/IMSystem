@@ -50,20 +50,20 @@ export async function PUT(req: Request, { params }: ParameterId) {
 export async function DELETE(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const user = await currentUser();
+/*         const user = await currentUser();
 
         const loginEmail = user!.emailAddresses[0].emailAddress || null;
         if (!loginEmail) {
             return new NextResponse("Unauthorized", { status: 401 });
-        }
+        } */
 
-        const hasPermision = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
-        if (!hasPermision) {
+/*         const hasPermission = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
+        if (!hasPermission) {
             return new NextResponse("Additional Permissions Required", {
                 status: 403,
             });
         }
-
+ */
         const deletedUser = await prismaDB.ims_users.delete({
             where: {
                 usu_id:id
