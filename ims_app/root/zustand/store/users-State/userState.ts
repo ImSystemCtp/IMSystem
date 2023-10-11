@@ -34,14 +34,14 @@ export const useUserStore = create<userState>((set, get ) => {
             const users = await userProvider.getUsers( limit )
             set({ users })
         },
-
         updateUser: async (user: ims_users) => {
+            console.log(user);
             const newUser = await userProvider.updateUser(user);
-            set((state: userState) => ({ 
+            console.log(newUser);
+            set((state: userState) => ({
                 users: state.users.map((u) => u?.usu_id === newUser?.usu_id ? newUser : u)
             }));
         },
-
         getUserPending: async () => {
             const usersPending = await userProvider.getUsers({ offset:get().cursorPending+5 ,limit: LIMIT , filterBy:"usu_role" , filterCondition: "equals" , filterValue : "noRole" }as QueryOptions) as ims_users[];
             set({ usersPending , cursorPending: get().cursorPending+5, pagine: 1 })

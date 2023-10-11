@@ -120,7 +120,8 @@ export async function POST(req: Request) {
     }
 }
 export async function PUT(req: Request) {
-
+    console.log("fecha hoy")
+    console.log(req.json())
     const body = await req.json() as ims_users;
     const response = await prismaDB.ims_users.update({
         where: { usu_id: body.usu_id },

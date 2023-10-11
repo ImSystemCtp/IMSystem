@@ -1,9 +1,16 @@
 "use client"
 import { useUserNoRoleStore } from "@/root/zustand/store/users-State/userNoRoleSatate";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import RoleSelectionModal from "./RoleSelectionModal";
+import { EnumUserRole, ims_users } from "@prisma/client";
+import { useUserStore } from "@/root";
 export default function RequestUserManagement() {
-
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine } = useUserNoRoleStore();
+    const { updateUser } = useUserStore();
+    const [showModal, setShowModal] = useState(false);
+    const [userSelect, setUserSelect] = useState<ims_users | null>(null);
+    const [selectedRole, setSelectedRole] = useState(null);
     const handleNextPage = () => {
         if (haveNextPage) {
 
@@ -14,7 +21,38 @@ export default function RequestUserManagement() {
     const handlePreviousPage = () => {
         getPreviousPage();
     }
-
+    const handleAccept = (user: ims_users) => {
+        setUserSelect(user);
+        setShowModal(true);
+    };
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+    const handleRoleSelect = (role: string) => {
+        if (userSelect) {
+            if (role === "Administrador") {
+                const userToUpdate = {
+                    ...userSelect,
+                    usu_role: EnumUserRole.Admin,
+                    usu_name: userSelect.usu_name || '',
+                    usu_surnames: userSelect.usu_surnames || '',
+                    usu_email: userSelect.usu_email || '',
+                };
+                console.log(userToUpdate);
+                updateUser(userToUpdate);
+            }
+            if (role === "Usuario") {
+                const userToUpdate = {
+                    ...userSelect,
+                    usu_role: EnumUserRole.User,
+                    usu_name: userSelect.usu_name || '',
+                    usu_surnames: userSelect.usu_surnames || '',
+                    usu_email: userSelect.usu_email || '',
+                };
+                updateUser(userToUpdate);
+            }
+        }
+    };
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -70,6 +108,7 @@ export default function RequestUserManagement() {
                                     <td className="px-4 py-3 text-sm">
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
+                                            onClick={() => handleAccept(user)}
                                             whileTap={{ scale: 0.95 }}
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                         >
@@ -80,6 +119,11 @@ export default function RequestUserManagement() {
                             ))}
                         </tbody>
                     </table>
+                    <RoleSelectionModal
+                        isOpen={showModal}
+                        onRequestClose={handleCloseModal}
+                        onRoleSelect={handleRoleSelect}
+                    />
                     <div className="flex justify-between"> {/* Utiliza flexbox para alinear los botones */}
                         <motion.button
                             onClick={handlePreviousPage}

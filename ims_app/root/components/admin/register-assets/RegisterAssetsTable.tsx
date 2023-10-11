@@ -14,7 +14,6 @@ export default function RegisterAssetsTable() {
         reg_inst_id: 1,
     } as  ims_register
     const handleRegisterAssets = async () => {
-        console.log(assets)
         await addRegisterAssets(register, assets)
         toast.success("Activos registrados exitosamente!");
     }
