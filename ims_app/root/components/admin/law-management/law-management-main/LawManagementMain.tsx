@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from "react";
-import { useLocation } from "@/root/hooks";
+import { useLaw } from "@/root/hooks";
 import { EditLaw, RegisterLaw } from "@/root/components";
 export default function LawsManagementMain() {
-    useLocation();
+    useLaw();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const handleShowNavigation = () => {
         setSidebarOpen(true);

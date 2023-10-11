@@ -12,8 +12,10 @@ const updateLaw = async (lawToUpdate: ims_laws) => {
     return response.data as ims_laws;
 }
 const getLaw = async () => {
+    console.log("hola")
     useLoadingStore.getState().setIsLoading(true);
     const response = await axios.get('/api/law');
+    console.log(response.data)
     useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_laws[];
 }

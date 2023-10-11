@@ -21,6 +21,7 @@ export async function POST(req: Request) {
 export async function GET() {
     try {
         const response = await prismaDB.ims_laws.findMany();
+        console.log(response)
         if (response.length > 0) {
             return NextResponse.json(response);
         }

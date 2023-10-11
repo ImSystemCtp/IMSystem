@@ -14,6 +14,7 @@ const updateLocation = async (locationToUpdate: ims_locations) => {
 const getLocation = async () => {
     useLoadingStore.getState().setIsLoading(true);
     const response = await axios.get('/api/locations');
+    console.log(response.data)
     useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_locations[];
 }
