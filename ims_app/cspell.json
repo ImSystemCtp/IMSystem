@@ -10,7 +10,9 @@
     ],
     "words": [
         "asiento",
-        "tomo"
+        "formik",
+        "tomo",
+        "zustand"
     ],
     "dictionaries": [
         "project-words"

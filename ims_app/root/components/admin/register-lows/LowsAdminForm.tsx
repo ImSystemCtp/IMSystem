@@ -1,11 +1,12 @@
 "use client";
 import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
-import { CustomInput, CustomSelect, CustomTextArea } from "../../Formik";
-import lowsAdminFormMessage from "@/schemas/lows-admin-form-message";
-import { registerGood, useAssetStore } from "@/root";
+import { CustomTextArea } from "@/root/components";
+import { lowsAdminFormMessage } from "@/schemas";
+import {  useAssetStore } from "@/root/zustand";
+import { registerGood } from "@/root/types";
 import { EnumRegisterType, ims_register } from "@prisma/client";
-import useRegisterLowStore from "@/root/zustand/store/register-state/register-low-state/registerLowState";
+import { useRegisterLowStore } from "@/root/zustand";
 interface FormValues {
 
     observation: string;

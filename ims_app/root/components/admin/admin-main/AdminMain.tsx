@@ -1,6 +1,6 @@
 "use client";
-import { InfoCards, InfoRequestCard, PieChart, RequestManagement, useUserPending } from "@/root";
-import { useRegisterIn } from "@/root";
+import { InfoCards, InfoRequestCard, PieChart, RequestManagement } from "@/root/components";
+import { useRegisterIn, useUserPending } from "@/root/hooks";
 export default function AdminMain() {
     useUserPending();
     useRegisterIn();

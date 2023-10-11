@@ -1,4 +1,5 @@
-import { registerGood, registerLowProvider } from "@/root";
+import { registerGood,  } from "@/root/types";
+import {  registerLowProvider } from "@/root/zustand";
 import { ims_assets, ims_register } from "@prisma/client";
 import { create } from "zustand";
 

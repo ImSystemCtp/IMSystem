@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from "react";
-import SearchAssetsAdmin from "./SearchAssetsAdmin";
-import { LowsAdminForm, RegisterTable } from ".";
+import {SearchAssetsAdmin} from "@/root/components";
+import { LowsAdminForm, RegisterTable } from "@/root/components/admin";
 import { useLocation } from "@/root/hooks";
-import { useAssetStore, useLocationStore } from "@/root";
+import { useAssetStore, useLocationStore } from "@/root/hooks";
 
 export default function RegisterLows() {
   useLocation();

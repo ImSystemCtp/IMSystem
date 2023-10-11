@@ -21,9 +21,10 @@ import getParams from "../(function)/getParams";
 export async function GET(_req: Request) {
 
     try {
-        const objete = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
-        console.log(objete)
-        const parameters = getParams(_req.url, objete)
+        const object = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
+        console.log(object)
+        const url = _req.url
+        const parameters = getParams(url, object)
         console.log(parameters)
         const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
         console.log(offset, limit, orderBy, order, filterBy, filterValue, filterCondition)
@@ -35,8 +36,8 @@ export async function GET(_req: Request) {
                 return new NextResponse("Unauthorized", { status: 401 });
             }
     
-            const hasPermision = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
-            if (!hasPermision) {
+            const hasPermission = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
+            if (!hasPermission) {
                 return new NextResponse("Additional Permissions Required", {
                     status: 403,
                 });
