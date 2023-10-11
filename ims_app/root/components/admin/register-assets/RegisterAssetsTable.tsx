@@ -2,6 +2,7 @@
 import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
 import { EnumRegisterType,  ims_register } from "@prisma/client";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     const { userAuth } = useAuthStore();
     const {addRegisterAssets} = useRegisterAssetStore();
@@ -12,14 +13,15 @@ export default function RegisterAssetsTable() {
         reg_usu_id: 2,
         reg_inst_id: 1,
     } as  ims_register
-    const handleRegisterAssets = () => {
+    const handleRegisterAssets = async () => {
         console.log(assets)
-        addRegisterAssets(register, assets)
+        await addRegisterAssets(register, assets)
+        toast.success("Activos registrados exitosamente!");
     }
     return (
         <div className="w-1/3 rounded-lg border border-gray-300 p-4 m-2 ">
             <h2 className="text-2xl font-bold  text-center ">
-                Bienes Registrados
+                Lista de Bienes a Registrar
             </h2>
             <div className="my-1"></div>
             <div className="bg-sky-400 h-px mb-6"></div>

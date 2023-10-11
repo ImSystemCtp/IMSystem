@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ims_laws } from "@prisma/client";
 import { useLawStore } from "@/root/zustand";
+import toast from "react-hot-toast";
 export default function RegisterLaw() {
     const { selectLawToEdit, createLaw, lawToEdit, updateLaw } = useLawStore();
     const [lawName, setLawName] = useState(
@@ -38,9 +39,11 @@ export default function RegisterLaw() {
         } else {
             if(lawToEdit){
                 updateLaw({ law_id: lawToEdit.law_id, law_name: lawName,law_description: lawDescription } as ims_laws);
+                toast.success("Ley editada exitosamente!");
             }
             else{
                 createLaw({ law_name: lawName,law_description: lawDescription } as ims_laws);
+                toast.success("Ley registrada exitosamente!");
             }
         }
     };
