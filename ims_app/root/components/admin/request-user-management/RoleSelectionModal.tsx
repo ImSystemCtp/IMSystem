@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Modal from 'react-modal';
 import { motion } from 'framer-motion';
