@@ -6,9 +6,7 @@ import { prismaDB } from "./prisma";
 
 const hasMatchingRole = (roles: string, permissions: USER_ROLES[]) => {
     const rolesArray = roles.split(',');
-    console.log(rolesArray)
     const algo = rolesArray.some(role => permissions.includes(role.trim() as USER_ROLES));
-    console.log(algo)
     return algo
 }
 

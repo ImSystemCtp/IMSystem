@@ -1,22 +1,11 @@
 "use client";
 import { Form, Formik } from "formik";
-import CustomInput from "../../Formik/CustomInput";
-import CustomSelect from "../../Formik/CustomSelect";
 import { motion } from "framer-motion";
-import registerAssetsMessage from "@/schemas/registerAssetsMessage";
+import {registerAssetsMessage} from "@/schemas";
 import { useAssetStore, useLawStore, useLocationStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
-import RegisterAssetsTable from "./RegisterAssetsTable";
 import { useLocation } from "@/root/hooks";
-
-
-
-
-
-
-
-
-
+import { CustomInput, CustomSelect, RegisterAssetsTable } from "@/root/components";
 interface FormValues {
     assets_no: string,
     assets_description: string,

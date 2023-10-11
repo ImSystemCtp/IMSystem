@@ -54,7 +54,6 @@ export const useAssetStore = create<assetState>((set, get) => {
             set({ idLocation: locationId, assetsByLocation: assetsByLocationQr, cursor: get().cursor + LIMIT })
         },
         getAssetsByQuery: async (assetNo: string) => {
-            console.log(assetNo)
             set({ filterBy: "assets_no", filterCondition: "contains", filterValue: assetNo, cursor: 0 })
             const query = {  limit: LIMIT, offset: get().cursor,orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: get().filterValue, filterCondition: get().filterCondition } as QueryOptions
             const assetsByLocation = await assetsProvider.getAssetsByLocationQuery(query)
@@ -68,12 +67,10 @@ export const useAssetStore = create<assetState>((set, get) => {
         },
         addAssetsCheck: async (asset: ims_assets) => {
             set((state: assetState) => ({ assetsCheck: [...state.assetsCheck, asset] }))
-            console.log(get().assetsCheck)
         },
         deleteAssetsCheck: async (asset: ims_assets) => {
             const assetsCheck = get().assetsCheck.filter((item) => item.assets_no !== asset.assets_no)
             set({ assetsCheck })
-            console.log(get().assetsCheck)
         }
     }
 })

@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 export async function GET() {
     try {
         const user = await currentUser() as User;
-        console.log("user", user)
         if (!user) {
             throw new Error("User not found");
         }
@@ -26,7 +25,6 @@ export async function GET() {
                 usu_surnames: user.lastName!,
             },
         });
-        console.log("user", user)
         return NextResponse.json(postUser);
     } catch (error) {
         console.error(error);

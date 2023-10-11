@@ -4,7 +4,6 @@ import { useLoadingStore } from "@/root/zustand";
 import { QueryOptions } from "@/app/types";
 const getAssets = async () => {
     useLoadingStore.getState().setIsLoading(true);
-    console.log('getAssets');
     const response = await axios.get('/api/assets');
     useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_assets[];
@@ -21,7 +20,6 @@ const getAssetsByLocation = async (locationId: number) => {
 }
 const getAssetsByLocationQuery = async (query: QueryOptions) => {
     try {
-        console.log(query)
         useLoadingStore.getState().setIsLoading(true);
         const response = await axios.get<ims_assets[]>('/api/assets/location', { params: query });
         useLoadingStore.getState().setIsLoading(false);

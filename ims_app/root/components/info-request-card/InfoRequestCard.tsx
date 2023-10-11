@@ -4,7 +4,6 @@ import { useUserNoRoleStore } from "@/root/zustand";
 import { motion } from "framer-motion";
 export default function InfoRequestCard() {
     const { usersPending } = useUserNoRoleStore();
-    console.log(usersPending.length);
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

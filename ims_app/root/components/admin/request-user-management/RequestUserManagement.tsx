@@ -1,10 +1,10 @@
 "use client"
-import { useUserNoRoleStore } from "@/root/zustand/store/users-State/userNoRoleSatate";
+import { useUserNoRoleStore,useUserStore } from "@/root/zustand";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import RoleSelectionModal from "./RoleSelectionModal";
 import { EnumUserRole, ims_users } from "@prisma/client";
-import { useUserPending, useUserStore } from "@/root";
+import { useUserPending,  } from "@/root/hooks";
+import { RoleSelectionModal } from "@/root/components";
 export default function RequestUserManagement() {
     useUserPending();
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine } = useUserNoRoleStore();
@@ -16,7 +16,6 @@ export default function RequestUserManagement() {
         if (haveNextPage) {
 
             getNextPage();
-            console.log(haveNextPage)
         }
     }
     const handlePreviousPage = () => {
@@ -27,7 +26,6 @@ export default function RequestUserManagement() {
         setShowModal(true);
     };
     const handleDecline = (user: ims_users) => {
-        console.log(user);
         deleteUser(user);
     };
     const handleCloseModal = () => {
@@ -43,7 +41,6 @@ export default function RequestUserManagement() {
                     usu_surnames: userSelect.usu_surnames || '',
                     usu_email: userSelect.usu_email || '',
                 };
-                console.log(userToUpdate);
                 updateUser(userToUpdate);
             }
             if (role === "Usuario") {

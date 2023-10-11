@@ -1,13 +1,11 @@
 "use client"
 import { useAssetStore } from "@/root/zustand";
 import { useState } from "react";
-
 export default function SearchAssetsAdmin() {
     const [noAssets, setNoAssets] = useState<string>("");
     const { getAssetsByQuery } = useAssetStore();
     const handleSubmit = () => {
         if (noAssets === "") return;
-        console.log("noAssets", noAssets)
         getAssetsByQuery(noAssets);
     }
     return (

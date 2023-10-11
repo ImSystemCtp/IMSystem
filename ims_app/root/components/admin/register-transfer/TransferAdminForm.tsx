@@ -1,7 +1,7 @@
 "use client";
 import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
-import {  CustomSelect, CustomTextArea } from "../../Formik";
+import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 interface FormValues {
     newUbication: string;

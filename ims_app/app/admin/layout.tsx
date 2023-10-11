@@ -14,7 +14,7 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <main>
+    <main className="flex flex-col min-h-screen">
       <div>
         <Toaster
           toastOptions={{
@@ -23,16 +23,16 @@ export default function AdminLayout({
         />
       </div>
       <AdminNavBar />
-      <div className='mx-16'>
+      <div className="mx-16">
         <Navigation />
       </div>
       <div className="flex-1 flex">
         <SideBar />
-        <div className="flex-1 pl-4 pr-4">{children}</div>
+        <div className="flex-1 pl-4 pr-4 overflow-y-auto">{children}</div>
       </div>
-      <Footer  />
+      <div>
+        <Footer />
+      </div>
     </main>
-
   );
-
 }

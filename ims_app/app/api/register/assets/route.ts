@@ -5,15 +5,11 @@ import { registerGood } from "@/root/types";
 import { getNextNumber } from "../../(function)";
 export async function POST(req: Request) {
     try {
-        console.log("hola")
         const body = await req.json() as registerGood;
-        console.log(body)
         const type = body.register.reg_type;
         const assets = body.assets;
         if (type == 'Register') {
             assets.forEach(async (element: ims_assets) => {
-                //const newRegister = await getNextNumber() as ims_registered_in;
-                //console.log(newRegister)
                 const response = await prismaDB.ims_register.create({
                     data: {
                         reg_folio: 1,
@@ -25,7 +21,6 @@ export async function POST(req: Request) {
                         reg_usu_id: body.register.reg_usu_id,
                     }
                 });
-                console.log(response)
                 const registerId = response.reg_id;
 
                 await prismaDB.ims_assets.create({ data: element })

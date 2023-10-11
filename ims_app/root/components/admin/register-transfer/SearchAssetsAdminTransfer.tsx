@@ -1,4 +1,3 @@
-
 export default function SearchAssetsAdminTransfer() {
     return (
         <div className="w-full">

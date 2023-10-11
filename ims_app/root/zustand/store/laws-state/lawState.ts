@@ -20,9 +20,7 @@ export const useLawStore = create<lawState>((set) => {
             set({ laws })
         },
         createLaw: async (law: ims_laws) => {
-            console.log(law)
             const newLaw = await lawProvider.createLaw(law);
-            console.log(newLaw)
             set((state: lawState) => ({ laws: [...state.laws, newLaw] }));
         },
         selectLawToEdit: (law: ims_laws) => {

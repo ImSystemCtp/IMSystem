@@ -14,7 +14,6 @@ export const useRegisterLowStore = create<registerLowState>((set) => {
         assets: [],
         addRegisterLow: async ( registerLow: registerGood) => {
             const newRegisterLow = await registerLowProvider.createLow(registerLow);
-            console.log(newRegisterLow)
         },
     };
 });

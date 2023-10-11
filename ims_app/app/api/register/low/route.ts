@@ -17,7 +17,6 @@ export async function POST(req: Request) {
                 reg_usu_id: body.register.reg_usu_id,
             }
         });
-        console.log(response)
         assets.forEach(async (element: ims_assets) => {
             const asset = await prismaDB.ims_assets.update({
                 where: {
@@ -27,12 +26,10 @@ export async function POST(req: Request) {
                     assets_state: EnumAssetsState.Malo,
                 },
             });
-            console.log(asset)
             const updateRegister = await prismaDB.$queryRaw<ims_register[]>`
                 SELECT r.* FROM ims_register r JOIN ims_register_assets rs on r.reg_id = rs.reg_id 
                         JOIN ims_assets a on a.assets_no= rs.assets_no
                         WHERE a.assets_no = ${element.assets_no} and r.reg_type = 'Register'`
-            console.log(updateRegister[0])
             await prismaDB.ims_register.update({
                 where: {
                     reg_id: updateRegister[0].reg_id,
@@ -41,14 +38,12 @@ export async function POST(req: Request) {
                     reg_observation: updateRegister[0].reg_observation + " " + `Ver ${response.reg_tomo},  ${response.reg_folio},  ${response.reg_asiento}`
                 },
             });
-            console.log(updateRegister[0])
             await prismaDB.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
         });
 
 
         return NextResponse.json({ message: "Low" });
     } catch (error : any) {
-        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }

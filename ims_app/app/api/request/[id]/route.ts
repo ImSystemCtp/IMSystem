@@ -7,9 +7,7 @@ import { checkAuthorization } from "@/lib/authorization";
 
 export async function GET(_request: Request, { params }: ParameterId) {
     try {
-        console.log(params)
         const id = Number.parseInt(params.id);
-        console.log(id)
         const response = await prismaDB.ims_users.findUnique({
             where: {
                 usu_id: id
@@ -72,7 +70,6 @@ export async function DELETE(_request: Request, { params }: ParameterId) {
 
         return NextResponse.json(deletedUser);
     } catch (error) {
-        console.log("[USER_REMOVE_DELETE]", error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 }

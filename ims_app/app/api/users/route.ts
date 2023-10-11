@@ -22,12 +22,9 @@ export async function GET(_req: Request) {
 
     try {
         const object = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
-        console.log(object)
         const url = _req.url
         const parameters = getParams(url, object)
-        console.log(parameters)
         const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
-        console.log(offset, limit, orderBy, order, filterBy, filterValue, filterCondition)
 
         /*     const user = await currentUser();
     
@@ -43,7 +40,6 @@ export async function GET(_req: Request) {
                 });
             } */
         const hasPaginationData = offset && limit;
-        console.log(hasPaginationData)
 
         const hasOrderData = orderBy && order;
 
@@ -87,12 +83,10 @@ export async function GET(_req: Request) {
 
             users = await prismaDB.ims_users.findMany();
         }
-        console.log(users)
         return NextResponse.json(users);
 
 
     } catch (error) {
-        console.log(error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
@@ -116,13 +110,10 @@ export async function POST(req: Request) {
 
         return NextResponse.json(newUser);
     } catch (error) {
-        console.log("[USER_CREATE_POST]", error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
 export async function PUT(req: Request) {
-    console.log("fecha hoy")
-    console.log(req.json())
     const body = await req.json() as ims_users;
     const response = await prismaDB.ims_users.update({
         where: { usu_id: body.usu_id },

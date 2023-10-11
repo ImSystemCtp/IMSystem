@@ -17,7 +17,6 @@ export const useRegisterAssetStore = create<registerAssetState>((set) => {
                 assets,
             };
             const newRegisterAsset = await registerAssetProvider.createRegister(registerAsset);
-            console.log(newRegisterAsset)
         },
     };
 });

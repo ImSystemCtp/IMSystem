@@ -1,12 +1,10 @@
 "use client";
-import { useSideBarStore } from "@/root/zustand/store/siderbar-state/sidebar-state";
+import { useSideBarStore } from "@/root/zustand";
 import Link from "next/link";
-
-
 export default function SideBar() {
     const isOpen = useSideBarStore((state) => state.isOpen);
     const handleToggle = () => {
-        useSideBarStore.getState().toggle(); // Alternar entre abierto y cerrado
+        useSideBarStore.getState().toggle();
     };
     return (
         <div>

@@ -10,11 +10,9 @@ export async function GET(_req: Request , { params }: ParameterId) {
             where: {
                 assets_regis_location: id
             }
-        }); 
-        console.log(response)
+        });
         return NextResponse.json(response);
     } catch (error) {
-        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }

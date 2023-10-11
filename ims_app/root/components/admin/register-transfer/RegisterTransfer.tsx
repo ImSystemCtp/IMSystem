@@ -1,10 +1,8 @@
 "use client"
 import React, { useState } from "react";
-import SearchAssetsAdminTransfer from "./SearchAssetsAdminTransfer";
-import RegisterTransferTable from "./RegisterTransferTable";
-import TransferAdminForm from "./TransferAdminForm";
 import { useAssetStore, useLocationStore } from "@/root/zustand";
-import { useLocation } from "@/root";
+import { useLocation } from "@/root/hooks";
+import { RegisterTransferTable, SearchAssetsAdminTransfer, TransferAdminForm } from "@/root/components";
 export default function RegisterTransfer() {
   useLocation();
   const {getAssetsByLocation} = useAssetStore();

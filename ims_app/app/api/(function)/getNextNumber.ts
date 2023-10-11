@@ -6,7 +6,6 @@ export default async function getNextNumber<ims_registered_in>() {
 
     if (response && response[0]['increment_register_in()']) {
         const result = JSON.parse(response[0]['increment_register_in()']);
-        console.log(result);
 
         return {
             tomo: parseInt(result.tomo_actual),

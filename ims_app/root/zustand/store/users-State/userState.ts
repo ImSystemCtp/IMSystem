@@ -31,20 +31,16 @@ export const useUserStore = create<userState>((set, get) => {
         cursor: 0,
         count: 0,
         getUsers: async (limit) => {
-            console.log(limit)
             const users = await userProvider.getUsers(limit)
             set({ users })
         },
         updateUser: async (user: ims_users) => {
-            console.log(user);
             const newUser = await userProvider.updateUser(user);
-            console.log(newUser);
             set((state: userState) => ({
                 users: state.users.map((u) => u?.usu_id === newUser?.usu_id ? newUser : u)
             }));
         },
         deleteUser: async (user: ims_users) => {
-            console.log(user);
             await userProvider.deleteUser(user);
             set((state: userState) => ({
                 users: state.users.filter((u) => u?.usu_id !== user?.usu_id)
