@@ -10,7 +10,7 @@ const getUsers = async ( query : QueryOptions) => {
 }
 const updateUser = async (user: ims_users) => {
     console.log(user);
-    const response = await axios.put("api/users", user)
+    const response = await axios.put(`/api/users/${user.usu_id}`, user)
     if (response) {
         console.log(response.data)
         return response.data as ims_users

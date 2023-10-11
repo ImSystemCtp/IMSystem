@@ -29,7 +29,7 @@ export async function PUT(req: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
         const body = await req.json();
-
+        console.log(body);
         const response = await prismaDB.ims_users.update({
             where: { usu_id: Number(id) },
             data: {
