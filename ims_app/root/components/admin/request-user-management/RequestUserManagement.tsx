@@ -7,7 +7,7 @@ import { EnumUserRole, ims_users } from "@prisma/client";
 import { useUserStore } from "@/root";
 export default function RequestUserManagement() {
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine } = useUserNoRoleStore();
-    const { updateUser } = useUserStore();
+    const { updateUser,deleteUser } = useUserStore();
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
     const [selectedRole, setSelectedRole] = useState(null);
@@ -24,6 +24,10 @@ export default function RequestUserManagement() {
     const handleAccept = (user: ims_users) => {
         setUserSelect(user);
         setShowModal(true);
+    };
+    const handleDecline = (user: ims_users) => {
+        console.log(user);
+        deleteUser(user);
     };
     const handleCloseModal = () => {
         setShowModal(false);
@@ -100,6 +104,7 @@ export default function RequestUserManagement() {
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
+                                            onClick={() => handleDecline(user)}
                                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                         >
                                             Rechazar
