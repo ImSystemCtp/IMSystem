@@ -8,7 +8,6 @@ export async function POST(req: Request) {
         const body = await req.json() as registerGood;
         const type = body.register.reg_type;
         const assets = body.assets;
-        if (type == 'Register') {
             assets.forEach(async (element: ims_assets) => {
                 const response = await prismaDB.ims_register.create({
                     data: {
@@ -29,7 +28,6 @@ export async function POST(req: Request) {
             });
 
             return NextResponse.json({ message: "Register" });
-        }
         return new NextResponse("type no .... ", { status: 401 });
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });

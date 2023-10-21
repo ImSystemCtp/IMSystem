@@ -13,6 +13,7 @@ export const useRegisterLowStore = create<registerLowState>((set) => {
         register: {} as ims_register,
         assets: [],
         addRegisterLow: async ( registerLow: registerGood) => {
+            console.log(registerLow);
             const newRegisterLow = await registerLowProvider.createLow(registerLow);
         },
     };
