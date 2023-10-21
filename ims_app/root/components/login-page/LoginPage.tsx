@@ -5,7 +5,7 @@ import { useAuthStore, useUserStore } from "@/root/zustand";
 import { useEffect } from "react";
 export default function LoginPage() {
 
-    const getAuth = useAuthStore(state => state.getUsetAuth)!;
+    const getAuth = useAuthStore(state => state.getUserAuth)!;
     const getUsers = useUserStore(state => state.getUsers)!;
 
     useEffect(() => {

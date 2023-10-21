@@ -38,8 +38,8 @@ export async function PUT(req: Request, { params }: ParameterId) {
         }
         return new NextResponse("Not found", { status: 404 });
 
-
     } catch (error) {
+        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }

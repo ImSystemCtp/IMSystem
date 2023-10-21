@@ -9,6 +9,7 @@ export const useRegisterInStore = create<RegisterInState>((set) => {
     return {
         registerIn: {} as ims_registered_in,
         getRegisterIn: async () => {
+            console.log("store")
             const registerIn = await registerInProvider.getRegisterIn()
             set({ registerIn })
         },
