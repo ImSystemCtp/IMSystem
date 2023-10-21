@@ -14,8 +14,11 @@ export default function RegisterAssetsTable() {
         reg_inst_id: 1,
     } as  ims_register
     const handleRegisterAssets = async () => {
-        await addRegisterAssets(register, assets)
-        toast.success("Activos registrados exitosamente!");
+        toast.promise(addRegisterAssets(register, assets), {
+            loading: "Registrando activos...",
+            success: "Activos registrados exitosamente!",
+            error: "No se pudo registrar los activos",
+        });
     }
     return (
         <div className="w-1/3 rounded-lg border border-gray-300 p-4 m-2 ">

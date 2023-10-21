@@ -3,7 +3,7 @@ import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { useEffect, useRef } from "react";
 export default function RegisterTransferTable() {
-    const { assetsByLocation,addAssetsCheck, seeMore , idLocation } = useAssetStore();
+    const { assetsByLocation,addAssetsCheck, seeMore , deleteAssetsCheck } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const container = containerRef.current;
@@ -56,14 +56,24 @@ export default function RegisterTransferTable() {
                                 </td>
                                 <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
                                 <td className="px-6 py-4 hidden md:table-cell">
-                                    <div className="flex items-center justify-center mb-4" onClick={() => addAssetsCheck(asset)}>
+                                    <div className="flex items-center justify-center mb-4" onClick={() => {
+                                        const checkbox = document.getElementById(`checkbox-${asset.assets_no}`) as HTMLInputElement;
+                                        if (checkbox) {
+                                            if (!checkbox.checked) {
+                                                deleteAssetsCheck(asset);
+                                            } else {
+                                                addAssetsCheck(asset);
+                                            }
+                                        }
+                                    }}>
                                         <input
-                                            id="default-checkbox"
+                                            id={`checkbox-${asset.assets_no}`}
                                             type="checkbox"
                                             value=""
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         />
                                     </div>
+
                                 </td>
 
                             </tr>

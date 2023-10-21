@@ -3,6 +3,10 @@ import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
+import { EnumRegisterType, ims_register } from "@prisma/client";
+import { registerGood } from "@/root/types";
+import toast from "react-hot-toast";
+import { useAssetStore, useRegisterTransferStore } from "@/root/zustand";
 interface FormValues {
     newUbication: string;
     observation: string;
@@ -12,10 +16,28 @@ const initialValues: FormValues = {
     newUbication: "",
     observation: "",
 };
-const handleSubmit = async (values: FormValues) => {
-    // Lógica para manejar el envío del formulario
-};
+
 export default function TransferAdminForm() {
+    const {assetsCheck } = useAssetStore();
+    const { addRegisterTransfer } = useRegisterTransferStore();
+    const handleSubmit = async (values: FormValues) => {
+        const register = {
+            reg_type: EnumRegisterType.Low,
+            reg_date: new Date(),
+            reg_observation: values.observation,
+            reg_usu_id: 2,
+            reg_inst_id: 1,
+        } as  ims_register
+        const registerTransfer = {
+            register,
+            assets: assetsCheck,
+        } as registerGood
+        toast.promise(addRegisterTransfer(registerTransfer), {
+            loading: "Registrando transferencia...",
+            success: "Transferencia registrados exitosamente!",
+            error: "No se pudo registrar la transferencia de activos",
+        });
+    };
     return (
         <div className="w-full">
             <Formik
