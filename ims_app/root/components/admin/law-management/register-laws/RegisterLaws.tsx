@@ -38,12 +38,18 @@ export default function RegisterLaw() {
             setErrorDescription("Por favor, complete el campo.");
         } else {
             if(lawToEdit){
-                updateLaw({ law_id: lawToEdit.law_id, law_name: lawName,law_description: lawDescription } as ims_laws);
-                toast.success("Ley editada exitosamente!");
+                toast.promise(updateLaw({ law_id: lawToEdit.law_id, law_name: lawName,law_description: lawDescription } as ims_laws), {
+                    loading: "Editando ley...",
+                    success: "Ley editada exitosamente!",
+                    error: "No se pudo editar la ley",
+                });
             }
             else{
-                createLaw({ law_name: lawName,law_description: lawDescription } as ims_laws);
-                toast.success("Ley registrada exitosamente!");
+                toast.promise( createLaw({ law_name: lawName,law_description: lawDescription } as ims_laws), {
+                    loading: "Registrando ley...",
+                    success: "Ley registrada exitosamente!",
+                    error: "No se pudo registrar la ley",
+                });
             }
         }
     };

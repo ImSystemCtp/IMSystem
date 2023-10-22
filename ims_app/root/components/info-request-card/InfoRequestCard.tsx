@@ -1,9 +1,11 @@
 "use client"
 import Link from "next/link";
-import { useUserNoRoleStore } from "@/root/zustand";
+import { LoadingComponent } from "@/root/components";
+import { useUserNoRoleStore,useLoadingStore } from "@/root/zustand";
 import { motion } from "framer-motion";
 export default function InfoRequestCard() {
     const { usersPending } = useUserNoRoleStore();
+    const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +24,10 @@ export default function InfoRequestCard() {
                 </div>
             </div>
             <ul className="my-1">
-                {usersPending.map((user, index) => (
+            {isLoading ? (
+                    <LoadingComponent />
+                ) : (
+                usersPending.map((user, index) => (
                     <li key={index} className="flex px-4">
                         <div className="w-9 h-9 rounded-full flex-shrink-0 bg-indigo-500 my-2 mr-3 flex justify-center items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -46,7 +51,8 @@ export default function InfoRequestCard() {
                             </div>
                         </div>
                     </li>
-                ))}
+                ))
+                )}
             </ul>
         </motion.div >
     );

@@ -3,11 +3,9 @@ import { USER_ROLES } from "@/app/api/enums/roles";
 import { QueryOptions } from "@/app/types";
 import { useAuthStore, useUserStore } from "@/root/zustand";
 import { useEffect } from "react";
-export default function LoginPage() {
-
+export default function MainPage() {
     const getAuth = useAuthStore(state => state.getUserAuth)!;
     const getUsers = useUserStore(state => state.getUsers)!;
-
     useEffect(() => {
         async function checkUserRole() {
             const usersActions = await getUsers({ orderBy: "usu_id", order: "desc" } as QueryOptions);
@@ -21,7 +19,6 @@ export default function LoginPage() {
         }
         checkUserRole();
     }, [getAuth, getUsers]);
-
     return (
         <div className="bg-sky-400 h-screen flex justify-center items-center">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-md">

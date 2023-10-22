@@ -29,12 +29,18 @@ export default function RegisterLocation() {
             setError("Por favor, complete el campo.");
         } else {
             if(locationToEdit){
-                updateLocation({ location_id: locationToEdit.location_id, location_name: locationName } as ims_locations);
-                toast.success("Ubicacion editada exitosamente!");
+                toast.promise(updateLocation({ location_id: locationToEdit.location_id, location_name: locationName } as ims_locations), {
+                    loading: "Editando ubicacion...",
+                    success: "Ubicacion editada exitosamente!",
+                    error: "No se pudo editar la ubicacion",
+                });
             }
             else{
-                await createLocation({ location_name: locationName } as ims_locations);
-                toast.success("Ubicacion registrada exitosamente!");
+                toast.promise( createLocation({ location_name: locationName } as ims_locations), {
+                    loading: "Registrando ubicacion...",
+                    success: "Ubicacion registrada exitosamente!",
+                    error: "No se pudo registrar la ubicacion",
+                });
             }
         }
     };
