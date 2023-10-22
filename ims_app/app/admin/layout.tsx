@@ -23,9 +23,6 @@ export default function AdminLayout({
         />
       </div>
       <AdminNavBar />
-      <div className="mx-16">
-        <Navigation />
-      </div>
       <div className="flex-1 flex">
         <SideBar />
         <div className="flex-1 pl-4 pr-4 overflow-y-auto">{children}</div>
