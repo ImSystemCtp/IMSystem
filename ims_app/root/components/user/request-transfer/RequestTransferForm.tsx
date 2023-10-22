@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
-import { useAssetStore, useRegisterTransferStore } from "@/root/zustand";
+import { useAssetStore, useRegisterTransferStore, useRequestStore } from "@/root/zustand";
+import { EnumRegisterType, ims_request } from "@prisma/client";
 interface FormValues {
     newUbication: string;
     observation: string;
@@ -16,9 +17,20 @@ const initialValues: FormValues = {
 };
 
 export default function RequestTransferForm() {
+    const {addRequest} = useRequestStore();
     const {assetsCheck } = useAssetStore();
-    const { addRegisterTransfer } = useRegisterTransferStore();
     const handleSubmit = async (values: FormValues) => {
+        const request = {
+            req_type: EnumRegisterType.Low,
+            req_date: new Date(),
+            req_description: values.observation,
+            req_usu_id: 2,
+        } as  ims_request
+        toast.promise(addRequest(request,assetsCheck), {
+            loading: "Enviando solicitud...",
+            success: "Solicitud enviada exitosamente!",
+            error: "No se pudo enviar la solicitud",
+        });
     };
     return (
         <div className="w-full">

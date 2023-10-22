@@ -2,7 +2,7 @@
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
-export default function AssetsTable() {
+export default function AssetsAdminTable() {
     const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, idLocation } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {

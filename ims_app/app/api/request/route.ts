@@ -20,7 +20,7 @@ export async function POST(req: Request) {
                 return {
                     ...element,
                     deta_req_id: requestId
-                }   
+                }
             })
         })
         if (response) {

@@ -1,5 +1,4 @@
 export * from './admin';
-export * from './assets-table';
 export * from './footer';
 export * from './Formik';
 export * from './info-cards';
