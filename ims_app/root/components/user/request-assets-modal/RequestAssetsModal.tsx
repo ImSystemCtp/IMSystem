@@ -1,17 +1,23 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { motion } from 'framer-motion';
-
+import { ims_assets } from '@prisma/client';
 type ModalProps = {
     isOpen: boolean;
     onRequestClose: () => void;
+    asset: ims_assets;
+    newDetailAsset: (asset: ims_assets, detailAsset: string) => void;
 };
-
-export default function RequestAssetsModal({
-    isOpen,
-    onRequestClose,
-}: ModalProps) {
+export default function RequestAssetsModal({isOpen,onRequestClose,asset,newDetailAsset}: ModalProps) {
+    const [detailAsset, setDetailAsset] = useState("");
+    const handleDetailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDetailAsset(event.target.value);
+    };
+    const handleSendDetail = () => {
+        newDetailAsset(asset, detailAsset);
+        setDetailAsset("");
+    }
     return (
         <Modal
             isOpen={isOpen}
@@ -29,27 +35,24 @@ export default function RequestAssetsModal({
                 </svg>
             </button>
 
-            <h2>Información del Activo: mañana</h2>
-            <p>Descripción: mañana</p>
-            <p>Marca: mañana</p>
-            <p>Modelo: mañana</p>
+            <h2>Información del Activo: {asset.assets_no}</h2>
+            <p>Ubicacion: {asset.assets_curr_location}</p>
+            <p>Marca: {asset.assets_brand}</p>
+            <p>Modelo: {asset.assets_model}</p>
             {/* Agrega más campos aquí para mostrar más detalles del activo */}
 
             <h2>Agregar Detalle de Solicitud:</h2>
-            <input
+            <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 type="text"
                 placeholder="Detalle de la solicitud"
-                value="mañana"
+                value={detailAsset}
+                onChange={handleDetailChange}
             />
             <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-agregar-detalle bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
-                onClick={() => {
-                    // Aquí puedes manejar la lógica para agregar el detalle a la solicitud
-                    // Puedes usar 'detail' y 'asset' para guardar la información en tu base de datos
-                    // También puedes cerrar el modal si es necesario
-                }}
+                onClick={handleSendDetail}
             >
                 Agregar Detalle
             </motion.button>

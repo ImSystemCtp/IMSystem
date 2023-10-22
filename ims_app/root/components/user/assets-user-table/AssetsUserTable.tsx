@@ -1,18 +1,36 @@
 "use client"
 import { RequestAssetsModal } from "@/root/components";
-import { useAssetStore } from "@/root/zustand";
-import { ims_assets } from "@prisma/client";
+import { useAssetStore, useDetailsRequestStore } from "@/root/zustand";
+import { EnumReqType, ims_assets, ims_details_asset } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
-    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, idLocation } = useAssetStore();
+    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, assetsCheck } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const [assetSelect, setAssetSelect] = useState<ims_assets>({} as ims_assets);
     const [showModal, setShowModal] = useState(false);
+    const { setDetailRequest,details } = useDetailsRequestStore();
     const handleCloseModal = () => {
         setShowModal(false);
     };
-    const handleOpenModal = () => {
+    const handleOpenModal = (asset: ims_assets) => {
+        setAssetSelect(asset);
         setShowModal(true);
     };
+    const newDetailAsset = async (asset: ims_assets, detail: string) => {
+        if (details.some((d) => d.deta_assets_no === asset.assets_no)){
+            toast.error("Ya se ha agregado un detalle para este activo")
+        }else{
+            const request = {
+            deta_assets_no: asset.assets_no,
+            deta_description: detail,
+        } as ims_details_asset;
+        await setDetailRequest(request)
+    }
+    }
+    function isChecked(asset: ims_assets): boolean {
+        return assetsCheck.includes(asset);
+    }
     useEffect(() => {
         const container = containerRef.current;
         function handleScroll() {
@@ -87,9 +105,11 @@ export default function AssetsUserTable() {
 
                                 </td>
                                 <td className="px-6 py-4 hidden md:table-cell">
-                                    <button onClick={handleOpenModal}>
-                                        Detalle de activo
-                                    </button>
+                                    {isChecked(asset) && (
+                                        <button className="rounded-lg p-2 bg-green-500 text-white" onClick={() => handleOpenModal(asset)}>
+                                            Detalle de activo
+                                        </button>
+                                    )}
                                 </td>
 
                             </tr>
@@ -97,9 +117,11 @@ export default function AssetsUserTable() {
                     </tbody>
                 </table>
                 <RequestAssetsModal
-                        isOpen={showModal}
-                        onRequestClose={handleCloseModal}
-                    />
+                    isOpen={showModal}
+                    onRequestClose={handleCloseModal}
+                    asset={assetSelect}
+                    newDetailAsset={newDetailAsset}
+                />
             </div>
         </div>
     )

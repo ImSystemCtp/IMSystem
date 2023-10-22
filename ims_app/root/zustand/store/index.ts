@@ -1,5 +1,6 @@
 export * from './aseets-state';
 export * from './auth-State';
+export * from './details-request';
 export * from './isLoading-state';
 export * from './laws-state';
 export * from './location-state';

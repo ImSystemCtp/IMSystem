@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
-import { useAssetStore, useRegisterTransferStore, useRequestStore } from "@/root/zustand";
+import { useAssetStore, useDetailsRequestStore, useRegisterTransferStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_request } from "@prisma/client";
+import { RequestType } from "@/root/types";
 interface FormValues {
     newUbication: string;
     observation: string;
@@ -19,14 +20,19 @@ const initialValues: FormValues = {
 export default function RequestTransferForm() {
     const {addRequest} = useRequestStore();
     const {assetsCheck } = useAssetStore();
+    const { setDetailRequest,details } = useDetailsRequestStore();
     const handleSubmit = async (values: FormValues) => {
         const request = {
             req_type: EnumRegisterType.Low,
             req_date: new Date(),
             req_description: values.observation,
             req_usu_id: 2,
-        } as  ims_request
-        toast.promise(addRequest(request,assetsCheck), {
+        } as ims_request
+        const requestDetails = {
+            request:request,
+            detailsAssets:details
+        } as RequestType
+        toast.promise(addRequest(requestDetails), {
             loading: "Enviando solicitud...",
             success: "Solicitud enviada exitosamente!",
             error: "No se pudo enviar la solicitud",
@@ -34,6 +40,24 @@ export default function RequestTransferForm() {
     };
     return (
         <div className="w-full">
+            <div className="m-2 max-h-40 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th className="px-6 py-3">Descripción</th>
+                        <th className="px-6 py-3">Número de Activo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {details.map((detail, index) => (
+                        <tr key={index}>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{detail.deta_description}</td>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{detail.deta_assets_no}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            </div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={transferAdminFormMessage}

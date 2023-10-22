@@ -1,7 +1,8 @@
-import { ims_assets, ims_request } from "@prisma/client";
+import { RequestType } from "@/root/types";
+import {ims_request } from "@prisma/client";
 import axios from "axios";
-const createRequest = async (request: ims_request,assetsCheck:ims_assets[]) => {
-    const response = await axios.post('/api/request', request);
+const createRequest = async (requestDetails: RequestType) => {
+    const response = await axios.post('/api/request', requestDetails);
     return response.data as ims_request;
 }
 export const requestProvider = {
