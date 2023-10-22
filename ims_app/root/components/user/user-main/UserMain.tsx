@@ -9,7 +9,7 @@ export default function UserMain() {
         {
             title: "Solicitudes de Traslados",
             icon: "home",
-            link: "/user/solicitudes",
+            link: "/user/request-transfer",
         }
     ]
     return (

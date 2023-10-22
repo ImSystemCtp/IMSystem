@@ -1,4 +1,5 @@
 export * from './admin';
+export * from './assets-table';
 export * from './footer';
 export * from './Formik';
 export * from './info-cards';
@@ -8,5 +9,6 @@ export * from './main-page';
 export * from './navigation';
 export * from './notification-request-dropdown';
 export * from './notification-user-dropdown';
+export * from './search-assets';
 export * from './sidebar';
 export * from './user';
