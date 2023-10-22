@@ -24,7 +24,7 @@ export default function AdminLayout({
       </div>
       <UserNavBar />
       <div className="flex-1 flex">
-        <div className="flex-1 pl-4 pr-4 overflow-y-auto">{children}</div>
+        <div className="flex-1 pl-4 pr-4 overflow-y-auto ">{children}</div>
       </div>
       <div>
         <Footer />

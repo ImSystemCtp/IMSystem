@@ -17,6 +17,18 @@ export default function RequestLowForm() {
     const { addRequest } = useRequestStore();
     const { assetsCheck } = useAssetStore();
     const { setDetailRequest,details } = useDetailsRequestStore();
+    const checkedDetails = details.filter((detail) => {
+        return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
+    });
+    const assetsWithoutDetails = assetsCheck.filter((checkedAsset) => {
+        return !checkedDetails.some((detail) => detail.deta_assets_no === checkedAsset.assets_no);
+    });
+    assetsWithoutDetails.forEach((asset) => {
+        checkedDetails.push({
+            deta_assets_no: asset.assets_no,
+            deta_description: "Inservible",
+        } as ims_details_asset);
+    });
     const handleSubmit = async (values: FormValues) => {
         const request = {
             req_type: EnumRegisterType.Low,
@@ -26,7 +38,7 @@ export default function RequestLowForm() {
         } as ims_request
         const requestDetails = {
             request:request,
-            detailsAssets:details
+            detailsAssets:checkedDetails
         } as RequestType
         toast.promise(addRequest(requestDetails), {
             loading: "Enviando solicitud...",
@@ -45,7 +57,7 @@ export default function RequestLowForm() {
                     </tr>
                 </thead>
                 <tbody>
-                    {details.map((detail, index) => (
+                    {checkedDetails.map((detail, index) => (
                         <tr key={index}>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{detail.deta_description}</td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{detail.deta_assets_no}</td>

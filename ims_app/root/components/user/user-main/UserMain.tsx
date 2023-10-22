@@ -15,7 +15,7 @@ export default function UserMain() {
         }
     ];
     return (
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-center justify-center w-full h-screen">
             {optionsList.map((menuItem, index) => (
                     <motion.div whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} whileTap={{ scale: 0.95 }} className="m-4 items-center flex flex-row justify-center" key={index}>
                         <button className=" shadow-drop-bottom-right  hover:bg-blue-50 flex flex-col justify-center items-center border-4 border-gray p-6 md:p-3 lg:px-8 rounded-lg bg-white">

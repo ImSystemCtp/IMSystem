@@ -9,7 +9,7 @@ type ModalProps = {
     asset: ims_assets;
     newDetailAsset: (asset: ims_assets, detailAsset: string) => void;
 };
-export default function RequestAssetsModal({isOpen,onRequestClose,asset,newDetailAsset}: ModalProps) {
+export default function RequestAssetsModal({ isOpen, onRequestClose, asset, newDetailAsset }: ModalProps) {
     const [detailAsset, setDetailAsset] = useState("");
     const handleDetailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDetailAsset(event.target.value);
@@ -34,20 +34,32 @@ export default function RequestAssetsModal({isOpen,onRequestClose,asset,newDetai
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-
-            <h2>Información del Activo: {asset.assets_no}</h2>
-            <p>Ubicacion: {asset.assets_curr_location}</p>
-            <p>Marca: {asset.assets_brand}</p>
-            <p>Modelo: {asset.assets_model}</p>
-            {/* Agrega más campos aquí para mostrar más detalles del activo */}
-
-            <h2>Agregar Detalle de Solicitud:</h2>
-            <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                type="text"
-                placeholder="Detalle de la solicitud"
-                value={detailAsset}
-                onChange={handleDetailChange}
-            />
+            <div className=' flex flex-col'>
+                <div className='flex justify-center items-center'>
+                <h3 className='text-2xl font-bold  text-center'>Información del Activo</h3>
+                </div>
+                <div>
+                    <div className='flex flex-row'>
+                        <p className='font-bold mx-4'>Modelo:</p> <p> {asset.assets_model}</p>
+                    </div>
+                    <div className='flex flex-row'>
+                        <p className='font-bold mx-4'>Ubicacion:</p><p> {asset.assets_curr_location}</p>
+                    </div>
+                    <div className='flex flex-row'>
+                        <p className='font-bold mx-4'>Marca:</p> <p> {asset.assets_brand}</p>
+                    </div>
+                </div>
+            </div>
+            <div className='flex flex-row p-4'>
+                <h2>Agregar detalle:</h2>
+                <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    type="text"
+                    placeholder="Detalle de la solicitud"
+                    value={detailAsset}
+                    onChange={handleDetailChange}
+                />
+            </div>
+            <div className='flex justify-center items-center'>
             <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -56,6 +68,7 @@ export default function RequestAssetsModal({isOpen,onRequestClose,asset,newDetai
             >
                 Agregar Detalle
             </motion.button>
+            </div>
         </Modal>
     );
 }

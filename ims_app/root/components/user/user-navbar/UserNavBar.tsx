@@ -2,20 +2,19 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { UserButton } from "@clerk/nextjs";
+import { useRouter } from 'next/navigation'
 export default function UserNavBar() {
-    const toggleMenu = () => {
-        const navbarDefault = document.getElementById("navbar-default");
-        if (navbarDefault) {
-            navbarDefault.classList.toggle("hidden");
-        }
-    };
+    const router = useRouter();
+    const handleClick = () => {
+        router.push("/user");
+    }
     return (
         <nav className="bg-sky-400 border-gray-200 dark:bg-gray-900">
             <div className="flex items-center justify-between mx-auto px-8 py-4 w-full md:flex-wrap">
                 <div className="flex items-center">
                     <div className="text-white flex items-center">
                         <Image src="/ctp-preview.png" alt="Logo" className="h-10 w-auto mr-3" width={400} height={400} />
-                        <motion.button whileHover={{ scale: 1.05 }}
+                        <motion.button onClick={handleClick} whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }} className="text-2xl font-semibold whitespace-nowrap dark:text-white">IM_System</motion.button>
                     </div>
                 </div>

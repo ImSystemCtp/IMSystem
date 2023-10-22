@@ -10,6 +10,9 @@ export default function AssetsUserTable() {
     const [assetSelect, setAssetSelect] = useState<ims_assets>({} as ims_assets);
     const [showModal, setShowModal] = useState(false);
     const { setDetailRequest,details } = useDetailsRequestStore();
+    useEffect(() => {
+        setDetailRequest([]);
+    }, [setDetailRequest]);
     const handleCloseModal = () => {
         setShowModal(false);
     };
@@ -107,7 +110,7 @@ export default function AssetsUserTable() {
                                 <td className="px-6 py-4 hidden md:table-cell">
                                     {isChecked(asset) && (
                                         <button className="rounded-lg p-2 bg-green-500 text-white" onClick={() => handleOpenModal(asset)}>
-                                            Detalle de activo
+                                            Agregar Detalle
                                         </button>
                                     )}
                                 </td>
