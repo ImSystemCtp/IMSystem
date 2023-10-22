@@ -2,10 +2,9 @@
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
-export default function RegisterTable() {
+export default function AssetsAdminTable() {
     const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, idLocation } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
-    const [assetCheck, setAssetCheck] = useState<ims_assets[]>([])
     useEffect(() => {
         const container = containerRef.current;
         function handleScroll() {

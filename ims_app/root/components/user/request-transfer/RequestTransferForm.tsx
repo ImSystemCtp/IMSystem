@@ -1,18 +1,22 @@
 "use client";
 import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
-import { CustomTextArea } from "@/root/components";
-import { lowsAdminFormMessage } from "@/schemas";
-import {  useAssetStore, useRequestStore } from "@/root/zustand";
+import {  CustomSelect, CustomTextArea } from "@/root/components";
+import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
+import { useAssetStore, useRegisterTransferStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_request } from "@prisma/client";
 interface FormValues {
+    newUbication: string;
     observation: string;
 }
+
 const initialValues: FormValues = {
+    newUbication: "",
     observation: "",
 };
-export default function RequestLowForm() {
+
+export default function RequestTransferForm() {
     const {addRequest} = useRequestStore();
     const {assetsCheck } = useAssetStore();
     const handleSubmit = async (values: FormValues) => {
@@ -32,7 +36,7 @@ export default function RequestLowForm() {
         <div className="w-full">
             <Formik
                 initialValues={initialValues}
-                validationSchema={lowsAdminFormMessage}
+                validationSchema={transferAdminFormMessage}
                 onSubmit={handleSubmit}
             >
                 <div className=" lg:h-full">
@@ -40,6 +44,7 @@ export default function RequestLowForm() {
                         <div className="flex flex-col   w-full  ">
                             <div className="p-2 w-full h-full ">
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
+                                <CustomSelect label="Nueva ubicación del bien:" name="newUbication" placeholder="Nueva ubicación del bien" />
                             </div>
                             <div className="w-full text-center justify-center items-center">
                                 <motion.button

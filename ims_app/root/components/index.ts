@@ -8,5 +8,6 @@ export * from './main-page';
 export * from './navigation';
 export * from './notification-request-dropdown';
 export * from './notification-user-dropdown';
+export * from './search-assets';
 export * from './sidebar';
 export * from './user';

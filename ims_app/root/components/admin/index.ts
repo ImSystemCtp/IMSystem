@@ -1,5 +1,6 @@
 export * from './admin-main';
 export * from './admin-navbar';
+export * from './assets-admin-table';
 export * from './law-management';
 export * from './location-management';
 export * from './pie-chart';

@@ -1,11 +1,18 @@
 "use client"
+import { RequestAssetsModal } from "@/root/components";
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
-export default function RequestLowsTable() {
+export default function AssetsUserTable() {
     const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, idLocation } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
-    const [assetCheck, setAssetCheck] = useState<ims_assets[]>([])
+    const [showModal, setShowModal] = useState(false);
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
     useEffect(() => {
         const container = containerRef.current;
         function handleScroll() {
@@ -44,6 +51,9 @@ export default function RequestLowsTable() {
                             <th scope="col" className="px-6 py-3 align-middle flex items-center justify-center ">
                                 Seleccionar
                             </th>
+                            <th scope="col" className=" ">
+                                Añadir detalle
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,11 +86,20 @@ export default function RequestLowsTable() {
                                     </div>
 
                                 </td>
+                                <td className="px-6 py-4 hidden md:table-cell">
+                                    <button onClick={handleOpenModal}>
+                                        Detalle de activo
+                                    </button>
+                                </td>
 
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <RequestAssetsModal
+                        isOpen={showModal}
+                        onRequestClose={handleCloseModal}
+                    />
             </div>
         </div>
     )
