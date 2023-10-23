@@ -1,6 +1,5 @@
 import { prismaDB } from "@/lib";
-import { PrismaClient, ims_details_asset } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { ims_details_asset } from "@prisma/client";
 import { RequestType } from "@/root/types";
 import { NextResponse } from "next/server";
 
