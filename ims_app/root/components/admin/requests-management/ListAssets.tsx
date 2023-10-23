@@ -9,15 +9,26 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 export default function ListAssets() {
     const { requestSelected } = useRequestStore();
-    const [option,setOption] = useState("");
+    const [option, setOption] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const { getDetailsRequestByRequestId, detailsByIdRequest } = useDetailsRequestStore();
-    const { getAssetsByRequestId, assetsByRequestId } = useAssetStore();
+    const { getDetailsRequestByRequestId, deleteDetailsCheck, addDetailsCheck, detailsCheck,detailsByIdRequest } = useDetailsRequestStore();
+    const { getAssetsByRequestId, assetsByRequestId, addAssetsCheck, deleteAssetsCheck, assetsCheck } = useAssetStore();
     const handleCloseModal = () => {
         setShowModal(false);
     };
     const handleOpenModal = () => {
         setShowModal(true);
+    };
+    const handleCheckboxClick = async (index:number) => {
+        const asset = assetsByRequestId[index];
+        const detail = detailsCheck[index];
+        if (assetsCheck.includes(asset) && detailsCheck.includes(detail)) {
+            deleteAssetsCheck(asset);
+            deleteDetailsCheck(detail);
+        } else {
+            addAssetsCheck(asset);
+            addDetailsCheck(detail);
+        }
     };
     useEffect(() => {
         getDetailsRequestByRequestId(String(requestSelected?.req_id));
@@ -41,6 +52,7 @@ export default function ListAssets() {
                                 <th className="px-4 py-3">Numero Placa</th>
                                 <th className="px-4 py-3">Marca</th>
                                 <th className="px-4 py-3">Detalle</th>
+                                <th className="px-4 py-3">Estado</th>
                                 <th className="px-4 py-3">Ubicación</th>
                                 <th
                                     scope="col"
@@ -62,14 +74,21 @@ export default function ListAssets() {
                                             </div>
                                         </div>
                                     </td>
+                                    <td className="px-4 py-3">
+                                        <div className="flex items-center text-sm">
+                                            <div>
+                                                <p className="font-semibold">{detail.data_state}</p>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_curr_location}</td>
                                     <td className="px-6 py-4 hidden md:table-cell">
-                                        <div className="flex items-center justify-center mb-4">
+                                        <div className="flex items-center justify-center mb-4"
+                                            onClick={async () => await handleCheckboxClick(index)}>
                                             <input
                                                 id={`checkbox-${detail.deta_assets_no}`}
                                                 type="checkbox"
                                                 value=""
-                                                checked={true}
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                             />
                                         </div>
@@ -112,12 +131,13 @@ export default function ListAssets() {
                 </div>
             </div>
             <RequestManagementModal
-                    isOpen={showModal}
-                    onRequestClose={handleCloseModal}
-                    option={option}
-                    assets={assetsByRequestId}
-                    requestSelected={requestSelected}
-                />
+                isOpen={showModal}
+                onRequestClose={handleCloseModal}
+                option={option}
+                assetsCheck={assetsCheck}
+                detailsCheck={detailsCheck}
+                requestSelected={requestSelected}
+            />
         </div>
     );
 }
