@@ -1,5 +1,6 @@
 export * from './assets-provider';
 export * from './count-data-provider';
+export * from './details-request-provider';
 export * from './law-provider';
 export * from './locations-provider';
 export * from './login-provider';

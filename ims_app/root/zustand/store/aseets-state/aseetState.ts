@@ -5,6 +5,7 @@ import { QueryOptions } from "@/app/types"
 const LIMIT = 5
 interface assetState {
     assets: ims_assets[]
+    assetsByRequestId: ims_assets[]
     assetsByLocation: ims_assets[]
     assetsCheck: ims_assets[]
     count: number
@@ -21,11 +22,13 @@ interface assetState {
     seeMore: () => Promise<void>
     addAssetsCheck: (asset: ims_assets) => Promise<void>
     deleteAssetsCheck: (asset: ims_assets) => Promise<void>
+    getAssetsByRequestId: (requestId: string) => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
     return {
         assets: [],
+        assetsByRequestId:[],
         assetsByLocation: [],
         count: 0,
         idLocation: 0,
@@ -58,6 +61,10 @@ export const useAssetStore = create<assetState>((set, get) => {
             const query = {  limit: LIMIT, offset: get().cursor,orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: get().filterValue, filterCondition: get().filterCondition } as QueryOptions
             const assetsByLocation = await assetsProvider.getAssetsByLocationQuery(query)
             set({ assetsByLocation, cursor: get().cursor + LIMIT })
+        },
+        getAssetsByRequestId: async (requestId: string) => {
+            const assetsByRequestId = await assetsProvider.getAssetsByRequestId(requestId)
+            set({ assetsByRequestId })
         },
         seeMore: async () => {
             const query = { limit: LIMIT, offset: get().cursor, orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: get().filterValue, filterCondition: get().filterCondition } as QueryOptions

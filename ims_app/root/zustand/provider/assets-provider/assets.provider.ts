@@ -18,6 +18,12 @@ const getAssetsByLocation = async (locationId: number) => {
     useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_assets[];
 }
+const getAssetsByRequestId = async (requestId: string) => {
+    useLoadingStore.getState().setIsLoading(true);
+    const response = await axios.get(`/api/assets/request/${requestId}`);
+    useLoadingStore.getState().setIsLoading(false);
+    return response.data as ims_assets[];
+}
 const getAssetsByLocationQuery = async (query: QueryOptions) => {
     try {
         useLoadingStore.getState().setIsLoading(true);
@@ -35,5 +41,6 @@ export const assetsProvider = {
     getAssets,
     contAssets,
     getAssetsByLocation,
-    getAssetsByLocationQuery
+    getAssetsByLocationQuery,
+    getAssetsByRequestId
 };

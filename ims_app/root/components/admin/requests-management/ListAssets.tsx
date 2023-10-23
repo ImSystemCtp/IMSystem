@@ -1,6 +1,20 @@
-"use client"
+"use client";
+import {
+    useDetailsRequestStore,
+    useRequestStore,
+    useAssetStore,
+} from "@/root/zustand";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 export default function ListAssets() {
+    const { requestSelected } = useRequestStore();
+    const { getDetailsRequestByRequestId, detailsByIdRequest } =
+        useDetailsRequestStore();
+    const { getAssetsByRequestId, assetsByRequestId } = useAssetStore();
+    useEffect(() => {
+        getDetailsRequestByRequestId(String(requestSelected?.req_id));
+        getAssetsByRequestId(String(requestSelected?.req_id));
+    }, [getDetailsRequestByRequestId, requestSelected, getAssetsByRequestId]);
     return (
         <div>
             <h2 className="text-center">Lista de Bienes</h2>
@@ -9,49 +23,52 @@ export default function ListAssets() {
                     <textarea
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Observación de Baja..."
+                        value={requestSelected.req_description}
                     />
                 </div>
                 <div className="w-full overflow-x-auto border border-gray-300 rounded-lg">
                     <table className="w-full">
                         <thead>
                             <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                <th className="px-4 py-3">Nombre</th>
                                 <th className="px-4 py-3">Numero Placa</th>
-                                <th className="px-4 py-3">Descripción</th>
+                                <th className="px-4 py-3">Marca</th>
+                                <th className="px-4 py-3">Detalle</th>
                                 <th className="px-4 py-3">Ubicación</th>
-                                <th scope="col" className="px-6 py-3 align-middle flex items-center justify-center ">
+                                <th
+                                    scope="col"
+                                    className="px-6 py-3 align-middle flex items-center justify-center "
+                                >
                                     Seleccionar
                                 </th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                                <td className="px-4 py-3">
-                                    <div className="flex items-center text-sm">
-                                        <div>
-                                            <p className="font-semibold">Portátil</p>
+                            {detailsByIdRequest.map((detail, index) => (
+                                <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover-bg-gray-900 text-gray-700 dark:text-gray-400" key={index}>
+                                    <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_no}</td>
+                                    <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_brand}</td>
+                                    <td className="px-4 py-3">
+                                        <div className="flex items-center text-sm">
+                                            <div>
+                                                <p className="font-semibold">{detail.deta_description}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3 text-sm">123-456</td>
-                                <td className="px-4 py-3 text-xs">
-                                    <span className="px-2 py-1 font-semibold">
-                                        Portátil Lenovo
-                                    </span>
-                                </td>
-                                <td className="px-4 py-3 text-sm">Lab01</td>
-                                <td className="px-6 py-4 hidden md:table-cell">
-                                <div className="flex items-center justify-center mb-4">
-                                    <input
-                                        id="default-checkbox"
-                                        type="checkbox"
-                                        value=""
-                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                    />
-                                </div>
-                            </td>
-                            </tr>
+                                    </td>
+                                    <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_curr_location}</td>
+                                    <td className="px-6 py-4 hidden md:table-cell">
+                                        <div className="flex items-center justify-center mb-4">
+                                            <input
+                                                id={`checkbox-${detail.deta_assets_no}`}
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
+
                     </table>
                 </div>
             </div>
