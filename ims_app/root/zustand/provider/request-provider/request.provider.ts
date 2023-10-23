@@ -6,7 +6,7 @@ const createRequest = async (requestDetails: RequestType) => {
     return response.data as ims_request;
 }
 const getRequestsPending = async () => {
-    const response = await axios.get('/api/request');
+    const response = await axios.get('/api/request/pending');
     return response.data as ims_request[];
 }
 export const requestProvider = {

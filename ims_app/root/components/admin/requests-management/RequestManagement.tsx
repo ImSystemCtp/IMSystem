@@ -47,7 +47,8 @@ export default function RequestManagement() {
                                             {request.req_state}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 text-sm">{request.req_date.toLocaleDateString()}</td>
+                                    {/*<td className="px-4 py-3 text-sm">{request.req_date.toLocaleDateString()}</td>
+                                    */}
                                     <td className="px-4 py-3 text-sm">
                                         <Link href={'/admin/list-assets'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                             Ver más...
