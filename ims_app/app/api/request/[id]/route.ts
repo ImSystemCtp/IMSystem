@@ -28,8 +28,8 @@ export async function PUT(req: Request, { params }: ParameterId) {
         const id = Number.parseInt(params.id);
         const body = await req.json();
 
-        const response = await prismaDB.ims_users.update({
-            where: { usu_id: Number(id) },
+        const response = await prismaDB.ims_request.update({
+            where: { req_id: Number(id) },
             data: {
                 ...body
             },
@@ -48,23 +48,23 @@ export async function PUT(req: Request, { params }: ParameterId) {
 export async function DELETE(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const user = await currentUser();
+        //const user = await currentUser();
 
-        const loginEmail = user!.emailAddresses[0].emailAddress || null;
-        if (!loginEmail) {
-            return new NextResponse("Unauthorized", { status: 401 });
-        }
+        // const loginEmail = user!.emailAddresses[0].emailAddress || null;
+        // if (!loginEmail) {
+        //     return new NextResponse("Unauthorized", { status: 401 });
+        // }
 
-        const hasPermision = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
-        if (!hasPermision) {
-            return new NextResponse("Additional Permissions Required", {
-                status: 403,
-            });
-        }
+        // const hasPermision = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
+        // if (!hasPermision) {
+        //     return new NextResponse("Additional Permissions Required", {
+        //         status: 403,
+        //     });
+        // }
 
-        const deletedUser = await prismaDB.ims_users.delete({
+        const deletedUser = await prismaDB.ims_request.delete({
             where: {
-                usu_id:id
+                req_id:id
             },
         });
 
