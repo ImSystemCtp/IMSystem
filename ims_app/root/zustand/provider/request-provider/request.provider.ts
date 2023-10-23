@@ -5,6 +5,11 @@ const createRequest = async (requestDetails: RequestType) => {
     const response = await axios.post('/api/request', requestDetails);
     return response.data as ims_request;
 }
+const getRequestsPending = async () => {
+    const response = await axios.get('/api/request');
+    return response.data as ims_request[];
+}
 export const requestProvider = {
-    createRequest
+    createRequest,
+    getRequestsPending
 }

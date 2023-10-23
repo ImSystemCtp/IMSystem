@@ -1,9 +1,10 @@
 "use client";
 import { InfoCards, InfoRequestCard, PieChart, RequestManagement } from "@/root/components";
-import { useRegisterIn, useUserPending } from "@/root/hooks";
+import { useRegisterIn, useRequestPending, useUserPending } from "@/root/hooks";
 export default function AdminMain() {
     useUserPending();
     useRegisterIn();
+    useRequestPending();
     return (
         <div className="relative flex">
             <div className="flex-1 p-4">
