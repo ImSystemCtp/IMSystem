@@ -1,11 +1,12 @@
 "use client";
 import { Form, Formik } from "formik";
 import { motion } from "framer-motion";
-import {registerAssetsMessage} from "@/schemas";
+import { registerAssetsMessage } from "@/schemas";
 import { useAssetStore, useLawStore, useLocationStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
-import { useLocation } from "@/root/hooks";
+import { useLaw, useLocation } from "@/root/hooks";
 import { CustomInput, CustomSelect, RegisterAssetsTable } from "@/root/components";
+import Link from "next/link";
 interface FormValues {
     assets_no: string,
     assets_description: string,
@@ -20,15 +21,14 @@ interface FormValues {
 const initialValues = {} as FormValues;
 
 export default function RegisterAssets() {
-    useLocation()
-    const lawState = useLawStore();
-    const laws = lawState.laws;
-    const locationState = useLocationStore();
-    const locations = locationState.locations;
+    useLocation();
+    useLaw();
+    const { laws } = useLawStore();
+    const { locations } = useLocationStore();
     const { addAssets } = useAssetStore()
     const handleSubmit = async (values: FormValues) => {
         const { assent_law_id, assets_regis_location, assets_invoice_number } = values
-        addAssets({ ...values,assets_invoice_number:Number.parseInt(assets_invoice_number) , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: Number.parseInt(assets_regis_location) } as ims_assets);
+        addAssets({ ...values, assets_invoice_number: Number.parseInt(assets_invoice_number), assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: Number.parseInt(assets_regis_location) } as ims_assets);
     };
     return (
         <div className="justify-center items-center">
@@ -72,18 +72,56 @@ export default function RegisterAssets() {
                                         name="assets_acquisition_value"
                                         inputType="text"
                                     />
-                                    <CustomSelect label="Ubicación:" name="assets_regis_location" >
-                                        {!initialValues.assets_regis_location ? <option value="">Seleccione una ubicacion</option> : ""}
-                                        {locations.map((location) => {
-                                            return <option key={location.location_id} value={location.location_id}>{location.location_name}</option>;
-                                        })}
-                                    </CustomSelect>
-                                    <CustomSelect label="Ley que financió:" name="assent_law_id" >
-                                        {!initialValues.assent_law_id ? <option value="">Seleccione una ley</option> : ""}
-                                        {laws.map((law) => {
-                                            return <option key={law.law_id} value={law.law_id}>{law.law_name}</option>;
-                                        })}
-                                    </CustomSelect>
+                                    {locations.length > 0 ? (
+                                        <CustomSelect label="Ubicación:" name="assets_regis_location">
+                                            {!initialValues.assets_regis_location ? (
+                                                <option value="">Seleccione una ubicación</option>
+                                            ) : (
+                                                ""
+                                            )}
+                                            {locations.map((location) => {
+                                                return (
+                                                    <option key={location.location_id} value={location.location_id}>
+                                                        {location.location_name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                            <p className="text-red">
+                                                No existen ubicaciones.
+                                            </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/locations-management">Agregar ubicaciones</Link>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {laws.length > 0 ? (
+                                        <CustomSelect label="Ley que financió:" name="assent_law_id">
+                                            {!initialValues.assent_law_id ? <option value="">Seleccione una ley</option> : ""}
+                                            {laws.map((law) => {
+                                                return (
+                                                    <option key={law.law_id} value={law.law_id}>
+                                                        {law.law_name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                            <p className="text-red">
+                                                No existen leyes.
+                                            </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/laws-management">Agregar ley</Link>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="flex justify-center items-center">
