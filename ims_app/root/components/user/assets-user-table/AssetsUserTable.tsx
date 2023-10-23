@@ -10,9 +10,6 @@ export default function AssetsUserTable() {
     const [assetSelect, setAssetSelect] = useState<ims_assets>({} as ims_assets);
     const [showModal, setShowModal] = useState(false);
     const { setDetailRequest,details } = useDetailsRequestStore();
-    useEffect(() => {
-        setDetailRequest([]);
-    }, [setDetailRequest]);
     const handleCloseModal = () => {
         setShowModal(false);
     };

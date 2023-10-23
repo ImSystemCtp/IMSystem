@@ -6,7 +6,7 @@ import { lowsAdminFormMessage } from "@/schemas";
 import {  useAssetStore } from "@/root/zustand";
 import { registerGood } from "@/root/types";
 import { EnumRegisterType, ims_register } from "@prisma/client";
-import { useRegisterLowStore } from "@/root/zustand";
+import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 interface FormValues {
 
@@ -20,7 +20,7 @@ const initialValues: FormValues = {
 export default function LowsAdminForm() {
 
     const {assetsCheck } = useAssetStore();
-    const { addRegisterLow } = useRegisterLowStore();
+    const { addRegister } = useRegisterStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Low,
@@ -33,7 +33,7 @@ export default function LowsAdminForm() {
             register,
             assets: assetsCheck,
         } as registerGood
-        toast.promise(addRegisterLow(registerLow), {
+        toast.promise(addRegister(registerLow), {
             loading: "Registrando activos...",
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",

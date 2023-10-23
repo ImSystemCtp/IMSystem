@@ -6,7 +6,7 @@ import { transferAdminFormMessage } from "@/schemas";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { registerGood } from "@/root/types";
 import toast from "react-hot-toast";
-import { useAssetStore, useRegisterTransferStore } from "@/root/zustand";
+import { useAssetStore, useRegisterStore } from "@/root/zustand";
 interface FormValues {
     newUbication: string;
     observation: string;
@@ -19,7 +19,7 @@ const initialValues: FormValues = {
 
 export default function TransferAdminForm() {
     const {assetsCheck } = useAssetStore();
-    const { addRegisterTransfer } = useRegisterTransferStore();
+    const { addRegister } = useRegisterStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Low,
@@ -32,7 +32,7 @@ export default function TransferAdminForm() {
             register,
             assets: assetsCheck,
         } as registerGood
-        toast.promise(addRegisterTransfer(registerTransfer), {
+        toast.promise(addRegister(registerTransfer), {
             loading: "Registrando transferencia...",
             success: "Transferencia registrados exitosamente!",
             error: "No se pudo registrar la transferencia de activos",
