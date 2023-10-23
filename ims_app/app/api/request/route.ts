@@ -7,8 +7,9 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try {
         const body = await req.json() as RequestType;
+        console.log(body)
         const newRequest = body.request
-        const detailsAssets = body.assets
+        const detailsAssets = body.detailsAssets
         const response = await prismaDB.ims_request.create({
             data: {
                 ...newRequest,
@@ -27,6 +28,7 @@ export async function POST(req: Request) {
             return NextResponse.json(response);
         }
     } catch (error) {
+        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }
