@@ -76,7 +76,7 @@ export const useAssetStore = create<assetState>((set, get) => {
             set((state: assetState) => ({ assetsCheck: [...state.assetsCheck, asset] }))
         },
         deleteAssetsCheck: async (asset: ims_assets) => {
-            const assetsCheck = get().assetsCheck.filter((item) => item.assets_no !== asset.assets_no)
+            const assetsCheck = get().assetsCheck.filter((item:ims_assets) => item.assets_no !== asset.assets_no)
             set({ assetsCheck })
         }
     }

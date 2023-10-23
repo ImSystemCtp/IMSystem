@@ -1,5 +1,5 @@
 "use client";
-import { RequestManagementModal } from "@/root/components";
+import { LoadingComponent, RequestManagementModal } from "@/root/components";
 import {
     useDetailsRequestStore,
     useRequestStore,
@@ -11,7 +11,7 @@ export default function ListAssets() {
     const { requestSelected } = useRequestStore();
     const [option, setOption] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const { getDetailsRequestByRequestId, deleteDetailsCheck, addDetailsCheck, detailsCheck,detailsByIdRequest } = useDetailsRequestStore();
+    const { getDetailsRequestByRequestId, deleteDetailsCheck, addDetailsCheck, detailsCheck, detailsByIdRequest } = useDetailsRequestStore();
     const { getAssetsByRequestId, assetsByRequestId, addAssetsCheck, deleteAssetsCheck, assetsCheck } = useAssetStore();
     const handleCloseModal = () => {
         setShowModal(false);
@@ -19,7 +19,7 @@ export default function ListAssets() {
     const handleOpenModal = () => {
         setShowModal(true);
     };
-    const handleCheckboxClick = async (index:number) => {
+    const handleCheckboxClick = async (index: number) => {
         const asset = assetsByRequestId[index];
         const detail = detailsCheck[index];
         if (assetsCheck.includes(asset) && detailsCheck.includes(detail)) {
@@ -46,58 +46,65 @@ export default function ListAssets() {
                     />
                 </div>
                 <div className="w-full overflow-x-auto border border-gray-300 rounded-lg">
-                    <table className="w-full">
-                        <thead>
-                            <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                <th className="px-4 py-3">Numero Placa</th>
-                                <th className="px-4 py-3">Marca</th>
-                                <th className="px-4 py-3">Detalle</th>
-                                <th className="px-4 py-3">Estado</th>
-                                <th className="px-4 py-3">Ubicación</th>
-                                <th
-                                    scope="col"
-                                    className="px-6 py-3 align-middle flex items-center justify-center "
-                                >
-                                    Seleccionar
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            {detailsByIdRequest.map((detail, index) => (
-                                <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover-bg-gray-900 text-gray-700 dark:text-gray-400" key={index}>
-                                    <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_no}</td>
-                                    <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_brand}</td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center text-sm">
-                                            <div>
-                                                <p className="font-semibold">{detail.deta_description}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center text-sm">
-                                            <div>
-                                                <p className="font-semibold">{detail.data_state}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_curr_location}</td>
-                                    <td className="px-6 py-4 hidden md:table-cell">
-                                        <div className="flex items-center justify-center mb-4"
-                                            onClick={async () => await handleCheckboxClick(index)}>
-                                            <input
-                                                id={`checkbox-${detail.deta_assets_no}`}
-                                                type="checkbox"
-                                                value=""
-                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                            />
-                                        </div>
-                                    </td>
+                    {detailsByIdRequest.length === 0 ? (
+                        <div className="flex items-center justify-center">
+                            <LoadingComponent />
+                        </div>
+                    ) : (
+                        <table className="w-full">
+                            <thead>
+                                <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                    <th className="px-4 py-3">Numero Placa</th>
+                                    <th className="px-4 py-3">Marca</th>
+                                    <th className="px-4 py-3">Detalle</th>
+                                    <th className="px-4 py-3">Estado</th>
+                                    <th className="px-4 py-3">Ubicación</th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 align-middle flex items-center justify-center "
+                                    >
+                                        Seleccionar
+                                    </th>
                                 </tr>
-                            ))}
-                        </tbody>
+                            </thead>
+                            <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                {detailsByIdRequest.map((detail, index) => (
+                                    <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover-bg-gray-900 text-gray-700 dark:text-gray-400" key={index}>
+                                        <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_no}</td>
+                                        <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_brand}</td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center text-sm">
+                                                <div>
+                                                    <p className="font-semibold">{detail.deta_description}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center text-sm">
+                                                <div>
+                                                    <p className="font-semibold">{detail.data_state}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_curr_location}</td>
+                                        <td className="px-6 py-4 hidden md:table-cell">
+                                            <div className="flex items-center justify-center mb-4"
+                                                onClick={async () => await handleCheckboxClick(index)}>
+                                                <input
+                                                    id={`checkbox-${detail.deta_assets_no}`}
+                                                    type="checkbox"
+                                                    value=""
+                                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                                }
+                            </tbody>
 
-                    </table>
+                        </table>
+                    )}
                 </div>
             </div>
             <div className="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">

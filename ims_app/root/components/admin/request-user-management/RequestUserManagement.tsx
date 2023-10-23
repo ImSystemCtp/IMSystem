@@ -1,14 +1,14 @@
 "use client"
-import { useUserNoRoleStore,useUserStore } from "@/root/zustand";
+import { useUserNoRoleStore, useUserStore } from "@/root/zustand";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { EnumUserRole, ims_users } from "@prisma/client";
-import { useUserPending,  } from "@/root/hooks";
-import { RoleSelectionModal } from "@/root/components";
+import { useUserPending, } from "@/root/hooks";
+import { LoadingComponent, RoleSelectionModal } from "@/root/components";
 export default function RequestUserManagement() {
     useUserPending();
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine } = useUserNoRoleStore();
-    const { updateUser,deleteUser } = useUserStore();
+    const { updateUser, deleteUser } = useUserStore();
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
     const [selectedRole, setSelectedRole] = useState(null);
@@ -80,46 +80,50 @@ export default function RequestUserManagement() {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            {usersPending.map((user, index) => (
-                                <tr
-                                    key={index}
-                                    className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
-                                >
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center text-sm">
-                                            <div>
-                                                <p className="font-semibold">{user.usu_name + user.usu_surnames}</p>
+                            {usersPending.length === 0 ? (
+                                <LoadingComponent />
+                            ) : (
+                                usersPending.map((user, index) => (
+                                    <tr
+                                        key={index}
+                                        className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
+                                    >
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center text-sm">
+                                                <div>
+                                                    <p className="font-semibold">{user.usu_name + user.usu_surnames}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm">{pagine}</td>
-                                    <td className="px-4 py-3 text-xs">
-                                        <span className="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
-                                            Pendiente
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm">
-                                        <motion.button
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            onClick={() => handleDecline(user)}
-                                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                        >
-                                            Rechazar
-                                        </motion.button>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm">
-                                        <motion.button
-                                            whileHover={{ scale: 1.05 }}
-                                            onClick={() => handleAccept(user)}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                        >
-                                            Aceptar
-                                        </motion.button>
-                                    </td>
-                                </tr>
-                            ))}
+                                        </td>
+                                        <td className="px-4 py-3 text-sm">{pagine}</td>
+                                        <td className="px-4 py-3 text-xs">
+                                            <span className="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3 text-sm">
+                                            <motion.button
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                onClick={() => handleDecline(user)}
+                                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                            >
+                                                Rechazar
+                                            </motion.button>
+                                        </td>
+                                        <td className="px-4 py-3 text-sm">
+                                            <motion.button
+                                                whileHover={{ scale: 1.05 }}
+                                                onClick={() => handleAccept(user)}
+                                                whileTap={{ scale: 0.95 }}
+                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                            >
+                                                Aceptar
+                                            </motion.button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                     <RoleSelectionModal

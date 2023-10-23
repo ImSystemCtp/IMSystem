@@ -3,9 +3,9 @@ import { detailsRequestProvider } from "@/root/zustand";
 import { ims_details_asset } from "@prisma/client";
 import { create } from "zustand";
 interface detailsRequestState {
-    details: ims_details_asset[];
-    detailsCheck: ims_details_asset[];
-    detailsByIdRequest: ims_details_asset[];
+    details: ims_details_asset[]
+    detailsCheck: ims_details_asset[]
+    detailsByIdRequest: ims_details_asset[]
     setDetailRequest: (request: ims_details_asset) => Promise<void>;
     getDetailsRequestByRequestId: (requestId: string) => Promise<void>;
     addDetailsCheck: (detail: ims_details_asset) => Promise<void>;
@@ -28,8 +28,8 @@ export const useDetailsRequestStore = create<detailsRequestState>((set, get) => 
             set((state: detailsRequestState) => ({ detailsCheck: [...state.detailsCheck, detail] }))
         },
         deleteDetailsCheck: async (detail: ims_details_asset) => {
-            const detailsCheck = get().detailsCheck.filter((item: ims_details_asset) => item.deta_id !== detail.deta_id)
-            set({ detailsCheck })
+            const detailsCheck = get().detailsCheck.filter((item: ims_details_asset) => item && item.deta_id !== detail.deta_id);
+            set({ detailsCheck });
         },
         updateDetailsRequestState: async (details: ims_details_asset[]) => {
             const detailsRequestUpdated = await detailsRequestProvider.updateDetailsRequestState(details);
@@ -42,6 +42,7 @@ export const useDetailsRequestStore = create<detailsRequestState>((set, get) => 
                 ],
             }));
         }
+
     };
 });
 export default useDetailsRequestStore;
