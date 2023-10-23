@@ -1,16 +1,24 @@
 "use client";
+import { RequestManagementModal } from "@/root/components";
 import {
     useDetailsRequestStore,
     useRequestStore,
     useAssetStore,
 } from "@/root/zustand";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 export default function ListAssets() {
     const { requestSelected } = useRequestStore();
-    const { getDetailsRequestByRequestId, detailsByIdRequest } =
-        useDetailsRequestStore();
+    const [option,setOption] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const { getDetailsRequestByRequestId, detailsByIdRequest } = useDetailsRequestStore();
     const { getAssetsByRequestId, assetsByRequestId } = useAssetStore();
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
     useEffect(() => {
         getDetailsRequestByRequestId(String(requestSelected?.req_id));
         getAssetsByRequestId(String(requestSelected?.req_id));
@@ -61,6 +69,7 @@ export default function ListAssets() {
                                                 id={`checkbox-${detail.deta_assets_no}`}
                                                 type="checkbox"
                                                 value=""
+                                                checked={true}
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                             />
                                         </div>
@@ -77,6 +86,10 @@ export default function ListAssets() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                            handleOpenModal();
+                            setOption('Rechazar');
+                        }}
                         className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
                         type="submit"
                     >
@@ -87,6 +100,10 @@ export default function ListAssets() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                            handleOpenModal();
+                            setOption('Aceptar');
+                        }}
                         className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
                         type="submit"
                     >
@@ -94,6 +111,13 @@ export default function ListAssets() {
                     </motion.button>
                 </div>
             </div>
+            <RequestManagementModal
+                    isOpen={showModal}
+                    onRequestClose={handleCloseModal}
+                    option={option}
+                    assets={assetsByRequestId}
+                    requestSelected={requestSelected}
+                />
         </div>
     );
 }

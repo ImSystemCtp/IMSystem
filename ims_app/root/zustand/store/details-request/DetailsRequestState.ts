@@ -19,6 +19,7 @@ export const useDetailsRequestStore = create<requestState>((set) => {
             const detailsByIdRequest = await detailsRequestProvider.getDetailsRequestsByIdRequest(requestId);
             set({ detailsByIdRequest });
         }
+
     };
 });
 export default useDetailsRequestStore;

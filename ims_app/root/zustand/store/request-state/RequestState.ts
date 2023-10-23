@@ -10,8 +10,9 @@ interface requestState {
     addRequest: ( requestDetails: RequestType) => Promise<void>;
     getRequestsPending: () => Promise<void>;
     setRequestSelected: (requestSelected: ims_request) => void;
+    updateRequestState: (request: ims_request) => Promise<void>;
 }
-export const useRequestStore = create<requestState>((set) => {
+export const useRequestStore = create<requestState>((set,get) => {
     return {
         request: {} as ims_request,
         requestSelected: {} as ims_request,
@@ -27,6 +28,14 @@ export const useRequestStore = create<requestState>((set) => {
         setRequestSelected: async (requestSelected: ims_request) => {
             set({ requestSelected });
         },
+        updateRequestState: async (request: ims_request) => {
+            const requestUpdated = await requestProvider.updateRequestState(request);
+            const currentRequestPending = get().requestPending;
+            const updatedRequestPending = currentRequestPending.filter(
+                (req:ims_request) => req.req_id !== requestUpdated.req_id
+            );
+            set({ requestPending: updatedRequestPending });
+        }
     };
 });
 export default useRequestStore;
