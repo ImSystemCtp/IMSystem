@@ -5,6 +5,7 @@ import {
     useRequestStore,
     useAssetStore,
 } from "@/root/zustand";
+import { ims_assets, ims_details_asset } from "@prisma/client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 export default function ListAssets() {
@@ -13,15 +14,9 @@ export default function ListAssets() {
     const [showModal, setShowModal] = useState(false);
     const { getDetailsRequestByRequestId, deleteDetailsCheck, addDetailsCheck, detailsCheck, detailsByIdRequest } = useDetailsRequestStore();
     const { getAssetsByRequestId, assetsByRequestId, addAssetsCheck, deleteAssetsCheck, assetsCheck } = useAssetStore();
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
-    const handleOpenModal = () => {
-        setShowModal(true);
-    };
-    const handleCheckboxClick = async (index: number) => {
-        const asset = assetsByRequestId[index];
-        const detail = detailsCheck[index];
+    const handleCloseModal = () => { setShowModal(false); };
+    const handleOpenModal = () => { setShowModal(true); };
+    const handleCheckboxClick = (asset: ims_assets, detail: ims_details_asset) => {
         if (assetsCheck.includes(asset) && detailsCheck.includes(detail)) {
             deleteAssetsCheck(asset);
             deleteDetailsCheck(detail);
@@ -68,41 +63,41 @@ export default function ListAssets() {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                {detailsByIdRequest.map((detail, index) => (
-                                    <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover-bg-gray-900 text-gray-700 dark:text-gray-400" key={index}>
-                                        <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_no}</td>
-                                        <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_brand}</td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex items-center text-sm">
-                                                <div>
-                                                    <p className="font-semibold">{detail.deta_description}</p>
+                                {detailsByIdRequest.map((detail, index) => {
+                                    const assetDetail = assetsByRequestId.filter(asset => asset.assets_no === detail.deta_assets_no)[0];
+                                    return (
+                                        <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover-bg-gray-900 text-gray-700 dark:text-gray-400" key={index}>
+                                            <td className="px-4 py-3 text-sm">{assetDetail?.assets_no}</td>
+                                            <td className="px-4 py-3 text-sm">{assetDetail?.assets_brand}</td>
+                                            <td className="px-4 py-3">
+                                                <div className="flex items-center text-sm">
+                                                    <div>
+                                                        <p className="font-semibold">{detail.deta_description}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex items-center text-sm">
-                                                <div>
-                                                    <p className="font-semibold">{detail.data_state}</p>
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <div className="flex items-center text-sm">
+                                                    <div>
+                                                        <p className="font-semibold">{detail.data_state}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-4 py-3 text-sm">{assetsByRequestId[index]?.assets_curr_location}</td>
-                                        <td className="px-6 py-4 hidden md:table-cell">
-                                            <div className="flex items-center justify-center mb-4"
-                                                onClick={async () => await handleCheckboxClick(index)}>
-                                                <input
-                                                    id={`checkbox-${detail.deta_assets_no}`}
-                                                    type="checkbox"
-                                                    value=""
-                                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))
-                                }
+                                            </td>
+                                            <td className="px-4 py-3 text-sm">{assetDetail?.assets_curr_location}</td>
+                                            <td className="px-6 py-4 hidden md:table-cell">
+                                                <div className="flex items-center justify-center mb-4"
+                                                    onClick={() => handleCheckboxClick(assetDetail, detail)}>
+                                                    <input
+                                                        type="checkbox"
+                                                        value=""
+                                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                    />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
-
                         </table>
                     )}
                 </div>

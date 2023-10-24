@@ -2,6 +2,7 @@ import { ims_assets } from "@prisma/client"
 import { create } from 'zustand'
 import { assetsProvider } from "@/root/zustand/provider"
 import { QueryOptions } from "@/app/types"
+import { clear } from "console"
 const LIMIT = 5
 interface assetState {
     assets: ims_assets[]
@@ -23,6 +24,7 @@ interface assetState {
     addAssetsCheck: (asset: ims_assets) => Promise<void>
     deleteAssetsCheck: (asset: ims_assets) => Promise<void>
     getAssetsByRequestId: (requestId: string) => Promise<void>
+    clearAssetsCheck: () => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -78,6 +80,9 @@ export const useAssetStore = create<assetState>((set, get) => {
         deleteAssetsCheck: async (asset: ims_assets) => {
             const assetsCheck = get().assetsCheck.filter((item:ims_assets) => item.assets_no !== asset.assets_no)
             set({ assetsCheck })
+        },
+        clearAssetsCheck: async () => {
+            set({ assetsCheck: [] })
         }
     }
 })

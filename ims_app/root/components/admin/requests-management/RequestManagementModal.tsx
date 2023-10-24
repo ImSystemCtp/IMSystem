@@ -14,7 +14,7 @@ type ModalProps = {
     assetsCheck: ims_assets[];
     detailsCheck: ims_details_asset[];
 };
-export default function RequestManagementModal({ isOpen, onRequestClose,option,requestSelected,assetsCheck,detailsCheck }: ModalProps) {
+export default function RequestManagementModal({ isOpen, onRequestClose,option,assetsCheck,detailsCheck,requestSelected }: ModalProps) {
     const { addRegister } = useRegisterStore();
     const { updateDetailsRequestState} = useDetailsRequestStore();
     const handleRequest = async () =>  {
@@ -35,7 +35,9 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,r
                 success: "Activos registrados exitosamente!",
                 error: "No se pudo registrar los activos",
             });
+            console.log(detailsCheck)
             const updatedDetails = detailsCheck.map(detail => ({ ...detail, data_state: EnumDetailState.Accepted }));
+            console.log(updatedDetails)
             toast.promise(updateDetailsRequestState(updatedDetails), {
                 loading: "Actualizando estado de detalles de solicitud...",
                 success: "Estado de detalles de solicitud actualizado exitosamente!",

@@ -19,7 +19,7 @@ const initialValues: FormValues = {
 
 export default function LowsAdminForm() {
 
-    const {assetsCheck } = useAssetStore();
+    const {assetsCheck,clearAssetsCheck } = useAssetStore();
     const { addRegister } = useRegisterStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
@@ -38,6 +38,9 @@ export default function LowsAdminForm() {
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",
         });
+        console.log(assetsCheck)
+        clearAssetsCheck();
+        console.log(assetsCheck)
     };
     return (
         <div className="w-full">

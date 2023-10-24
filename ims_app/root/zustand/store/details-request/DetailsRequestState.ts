@@ -32,7 +32,9 @@ export const useDetailsRequestStore = create<detailsRequestState>((set, get) => 
             set({ detailsCheck });
         },
         updateDetailsRequestState: async (details: ims_details_asset[]) => {
+            console.log(details);
             const detailsRequestUpdated = await detailsRequestProvider.updateDetailsRequestState(details);
+            console.log(detailsRequestUpdated);
             set((state: detailsRequestState) => ({
                 detailsByIdRequest: [
                     ...state.detailsByIdRequest.filter((item) =>
@@ -41,6 +43,7 @@ export const useDetailsRequestStore = create<detailsRequestState>((set, get) => 
                     ...detailsRequestUpdated,
                 ],
             }));
+            console.log(get().detailsByIdRequest);
         }
 
     };
