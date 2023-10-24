@@ -1,7 +1,11 @@
 "use client"
 import Link from "next/link"
 import { motion } from "framer-motion";
+import { useAssetStore } from "@/root/zustand";
 export default function UserMain() {
+    const {  clearAssetsCheck } = useAssetStore();
+    clearAssetsCheck();
+    clearAssetsCheck();
     const optionsList = [
         {
             title: "Solicitudes de Bajas",

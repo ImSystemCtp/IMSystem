@@ -13,9 +13,10 @@ export default function ListAssets() {
     const [option, setOption] = useState("");
     const [showModal, setShowModal] = useState(false);
     const { getDetailsRequestByRequestId, deleteDetailsCheck, addDetailsCheck, detailsCheck, detailsByIdRequest } = useDetailsRequestStore();
-    const { getAssetsByRequestId, assetsByRequestId, addAssetsCheck, deleteAssetsCheck, assetsCheck } = useAssetStore();
+    const { getAssetsByRequestId, assetsByRequestId, addAssetsCheck, clearAssetsCheck,deleteAssetsCheck, assetsCheck } = useAssetStore();
     const handleCloseModal = () => { setShowModal(false); };
     const handleOpenModal = () => { setShowModal(true); };
+    clearAssetsCheck();
     const handleCheckboxClick = (asset: ims_assets, detail: ims_details_asset) => {
         if (assetsCheck.includes(asset) && detailsCheck.includes(detail)) {
             deleteAssetsCheck(asset);

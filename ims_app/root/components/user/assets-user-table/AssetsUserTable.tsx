@@ -5,7 +5,7 @@ import { EnumReqType, ims_assets, ims_details_asset } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
-    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, assetsCheck } = useAssetStore();
+    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore,clearAssetsCheck, assetsCheck } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [assetSelect, setAssetSelect] = useState<ims_assets>({} as ims_assets);
     const [showModal, setShowModal] = useState(false);
@@ -98,6 +98,7 @@ export default function AssetsUserTable() {
                                         <input
                                             id={`checkbox-${asset.assets_no}`}
                                             type="checkbox"
+                                            checked={assetsCheck.includes(asset)}
                                             value=""
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         />

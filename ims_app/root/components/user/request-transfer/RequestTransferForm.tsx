@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
-import { useAssetStore, useDetailsRequestStore, useRegisterTransferStore, useRequestStore } from "@/root/zustand";
+import { useAssetStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/root/types";
 interface FormValues {
@@ -19,7 +19,7 @@ const initialValues: FormValues = {
 
 export default function RequestTransferForm() {
     const {addRequest} = useRequestStore();
-    const {assetsCheck } = useAssetStore();
+    const { assetsCheck, clearAssetsCheck } = useAssetStore();
     const { setDetailRequest,details } = useDetailsRequestStore();
     const checkedDetails = details.filter((detail) => {
         return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
@@ -49,6 +49,7 @@ export default function RequestTransferForm() {
             success: "Solicitud enviada exitosamente!",
             error: "No se pudo enviar la solicitud",
         });
+        clearAssetsCheck();
     };
     return (
         <div className="w-full">

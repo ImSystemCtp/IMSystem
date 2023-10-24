@@ -82,7 +82,9 @@ export const useAssetStore = create<assetState>((set, get) => {
             set({ assetsCheck })
         },
         clearAssetsCheck: async () => {
-            set({ assetsCheck: [] })
+            set((state) => ({
+                assetsCheck: state.assetsCheck.length > 0 ? [] : state.assetsCheck
+            }));
         }
     }
 })
