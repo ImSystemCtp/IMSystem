@@ -19,7 +19,6 @@ import getParams from "../(function)/getParams";
 } */
 
 export async function GET(_req: Request) {
-    console.log("asda")
     try {
         const object = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "contains" } as QueryOptions
         const url = _req.url
@@ -87,7 +86,6 @@ export async function GET(_req: Request) {
 
 
     } catch (error) {
-        console.log(error)
         return new NextResponse("Internal Error", { status: 500 });
     }
 }

@@ -5,9 +5,7 @@ const getDetailsRequestsByIdRequest = async (idRequest:string) => {
     return response.data as ims_details_asset[];
 }
 const updateDetailsRequestState = async (details: ims_details_asset[]) => {
-    console.log(details);
     const response = await axios.put('/api/detail/details/',details);
-    console.log(response.data);
     return response.data as ims_details_asset[];
 }
 export const detailsRequestProvider = {

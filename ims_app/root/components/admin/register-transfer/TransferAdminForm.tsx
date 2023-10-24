@@ -37,9 +37,7 @@ export default function TransferAdminForm() {
             success: "Transferencia registrados exitosamente!",
             error: "No se pudo registrar la transferencia de activos",
         });
-        console.log(assetsCheck)
         clearAssetsCheck();
-        console.log(assetsCheck)
     };
     return (
         <div className="w-full">

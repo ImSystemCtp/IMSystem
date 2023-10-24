@@ -7,7 +7,6 @@ export async function PUT(req: Request) {
     try {
 
         const body = await req.json() as ims_details_asset[]
-        console.log(body);
         let response: ims_details_asset[] = [];
         body.forEach(async (element) => {
 
@@ -20,7 +19,6 @@ export async function PUT(req: Request) {
             response.push(detail);
         });
         if (response) {
-            console.log(response);
             return NextResponse.json(response);
         }
         return new NextResponse("Not found", { status: 404 });
