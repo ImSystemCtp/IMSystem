@@ -5,7 +5,7 @@ import { EnumReqType, ims_assets, ims_details_asset } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
-    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore,clearAssetsCheck, assetsCheck } = useAssetStore();
+    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, assetsCheck } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [assetSelect, setAssetSelect] = useState<ims_assets>({} as ims_assets);
     const [showModal, setShowModal] = useState(false);

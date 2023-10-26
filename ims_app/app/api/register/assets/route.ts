@@ -9,29 +9,32 @@ export async function POST(req: Request) {
         const type = body.register.reg_type;
         const assets = body.assets;
         if (type == 'Register') {
+            
             assets.forEach(async (element: ims_assets) => {
-                const response = await prismaDB.ims_register.create({
-                    data: {
-                        reg_folio: 1,
-                        reg_inst_id: 1,
-                        reg_tomo:  1,
-                        reg_asiento: 1,
-                        reg_type: body.register.reg_type,
-                        reg_observation: body.register.reg_observation,
-                        reg_usu_id: body.register.reg_usu_id,
-                    }
-                });
-                const registerId = response.reg_id;
-
-                await prismaDB.ims_assets.create({ data: element })
-                await prismaDB.ims_register_assets.create({ data: { reg_id: registerId, assets_no: element.assets_no } })
-
+                //const registerId = response.reg_id;
+                
+                const [reg] = await prismaDB.$transaction([
+                    prismaDB.ims_register.create({
+                        data: {
+                            reg_inst_id: 1,
+                            reg_folio: 1,
+                            reg_tomo:  1,
+                            reg_asiento: 1,
+                            reg_type: body.register.reg_type,
+                            reg_observation: body.register.reg_observation,
+                            reg_usu_id: body.register.reg_usu_id,
+                        }
+                    }),
+                   prismaDB.$executeRaw`call increment_register_in()`
+                ]);
+                prismaDB.ims_assets.create({ data: element })
+                prismaDB.ims_register_assets.create({ data: { reg_id: reg.reg_id, assets_no: element.assets_no } })
             });
-
             return NextResponse.json({ message: "Register" });
         }
         return new NextResponse("type no .... ", { status: 401 });
     } catch (error) {
+        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }

@@ -14,7 +14,7 @@ export default async function getNextNumber<ims_registered_in>() {
             inst_id: 1
         } as ims_registered_in;
     }
-    return {    
+    return {
         tomo: 1,
         folio: 1,
         asiento: 1,

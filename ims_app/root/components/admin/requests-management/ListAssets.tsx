@@ -16,7 +16,7 @@ export default function ListAssets() {
     const { getAssetsByRequestId, assetsByRequestId, addAssetsCheck, clearAssetsCheck,deleteAssetsCheck, assetsCheck } = useAssetStore();
     const handleCloseModal = () => { setShowModal(false); };
     const handleOpenModal = () => { setShowModal(true); };
-    clearAssetsCheck();
+   // clearAssetsCheck();
     const handleCheckboxClick = (asset: ims_assets, detail: ims_details_asset) => {
         if (assetsCheck.includes(asset) && detailsCheck.includes(detail)) {
             deleteAssetsCheck(asset);

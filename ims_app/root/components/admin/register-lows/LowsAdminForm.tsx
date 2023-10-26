@@ -38,7 +38,7 @@ export default function LowsAdminForm() {
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",
         });
-        clearAssetsCheck();
+    clearAssetsCheck();
     };
     return (
         <div className="w-full">
