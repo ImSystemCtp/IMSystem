@@ -4,12 +4,8 @@ import { ims_users } from "@prisma/client";
 import axios from "axios";
 
 const getUsers = async ( query : QueryOptions) => {
-    
-    const response = await axios.get<ims_users[]>("api/users", { params: query})
-    console.log(response)
-
+    const response = await axios.get<ims_users[]>("/api/users", { params: query})
     return response.data
-
 }
 const updateUser = async (user: ims_users) => {
     const response = await axios.put(`/api/users/${user.usu_id}`, user)
