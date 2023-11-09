@@ -1,12 +1,16 @@
 "use client"
-import { useRequestStore } from "@/root/zustand";
-import { useEffect } from "react";
+import { useLoadingStore, useRequestStore } from "@/root/zustand"
+import { useEffect } from "react"
 export const useRequestPending= () => {
     const getRequestPending = useRequestStore(state => state.getRequestsPending)!;
+
+    
     useEffect(() => {
         async function checkRequestPendingChanges() {
-            getRequestPending();
+
+            await getRequestPending();
+            
         }
         checkRequestPendingChanges();
-    }, [ getRequestPending]);
+    }, [ getRequestPending])
 }

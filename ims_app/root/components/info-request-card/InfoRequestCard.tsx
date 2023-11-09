@@ -3,8 +3,10 @@ import Link from "next/link";
 import { LoadingComponent } from "@/root/components";
 import { useUserNoRoleStore,useLoadingStore } from "@/root/zustand";
 import { motion } from "framer-motion";
+import { useUserPending } from "@/root/hooks";
 export default function InfoRequestCard() {
-    const { usersPending } = useUserNoRoleStore();
+    useUserPending();
+    const { usersPending ,isLoadUser } = useUserNoRoleStore();
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <motion.div
@@ -24,7 +26,7 @@ export default function InfoRequestCard() {
                 </div>
             </div>
             <ul className="my-1">
-            {isLoading ? (
+            {isLoadUser ? (
                     <LoadingComponent />
                 ) : (
                 usersPending.map((user, index) => (

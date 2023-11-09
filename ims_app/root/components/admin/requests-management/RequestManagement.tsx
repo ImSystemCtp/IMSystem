@@ -1,11 +1,12 @@
 "use client"
 import { LoadingComponent } from "@/root/components";
-import { useRequestStore } from "@/root/zustand";
+import { useLoadingStore, useRequestStore } from "@/root/zustand";
 import { ims_request } from "@prisma/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 export default function RequestManagement() {
-    const { requestPending, setRequestSelected } = useRequestStore();
+    const { requestPending, setRequestSelected , isLoadRequest} = useRequestStore();
+   
     const handleRequestSelect = (request: ims_request) => () => {
         setRequestSelected(request);
     }
@@ -23,7 +24,7 @@ export default function RequestManagement() {
             <div className="bg-sky-400 h-px mb-6"></div>
             <div className="w-full overflow-hidden rounded-lg shadow-xs">
                 <div className="w-full overflow-x-auto">
-                    {requestPending.length === 0 ? (
+                    {isLoadRequest ? (
                         <LoadingComponent />
                     ) : (
                         <table className="w-full">

@@ -1,8 +1,8 @@
 "use client";
 import { InfoCards, InfoRequestCard, PieChart, RequestManagement } from "@/root/components";
-import { useRegisterIn, useRequestPending, useUserPending } from "@/root/hooks";
+import { useRegisterIn, useRequestPending } from "@/root/hooks";
 export default function AdminMain() {
-    useUserPending();
+
     useRegisterIn();
     useRequestPending();
     return (
@@ -24,7 +24,7 @@ export default function AdminMain() {
                             className="w-6 h-6 absolute top-3 right-3 text-gray-400 cursor-pointer"
                         >
                             <path
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 strokeLinejoin="round"
                                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                             />

@@ -5,6 +5,7 @@ import { create } from 'zustand'
 interface LocationState {
     locations: ims_locations[];
     locationToEdit: ims_locations | null;
+    loadingLocation: boolean
     getLocation: () => Promise<void>;
     createLocation: (location: ims_locations) => Promise<void>;
     selectLocationToEdit: (location: ims_locations) => void;
@@ -15,8 +16,11 @@ export const useLocationStore = create<LocationState>((set) => {
     return {
         locations: [],
         locationToEdit: null,
+        loadingLocation: false,
         getLocation: async () => {
+            set({loadingLocation : true})
             const locations = await locationProvider.getLocation()
+            set({loadingLocation : false})
             set({ locations })
         },
         createLocation: async (location: ims_locations) => {

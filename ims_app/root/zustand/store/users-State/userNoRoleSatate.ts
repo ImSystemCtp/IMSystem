@@ -10,6 +10,7 @@ interface userNoRoleState {
     pagine: number,
     countPage: number
     haveNextPage: boolean
+    isLoadUser: boolean 
     getUserPending: () => Promise<void>
     getNextPage: () => Promise<void>
     getPreviousPage: () => Promise<void>
@@ -20,15 +21,18 @@ export const useUserNoRoleStore = create<userNoRoleState>((set, get) => {
         users: [],
         usersPending: [],
         cursorPending: 0,
+        isLoadUser: false,
         haveNextPage: true,
         pagine: 0,
         countPage: 0,
         getUserPending: async () => {
+            set({ isLoadUser: true })   
             const usersPending = await userProvider.getUsers({ offset: get().cursorPending, limit: LIMIT, filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions) as ims_users[];
             set({ usersPending, cursorPending: get().cursorPending + 5, users: usersPending })
             if (usersPending?.length < 5) {
                 set({ haveNextPage: false })
             }
+            set({ isLoadUser: false })
         },
         getNextPage: async () => {
             if (get().haveNextPage && get().countPage == get().pagine) {

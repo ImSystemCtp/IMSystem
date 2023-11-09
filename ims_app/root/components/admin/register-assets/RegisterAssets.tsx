@@ -18,6 +18,7 @@ interface FormValues {
     assent_law_id: string,
     assets_acquisition_value: string,
 }
+
 const initialValues = {} as FormValues;
 
 export default function RegisterAssets() {
@@ -27,8 +28,9 @@ export default function RegisterAssets() {
     const { locations } = useLocationStore();
     const { addAssets } = useAssetStore()
     const handleSubmit = async (values: FormValues) => {
-        const { assent_law_id, assets_regis_location, assets_invoice_number } = values
-        addAssets({ ...values, assets_invoice_number: Number.parseInt(assets_invoice_number), assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: Number.parseInt(assets_regis_location) } as ims_assets);
+        const { assent_law_id, assets_regis_location } = values
+        const locationId = Number.parseInt(assets_regis_location);
+        addAssets({ ...values, assets_curr_location: locationId , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
     };
     return (
         <div className="justify-center items-center">

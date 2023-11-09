@@ -7,6 +7,7 @@ interface requestState {
     requestSelected: ims_request;
     assets: ims_assets[];
     requestPending: ims_request[];
+    isLoadRequest: boolean;
     addRequest: ( requestDetails: RequestType) => Promise<void>;
     getRequestsPending: () => Promise<void>;
     setRequestSelected: (requestSelected: ims_request) => void;
@@ -16,13 +17,15 @@ export const useRequestStore = create<requestState>((set) => {
         request: {} as ims_request,
         requestSelected: {} as ims_request,
         assets: [],
+        isLoadRequest: false,
         requestPending: [],
         addRequest: async ( requestDetails: RequestType) => {
             await requestProvider.createRequest(requestDetails);
         },
         getRequestsPending: async () => {
+            set({ isLoadRequest: true })
             const requestPending =  await requestProvider.getRequestsPending();
-            set({ requestPending })
+            set({ requestPending, isLoadRequest: false })
         },
         setRequestSelected: async (requestSelected: ims_request) => {
             set({ requestSelected });

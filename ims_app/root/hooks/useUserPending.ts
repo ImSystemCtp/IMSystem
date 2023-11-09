@@ -1,11 +1,11 @@
 "use client"
 import { useEffect } from "react";
-import { useUserNoRoleStore } from "@/root/zustand";
+import { useLoadingStore, useUserNoRoleStore } from "@/root/zustand";
 export const useUserPending= () => {
     const getUserPending = useUserNoRoleStore(state => state.getUserPending)!;
     useEffect(() => {
         async function checkUserPendingChanges() {
-            getUserPending();
+            await getUserPending();
         }
         checkUserPendingChanges();
     }, [ getUserPending]);

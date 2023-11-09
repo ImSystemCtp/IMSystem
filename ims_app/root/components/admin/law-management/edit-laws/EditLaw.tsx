@@ -4,10 +4,9 @@ import { useLawStore, useLoadingStore } from "@/root/zustand";
 import { ims_laws } from "@prisma/client";
 import { motion } from "framer-motion";
 export default function EditLaw() {
-    const {selectLawToEdit,laws} = useLawStore();
-    const isLoading = useLoadingStore((state) => state.isLoading);
+    const {selectLawToEdit,laws,loadingLaw} = useLawStore();
     return (
-        isLoading ? <LoadingComponent /> :
+        loadingLaw ? <LoadingComponent /> :
             <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
                 <h2 className="text-center text-2xl font-bold pb-12 p-2">Leyes</h2>
                 <div className="w-full max-h-60 overflow-y-auto">

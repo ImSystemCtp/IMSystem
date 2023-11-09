@@ -4,10 +4,9 @@ import { useLoadingStore, useLocationStore } from "@/root/zustand";
 import { ims_locations } from "@prisma/client";
 import { motion } from "framer-motion";
 export default function EditLocation() {
-    const {selectLocationToEdit,locations} = useLocationStore();
-    const isLoading = useLoadingStore((state) => state.isLoading);
+    const {selectLocationToEdit,locations,loadingLocation} = useLocationStore();
     return (
-        isLoading ? <LoadingComponent /> :
+        loadingLocation ? <LoadingComponent /> :
             <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
                 <h2 className="text-center text-2xl font-bold  p-2">Ubicaciones</h2>
                 <div className="w-full max-h-60 overflow-y-auto">
