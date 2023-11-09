@@ -81,13 +81,10 @@ export async function GET(_req: Request) {
         else {
             users = await prismaDB.ims_users.findMany();
         }
-
         return NextResponse.json(users);
-
     } catch (error) {
         console.log(error)
         return new NextResponse("Internal Error", { status: 500 });
-        
     }
 }
 

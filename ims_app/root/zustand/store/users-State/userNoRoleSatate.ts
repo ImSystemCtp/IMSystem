@@ -26,7 +26,7 @@ export const useUserNoRoleStore = create<userNoRoleState>((set, get) => {
         pagine: 0,
         countPage: 0,
         getUserPending: async () => {
-            set({ isLoadUser: true })   
+            set({ isLoadUser: true })
             const usersPending = await userProvider.getUsers({ offset: get().cursorPending, limit: LIMIT, filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions) as ims_users[];
             set({ usersPending, cursorPending: get().cursorPending + 5, users: usersPending })
             if (usersPending?.length < 5) {

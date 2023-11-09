@@ -5,7 +5,7 @@ import { create } from 'zustand'
 interface LocationState {
     locations: ims_locations[];
     locationToEdit: ims_locations | null;
-    loadingLocation: boolean
+    loadingLocation: boolean;
     getLocation: () => Promise<void>;
     createLocation: (location: ims_locations) => Promise<void>;
     selectLocationToEdit: (location: ims_locations) => void;

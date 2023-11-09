@@ -17,10 +17,7 @@ export async function POST(req: Request) {
 export async function GET() {
     try {
         const response = await prismaDB.ims_laws.findMany();
-        if (response.length > 0) {
-            return NextResponse.json(response);
-        }
-        return new NextResponse("No data found", { status: 404 });
+        return NextResponse.json(response);
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });
     }
