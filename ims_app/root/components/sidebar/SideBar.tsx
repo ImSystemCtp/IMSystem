@@ -44,7 +44,7 @@ export default function SideBar() {
                     <ul className="space-y-2 font-medium">
                         <li>
                             <Link
-                                href="/admin/register-assets"
+                                href={"/admin/register-assets"}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-200 dark:hover:bg-gray-700 group"
                             >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -69,7 +69,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/laws-management"
+                                href={"/admin/laws-management"}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-200 dark:hover:bg-gray-700 group"
                             >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -80,7 +80,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/request-users"
+                                href={"/admin/request-users"}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-200 dark:hover:bg-gray-700 group"
                             >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -91,7 +91,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/register-lows"
+                                href={"/admin/register-lows"}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-200 dark:hover:bg-gray-700 group"
                             >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -102,7 +102,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/register-transfers"
+                                href={"/admin/register-transfers"}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-200 dark:hover:bg-gray-700 group"
                             >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -113,7 +113,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/request-management"
+                                href={"/admin/request-management"}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-200 dark:hover:bg-gray-700 group"
                             >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
