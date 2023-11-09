@@ -9,10 +9,10 @@ export async function POST(req: Request) {
         const type = body.register.reg_type;
         const assets = body.assets;
         if (type == 'Register') {
-            
+
             assets.forEach(async (element: ims_assets) => {
                 //const registerId = response.reg_id;
-                
+
                 const [reg] = await prismaDB.$transaction([
                     prismaDB.ims_register.create({
                         data: {
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
                             reg_usu_id: body.register.reg_usu_id,
                         }
                     }),
-                   prismaDB.$executeRaw`call increment_register_in()`
+                    prismaDB.$executeRaw`call increment_register_in()`
                 ]);
                 prismaDB.ims_assets.create({ data: element })
                 prismaDB.ims_register_assets.create({ data: { reg_id: reg.reg_id, assets_no: element.assets_no } })
