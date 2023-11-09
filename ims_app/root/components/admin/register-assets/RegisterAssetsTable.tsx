@@ -9,8 +9,8 @@ export default function RegisterAssetsTable() {
     const { assets } = useAssetStore();
     const register = {
         reg_type: EnumRegisterType.Register,
-        reg_date: new Date(),
-        reg_usu_id: 2,
+        reg_date: new Date(),//TODO: date
+        reg_usu_id: 2,//TODO: userAuth?.id,
         reg_inst_id: 1,
     } as  ims_register
     const handleRegisterAssets = async () => {
