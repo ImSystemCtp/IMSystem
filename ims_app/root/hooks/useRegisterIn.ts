@@ -1,15 +1,14 @@
 "use client"
 import { useEffect } from "react";
-import { useLoadingStore, useRegisterInStore } from "@/root/zustand";
+import { useAssetStore, useLoadingStore, useRegisterInStore } from "@/root/zustand";
 export const useRegisterIn= () => {
     const getRegisterIn = useRegisterInStore(state => state.getRegisterIn)!;
+    const {countAssets} = useAssetStore();
     useEffect(() => {
         async function checkRegisterInChanges() {
-            const registerInAction = await getRegisterIn();
-            if (registerInAction !== undefined) {
-                useLoadingStore.getState().setIsLoading(false);
-            }
+            getRegisterIn();
+            countAssets();
         }
         checkRegisterInChanges();
-    }, [getRegisterIn]);
+    }, [getRegisterIn,countAssets]);
 }
