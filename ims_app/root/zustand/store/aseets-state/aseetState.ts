@@ -25,6 +25,7 @@ interface assetState {
     deleteAssetsCheck: (asset: ims_assets) => Promise<void>
     getAssetsByRequestId: (requestId: string) => Promise<void>
     clearAssetsCheck: () => Promise<void>
+    clearAssets: () => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -84,6 +85,11 @@ export const useAssetStore = create<assetState>((set, get) => {
         clearAssetsCheck: async () => {
             set((state) => ({
                 assetsCheck: state.assetsCheck.length > 0 ? [] : state.assetsCheck
+            }));
+        },
+        clearAssets: async () => {
+            set((state) => ({
+                assets: state.assets.length > 0 ? [] : state.assets
             }));
         }
     }

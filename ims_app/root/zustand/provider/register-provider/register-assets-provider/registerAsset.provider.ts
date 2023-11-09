@@ -10,7 +10,6 @@ const createRegister = async (register: registerGood) => {
 const getRegister = async () => {
 
     const response = await axios.get('/api/register/assets');
-    
     return response.data as ims_register[];
 }
 export const registerAssetProvider = {

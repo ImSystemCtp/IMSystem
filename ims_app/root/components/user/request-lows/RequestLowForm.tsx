@@ -32,7 +32,7 @@ export default function RequestLowForm() {
     const handleSubmit = async (values: FormValues) => {
         const request = {
             req_type: EnumRegisterType.Low,
-            req_date: new Date(),
+            req_date: new Date().toISOString(),
             req_description: values.observation,
             req_usu_id: 2,
         } as ims_request

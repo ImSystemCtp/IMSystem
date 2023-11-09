@@ -6,19 +6,21 @@ import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     const { userAuth } = useAuthStore();
     const {addRegisterAssets} = useRegisterAssetStore();
-    const { assets } = useAssetStore();
+    const { assets,clearAssets } = useAssetStore();
     const register = {
         reg_type: EnumRegisterType.Register,
-        reg_date: new Date(),//TODO: date
-        reg_usu_id: 2,//TODO: userAuth?.id,
+        reg_date: new Date().toISOString(),//TODO: date
+        reg_usu_id: 1,
         reg_inst_id: 1,
     } as  ims_register
     const handleRegisterAssets = async () => {
-        toast.promise(addRegisterAssets(register, assets), {
+        await toast.promise( addRegisterAssets(register, assets), {
             loading: "Registrando activos...",
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",
-        });
+        }).then(()=>{
+            clearAssets();
+        })
     }
     return (
         <div className="w-1/3 rounded-lg border border-gray-300 p-4 m-2 ">
