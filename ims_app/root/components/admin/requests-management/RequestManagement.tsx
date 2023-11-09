@@ -61,7 +61,7 @@ export default function RequestManagement() {
                                         </td>
                                         <td className="px-4 py-3 text-sm">{request.req_type}</td>
                                         <td className="px-4 py-3 text-xs">
-                                            <span className={`px-2 py-1 font-semibold leading-tight rounded-full`}>
+                                            <span className={`px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full`}>
                                                 {request.req_state}
                                             </span>
                                         </td>

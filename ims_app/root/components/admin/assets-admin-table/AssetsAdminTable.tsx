@@ -32,25 +32,32 @@ export default function AssetsAdminTable() {
     return (
         <div>
             <div ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Numero de Placa
-                            </th>
-                            <th scope="col" className="hidden md:table-cell  px-6 py-3">
-                                Marca
-                            </th>
-                            <th scope="col" className="px-6 py-3 align-middle flex items-center justify-center">
-                                Seleccionar
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {assetsByLocation.length === 0 ? (
-                            toast.error("No hay activos en esta ubicación")
-                        ) : (
-                            assetsByLocation.map((asset: ims_assets, index: number) => (
+                {assetsByLocation.length === 0 ? (
+                    <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    <div>
+                        No hay Activos en esta ubicacion!.
+                    </div>
+                </div>
+                ) : (
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Numero de Placa
+                                </th>
+                                <th scope="col" className="hidden md:table-cell px-6 py-3">
+                                    Marca
+                                </th>
+                                <th scope="col" className="px-6 py-3 align-middle flex items-center justify-center">
+                                    Seleccionar
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {assetsByLocation.map((asset: ims_assets, index: number) => (
                                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td
                                         scope="row"
@@ -80,12 +87,13 @@ export default function AssetsAdminTable() {
                                         </div>
                                     </td>
                                 </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </div>
     );
+
 }
 
