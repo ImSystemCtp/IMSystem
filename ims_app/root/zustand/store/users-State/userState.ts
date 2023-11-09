@@ -7,13 +7,13 @@ const LIMIT = 5
 interface userState {
     users: ims_users[]
     usersPending: ims_users[],
-
+    loadUser: boolean,
     cursorPending: number,
     pagine: number,
     cursor: number
     count: number
     haveNextPage: boolean
-    getUsers: (limit: QueryOptions) => Promise<void>
+    getUsers: () => Promise<void>
     updateUser: (user: ims_users) => Promise<void>
     deleteUser: (user: ims_users) => Promise<void>
     getUserPending: () => Promise<void>
@@ -30,8 +30,11 @@ export const useUserStore = create<userState>((set, get) => {
         pagine: 0,
         cursor: 0,
         count: 0,
-        getUsers: async (limit) => {
-            const users = await userProvider.getUsers(limit)
+        loadUser: false,
+        getUsers: async () => {
+            set({ loadUser: true })
+            const users = await userProvider.getUsers({}as QueryOptions) as ims_users[]
+            set({ loadUser: false })
             set({ users })
         },
         updateUser: async (user: ims_users) => {
