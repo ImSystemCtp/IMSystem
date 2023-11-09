@@ -2,7 +2,6 @@
 import { InfoCards, InfoRequestCard,  RequestManagement } from "@/root/components";
 import { useRegisterIn, useRequestPending } from "@/root/hooks";
 export default function AdminMain() {
-
     useRegisterIn();
     useRequestPending();
     return (

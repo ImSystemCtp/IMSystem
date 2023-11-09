@@ -9,7 +9,7 @@ const getAssets = async () => {
     return response.data as ims_assets[];
 }
 const contAssets = async () => {
-    const response = await axios.get('/api/count-data',{params:{table:'ims_assets'}});
+    const response = await axios.get('/api/assets/count');
     return response.data as number;
 }
 const getAssetsByLocation = async (locationId: number) => {

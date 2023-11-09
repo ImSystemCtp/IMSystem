@@ -1,9 +1,10 @@
 "use client"
 import { LoadingComponent } from "@/root/components";
-import { useLoadingStore, useRegisterInStore } from "@/root/zustand";
+import { useAssetStore, useLoadingStore, useRegisterInStore } from "@/root/zustand";
 import { motion } from "framer-motion";
 export default function InfoCards() {
     const registerInState = useRegisterInStore();
+    const {count} = useAssetStore();
     const currentRegisterIn = registerInState.registerIn;
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
@@ -20,7 +21,7 @@ export default function InfoCards() {
                     <LoadingComponent />
                 ) : (
                     <div className="text-right">
-                        <p className="text-2xl">{1}</p>
+                        <p className="text-2xl">{count}</p>
                         <p>Bienes</p>
                     </div>
                 )}
