@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
-import {  useAssetStore } from "@/root/zustand";
+import {  useAssetStore, useLocationStore } from "@/root/zustand";
 import { registerGood } from "@/root/types";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { useRegisterStore } from "@/root/zustand";
@@ -18,13 +18,12 @@ const initialValues: FormValues = {
 };
 
 export default function LowsAdminForm() {
-
-    const {assetsCheck,clearAssetsCheck } = useAssetStore();
+    const {assetsCheck,clearAssetsCheck,clearAssetsByLocation,getAssetsByLocation } = useAssetStore();
     const { addRegister } = useRegisterStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Low,
-            reg_date: new Date(),
+            reg_date: new Date().toISOString(),
             reg_observation: values.observation,
             reg_usu_id: 2,
             reg_inst_id: 1,
@@ -38,7 +37,8 @@ export default function LowsAdminForm() {
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",
         });
-    clearAssetsCheck();
+    await clearAssetsByLocation(assetsCheck);
+    await clearAssetsCheck();
     };
     return (
         <div className="w-full">

@@ -18,12 +18,12 @@ const initialValues: FormValues = {
 };
 
 export default function TransferAdminForm() {
-    const {assetsCheck,clearAssetsCheck } = useAssetStore();
+    const {assetsCheck,clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { addRegister } = useRegisterStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Low,
-            reg_date: new Date(),
+            reg_date: new Date().toISOString(),
             reg_observation: values.observation,
             reg_usu_id: 2,
             reg_inst_id: 1,
@@ -37,7 +37,8 @@ export default function TransferAdminForm() {
             success: "Transferencia registrados exitosamente!",
             error: "No se pudo registrar la transferencia de activos",
         });
-        clearAssetsCheck();
+    await clearAssetsByLocation(assetsCheck);
+    await clearAssetsCheck();
     };
     return (
         <div className="w-full">

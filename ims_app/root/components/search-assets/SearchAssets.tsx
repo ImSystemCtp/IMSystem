@@ -5,9 +5,10 @@ import { useState } from "react";
 export default function SearchAssets() {
     useLocation();
     const { getAssetsByLocation } = useAssetStore();
-    const { locations } = useLocationStore();
+    const { locations, setCurrentLocation,currentLocation } = useLocationStore();
     const [locationSelect, setLocationSelect] = useState<string>("");
-    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+        await setCurrentLocation(parseInt(event.target.value));
         getAssetsByLocation(parseInt(event.target.value));
     }
     const [noAssets, setNoAssets] = useState<string>("");

@@ -15,7 +15,7 @@ const initialValues: FormValues = {
 };
 export default function RequestLowForm() {
     const { addRequest } = useRequestStore();
-    const { assetsCheck, clearAssetsCheck } = useAssetStore();
+    const { assetsCheck, clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { setDetailRequest,details } = useDetailsRequestStore();
     const checkedDetails = details.filter((detail) => {
         return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
@@ -45,7 +45,8 @@ export default function RequestLowForm() {
             success: "Solicitud enviada exitosamente!",
             error: "No se pudo enviar la solicitud",
         });
-        clearAssetsCheck();
+    await clearAssetsByLocation(assetsCheck);
+    await clearAssetsCheck();
     };
     return (
         <div className="w-full">

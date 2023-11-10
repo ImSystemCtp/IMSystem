@@ -1,4 +1,4 @@
-import { ims_assets } from "@prisma/client"
+import { EnumAssetsState, ims_assets } from "@prisma/client"
 import { create } from 'zustand'
 import { assetsProvider } from "@/root/zustand/provider"
 import { QueryOptions } from "@/app/types"
@@ -26,6 +26,7 @@ interface assetState {
     getAssetsByRequestId: (requestId: string) => Promise<void>
     clearAssetsCheck: () => Promise<void>
     clearAssets: () => Promise<void>
+    clearAssetsByLocation: (assetsToClear: ims_assets[]) => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -56,8 +57,11 @@ export const useAssetStore = create<assetState>((set, get) => {
         getAssetsByLocation: async (locationId: number) => {
             set({ filterBy: "assets_regis_location", filterCondition: "equals", filterValue: locationId.toString(), cursor: 0 })
             const query = { limit: LIMIT, offset: get().cursor, orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: locationId.toString(), filterCondition: get().filterCondition } as QueryOptions
-            const assetsByLocationQr = await assetsProvider.getAssetsByLocationQuery(query)
-            set({ idLocation: locationId, assetsByLocation: assetsByLocationQr, cursor: get().cursor + LIMIT })
+            const assetsByLocationQr = await assetsProvider.getAssetsByLocationQuery(query) as ims_assets[]
+            const filteredAssets = assetsByLocationQr.filter(
+                (asset) => asset.assets_state !== EnumAssetsState.Malo
+            );
+            set({ idLocation: locationId, assetsByLocation: filteredAssets, cursor: get().cursor + LIMIT })
         },
         getAssetsByQuery: async (assetNo: string) => {
             set({ filterBy: "assets_no", filterCondition: "contains", filterValue: assetNo, cursor: 0 })
@@ -91,6 +95,12 @@ export const useAssetStore = create<assetState>((set, get) => {
             set((state) => ({
                 assets: state.assets.length > 0 ? [] : state.assets
             }));
-        }
+        },
+        clearAssetsByLocation: async (assetsToClear: ims_assets[]) => {
+            const filteredAssetsByLocation = get().assetsByLocation.filter(
+                (currentAsset) => !assetsToClear.some((assetToClear) => assetToClear.assets_no === currentAsset.assets_no)
+            );
+            set({ assetsByLocation: filteredAssetsByLocation });
+        },
     }
 })

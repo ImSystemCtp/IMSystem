@@ -36,6 +36,7 @@ enum EnumDetailState {
 
 model ims_assets {
   assets_regis_location                                         Int
+  invoice_date                                                  String?
   assets_no                                                     String                @id
   assets_description                                            String                @db.VarChar(30)
   assets_brand                                                  String                @db.VarChar(15)

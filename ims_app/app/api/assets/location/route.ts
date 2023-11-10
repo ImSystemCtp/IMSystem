@@ -3,13 +3,11 @@ import { QueryOptions } from "@/app/types";
 import prismaDB from "@/lib/prisma/prismadb";
 import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
-
-
 export async function GET(_req: Request ) {
     try {
         const object = { limit: 0, offset: 0, orderBy: "", order: "asc", filterBy: "", filterValue: "", filterCondition: "content" } as QueryOptions
         const url = _req.url
-        const parameters = getParams(url, object) 
+        const parameters = getParams(url, object)
         const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
         const hasPaginationData = offset && limit;
         const hasOrderData = orderBy && order;

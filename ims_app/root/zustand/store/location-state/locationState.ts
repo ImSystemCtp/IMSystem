@@ -10,6 +10,8 @@ interface LocationState {
     createLocation: (location: ims_locations) => Promise<void>;
     selectLocationToEdit: (location: ims_locations) => void;
     updateLocation: (locationToUpdate: ims_locations) => Promise<void>;
+    currentLocation: number | null;
+    setCurrentLocation: (locationId: number) => void;
 }
 
 export const useLocationStore = create<LocationState>((set) => {
@@ -17,6 +19,7 @@ export const useLocationStore = create<LocationState>((set) => {
         locations: [],
         locationToEdit: null,
         loadingLocation: false,
+        currentLocation: null,
         getLocation: async () => {
             set({loadingLocation : true})
             const locations = await locationProvider.getLocation()
@@ -38,5 +41,8 @@ export const useLocationStore = create<LocationState>((set) => {
                 ),
             }));
         },
+        setCurrentLocation: (locationId: number) => {
+            set({ currentLocation: locationId })
+        }
     }
 });

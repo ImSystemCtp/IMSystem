@@ -1,8 +1,8 @@
 "use client"
 import { useEffect } from "react";
-import { useLoadingStore, useLocationStore } from "@/root/zustand";
+import { useAssetStore, useLoadingStore, useLocationStore } from "@/root/zustand";
 export const useLocation= () => {
-    const getLocation = useLocationStore(state => state.getLocation)!;
+    const {getLocation,currentLocation} = useLocationStore();
     useEffect(() => {
         async function checkLocationsChanges() {
             const locations = await getLocation();

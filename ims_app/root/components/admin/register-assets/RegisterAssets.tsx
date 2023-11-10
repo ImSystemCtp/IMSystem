@@ -17,10 +17,9 @@ interface FormValues {
     assets_regis_location: string,
     assent_law_id: string,
     assets_acquisition_value: string,
+    invoice_date: string,
 }
-
 const initialValues = {} as FormValues;
-
 export default function RegisterAssets() {
     useLocation();
     useLaw();
@@ -30,7 +29,8 @@ export default function RegisterAssets() {
     const handleSubmit = async (values: FormValues) => {
         const { assent_law_id, assets_regis_location } = values
         const locationId = Number.parseInt(assets_regis_location);
-        addAssets({ ...values, assets_curr_location: locationId , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
+        const invoice_date = new Date(values.invoice_date).toISOString();
+        addAssets({ ...values,invoice_date:invoice_date, assets_curr_location: locationId , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
     };
     return (
         <div className="justify-center items-center">
@@ -61,6 +61,7 @@ export default function RegisterAssets() {
                                     />
                                     <CustomInput label="Serie:" name="assets_series" inputType="text" />
                                     <CustomInput label="Marca:" name="assets_brand" inputType="text" />
+                                    <CustomInput label="Fecha de Factura:" name="invoice_date" inputType="date" />
                                 </div>
                                 <div className="w-full p-2">
                                     <CustomInput label="Modelo:" name="assets_model" inputType="text" />
