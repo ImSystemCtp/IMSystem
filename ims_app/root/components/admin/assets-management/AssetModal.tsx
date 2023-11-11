@@ -21,8 +21,8 @@ export default function AssetModal({
 
     useEffect(() => {
         async function checkAssetsLocationChanges() {
-            if (isOpen && asset !==null && asset.assets_curr_location !== null) {
-                await getLawById(asset.assets_curr_location);
+            if (isOpen && asset !==null && asset.assent_law_id !== null && asset.assets_curr_location !== null) {
+                await getLawById(asset.assent_law_id);
                 await getLocationById(asset.assets_curr_location);
                 await registerByAssetId(asset.assets_no);
             }

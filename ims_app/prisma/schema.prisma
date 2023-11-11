@@ -23,15 +23,8 @@ model ims_details_asset {
   deta_description String?     @db.VarChar(100)
   deta_req_id      Int
   deta_assets_no   String
-  data_state       EnumDetailState @default(Pending)
   ims_assets       ims_assets  @relation(fields: [deta_assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "assets_details")
   ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: Cascade, onUpdate: Cascade, map: "request_details")
-}
-
-enum EnumDetailState {
-  Accepted
-  Denied
-  Pending
 }
 
 model ims_assets {
@@ -121,7 +114,8 @@ model ims_request {
   ims_users           ims_users           @relation(fields: [req_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "user_request")
 }
 enum EnumReqState {
-  Done
+  Accepted
+  Denied
   Pending
 }
 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { motion } from 'framer-motion';
-import { EnumDetailState, EnumReqState, ims_assets,ims_details_asset,ims_register,ims_request } from '@prisma/client';
+import {EnumReqState, ims_assets,ims_details_asset,ims_register,ims_request } from '@prisma/client';
 import { useDetailsRequestStore, useRegisterStore, useRequestStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
 import { registerGood } from '@/root/types';
@@ -11,42 +11,42 @@ type ModalProps = {
     onRequestClose: () => void;
     option: string;
     requestSelected: ims_request;
-    assetsCheck: ims_assets[];
+    assetsByRequestId: ims_assets[];
     detailsCheck: ims_details_asset[];
 };
-export default function RequestManagementModal({ isOpen, onRequestClose,option,assetsCheck,detailsCheck,requestSelected }: ModalProps) {
+export default function RequestManagementModal({ isOpen, onRequestClose,option,assetsByRequestId,detailsCheck,requestSelected }: ModalProps) {
     const { addRegister } = useRegisterStore();
-    const { updateDetailsRequestState} = useDetailsRequestStore();
+    const {updateRequestState} = useRequestStore();
     const handleRequest = async () =>  {
         if (option == 'Aceptar'){
             const register = {
                 reg_type: requestSelected.req_type,
-                reg_date: new Date(),
+                reg_date: new Date().toISOString(),
                 reg_observation: requestSelected.req_description,
                 reg_usu_id: requestSelected.req_usu_id,
                 reg_inst_id: 1,
             } as  ims_register
             const newRegister = {
                 register,
-                assets: assetsCheck,
+                assets: assetsByRequestId,
             } as registerGood
             await toast.promise(addRegister(newRegister), {
                 loading: "Registrando activos...",
                 success: "Activos registrados exitosamente!",
                 error: "No se pudo registrar los activos",
             });
-            const updatedDetails = detailsCheck.map(detail => ({ ...detail, data_state: EnumDetailState.Accepted }));
-            toast.promise(updateDetailsRequestState(updatedDetails), {
-                loading: "Actualizando estado de detalles de solicitud...",
-                success: "Estado de detalles de solicitud actualizado exitosamente!",
-                error: "No se pudo actualizar el estado de el detalles de solicitud",
+            const newRequest = {...requestSelected,req_state: EnumReqState.Accepted }
+            toast.promise(updateRequestState(newRequest), {
+                loading: "Actualizando solicitud...",
+                success: "Solicitud actualizada exitosamente!",
+                error: "No se pudo actualizar la solicitud",
             });
         }else{
-            const updatedDetails = detailsCheck.map(detail => ({ ...detail, data_state: EnumDetailState.Denied }));
-            toast.promise(updateDetailsRequestState(updatedDetails), {
-                loading: "Actualizando estado de detalles de solicitud...",
-                success: "Estado de detalles de solicitud actualizado exitosamente!",
-                error: "No se pudo actualizar el estado de el detalles de solicitud",
+            const newRequest = {...requestSelected,req_state: EnumReqState.Denied }
+            toast.promise(updateRequestState(newRequest), {
+                loading: "Actualizando solicitud...",
+                success: "Solicitud actualizada exitosamente!",
+                error: "No se pudo actualizar la solicitud",
             });
         }
         onRequestClose

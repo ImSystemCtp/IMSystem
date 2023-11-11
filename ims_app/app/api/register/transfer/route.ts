@@ -26,6 +26,7 @@ export async function POST(req: Request) {
                 },
                 data: {
                     assets_state: EnumAssetsState.Regular,
+                    assets_curr_location: element.assets_curr_location,
                 },
             });
             const updateRegister = await prismaDB.$queryRaw<ims_register[]>`
