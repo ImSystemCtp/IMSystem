@@ -49,7 +49,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,a
                 error: "No se pudo actualizar la solicitud",
             });
         }
-        onRequestClose
+        onRequestClose();
     };
     return (
         <Modal
