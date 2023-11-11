@@ -33,7 +33,8 @@ export const useUserStore = create<userState>((set, get) => {
         loadUser: false,
         getUsers: async () => {
             set({ loadUser: true })
-            const users = await userProvider.getUsers({}as QueryOptions) as ims_users[]
+            const users = await userProvider.getUsers({ filterBy: "usu_role", filterCondition: "not", filterValue: "Inactive" } as QueryOptions) as ims_users[];
+            console.log(users)
             set({ loadUser: false })
             set({ users })
         },

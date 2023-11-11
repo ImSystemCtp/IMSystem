@@ -6,28 +6,33 @@ import { transferAdminFormMessage } from "@/schemas";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { registerGood } from "@/root/types";
 import toast from "react-hot-toast";
-import { useAssetStore, useRegisterStore } from "@/root/zustand";
+import { useAssetStore, useLocationStore, useRegisterStore } from "@/root/zustand";
+import { useLocation } from "@/root/hooks";
+import Link from "next/link";
 interface FormValues {
     newUbication: string;
     observation: string;
 }
 
-const initialValues: FormValues = {
-    newUbication: "",
-    observation: "",
-};
-
+const initialValues = {} as FormValues;
 export default function TransferAdminForm() {
+    useLocation();
+    const { locations, setCurrentLocation,currentLocation } = useLocationStore();
     const {assetsCheck,clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { addRegister } = useRegisterStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
-            reg_type: EnumRegisterType.Low,
+            reg_type: EnumRegisterType.Transfer,
             reg_date: new Date().toISOString(),
             reg_observation: values.observation,
             reg_usu_id: 2,
             reg_inst_id: 1,
         } as  ims_register
+        console.log(register);
+        assetsCheck.forEach((asset) => {
+            asset.assets_curr_location = parseInt(values.newUbication);
+        });
+        console.log(assetsCheck);
         const registerTransfer = {
             register,
             assets: assetsCheck,
@@ -52,7 +57,33 @@ export default function TransferAdminForm() {
                         <div className="flex flex-col   w-full  ">
                             <div className="p-2 w-full h-full ">
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
-                                <CustomSelect label="Nueva ubicación del bien:" name="newUbication" placeholder="Nueva ubicación del bien" />
+                                {locations.length > 0 ? (
+                                        <CustomSelect label="Ubicación:" name="newUbication">
+                                            {!initialValues.newUbication ? (
+                                                <option value="">Seleccione una ubicación</option>
+                                            ) : (
+                                                ""
+                                            )}
+                                            {locations.map((location) => {
+                                                return (
+                                                    <option key={location.location_id} value={location.location_id}>
+                                                        {location.location_name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                            <p className="text-red">
+                                                No existen ubicaciones.
+                                            </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/locations-management">Agregar ubicaciones</Link>
+                                            </div>
+                                        </div>
+                                    )}
                             </div>
                             <div className="w-full text-center justify-center items-center">
                                 <motion.button

@@ -1,12 +1,12 @@
 "use client"
 import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
-import { EnumRegisterType, ims_register } from "@prisma/client";
+import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     const { userAuth } = useAuthStore();
     const { addRegisterAssets } = useRegisterAssetStore();
-    const { assets, clearAssets } = useAssetStore();
+    const { assets, clearAssets,removeAssets } = useAssetStore();
     const register = {
         reg_type: EnumRegisterType.Register,
         reg_date: new Date().toISOString(),
@@ -22,6 +22,9 @@ export default function RegisterAssetsTable() {
             clearAssets();
         })
     }
+    const handleDelete = (asset:ims_assets) => {
+        removeAssets(asset)
+    }
     return (
         <div className="w-1/3 rounded-lg  border border-gray-300 p-4 m-2  ">
             <h2 className="text-2xl font-bold  text-center ">
@@ -34,7 +37,7 @@ export default function RegisterAssetsTable() {
                             <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                 <th className="px-4 py-3">Numero de Placa</th>
                                 <th className="px-4 py-3">Nombre</th>
-                                <th className="px-4 py-3">Ubicacion</th>
+                                <th className="px-4 py-3">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody className=" bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -48,11 +51,16 @@ export default function RegisterAssetsTable() {
                                         </div>
                                     </td>
                                     <td className="px-4 py-3 text-sm">{asset.assets_model}</td>
-                                    <td className="flex justify-center items-center  px-4 py-3 text-xs">
-                                        <span className="px-2 py-1 font-semibold leading-tight text-center">
-                                            {asset.assets_regis_location}
-                                        </span>
-                                    </td>
+                                    <td className="px-4 py-3 text-sm">
+                                            <motion.button
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                onClick={() => handleDelete(asset)}
+                                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                            >
+                                                Eliminar
+                                            </motion.button>
+                                        </td>
                                 </tr>
                             ))}
                         </tbody>

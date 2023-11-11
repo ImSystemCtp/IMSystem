@@ -6,7 +6,7 @@ export interface QueryOptions {
     filterBy?: string;
     filterValue?: string;
     filterCondition?:
-    | "lt"
+    "lt"
     | "lte"
     | "gt"
     | "gte"
@@ -14,7 +14,7 @@ export interface QueryOptions {
     | "startsWith"
     | "endsWith"
     | "equals"
-    | "notEquals"
+    | "not"
     | "in"
     | "notIn"
     | "contains"

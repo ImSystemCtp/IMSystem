@@ -7,7 +7,7 @@ import { useUser, } from "@/root/hooks";
 import { EditUserModal, LoadingComponent } from "@/root/components";
 export default function UserManagement() {
     useUser();
-    const { updateUser, deleteUser,getUsers,loadUser,users } = useUserStore();
+    const { updateUser, deleteUser,loadUser,users } = useUserStore();
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
 

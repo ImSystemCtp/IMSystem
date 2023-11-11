@@ -8,6 +8,7 @@ interface assetState {
     assets: ims_assets[]
     assetsByRequestId: ims_assets[]
     assetsByLocation: ims_assets[]
+    assetsByLocationInfo: ims_assets[]
     assetsCheck: ims_assets[]
     count: number
     idLocation: number
@@ -27,6 +28,8 @@ interface assetState {
     clearAssetsCheck: () => Promise<void>
     clearAssets: () => Promise<void>
     clearAssetsByLocation: (assetsToClear: ims_assets[]) => Promise<void>
+    getAssetsByLocationInfo: (locationId: number) => Promise<void>
+    removeAssets: (asset: ims_assets) => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -41,6 +44,7 @@ export const useAssetStore = create<assetState>((set, get) => {
         filterBy: "",
         filterCondition: "",
         filterValue: "",
+        assetsByLocationInfo: [],
         getAssets: async () => {
             const assets = await assetsProvider.getAssets()
             set({ assets })
@@ -54,14 +58,26 @@ export const useAssetStore = create<assetState>((set, get) => {
         addAssets: async (asset: ims_assets) => {
             set((state: assetState) => ({ assets: [...state.assets, asset] }))
         },
+        removeAssets: async (asset: ims_assets) => {
+            const assets = get().assets.filter((item: ims_assets) => item.assets_no !== asset.assets_no)
+            set({ assets })
+        },
         getAssetsByLocation: async (locationId: number) => {
             set({ filterBy: "assets_regis_location", filterCondition: "equals", filterValue: locationId.toString(), cursor: 0 })
             const query = { limit: LIMIT, offset: get().cursor, orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: locationId.toString(), filterCondition: get().filterCondition } as QueryOptions
             const assetsByLocationQr = await assetsProvider.getAssetsByLocationQuery(query) as ims_assets[]
-            const filteredAssets = assetsByLocationQr.filter(
+            console.log(assetsByLocationQr)
+            const  filteredAssets = await assetsByLocationQr.filter(
                 (asset) => asset.assets_state !== EnumAssetsState.Malo
             );
+            console.log(filteredAssets)
             set({ idLocation: locationId, assetsByLocation: filteredAssets, cursor: get().cursor + LIMIT })
+        },
+        getAssetsByLocationInfo: async (locationId: number) => {
+            set({ filterBy: "assets_regis_location", filterCondition: "equals", filterValue: locationId.toString(), cursor: 0 })
+            const query = { limit: LIMIT, offset: get().cursor, orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: locationId.toString(), filterCondition: get().filterCondition } as QueryOptions
+            const assetsByLocationQr = await assetsProvider.getAssetsByLocationQuery(query) as ims_assets[]
+            set({ idLocation: locationId, assetsByLocationInfo: assetsByLocationQr, cursor: get().cursor + LIMIT })
         },
         getAssetsByQuery: async (assetNo: string) => {
             set({ filterBy: "assets_no", filterCondition: "contains", filterValue: assetNo, cursor: 0 })
@@ -97,9 +113,11 @@ export const useAssetStore = create<assetState>((set, get) => {
             }));
         },
         clearAssetsByLocation: async (assetsToClear: ims_assets[]) => {
+            console.log(assetsToClear)
             const filteredAssetsByLocation = get().assetsByLocation.filter(
                 (currentAsset) => !assetsToClear.some((assetToClear) => assetToClear.assets_no === currentAsset.assets_no)
             );
+            console.log(filteredAssetsByLocation)
             set({ assetsByLocation: filteredAssetsByLocation });
         },
     }

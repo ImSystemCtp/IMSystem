@@ -146,6 +146,7 @@ enum EnumUserRole {
   Admin
   User
   noRole
+  Inactive
 }
 
 model ims_laws {

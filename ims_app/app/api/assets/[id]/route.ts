@@ -6,6 +6,5 @@ export async function GET(){
         const response = await prismaDB.ims_assets.findMany();
         return NextResponse.json(response);
     } catch (error) {
-        
     }
 }

@@ -4,6 +4,7 @@ import { create } from 'zustand'
 
 interface LocationState {
     locations: ims_locations[];
+    location: ims_locations | null;
     locationToEdit: ims_locations | null;
     loadingLocation: boolean;
     getLocation: () => Promise<void>;
@@ -12,11 +13,13 @@ interface LocationState {
     updateLocation: (locationToUpdate: ims_locations) => Promise<void>;
     currentLocation: number | null;
     setCurrentLocation: (locationId: number) => void;
+    getLocationById: (locationId: number) => Promise<void>;
 }
 
 export const useLocationStore = create<LocationState>((set) => {
     return {
         locations: [],
+        location: null,
         locationToEdit: null,
         loadingLocation: false,
         currentLocation: null,
@@ -25,6 +28,10 @@ export const useLocationStore = create<LocationState>((set) => {
             const locations = await locationProvider.getLocation()
             set({loadingLocation : false})
             set({ locations })
+        },
+        getLocationById: async (locationId: number) => {
+            const location = await locationProvider.getLocationById(locationId)
+            set({ location })
         },
         createLocation: async (location: ims_locations) => {
             const newLocation = await locationProvider.createLocation(location);

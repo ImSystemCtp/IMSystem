@@ -99,6 +99,7 @@ export default function EditUserModal({
                                         <option value="">Seleccione una ubicación</option>
                                         <option value={EnumUserRole.Admin}>Administrador</option>
                                         <option value={EnumUserRole.User}>Usuario</option>
+                                        <option value={EnumUserRole.Inactive}>Inactivo</option>
                                     </CustomSelect>
                                 </div>
                             </div>

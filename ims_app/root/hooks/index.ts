@@ -1,3 +1,4 @@
+export * from './useDetailsRequestByRequestId';
 export * from './useLaw';
 export * from './useLocation';
 export * from './useRegisterIn';

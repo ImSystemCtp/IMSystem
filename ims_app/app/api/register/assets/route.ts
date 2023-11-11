@@ -17,6 +17,7 @@ export async function POST(req: Request) {
                         reg_type: body.register.reg_type,
                         reg_observation: body.register.reg_observation,
                         reg_usu_id: body.register.reg_usu_id,
+                        reg_date: body.register.reg_date,
                         },
                     });
                     console.log(reg.reg_asiento);

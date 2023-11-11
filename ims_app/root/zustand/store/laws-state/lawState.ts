@@ -4,9 +4,11 @@ import { lawProvider } from "@/root/zustand/provider"
 
 interface lawState {
     laws: ims_laws[];
+    law: ims_laws | null;
     lawToEdit: ims_laws | null;
     loadingLaw:boolean;
     getLaws: () => Promise<void>;
+    getLawById: (lawId: number) => Promise<void>;
     createLaw: (law: ims_laws) => Promise<void>;
     selectLawToEdit: (law: ims_laws) => void;
     updateLaw: (lawToUpdate: ims_laws) => Promise<void>;
@@ -15,6 +17,7 @@ interface lawState {
 export const useLawStore = create<lawState>((set) => {
     return {
         laws: [],
+        law: null,
         lawToEdit: null,
         loadingLaw:false,
         getLaws: async () => {
@@ -22,6 +25,10 @@ export const useLawStore = create<lawState>((set) => {
             const laws = await lawProvider.getLaw()
             set({loadingLaw:false})
             set({ laws })
+        },
+        getLawById: async (lawId: number) => {
+            const law = await lawProvider.getLawById(lawId)
+            set({ law })
         },
         createLaw: async (law: ims_laws) => {
             const newLaw = await lawProvider.createLaw(law);

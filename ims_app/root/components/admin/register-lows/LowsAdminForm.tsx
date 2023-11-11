@@ -32,7 +32,7 @@ export default function LowsAdminForm() {
             register,
             assets: assetsCheck,
         } as registerGood
-        toast.promise(addRegister(registerLow), {
+        await toast.promise(addRegister(registerLow), {
             loading: "Registrando activos...",
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",

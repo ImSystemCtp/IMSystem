@@ -1,2 +1,2 @@
 export * from './register-asset-state';
-export * from './registerLowState';
+export * from './registerState';
