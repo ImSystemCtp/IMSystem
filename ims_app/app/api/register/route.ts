@@ -1,5 +1,5 @@
 import { prismaDB } from "@/lib";
-import { registerGood } from "@/root/types";
+import { registerAsset } from "@/root/types";
 import { ims_registered_in } from "@prisma/client";
 import { NextResponse } from "next/server";
 
@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 /* export async function POST(req: Request) {
     try {
         const registerIN = {} as ims_registered_in;
-        const body = await req.json() as registerGood;
+        const body = await req.json() as registerAsset;
         const response = await prismaDB.ims_register.create({
             data: {
                 reg_inst_id: 1,

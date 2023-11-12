@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import { EnumRegisterType, ims_register } from "@prisma/client";
-import { registerGood } from "@/root/types";
+import { registerAsset } from "@/root/types";
 import toast from "react-hot-toast";
 import { useAssetStore, useLocationStore, useRegisterStore } from "@/root/zustand";
 import { useLocation } from "@/root/hooks";
@@ -36,7 +36,7 @@ export default function TransferAdminForm() {
         const registerTransfer = {
             register,
             assets: assetsCheck,
-        } as registerGood
+        } as registerAsset
         toast.promise(addRegister(registerTransfer), {
             loading: "Registrando transferencia...",
             success: "Transferencia registrados exitosamente!",

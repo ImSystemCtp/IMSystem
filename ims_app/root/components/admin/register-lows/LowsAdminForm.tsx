@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
 import {  useAssetStore, useLocationStore } from "@/root/zustand";
-import { registerGood } from "@/root/types";
+import { registerAsset } from "@/root/types";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
@@ -31,7 +31,7 @@ export default function LowsAdminForm() {
         const registerLow = {
             register,
             assets: assetsCheck,
-        } as registerGood
+        } as registerAsset
         await toast.promise(addRegister(registerLow), {
             loading: "Registrando activos...",
             success: "Activos registrados exitosamente!",

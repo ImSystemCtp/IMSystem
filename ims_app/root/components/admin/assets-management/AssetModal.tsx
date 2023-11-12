@@ -21,14 +21,14 @@ export default function AssetModal({
 
     useEffect(() => {
         async function checkAssetsLocationChanges() {
-            if (isOpen && asset !==null && asset.assent_law_id !== null && asset.assets_curr_location !== null) {
+            if (isOpen && asset !== null && asset.assent_law_id !== null && asset.assets_curr_location !== null) {
                 await getLawById(asset.assent_law_id);
                 await getLocationById(asset.assets_curr_location);
                 await registerByAssetId(asset.assets_no);
             }
         }
         checkAssetsLocationChanges();
-    }, [asset, getLocationById, getLawById, registerByAssetId,, isOpen]);
+    }, [asset, getLocationById, getLawById, registerByAssetId, , isOpen]);
     return (
         <Modal
             isOpen={isOpen}
@@ -60,16 +60,14 @@ export default function AssetModal({
             <p className="mb-6">Ley: {law?.law_name}</p>
             <h3 className="text-lg font-bold mb-2">Registros Asociados:</h3>
             <ul className='w-full max-h-64 overflow-hidden rounded-lg shadow-xs overflow-y-auto '>
-                {registerAssetId.map((register) => (
-                    <li key={register.reg_id} className="mb-4 border-b pb-2">
-                        <p className="mb-1">Tomo: {register.reg_tomo}</p>
-                        <p className="mb-1">Folio: {register.reg_folio}</p>
-                        <p className="mb-1">Asiento: {register.reg_asiento}</p>
-                        <p className="mb-1">Observación: {register.reg_observation}</p>
-                        <p className="mb-1">Tipo: {register.reg_type}</p>
-                        <p className="mb-1">Fecha de Registro: {register.reg_date}</p>
-                    </li>
-                ))}
+                <li className="mb-4 border-b pb-2">
+                    <p className="mb-1">Tomo: {registerAssetId.reg_tomo}</p>
+                    <p className="mb-1">Folio: {registerAssetId.reg_folio}</p>
+                    <p className="mb-1">Asiento: {registerAssetId.reg_asiento}</p>
+                    <p className="mb-1">Observación: {registerAssetId.reg_observation}</p>
+                    <p className="mb-1">Tipo: {registerAssetId.reg_type}</p>
+                    <p className="mb-1">Fecha de Registro: {registerAssetId.reg_date}</p>
+                </li>
             </ul>
         </Modal>
     );

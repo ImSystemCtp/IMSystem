@@ -1,3 +1,4 @@
+export * from './assetsReport';
 export * from './ParameterId.type';
 export * from './registerGood.type';
 export * from './registerTransfer';

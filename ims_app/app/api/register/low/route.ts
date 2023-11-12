@@ -1,10 +1,10 @@
 import { prismaDB } from "@/lib";
 import { NextResponse } from "next/server";
 import { EnumAssetsState, Prisma, ims_assets, ims_register, ims_registered_in } from "@prisma/client";
-import { registerGood } from "@/root/types";
+import { registerAsset } from "@/root/types";
 export async function POST(req: Request) {
     try {
-        const body = await req.json() as registerGood;
+        const body = await req.json() as registerAsset;
         const assets = body.assets;
         const response = await prismaDB.ims_register.create({
             data: {

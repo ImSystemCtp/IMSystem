@@ -1,4 +1,4 @@
-import { registerGood } from "@/root/types";
+import { registerAsset } from "@/root/types";
 import { registerAssetProvider } from "@/root/zustand";
 import { ims_assets, ims_register } from "@prisma/client";
 import {create} from "zustand";
@@ -12,7 +12,7 @@ export const useRegisterAssetStore = create<registerAssetState>((set) => {
         register: {} as ims_register,
         assets: [],
         addRegisterAssets: async (register: ims_register, assets: ims_assets[]) => {
-            const registerAsset: registerGood = {
+            const registerAsset: registerAsset = {
                 register,
                 assets,
             };

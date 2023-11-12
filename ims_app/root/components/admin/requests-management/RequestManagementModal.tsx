@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import {EnumReqState, ims_assets,ims_details_asset,ims_register,ims_request } from '@prisma/client';
 import { useDetailsRequestStore, useRegisterStore, useRequestStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
-import { registerGood } from '@/root/types';
+import { registerAsset } from '@/root/types';
 type ModalProps = {
     isOpen: boolean;
     onRequestClose: () => void;
@@ -29,7 +29,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,a
             const newRegister = {
                 register,
                 assets: assetsByRequestId,
-            } as registerGood
+            } as registerAsset
             await toast.promise(addRegister(newRegister), {
                 loading: "Registrando activos...",
                 success: "Activos registrados exitosamente!",

@@ -1,9 +1,9 @@
 import { prismaDB } from "@/lib";
 import { NextResponse } from "next/server";
-import { registerGood } from "@/root/types";
+import { registerAsset } from "@/root/types";
 export async function POST(req: Request) {
     try {
-        const body = await req.json() as registerGood;
+        const body = await req.json() as registerAsset;
         const type = body.register.reg_type;
         const assets = body.assets;
         if (type == 'Register') {

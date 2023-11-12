@@ -1,7 +1,7 @@
-import { registerGood } from '@/root/types'
+import { registerAsset } from '@/root/types'
 import { EnumRegisterType, ims_register } from '@prisma/client';
 import axios from 'axios';
-const create = async (register: registerGood) => {
+const create = async (register: registerAsset) => {
     let response;
     if (register.register.reg_type === EnumRegisterType.Low){
         console.log(register);
@@ -21,7 +21,7 @@ const getRegister = async () => {
 const getRegisterByAssetId = async (id: string) => {
     const response = await axios.get(`/api/assets/register/${id}`);
     console.log(response.data);
-    return response.data as ims_register[];
+    return response.data as ims_register;
 }
 export const registerProvider = {
     getRegister,
