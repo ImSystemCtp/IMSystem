@@ -11,7 +11,7 @@ export async function GET(_req: Request, { params }: ParameterId) {
         JOIN ims_locations l on l.location_id=a.assets_curr_location 
         JOIN ims_laws la on la.law_id = a.assent_law_id  
         JOIN ims_users u on u.usu_id = r.reg_usu_id 
-        WHERE a.assets_curr_location = 1 and a.assets_state != 'Malo'`;
+        WHERE a.assets_curr_location = ${id} and a.assets_state != 'Malo'`;
         console.log(registers)
         return NextResponse.json(registers);
     } catch (error) {

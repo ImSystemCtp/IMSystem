@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import { assetsReport } from "@/root/types";
+import { useReportStore } from "@/root/zustand";
 import { saveAs } from "file-saver";
-export const generateExcel = (assetReport: assetsReport[]) => {
-    console.log(assetReport);
-    {/*
+export const generateExcel = async (reportRegister: registerToReport[]) => {
     const titulo = [{ A: "Reporte de Activos" }, {}];
     const informacionAdicional = {
-        A: "Creado por: iTana el Martes, 04 de Abril del 2023",
+        A: "Creado por: Jesus & Francisco",
     };
-    const longitudes = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+    const longitudes = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
     const handleDownload = () => {
         let tabla = [
             {
@@ -25,25 +23,26 @@ export const generateExcel = (assetReport: assetsReport[]) => {
                 J: "Número de Factura",
                 K: "**Valor de adquisición (Capitalización de los activos) (Colones)",
                 L: "Ley que financió",
-                M: "Observaciones",
+                M: " Funcionario Responsable (Nombre y cédula)",
+                N: "Observaciones",
             },
         ];
-
-        assetReport.forEach((asset) => {
+        reportRegister.forEach((asset) => {
             tabla.push({
-                A: String(asset.register.reg_tomo) + String(asset.register.reg_folio) + String(asset.register.reg_asiento),
-                B: asset.assets.assets_no,
-                C: asset.assets.assets_description,
-                D: String(asset.assets.invoice_date),
-                E: asset.assets.assets_series,
-                F: asset.assets.assets_brand,
-                G: asset.assets.assets_model,
-                H: asset.assets.assets_state,
-                I: String(asset.location),
-                J: String(asset.assets.assets_invoice_number),
-                K: asset.assets.assets_acquisition_value,
-                L: String(asset.law),
-                M: String(asset.register.reg_observation),
+                A: String(asset.reg_tomo) + "," + String(asset.reg_folio) + "," + String(asset.reg_asiento),
+                B: asset.assets_no,
+                C: asset.assets_description,
+                D: String(asset.invoice_date),
+                E: asset.assets_series,
+                F: asset.assets_brand,
+                G: asset.assets_model,
+                H: asset.assets_state,
+                I: String(asset.location_name),
+                J: String(asset.assets_invoice_number),
+                K: asset.assets_acquisition_value,
+                L: String(asset.law_name),
+                M: String(asset.usu_name),
+                N: String(asset.reg_observation),
             });
         });
 
@@ -77,5 +76,6 @@ export const generateExcel = (assetReport: assetsReport[]) => {
         XLSX.utils.book_append_sheet(libro, hoja, "Productos");
 
         XLSX.writeFile(libro, "ProductosEstilizado.xlsx");
-    };*/}
+    };
+    handleDownload();
 };

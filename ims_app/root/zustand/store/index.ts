@@ -6,6 +6,7 @@ export * from './laws-state';
 export * from './location-state';
 export * from './register-in-state';
 export * from './register-state';
+export * from './report-state';
 export * from './request-state';
 export * from './siderbar-state';
 export * from './users-State';

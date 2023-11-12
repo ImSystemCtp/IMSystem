@@ -1,16 +1,15 @@
 import axios from 'axios';
-import { useLoadingStore } from "@/root/zustand";
 
 
 const getAssetsByLocation = async (locationId: number) => {
-    useLoadingStore.getState().setIsLoading(true);
+    console.log(locationId);
     const response = await axios.get<registerToReport[]>(`/api/report/location/${locationId}`);
-    useLoadingStore.getState().setIsLoading(false);
-    return response.data 
+    console.log(response.data);
+    return response.data;
 }
 
 
-export const assetsProvider = {
+export const reportProvider = {
 
     getAssetsByLocation,
 
