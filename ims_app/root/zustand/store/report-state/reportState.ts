@@ -9,7 +9,6 @@ export const useReportStore = create<reportState>((set) => {
         reportRegister: [],
         getRegisterToReport: async (id: number) => {
             const response = await reportProvider.getAssetsByLocation(id);
-            console.log(response);
             set({ reportRegister: response});
         }
     };

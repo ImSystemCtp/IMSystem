@@ -1,15 +1,18 @@
 "use client"
 import { useLocation } from "@/root/hooks";
+import { generateExcel } from "@/root/reports";
 import { useAssetStore, useLocationStore, useReportStore } from "@/root/zustand";
 import { useState } from "react";
+import toast from "react-hot-toast";
 export default function SearchAssetsInfo() {
     useLocation();
+    const { assetsByLocationInfo } = useAssetStore();
+    const { reportRegister } = useReportStore();
     const { getRegisterToReport } = useReportStore();
-    const { locations, setCurrentLocation,currentLocation } = useLocationStore();
+    const { locations, setCurrentLocation, currentLocation } = useLocationStore();
     const [locationSelect, setLocationSelect] = useState<string>("");
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         await setCurrentLocation(parseInt(event.target.value));
-        console.log(event.target.value);
         getRegisterToReport(parseInt(event.target.value));
     }
     const [noAssets, setNoAssets] = useState<string>("");
@@ -18,6 +21,17 @@ export default function SearchAssetsInfo() {
         if (noAssets === "") return;
         getAssetsByQuery(noAssets);
     }
+    const handleExcel = async () => {
+        if (reportRegister.length > 0) {
+            toast.promise(generateExcel(reportRegister), {
+                loading: 'Generando el reporte...',
+                success: 'Reporte generado con éxito',
+                error: 'Error al generar el reporte',
+            });
+        } else {
+            toast.error('No hay activos para generar el reporte');
+        }
+    };
     return (
         <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-2 lg:p-2">
             <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
@@ -50,6 +64,14 @@ export default function SearchAssetsInfo() {
                         return <option key={location.location_id} value={location.location_id}>{location.location_name}</option>;
                     })}
                 </select>
+            </div>
+            <div className="flex justify-center items-center">
+                <button
+                    onClick={handleExcel}
+                    className="bg-sky-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
+                >
+                    Generar Excel!
+                </button>
             </div>
         </div>
 
