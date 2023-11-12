@@ -3,6 +3,8 @@ import * as XLSX from "xlsx";
 import { assetsReport } from "@/root/types";
 import { saveAs } from "file-saver";
 export const generateExcel = (assetReport: assetsReport[]) => {
+    console.log(assetReport);
+    {/*
     const titulo = [{ A: "Reporte de Activos" }, {}];
     const informacionAdicional = {
         A: "Creado por: iTana el Martes, 04 de Abril del 2023",
@@ -75,6 +77,5 @@ export const generateExcel = (assetReport: assetsReport[]) => {
         XLSX.utils.book_append_sheet(libro, hoja, "Productos");
 
         XLSX.writeFile(libro, "ProductosEstilizado.xlsx");
-    };
-    handleDownload();
+    };*/}
 };

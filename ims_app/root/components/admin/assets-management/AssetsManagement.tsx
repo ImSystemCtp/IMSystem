@@ -11,21 +11,23 @@ export default function AssetsManagement() {
   const { getLawById, law } = useLawStore();
   const { registerByAssetId, registerAssetId } = useRegisterStore();
   const handleExcel = async () => {
+    console.log(assetsByLocationInfo);
     let assetReport : assetsReport[] = [];
     if (assetsByLocationInfo.length > 0) {
       for(let i = 0; i < assetsByLocationInfo.length; i++) {
-        gets(assetsByLocationInfo[i]);
+        await gets(assetsByLocationInfo[i]);
+        console.log(assetsByLocationInfo[i]);
         assetReport = [
           ...assetReport,
           {
-            register: registerAssetId,
+            register:  registerAssetId || null,
             assets: assetsByLocationInfo[i],
-            location: location?.location_name || '',
-            law: law?.law_name || '',
+            location:  location?.location_name || '',
+            law:  law?.law_name || '',
           },
         ];
       }
-        await generateExcel(assetReport);
+      generateExcel(assetReport);
     } else {
       toast.error('No hay activos para generar el reporte');
     }

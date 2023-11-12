@@ -77,6 +77,7 @@ export const useAssetStore = create<assetState>((set, get) => {
             set({ filterBy: "assets_regis_location", filterCondition: "equals", filterValue: locationId.toString(), cursor: 0 })
             const query = { limit: LIMIT, offset: get().cursor, orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: locationId.toString(), filterCondition: get().filterCondition } as QueryOptions
             const assetsByLocationQr = await assetsProvider.getAssetsByLocationQuery(query) as ims_assets[]
+            console.log(assetsByLocationQr)
             set({ idLocation: locationId, assetsByLocationInfo: assetsByLocationQr, cursor: get().cursor + LIMIT })
         },
         getAssetsByQuery: async (assetNo: string) => {
