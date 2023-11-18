@@ -28,6 +28,8 @@
     "formik": "^2.4.3",
     "framer-motion": "^10.16.4",
     "immer": "^10.0.2",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.1",
     "next": "13.4.19",
     "postcss": "8.4.28",
     "prisma": "^5.1.1",

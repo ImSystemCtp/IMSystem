@@ -2,13 +2,16 @@ import { reportProvider } from "@/root/zustand";
 import { create } from "zustand";
 interface reportState {
     reportRegister: registerToReport[];
+    reportRequest: requestToReport[];
     getRegisterToReport: (id: number) => Promise<void>;
     getTotalRegister: () => Promise<void>;
     clearReportRegister: () => void;
+    getRequestToReport: (id: number) => Promise<void>;
 }
 export const useReportStore = create<reportState>((set) => {
     return {
         reportRegister: [],
+        reportRequest:[],
         getRegisterToReport: async (id: number) => {
             const response = await reportProvider.getAssetsByLocation(id);
             set({ reportRegister: response});
@@ -20,6 +23,12 @@ export const useReportStore = create<reportState>((set) => {
         clearReportRegister: () => {
             set({ reportRegister: [] });
         },
+        getRequestToReport: async (id: number) => {
+            console.log(id);
+            const response = await reportProvider.getReportToRequest(id);
+            console.log(response);
+            set({ reportRequest: response});
+        }
     };
 });
 export default useReportStore;

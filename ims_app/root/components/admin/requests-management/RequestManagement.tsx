@@ -1,16 +1,17 @@
 "use client"
 import { LoadingComponent } from "@/root/components";
 import { useRequestPending } from "@/root/hooks";
-import { useLoadingStore, useRequestStore } from "@/root/zustand";
+import { useLoadingStore, useReportStore, useRequestStore } from "@/root/zustand";
 import { ims_request } from "@prisma/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 export default function RequestManagement() {
     useRequestPending();
+    const {getRequestToReport} = useReportStore();
     const { requestPending, setRequestSelected, isLoadRequest } = useRequestStore();
-
-    const handleRequestSelect = (request: ims_request) => () => {
-        setRequestSelected(request);
+    const handleRequestSelect =  (request: ims_request) => async () => {
+        await getRequestToReport(request.req_id);
+        await setRequestSelected(request);
     }
     return (
         <motion.div

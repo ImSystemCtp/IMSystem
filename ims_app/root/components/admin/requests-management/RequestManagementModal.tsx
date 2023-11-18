@@ -1,22 +1,32 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import { motion } from 'framer-motion';
 import {EnumReqState, ims_assets,ims_details_asset,ims_register,ims_request } from '@prisma/client';
-import { useDetailsRequestStore, useRegisterStore, useRequestStore } from '@/root/zustand';
+import { useRegisterStore, useRequestStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
 import { registerAsset } from '@/root/types';
+import { transformToImsAssets } from '@/root/functions';
 type ModalProps = {
     isOpen: boolean;
     onRequestClose: () => void;
     option: string;
     requestSelected: ims_request;
-    assetsByRequestId: ims_assets[];
-    detailsCheck: ims_details_asset[];
+    reportRequest: requestToReport[];
 };
-export default function RequestManagementModal({ isOpen, onRequestClose,option,assetsByRequestId,detailsCheck,requestSelected }: ModalProps) {
+export default function RequestManagementModal({ isOpen, onRequestClose,option,reportRequest,requestSelected }: ModalProps) {
     const { addRegister } = useRegisterStore();
     const {updateRequestState} = useRequestStore();
+    const imsAssetsList = useRef<ims_assets[]>([]);
+    useEffect(() => {
+        async function checkAssetsLocationChanges() {
+            if (isOpen ) {
+                imsAssetsList.current = reportRequest.map(transformToImsAssets);
+                console.log(imsAssetsList);
+            }
+        }
+        checkAssetsLocationChanges();
+    }, [isOpen,reportRequest]);
     const handleRequest = async () =>  {
         if (option == 'Aceptar'){
             const register = {
@@ -28,7 +38,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,a
             } as  ims_register
             const newRegister = {
                 register,
-                assets: assetsByRequestId,
+                assets: imsAssetsList.current,
             } as registerAsset
             await toast.promise(addRegister(newRegister), {
                 loading: "Registrando activos...",

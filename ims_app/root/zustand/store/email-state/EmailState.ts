@@ -1,13 +1,14 @@
 import { emailProvider } from "@/root/zustand";
+import { ims_request } from "@prisma/client";
 import { create } from "zustand";
 interface EmailState {
-    sendEmail: () => Promise<void>;
+    sendEmail: (request:ims_request) => Promise<void>;
 }
 export const EmailStore = create<EmailState>((set, get) => {
     return {
-        sendEmail: async () => {
+        sendEmail: async (request:ims_request) => {
             console.log('send email');
-            await emailProvider.sendEmail();
+            await emailProvider.sendEmail(request);
         }
     };
 });

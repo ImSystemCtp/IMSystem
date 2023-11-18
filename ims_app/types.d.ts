@@ -43,3 +43,29 @@ interface registerToReport {
     usu_name: string;
 
 }
+interface requestToReport {
+    usu_name: string;
+    req_id: number;
+    req_description:string;
+    req_state:string;
+    req_date:string;
+    req_type:string;
+    req_usu_id:string;
+    req_location_id_new:string;
+    deta_id:string;
+    deta_description:string;
+    deta_req_id:string;
+    deta_assets_no:string;
+    assets_regis_location: number;
+    invoice_date: string;
+    assets_no: string;
+    assets_description: string;
+    assets_brand: string;
+    assets_model: string;
+    assets_series: string;
+    assets_state: $Enums.EnumAssetsState;
+    assets_acquisition_value: string;
+    assets_curr_location:string;
+    assets_invoice_number: string;
+    assent_law_id: number;
+}

@@ -1,48 +1,44 @@
 "use client";
 import { LoadingComponent, RequestManagementModal } from "@/root/components";
+import { generatePDF } from "@/root/reports";
 import {
-    useDetailsRequestStore,
-    useRequestStore,
-    useAssetStore,
+    useRequestStore, useReportStore,
 } from "@/root/zustand";
-import { ims_assets, ims_details_asset } from "@prisma/client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 export default function ListAssets() {
+    const { reportRequest } = useReportStore();
     const { requestSelected } = useRequestStore();
     const [option, setOption] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const { getDetailsRequestByRequestId, addDetailsCheck, detailsCheck, detailsByIdRequest } = useDetailsRequestStore();
-    const { getAssetsByRequestId, assetsByRequestId } = useAssetStore();
     const handleCloseModal = () => { setShowModal(false); };
     const handleOpenModal = () => { setShowModal(true); };
     const [observation, setObservation] = useState(requestSelected.req_description || '');
     const handleObservationChange: React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
         setObservation(event.target.value);
     };
-    useEffect(() => {
-        getDetailsRequestByRequestId(String(requestSelected?.req_id));
-        getAssetsByRequestId(String(requestSelected?.req_id));
-    }, [getDetailsRequestByRequestId, requestSelected, getAssetsByRequestId]);
+    const handlePDF = () => {
+        generatePDF(reportRequest, requestSelected);
+    }
     return (
         <div>
-            <h2 className="text-center">Lista de Bienes</h2>
+            <h2 className="text-gray-500 text-2xl font-bold text-center">Lista de Bienes</h2>
             <div className="justify-center items-center flex flex-col">
-                <div className="mb-4">
+                <div className="flex flex-row justify-between p-2 m-2">
                     <textarea
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Observación de Baja..."
                         value={observation}
                         onChange={handleObservationChange}
                     />
-                </div>
-                <div>
-                    <button>
-                        descargar
-                    </button>
+                    <div className="ml-auto">
+                        <button className="bg-green-600 p-2 m-2 rounded-lg text-white" onClick={handlePDF}>
+                            Descargar PDF
+                        </button>
+                    </div>
                 </div>
                 <div className="w-full overflow-x-auto border border-gray-300 rounded-lg">
-                    {detailsByIdRequest.length === 0 ? (
+                    {reportRequest.length === 0 ? (
                         <div className="flex items-center justify-center">
                             <LoadingComponent />
                         </div>
@@ -53,16 +49,17 @@ export default function ListAssets() {
                                     <th className="px-4 py-3">Numero Placa</th>
                                     <th className="px-4 py-3">Marca</th>
                                     <th className="px-4 py-3">Estado</th>
-                                    <th className="px-4 py-3">Ubicación</th>
+                                    <th className="px-4 py-3">Observacion</th>
+                                    <th className="px-4 py-3">Ubicación Actual</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                {detailsByIdRequest.map((detail, index) => {
-                                    const assetDetail = assetsByRequestId.filter(asset => asset.assets_no === detail.deta_assets_no)[0];
+                                {reportRequest.map((detail: requestToReport, index) => {
                                     return (
                                         <tr className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover-bg-gray-900 text-gray-700 dark:text-gray-400" key={index}>
-                                            <td className="px-4 py-3 text-sm">{assetDetail?.assets_no}</td>
-                                            <td className="px-4 py-3 text-sm">{assetDetail?.assets_brand}</td>
+                                            <td className="px-4 py-3 text-sm">{detail.assets_no}</td>
+                                            <td className="px-4 py-3 text-sm">{detail.assets_brand}</td>
+                                            <td className="px-4 py-3 text-sm">{detail.assets_state}</td>
                                             <td className="px-4 py-3">
                                                 <div className="flex items-center text-sm">
                                                     <div>
@@ -70,11 +67,7 @@ export default function ListAssets() {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-4 py-3">
-                                                <div className="flex items-center text-sm">
-                                                </div>
-                                            </td>
-                                            <td className="px-4 py-3 text-sm">{assetDetail?.assets_curr_location}</td>
+                                            <td className="px-4 py-3 text-sm">{detail.assets_curr_location}</td>
                                         </tr>
                                     );
                                 })}
@@ -117,9 +110,8 @@ export default function ListAssets() {
                 isOpen={showModal}
                 onRequestClose={handleCloseModal}
                 option={option}
-                assetsByRequestId={assetsByRequestId}
-                detailsCheck={detailsCheck}
                 requestSelected={requestSelected}
+                reportRequest={reportRequest}
             />
         </div>
     );
