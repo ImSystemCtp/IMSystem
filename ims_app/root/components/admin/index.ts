@@ -11,4 +11,5 @@ export * from './register-lows';
 export * from './register-transfer';
 export * from './request-user-management';
 export * from './requests-management';
+export * from './test';
 export * from './users-management';

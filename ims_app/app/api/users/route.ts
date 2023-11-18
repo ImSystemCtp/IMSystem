@@ -1,11 +1,9 @@
-import { checkAuthorization } from "@/lib/authorization";
-import { USER_ROLES } from "../enums/roles";
 import { QueryOptions } from "@/app/types";
 import prismaDB from "@/lib/prisma/prismadb";
 import { currentUser } from "@clerk/nextjs";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";
-import { NextApiRequest } from "next";
+
 import getParams from "../(function)/getParams";
 
 

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import prismaDB from "@/lib/prisma/prismadb";
 
 export async function GET(_req: Request, { params }: ParameterId) {
+    
     try {
         const id = params.id as string;
         const registers = await prismaDB.$queryRaw<registerToReport[]>`SELECT r.* ,a.* ,l.location_name, la.law_name, u.usu_name FROM ims_assets a JOIN ims_register_assets ra on a.assets_no = ra.assets_no 
