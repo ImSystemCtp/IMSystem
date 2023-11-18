@@ -2,9 +2,9 @@ import { EmailTemplate } from "@/root/components";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-console.log(process.env.RESEND_API_KEY);
-export async function POST(req: Request) {
+export async function POST(_req: Request) {
+    const resend = new Resend('re_hVWB1Sn9_M4pZs5Ppe68dGuTfVNA7cHgd');
+    console.log(process.env.RESEND_API_KEY);
     console.log(process.env.RESEND_API_KEY);
     console.log('send email');
     try {
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
         return NextResponse.json(data);
     } catch (error) {
         console.log(error);
+        console.log('error');
         return NextResponse.json({ error });
     }
 }

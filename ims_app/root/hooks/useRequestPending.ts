@@ -2,15 +2,11 @@
 import { useLoadingStore, useRequestStore } from "@/root/zustand"
 import { useEffect } from "react"
 export const useRequestPending= () => {
-    const getRequestPending = useRequestStore(state => state.getRequestsPending)!;
-
-    
+    const {getRequestsPending} = useRequestStore()!;
     useEffect(() => {
         async function checkRequestPendingChanges() {
-
-            await getRequestPending();
-            
+            await getRequestsPending();
         }
         checkRequestPendingChanges();
-    }, [ getRequestPending])
+    }, [ getRequestsPending])
 }

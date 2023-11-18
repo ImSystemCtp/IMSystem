@@ -1,10 +1,12 @@
 "use client"
 import { LoadingComponent } from "@/root/components";
+import { useRequestPending } from "@/root/hooks";
 import { useLoadingStore, useRequestStore } from "@/root/zustand";
 import { ims_request } from "@prisma/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 export default function RequestManagement() {
+    useRequestPending();
     const { requestPending, setRequestSelected, isLoadRequest } = useRequestStore();
 
     const handleRequestSelect = (request: ims_request) => () => {

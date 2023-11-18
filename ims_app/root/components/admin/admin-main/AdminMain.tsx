@@ -3,7 +3,6 @@ import { InfoCards, InfoRequestCard,  RequestManagement } from "@/root/component
 import { useRegisterIn, useRequestPending } from "@/root/hooks";
 export default function AdminMain() {
     useRegisterIn();
-    useRequestPending();
     return (
         <div className="relative flex">
             <div className="flex-1 p-4">
