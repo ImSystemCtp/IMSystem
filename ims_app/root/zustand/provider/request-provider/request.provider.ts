@@ -13,9 +13,14 @@ const updateRequestState = async (request: ims_request) => {
     const response = await axios.put(`/api/request/${request.req_id}`,request);
     return response.data as ims_request;
 }
-
+const sendEmail = async () => {
+    console.log('send email2222');
+    const response = await axios.post('/api/email');
+    return response.data;
+}
 export const requestProvider = {
     createRequest,
     getRequestsPending,
-    updateRequestState
+    updateRequestState,
+    sendEmail
 }

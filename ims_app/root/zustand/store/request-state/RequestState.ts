@@ -38,7 +38,7 @@ export const useRequestStore = create<requestState>((set,get) => {
                 (req:ims_request) => req.req_id !== requestUpdated.req_id
             );
             set({ requestPending: updatedRequestPending });
-        }
+        },
     };
 });
 export default useRequestStore;

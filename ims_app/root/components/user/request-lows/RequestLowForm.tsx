@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
-import { useAssetStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
+import { EmailStore, useAssetStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/root/types";
@@ -15,6 +15,7 @@ const initialValues: FormValues = {
 };
 export default function RequestLowForm() {
     const { addRequest } = useRequestStore();
+    const { sendEmail } = EmailStore();
     const { assetsCheck, clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { setDetailRequest,details } = useDetailsRequestStore();
     const checkedDetails = details.filter((detail) => {
@@ -45,6 +46,7 @@ export default function RequestLowForm() {
             success: "Solicitud enviada exitosamente!",
             error: "No se pudo enviar la solicitud",
         });
+    await sendEmail();
     await clearAssetsByLocation(assetsCheck);
     await clearAssetsCheck();
     };

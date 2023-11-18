@@ -1,4 +1,5 @@
 export * from './admin';
+export * from './email-template';
 export * from './footer';
 export * from './Formik';
 export * from './loading';
