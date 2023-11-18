@@ -5,10 +5,7 @@ import { assetsReport } from "@/root/types";
 import { useAssetStore, useLawStore, useLocationStore, useRegisterStore, useReportStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import toast from "react-hot-toast";
-export default function AssetsManagement() {
-  
-
-  
+export default function AssetsLocationManagement() {
   return (
     <div className="w-full">
       <h2 className="text-2xl font-bold text-center">Gestión de Activos</h2>

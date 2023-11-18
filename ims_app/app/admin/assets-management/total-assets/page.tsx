@@ -1,9 +1,9 @@
 "use client";
-import { AssetsManagement } from "@/root/components";
+import { AssetsTotalManagement } from "@/root/components";
 export default function LawsManagementPage() {
     return (
         <main className="">
-        <AssetsManagement/>
+        <AssetsTotalManagement/>
         </main>
     );
 }

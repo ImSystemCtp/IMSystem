@@ -1,4 +1,4 @@
 export {default as AssetModal} from './AssetModal';
-export {default as AssetsManagement} from './AssetsManagement';
+export * from './AssetsByLocation';
 export {default as AssetsTable} from './AssetsTable';
-export {default as SearchAssetsInfo} from './SearchAssetsInfo';
+export * from './AssetsTotal';

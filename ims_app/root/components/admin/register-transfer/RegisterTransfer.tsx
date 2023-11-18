@@ -1,6 +1,8 @@
 "use client"
 import { AssetsAdminTable, SearchAssets, TransferAdminForm } from "@/root/components";
+import { useClearAssetsByLocation } from "@/root/hooks";
 export default function RegisterTransfer() {
+  useClearAssetsByLocation();
   return (
     <div className="w-full">
       <h2 className="text-2xl font-bold  text-center">Registrar Traslados</h2>

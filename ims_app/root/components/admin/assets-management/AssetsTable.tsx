@@ -44,13 +44,13 @@ export default function AssetsTable() {
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-3 py-3">
                                     Registro en:
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-3 py-3">
                                     Número de Patrimonio
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-3 py-3">
                                     Descripción del Bien
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
@@ -91,13 +91,8 @@ export default function AssetsTable() {
                         <tbody className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                             {reportRegister.map((asset: registerToReport, index: number) => (
                                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td className="px-6 py-4">{asset.reg_tomo}{","}{asset.reg_folio}{","}{asset.reg_asiento}</td>
-                                    <td
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                    >
-                                        {asset.assets_no}
-                                    </td>
+                                    <td className="px-3 py-4">{asset.reg_tomo}{","}{asset.reg_folio}{","}{asset.reg_asiento}</td>
+                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_no}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_description}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.invoice_date}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_series}</td>

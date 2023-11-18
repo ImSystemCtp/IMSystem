@@ -1,7 +1,9 @@
 "use client"
 import React, { useState } from "react";
 import { RequestLowForm, AssetsUserTable, SearchAssets } from "@/root/components";
+import { useClearAssetsByLocation } from "@/root/hooks";
 export default function RequestLows() {
+  useClearAssetsByLocation();
   return (
     <div className="w-full">
       <h2 className="text-2xl font-bold  text-center">Registrar Solicitudes de Bajas</h2>

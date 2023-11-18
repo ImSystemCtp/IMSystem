@@ -1,11 +1,13 @@
 "use client"
-import { useLocation } from "@/root/hooks";
+import { useClearAssetsByLocation, useClearReportRegisters, useLocation } from "@/root/hooks";
 import { generateExcel } from "@/root/reports";
 import { useAssetStore, useLocationStore, useReportStore } from "@/root/zustand";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 export default function SearchAssetsInfo() {
     useLocation();
+    useClearReportRegisters();
+    useClearAssetsByLocation();
     const { assetsByLocationInfo } = useAssetStore();
     const { reportRegister } = useReportStore();
     const { getRegisterToReport } = useReportStore();

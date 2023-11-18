@@ -1,3 +1,5 @@
+export * from './useClearAssetsByLocation';
+export * from './useClearReportRegisters';
 export * from './useDetailsRequestByRequestId';
 export * from './useLaw';
 export * from './useLocation';

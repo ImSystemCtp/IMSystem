@@ -30,6 +30,7 @@ interface assetState {
     clearAssetsByLocation: (assetsToClear: ims_assets[]) => Promise<void>
     getAssetsByLocationInfo: (locationId: number) => Promise<void>
     removeAssets: (asset: ims_assets) => Promise<void>
+    clearAllAssetsByLocation: () => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -114,12 +115,13 @@ export const useAssetStore = create<assetState>((set, get) => {
             }));
         },
         clearAssetsByLocation: async (assetsToClear: ims_assets[]) => {
-            console.log(assetsToClear)
             const filteredAssetsByLocation = get().assetsByLocation.filter(
                 (currentAsset) => !assetsToClear.some((assetToClear) => assetToClear.assets_no === currentAsset.assets_no)
             );
-            console.log(filteredAssetsByLocation)
             set({ assetsByLocation: filteredAssetsByLocation });
         },
+        clearAllAssetsByLocation: async () => {
+            set({ assetsByLocation: [] });
+        }
     }
 })
