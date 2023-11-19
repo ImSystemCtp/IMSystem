@@ -10,7 +10,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, 20, 17, 20); // Agregar la segunda imagen en la esquina superior derecha
 
     // Ajustar el tamaño y centrar los textos
-    doc.text('Ministerio de Educacion Publica', doc.internal.pageSize.width / 2, 20, { align: 'center', });
+    doc.text('Ministerio de Educacion Publica', doc.internal.pageSize.width / 2, 20, { align: 'center'}).setFont('bold');
     doc.text('Direccion Regional de Educacion Perez Zeledon Circuito 07', doc.internal.pageSize.width / 2, 25, { align: 'center' });
     doc.text('Colegio Tecnico Profesional de Platanares', doc.internal.pageSize.width / 2, 30, { align: 'center' });
     doc.text('Codigo Presupuestario: 4167', doc.internal.pageSize.width / 2, 35, { align: 'center' });

@@ -1,13 +1,6 @@
-import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import { useReportStore } from "@/root/zustand";
-import { saveAs } from "file-saver";
 export const generateExcel = async (reportRegister: registerToReport[]) => {
-    const titulo = [{ A: "Reporte de Activos" }, {}];
-    const informacionAdicional = {
-        A: "Creado por: Jesus & Francisco",
-    };
-    const longitudes = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+    const lengths = [20, 20, 20, 20, 20, 20, 20, 20, 30, 20, 20, 30, 20];
     const handleDownload = () => {
         let tabla = [
             {
@@ -46,36 +39,43 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
             });
         });
 
-        const dataFinal = [...titulo, ...tabla, informacionAdicional];
+        const dataFinal = [...tabla];
         setTimeout(() => {
             creandoArchivo(dataFinal);
         }, 1000);
     };
 
-    const creandoArchivo = (dataFinal:any) => {
-        const libro = XLSX.utils.book_new();
+    const creandoArchivo = (dataFinal: any) => {
+        const book = XLSX.utils.book_new();
 
-        const hoja = XLSX.utils.json_to_sheet(dataFinal, { skipHeader: true });
+        const sheet = XLSX.utils.json_to_sheet(dataFinal, { skipHeader: true });
 
-        hoja["!merges"] = [
-            XLSX.utils.decode_range("A1:G1"),
-            XLSX.utils.decode_range("A2:G2"),
-            XLSX.utils.decode_range("A34:G34"),
+        sheet["!merges"] = [
+            XLSX.utils.decode_range("A1:A3"),
+            XLSX.utils.decode_range("B1:B3"),
+            XLSX.utils.decode_range("C1:C3"),
+            XLSX.utils.decode_range("D1:D3"),
+            XLSX.utils.decode_range("E1:E3"),
+            XLSX.utils.decode_range("F1:F3"),
+            XLSX.utils.decode_range("G1:G3"),
+            XLSX.utils.decode_range("H1:H3"),
+            XLSX.utils.decode_range("I1:I3"),
+            XLSX.utils.decode_range("J1:J3"),
+            XLSX.utils.decode_range("K1:K3"),
+            XLSX.utils.decode_range("L1:L3"),
+            XLSX.utils.decode_range("M1:M3"),
+            XLSX.utils.decode_range("N1:N3"),
         ];
-
-        let propiedades:any = [];
-
-        longitudes.forEach((col) => {
-            propiedades.push({
+        let properties: any = [];
+        lengths.forEach((col) => {
+            properties.push({
                 width: col,
             });
         });
+        sheet["!cols"] = properties;
+        XLSX.utils.book_append_sheet(book, sheet, "Registros");
 
-        hoja["!cols"] = propiedades;
-
-        XLSX.utils.book_append_sheet(libro, hoja, "Productos");
-
-        XLSX.writeFile(libro, "ProductosEstilizado.xlsx");
+        XLSX.writeFile(book, "Reporte de Registros.xlsx");
     };
     handleDownload();
 };
