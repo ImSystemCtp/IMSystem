@@ -81,7 +81,6 @@ export async function GET(_req: Request) {
         }
         return NextResponse.json(users);
     } catch (error) {
-        console.log(error)
         return new NextResponse("Internal Error", { status: 500 });
     }
 }

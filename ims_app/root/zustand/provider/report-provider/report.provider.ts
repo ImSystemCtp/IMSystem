@@ -8,9 +8,7 @@ const getTotalRegister = async () => {
     return response.data;
 }
 const getReportToRequest = async (requestId: number) => {
-    console.log(requestId);
     const response = await axios.get<requestToReport[]>(`/api/report/request/${requestId}`);
-    console.log(response.data);
     return response.data;
 }
 export const reportProvider = {

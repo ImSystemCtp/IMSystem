@@ -7,7 +7,6 @@ interface EmailState {
 export const EmailStore = create<EmailState>((set, get) => {
     return {
         sendEmail: async (request:ims_request) => {
-            console.log('send email');
             await emailProvider.sendEmail(request);
         }
     };

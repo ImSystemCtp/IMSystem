@@ -38,7 +38,7 @@ export default function RequestLowForm() {
             req_type: EnumRegisterType.Low,
             req_date: new Date(),
             req_description: values.observation,
-            req_usu_id: 2,
+            req_usu_id: userAuth.usu_id
         } as ims_request
         const requestDetails = {
             request: request,
@@ -54,7 +54,6 @@ export default function RequestLowForm() {
             await clearAssetsByLocation(assetsCheck);
             await clearAssetsCheck();
         } catch (error) {
-            console.error("Error al enviar la solicitud:", error);
         }
     };
     return (

@@ -22,7 +22,6 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,r
         async function checkAssetsLocationChanges() {
             if (isOpen ) {
                 imsAssetsList.current = reportRequest.map(transformToImsAssets);
-                console.log(imsAssetsList);
             }
         }
         checkAssetsLocationChanges();

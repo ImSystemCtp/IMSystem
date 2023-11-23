@@ -4,23 +4,26 @@ import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
-import { useAssetStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
+import { useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/root/types";
+import { useAuth } from "@/root/hooks";
 interface FormValues {
-    newUbication: string;
+    newLocation: string;
     observation: string;
 }
 
 const initialValues: FormValues = {
-    newUbication: "",
+    newLocation: "",
     observation: "",
 };
 
 export default function RequestTransferForm() {
+    useAuth();
     const {addRequest} = useRequestStore();
     const { assetsCheck, clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { setDetailRequest,details } = useDetailsRequestStore();
+    const {userAuth} = useAuthStore()
     const checkedDetails = details.filter((detail) => {
         return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
     });
@@ -38,7 +41,7 @@ export default function RequestTransferForm() {
             req_type: EnumRegisterType.Low,
             req_date:new Date(),
             req_description: values.observation,
-            req_usu_id: 2,
+            req_usu_id: userAuth.usu_id,
         } as ims_request
         const requestDetails = {
             request:request,
@@ -82,7 +85,7 @@ export default function RequestTransferForm() {
                         <div className="flex flex-col   w-full  ">
                             <div className="p-2 w-full h-full ">
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
-                                <CustomSelect label="Nueva ubicación del bien:" name="newUbication" placeholder="Nueva ubicación del bien" />
+                                <CustomSelect label="Nueva ubicación del bien:" name="newLocation" placeholder="Nueva ubicación del bien" />
                             </div>
                             <div className="w-full text-center justify-center items-center">
                                 <motion.button

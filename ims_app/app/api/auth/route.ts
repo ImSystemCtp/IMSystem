@@ -27,7 +27,6 @@ export async function GET() {
         });
         return NextResponse.json(postUser);
     } catch (error) {
-        console.error(error);
         return new NextResponse("Unauthorized", { status: 401 });
 
     }

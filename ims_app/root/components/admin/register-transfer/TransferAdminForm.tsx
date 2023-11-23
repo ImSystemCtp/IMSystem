@@ -10,7 +10,7 @@ import { useAssetStore, useLocationStore, useRegisterStore } from "@/root/zustan
 import { useLocation } from "@/root/hooks";
 import Link from "next/link";
 interface FormValues {
-    newUbication: string;
+    newLocation: string;
     observation: string;
 }
 
@@ -28,11 +28,9 @@ export default function TransferAdminForm() {
             reg_usu_id: 2,
             reg_inst_id: 1,
         } as  ims_register
-        console.log(register);
         assetsCheck.forEach((asset) => {
-            asset.assets_curr_location = parseInt(values.newUbication);
+            asset.assets_curr_location = parseInt(values.newLocation);
         });
-        console.log(assetsCheck);
         const registerTransfer = {
             register,
             assets: assetsCheck,
@@ -58,8 +56,8 @@ export default function TransferAdminForm() {
                             <div className="p-2 w-full h-full ">
                                 <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
                                 {locations.length > 0 ? (
-                                        <CustomSelect label="Ubicación:" name="newUbication">
-                                            {!initialValues.newUbication ? (
+                                        <CustomSelect label="Ubicación:" name="newLocation">
+                                            {!initialValues.newLocation ? (
                                                 <option value="">Seleccione una ubicación</option>
                                             ) : (
                                                 ""

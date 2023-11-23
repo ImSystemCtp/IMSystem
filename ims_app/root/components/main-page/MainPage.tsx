@@ -8,7 +8,7 @@ export default function MainPage() {
     const getUsers = useUserStore(state => state.getUsers)!;
     useEffect(() => {
         async function checkUserRole() {
-            const usersActions = await getUsers({ orderBy: "usu_id", order: "desc" } as QueryOptions);
+            const usersActions = await getUsers();
             const authActions = await getAuth();
             if (authActions.usu_role === USER_ROLES.ADMIN) {
                 window.location.href = "/admin";

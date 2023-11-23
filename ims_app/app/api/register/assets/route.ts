@@ -20,7 +20,6 @@ export async function POST(req: Request) {
                         reg_date: body.register.reg_date,
                         },
                     });
-                    console.log(reg.reg_asiento);
                     await prismaDB.ims_assets.create({ data: element });
                     await prismaDB.ims_register_assets.create({ data: { reg_id: reg.reg_id, assets_no: element.assets_no } });
                 }
@@ -28,7 +27,6 @@ export async function POST(req: Request) {
         }
         return new NextResponse("type no .... ", { status: 401 });
     } catch (error) {
-        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }

@@ -29,7 +29,6 @@ export default function AssetModal({
         }
         checkAssetsLocationChanges();
     }, [asset, getLocationById, getLawById, registerByAssetId, , isOpen]);
-    console.log(registerAssetId);
     return (
         <Modal
             isOpen={isOpen}

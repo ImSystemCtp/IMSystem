@@ -24,9 +24,7 @@ export const useReportStore = create<reportState>((set) => {
             set({ reportRegister: [] });
         },
         getRequestToReport: async (id: number) => {
-            console.log(id);
             const response = await reportProvider.getReportToRequest(id);
-            console.log(response);
             set({ reportRequest: response});
         }
     };

@@ -28,12 +28,10 @@ const getAssetsByLocationQuery = async (query: QueryOptions) => {
     try {
         useLoadingStore.getState().setIsLoading(true);
         const response = await axios.get<ims_assets[]>('/api/assets/location', { params: query });
-        console.log(response.data);
         useLoadingStore.getState().setIsLoading(false);
         return response.data;
     } catch (error) {
         // Manejar el error aquí
-        console.error("Ocurrió un error al obtener los activos por ubicación:", error);
         throw error;
     }
 }

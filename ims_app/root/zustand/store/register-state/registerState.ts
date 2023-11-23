@@ -19,7 +19,6 @@ export const useRegisterStore = create<registerState>((set) => {
         },
         registerByAssetId: async (id: string) => {
             const response = await registerProvider.getRegisterByAssetId(id);
-            console.log(response);
             set({ registerAssetId: response});
         }
     };
