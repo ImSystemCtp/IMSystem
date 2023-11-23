@@ -4,7 +4,7 @@ import { useReportStore } from "@/root/zustand";
 import { saveAs } from "file-saver";
 export const generateExcel = async (reportRegister: registerToReport[]) => {
     const titulo = [{ A: "Reporte de Activos" }, {}];
-    const informacionAdicional = {
+    const informationAdicional = {
         A: "Creado por: Jesus & Francisco",
     };
     const longitudes = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
@@ -46,7 +46,7 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
             });
         });
 
-        const dataFinal = [...titulo, ...tabla, informacionAdicional];
+        const dataFinal = [...titulo, ...tabla, informationAdicional];
         setTimeout(() => {
             creandoArchivo(dataFinal);
         }, 1000);
