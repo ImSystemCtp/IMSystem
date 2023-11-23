@@ -23,7 +23,7 @@ export default function TransferAdminForm() {
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Transfer,
-            reg_date: new Date().toISOString(),
+            reg_date: new Date(),
             reg_observation: values.observation,
             reg_usu_id: 2,
             reg_inst_id: 1,

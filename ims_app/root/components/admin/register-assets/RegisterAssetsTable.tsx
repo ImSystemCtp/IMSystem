@@ -9,7 +9,7 @@ export default function RegisterAssetsTable() {
     const { assets, clearAssets,removeAssets } = useAssetStore();
     const register = {
         reg_type: EnumRegisterType.Register,
-        reg_date: new Date().toISOString(),
+        reg_date: new Date(),
         reg_usu_id: 1,
         reg_inst_id: 1,
     } as ims_register

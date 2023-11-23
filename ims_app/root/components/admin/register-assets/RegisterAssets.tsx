@@ -29,7 +29,7 @@ export default function RegisterAssets() {
     const handleSubmit = async (values: FormValues) => {
         const { assent_law_id, assets_regis_location } = values
         const locationId = Number.parseInt(assets_regis_location);
-        const invoice_date = new Date(values.invoice_date).toISOString();
+        const invoice_date = new Date(values.invoice_date);
         addAssets({ ...values,invoice_date:invoice_date, assets_curr_location: locationId , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
     };
     return (

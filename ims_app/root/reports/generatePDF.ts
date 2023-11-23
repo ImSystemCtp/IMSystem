@@ -21,8 +21,8 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     doc.text('Descripcion: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 55, { align: 'center' });
     const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripcion del Bien", "Numero Placa", "Marca", "Ubicacion", "Observacion", "Responsable"];
     const rows = reportRequest.map((detail: requestToReport) => [
-        detail.req_date,
-        detail.invoice_date,
+        detail.req_date?.toString().split('T')[0],
+        detail.invoice_date?.toString().split('T')[0],
         detail.assets_description,
         detail.assets_no,
         detail.assets_brand,

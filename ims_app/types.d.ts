@@ -27,9 +27,9 @@ interface registerToReport {
     reg_folio: number
     reg_asiento: number
     reg_type: string
-    reg_date: string
+    reg_date: Date | null
     reg_observation: string
-    invoice_date: string | null;
+    invoice_date:  Date | null;
     assets_no: string;
     assets_description: string;
     assets_brand: string;
@@ -48,7 +48,7 @@ interface requestToReport {
     req_id: number;
     req_description:string;
     req_state:string;
-    req_date:string;
+    req_date: Date | null;
     req_type:string;
     req_usu_id:string;
     req_location_id_new:string;
@@ -57,7 +57,7 @@ interface requestToReport {
     deta_req_id:string;
     deta_assets_no:string;
     assets_regis_location: number;
-    invoice_date: string;
+    invoice_date: Date | null;
     assets_no: string;
     assets_description: string;
     assets_brand: string;

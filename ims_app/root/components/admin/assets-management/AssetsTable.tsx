@@ -2,8 +2,8 @@
 import { useAssetStore, useReportStore } from "@/root/zustand";
 import { useEffect, useRef, useState } from "react";
 export default function AssetsTable() {
-    const {  seeMore } = useAssetStore();
-    const {reportRegister } = useReportStore();
+    const { seeMore } = useAssetStore();
+    const { reportRegister } = useReportStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const container = containerRef.current;
@@ -33,13 +33,13 @@ export default function AssetsTable() {
             <div ref={containerRef} className="max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                 {reportRegister.length === 0 ? (
                     <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                    </svg>
-                    <div>
-                        No hay Activos en esta ubicacion!.
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                        <div>
+                            No hay Activos en esta ubicacion!.
+                        </div>
                     </div>
-                </div>
                 ) : (
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -54,10 +54,10 @@ export default function AssetsTable() {
                                     Descripción del Bien
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
-                                Registro en
+                                    Registro en
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
-                                Serie
+                                    Serie
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
                                     Marca
@@ -81,7 +81,7 @@ export default function AssetsTable() {
                                     Ley que financió
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
-                                Funcionario Responsable (Nombre y cédula)
+                                    Funcionario Responsable (Nombre y cédula)
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
                                     Observaciones
@@ -94,7 +94,7 @@ export default function AssetsTable() {
                                     <td className="px-3 py-4">{asset.reg_tomo}{","}{asset.reg_folio}{","}{asset.reg_asiento}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_no}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_description}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.invoice_date}</td>
+                                    <td className="px-3 py-4 hidden md:table-cell">{asset.invoice_date?.toString().split('T')[0]}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_series}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_brand}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_model}</td>

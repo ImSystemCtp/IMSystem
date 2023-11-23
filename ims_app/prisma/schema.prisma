@@ -29,7 +29,7 @@ model ims_details_asset {
 
 model ims_assets {
   assets_regis_location                                         Int
-  invoice_date                                                  String?
+  invoice_date                                                  DateTime?
   assets_no                                                     String                @id
   assets_description                                            String                @db.VarChar(30)
   assets_brand                                                  String                @db.VarChar(15)
@@ -67,7 +67,7 @@ model ims_register {
   reg_folio           Int
   reg_asiento         Int
   reg_type            EnumRegisterType
-  reg_date            String?
+  reg_date            DateTime?
   reg_observation     String?               @db.VarChar(3000)
   reg_usu_id          Int
   ims_users           ims_users             @relation(fields: [reg_usu_id], references: [usu_id], onDelete: Cascade, onUpdate: Cascade, map: "sgi_usuario_registro")
@@ -105,7 +105,7 @@ model ims_request {
   req_id              Int                 @id @default(autoincrement())
   req_description     String              @db.VarChar(100)
   req_state           EnumReqState        @default(Pending)
-  req_date            String
+  req_date            DateTime
   req_type            EnumReqType
   req_usu_id          Int
   req_location_id_new Int?
