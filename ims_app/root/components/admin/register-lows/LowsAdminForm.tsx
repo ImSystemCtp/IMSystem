@@ -3,11 +3,12 @@ import { Formik, Form } from "formik";
 import { motion } from "framer-motion";
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
-import {  useAssetStore, useLocationStore } from "@/root/zustand";
+import {  useAssetStore, useAuthStore, useLocationStore } from "@/root/zustand";
 import { registerAsset } from "@/root/types";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
+import { useAuth } from "@/root/hooks";
 interface FormValues {
 
     observation: string;
@@ -20,12 +21,14 @@ const initialValues: FormValues = {
 export default function LowsAdminForm() {
     const {assetsCheck,clearAssetsCheck,clearAssetsByLocation,getAssetsByLocation } = useAssetStore();
     const { addRegister } = useRegisterStore();
+    useAuth();
+    const { userAuth } = useAuthStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Low,
             reg_date: new Date(),
             reg_observation: values.observation,
-            reg_usu_id: 2,
+            reg_usu_id: userAuth.usu_id,
             reg_inst_id: 1,
         } as  ims_register
         const registerLow = {

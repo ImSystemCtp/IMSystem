@@ -1,16 +1,18 @@
 "use client"
+import { useAuth } from "@/root/hooks";
 import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
 import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
+    useAuth();
     const { userAuth } = useAuthStore();
     const { addRegisterAssets } = useRegisterAssetStore();
     const { assets, clearAssets,removeAssets } = useAssetStore();
     const register = {
         reg_type: EnumRegisterType.Register,
         reg_date: new Date(),
-        reg_usu_id: 1,
+        reg_usu_id: userAuth.usu_id,
         reg_inst_id: 1,
     } as ims_register
     const handleRegisterAssets = async () => {

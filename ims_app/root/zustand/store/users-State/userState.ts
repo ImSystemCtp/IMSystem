@@ -19,6 +19,7 @@ interface userState {
     getUserPending: () => Promise<void>
     getNextPage: () => Promise<void>
     getPeviusPage: () => Promise<void>
+    clearUserPending: (userToDelete: ims_users) => void
 }
 
 export const useUserStore = create<userState>((set, get) => {
@@ -67,6 +68,11 @@ export const useUserStore = create<userState>((set, get) => {
                 set({ haveNextPage: false })
             }
         },
+        clearUserPending: (userToDelete: ims_users) => {
+            set((state: userState) => ({
+                usersPending: state.usersPending.filter((u) => u?.usu_id !== userToDelete?.usu_id)
+            }));
+        }
 
     }
 });

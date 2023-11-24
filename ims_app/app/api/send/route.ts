@@ -2,16 +2,16 @@ import { ims_request } from "@prisma/client";
 import  EmailTemplate, { EmailTemplateProps }  from "../(function)/email-template/EmailTemplate";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-
+import { EmailType } from "@/root/types";
 export async function POST(req: Request) {
-    const body = await req.json() as ims_request;
+    const body = await req.json() as EmailType;
     const resend = new Resend('re_hVWB1Sn9_M4pZs5Ppe68dGuTfVNA7cHgd');
     try {
         const { data, error } = await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
             to: ["ims.system.ctpp@gmail.com"],
             subject: "Hello world",
-            react: EmailTemplate({ request: body } as EmailTemplateProps),
+            react: EmailTemplate({ request: body.request, user: body.user } as EmailTemplateProps),
             text: "Hello world from IMS System",
         });
         if (error) {

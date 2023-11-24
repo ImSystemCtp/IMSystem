@@ -6,8 +6,8 @@ import { transferAdminFormMessage } from "@/schemas";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { registerAsset } from "@/root/types";
 import toast from "react-hot-toast";
-import { useAssetStore, useLocationStore, useRegisterStore } from "@/root/zustand";
-import { useLocation } from "@/root/hooks";
+import { useAssetStore, useAuthStore, useLocationStore, useRegisterStore } from "@/root/zustand";
+import { useAuth, useLocation } from "@/root/hooks";
 import Link from "next/link";
 interface FormValues {
     newLocation: string;
@@ -20,12 +20,14 @@ export default function TransferAdminForm() {
     const { locations, setCurrentLocation,currentLocation } = useLocationStore();
     const {assetsCheck,clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { addRegister } = useRegisterStore();
+    useAuth();
+    const { userAuth } = useAuthStore();
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Transfer,
             reg_date: new Date(),
             reg_observation: values.observation,
-            reg_usu_id: 2,
+            reg_usu_id: userAuth.usu_id,
             reg_inst_id: 1,
         } as  ims_register
         assetsCheck.forEach((asset) => {

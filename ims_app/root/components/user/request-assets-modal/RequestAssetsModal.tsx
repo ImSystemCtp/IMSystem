@@ -16,6 +16,7 @@ export default function RequestAssetsModal({ isOpen, onRequestClose, asset, newD
     };
     const handleSendDetail = () => {
         newDetailAsset(asset, detailAsset);
+        onRequestClose
         setDetailAsset("");
     }
     return (

@@ -8,7 +8,7 @@ import { LoadingComponent, RoleSelectionModal } from "@/root/components";
 export default function RequestUserManagement() {
     useUserPending();
     const { getNextPage, usersPending, getPreviousPage, haveNextPage, pagine,isLoadUser } = useUserNoRoleStore();
-    const { updateUser, deleteUser } = useUserStore();
+    const { updateUser, deleteUser,clearUserPending } = useUserStore();
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
     const [selectedRole, setSelectedRole] = useState(null);
@@ -42,6 +42,7 @@ export default function RequestUserManagement() {
                     usu_email: userSelect.usu_email || '',
                 };
                 updateUser(userToUpdate);
+                clearUserPending(userToUpdate);
             }
             if (role === "Usuario") {
                 const userToUpdate = {
@@ -52,6 +53,7 @@ export default function RequestUserManagement() {
                     usu_email: userSelect.usu_email || '',
                 };
                 updateUser(userToUpdate);
+                clearUserPending(userToUpdate);
             }
         }
     };

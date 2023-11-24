@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
-import { useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
+import { EmailStore, useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/root/types";
 import { useAuth } from "@/root/hooks";
@@ -20,6 +20,7 @@ const initialValues: FormValues = {
 
 export default function RequestTransferForm() {
     useAuth();
+    const { sendEmail } = EmailStore();
     const {addRequest} = useRequestStore();
     const { assetsCheck, clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
     const { setDetailRequest,details } = useDetailsRequestStore();
@@ -52,6 +53,7 @@ export default function RequestTransferForm() {
             success: "Solicitud enviada exitosamente!",
             error: "No se pudo enviar la solicitud",
         });
+        await sendEmail(request);
         await clearAssetsByLocation(assetsCheck);
         await clearAssetsCheck();
     };
