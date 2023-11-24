@@ -2,13 +2,12 @@
 import { useClearAssetsByLocation, useClearReportRegisters, useLocation } from "@/root/hooks";
 import { generateExcel } from "@/root/reports";
 import { useAssetStore, useLocationStore, useReportStore } from "@/root/zustand";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 export default function SearchAssetsInfo() {
     useLocation();
     useClearReportRegisters();
     useClearAssetsByLocation();
-    const { assetsByLocationInfo } = useAssetStore();
     const { reportRegister } = useReportStore();
     const { getRegisterToReport } = useReportStore();
     const { locations, setCurrentLocation, currentLocation } = useLocationStore();
@@ -76,6 +75,5 @@ export default function SearchAssetsInfo() {
                 </button>
             </div>
         </div>
-
     )
 }

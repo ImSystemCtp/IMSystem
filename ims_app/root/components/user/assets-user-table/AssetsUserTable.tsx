@@ -1,7 +1,7 @@
 "use client"
 import { RequestAssetsModal } from "@/root/components";
 import { useAssetStore, useDetailsRequestStore } from "@/root/zustand";
-import { EnumReqType, ims_assets, ims_details_asset } from "@prisma/client";
+import {  ims_assets, ims_details_asset } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
@@ -34,20 +34,16 @@ export default function AssetsUserTable() {
     useEffect(() => {
         const container = containerRef.current;
         function handleScroll() {
-
             if (container) {
                 const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
-
                 if (isAtBottom) {
                     seeMore();
                 }
             }
         }
-
         if (container) {
             container.addEventListener('scroll', handleScroll);
         }
-
         return () => {
             if (container) {
                 container.removeEventListener('scroll', handleScroll);

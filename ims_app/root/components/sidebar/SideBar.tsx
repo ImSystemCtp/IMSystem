@@ -199,7 +199,6 @@ export default function SideBar() {
                                 <span className="text-blue-400  flex-1 ml-3 whitespace-nowrap">Gestion de Solicitudes</span>
                             </Link>
                         </li>
-
                     </ul>
                 </div>
             </div>

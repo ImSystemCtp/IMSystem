@@ -58,7 +58,7 @@ export default function RequestLowForm() {
     };
     return (
         <div className="w-full">
-            <div className="m-2 max-h-80 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
+            <div className="m-2 max-h-52 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

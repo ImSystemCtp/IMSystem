@@ -4,11 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { useSideBarStore } from "@/root/zustand";
-import { useState } from "react";
-import { NotificationRequestDropdown, NotificationUserDropDown } from "@/root/components";
 export default function AdminNavBar() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const handleToggle = () => {
     useSideBarStore.getState().toggle();
   };
@@ -27,7 +23,7 @@ export default function AdminNavBar() {
             whileTap={{ scale: 0.95 }}
             className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             type="button"
-            onClick={handleToggle} // Call the handler to show the navigation
+            onClick={handleToggle}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -48,12 +44,8 @@ export default function AdminNavBar() {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium text-center  flex flex-col py-10 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            {/*<li className=" flex justify-center items-center w-9 h-9 rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationUserDropDown /></li>
-            <li className=" flex justify-center items-center w-9 h-9 rounded-full transition-all duration-300 transform group-hover:rotate-12"><NotificationRequestDropdown /></li>
-  */}
             <li> <UserButton /></li>
           </ul>
-
         </div>
       </div>
     </nav>

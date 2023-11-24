@@ -18,11 +18,9 @@ export default function AssetsAdminTable() {
                 }
             }
         }
-
         if (container) {
             container.addEventListener('scroll', handleScroll);
         }
-
         return () => {
             if (container) {
                 container.removeEventListener('scroll', handleScroll);
@@ -94,6 +92,4 @@ export default function AssetsAdminTable() {
             </div>
         </div>
     );
-
 }
-

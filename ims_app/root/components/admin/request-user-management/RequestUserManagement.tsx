@@ -169,6 +169,5 @@ export default function RequestUserManagement() {
                 </div>
             </div>
         </motion.div>
-
     );
 }

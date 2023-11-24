@@ -30,7 +30,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,r
         if (option == 'Aceptar'){
             const register = {
                 reg_type: requestSelected.req_type,
-                reg_date: new Date().toISOString(),
+                reg_date: new Date(),
                 reg_observation: requestSelected.req_description,
                 reg_usu_id: requestSelected.req_usu_id,
                 reg_inst_id: 1,
