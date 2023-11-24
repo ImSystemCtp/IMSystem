@@ -1,0 +1,10 @@
+insert into ims_locations (location_name) values ('Spain');
+insert into ims_locations (location_name) values ('Russia');
+insert into ims_locations (location_name) values ('Sweden');
+insert into ims_locations (location_name) values ('China');
+insert into ims_locations (location_name) values ('Philippines');
+insert into ims_locations (location_name) values ('China');
+insert into ims_locations (location_name) values ('Indonesia');
+insert into ims_locations (location_name) values ('Philippines');
+insert into ims_locations (location_name) values ('China');
+insert into ims_locations (location_name) values ('China');
