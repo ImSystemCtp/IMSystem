@@ -35,11 +35,18 @@ const getAssetsByLocationQuery = async (query: QueryOptions) => {
         throw error;
     }
 }
+const getAssetsNo = async (assetNo: string) => {
+    useLoadingStore.getState().setIsLoading(true);
+    const response = await axios.get(`/api/assets/${assetNo}`);
+    useLoadingStore.getState().setIsLoading(false);
+    return response.data as ims_assets;
+}
 
 export const assetsProvider = {
     getAssets,
     contAssets,
     getAssetsByLocation,
     getAssetsByLocationQuery,
-    getAssetsByRequestId
+    getAssetsByRequestId,
+    getAssetsNo
 };

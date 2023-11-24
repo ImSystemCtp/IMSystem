@@ -77,10 +77,8 @@ export const useAssetStore = create<assetState>((set, get) => {
             set({ idLocation: locationId, assetsByLocationInfo: assetsByLocationQr, cursor: get().cursor + LIMIT })
         },
         getAssetsByQuery: async (assetNo: string) => {
-            set({ filterBy: "assets_no", filterCondition: "contains", filterValue: assetNo, cursor: 0 })
-            const query = {  limit: LIMIT, offset: get().cursor,orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: get().filterValue, filterCondition: get().filterCondition } as QueryOptions
-            const assetsByLocation = await assetsProvider.getAssetsByLocationQuery(query)
-            set({ assetsByLocation, cursor: get().cursor + LIMIT })
+            const assetsByLocation = await assetsProvider.getAssetsNo(assetNo)
+            set({ assetsByLocation:[assetsByLocation], cursor: get().cursor + LIMIT })
         },
         seeMore: async () => {
             const query = { limit: LIMIT, offset: get().cursor, orderBy: "assets_no", order: "asc", filterBy: get().filterBy, filterValue: get().filterValue, filterCondition: get().filterCondition } as QueryOptions
