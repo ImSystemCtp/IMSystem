@@ -37,13 +37,13 @@ export default function ListAssets() {
                         </button>
                     </div>
                 </div>
-                <div className="w-full overflow-x-auto border border-gray-300 rounded-lg">
+                <div className="w-full max-h-96 overflow-x-auto  border border-gray-300 rounded-lg">
                     {reportRequest.length === 0 ? (
                         <div className="flex items-center justify-center">
                             <LoadingComponent />
                         </div>
                     ) : (
-                        <table className="w-full">
+                        <table className="w-full max-h-96 overflow-x-auto">
                             <thead>
                                 <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <th className="px-4 py-3">Numero Placa</th>
