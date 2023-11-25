@@ -64,7 +64,7 @@ export default function AssetsAdminTable() {
                                         {asset.assets_no}
                                     </td>
                                     <td className="px-6 py-4 hidden md:table-cell">{asset.assets_brand}</td>
-                                    <td className="px-6 py-4 hidden md:table-cell">
+                                    <td className="px-6 py-4 ">
                                         <div className="flex items-center justify-center mb-4" onClick={() => {
                                             const checkbox = document.getElementById(`checkbox-${asset.assets_no}`) as HTMLInputElement;
                                             if (checkbox) {

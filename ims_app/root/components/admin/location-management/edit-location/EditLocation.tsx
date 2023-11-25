@@ -16,7 +16,7 @@ export default function EditLocation() {
                 </div>
             </div>
         ) :
-            <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
+            <div className="my-4 border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
                 <h2 className="text-center text-2xl font-bold  p-2">Ubicaciones</h2>
                 <div className="w-full max-h-60 overflow-y-auto">
                     <table className=" max-h-60 w-full text-sm text-left text-gray-500 dark:text-gray-400">

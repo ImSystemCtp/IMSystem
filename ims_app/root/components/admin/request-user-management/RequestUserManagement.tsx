@@ -85,8 +85,8 @@ export default function RequestUserManagement() {
                             <thead>
                                 <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <th className="px-4 py-3">Usuario</th>
-                                    <th className="px-4 py-3">Role</th>
-                                    <th className="px-4 py-3">Estado</th>
+                                    <th className="px-4 py-3 hidden md:table-cell">Role</th>
+                                    <th className="px-4 py-3 hidden md:table-cell">Estado</th>
                                     <th className="px-4 py-3">Rechazar</th>
                                     <th className="px-4 py-3">Aceptar</th>
                                 </tr>
@@ -100,12 +100,12 @@ export default function RequestUserManagement() {
                                         <td className="px-4 py-3">
                                             <div className="flex items-center text-sm">
                                                 <div>
-                                                    <p className="font-semibold">{user.usu_name + user.usu_surnames}</p>
+                                                    <p className="font-semibold">{user.usu_name +' '+ user.usu_surnames}</p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-4 py-3 text-sm">{pagine}</td>
-                                        <td className="px-4 py-3 text-xs">
+                                        <td className="px-4 py-3 text-sm hidden md:table-cell">{pagine}</td>
+                                        <td className="px-4 py-3 text-xs hidden md:table-cell">
                                             <span className="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
                                                 Pendiente
                                             </span>

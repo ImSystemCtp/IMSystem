@@ -10,10 +10,10 @@ export default function AdminMain() {
                     <SearchAssetsNo />
                 </div>
                 <InfoCards />
-                <div className="w-full  flex flex-row">
+                <div className="w-full  flex flex-col md:flex-row">
                     <div className="w-1/2 flex justify-center items-center">
                     </div>
-                    <div className="w-1/2 mt-4">
+                    <div className="w-96 md:w-1/2 mt-4">
                         <InfoRequestCard />
                     </div>
                 </div>

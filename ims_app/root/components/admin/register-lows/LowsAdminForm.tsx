@@ -44,13 +44,13 @@ export default function LowsAdminForm() {
     await clearAssetsCheck();
     };
     return (
-        <div className="w-full">
+        <div className="w-full " >
             <Formik
                 initialValues={initialValues}
                 validationSchema={lowsAdminFormMessage}
                 onSubmit={handleSubmit}
             >
-                <div className=" lg:h-full">
+                <div className="m-2 lg:h-full">
                     <Form>
                         <div className="flex flex-col   w-full  ">
                             <div className="p-2 w-full h-full ">

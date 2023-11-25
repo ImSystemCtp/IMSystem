@@ -14,7 +14,7 @@ export default function LocationsManagementMain() {
     return (
         <div className="w-full h-full">
             <h1 className="text-sky-400 text-2xl font-bold pb-12 text-center m-4">Gestión de Ubicaciones</h1>
-            <div className="flex flex-col lg:flex-row">
+            <div className=" flex flex-col lg:flex-row">
                 <div className="w-full lg:w-1/2">
                     <EditLocation />
                     </div>

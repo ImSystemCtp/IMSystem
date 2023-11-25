@@ -34,8 +34,8 @@ export default function RegisterAssets() {
     };
     return (
         <div className="justify-center items-center">
-            <div className="flex flex-row">
-                <div className="justify-center items-center rounded-lg border border-gray-300 m-2 w-2/3 flex flex-col">
+            <div className="flex flex-col md:flex-row">
+                <div className="justify-center items-center rounded-lg border border-gray-300 m-2 md:w-2/3 flex flex-col">
                     <Formik
                         initialValues={initialValues}
                         validationSchema={registerAssetsMessage}

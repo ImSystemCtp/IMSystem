@@ -11,7 +11,7 @@ export default function RegisterLows() {
         <div className=" w-full lg:w-3/5 pr-0 lg:pr-4">
           <AssetsAdminTable />
         </div>
-        <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300  w-full lg:w-2/5">
+        <div className="m-2 border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300  w-full lg:w-2/5">
           <LowsAdminForm />
         </div>
       </div>

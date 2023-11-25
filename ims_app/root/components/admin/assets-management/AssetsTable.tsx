@@ -50,7 +50,7 @@ export default function AssetsTable() {
                                 <th scope="col" className="px-3 py-3">
                                     Número de Patrimonio
                                 </th>
-                                <th scope="col" className="px-3 py-3">
+                                <th scope="col" className="hidden md:table-cell px-3 py-3">
                                     Descripción del Bien
                                 </th>
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
@@ -83,7 +83,7 @@ export default function AssetsTable() {
                                 <th scope="col" className="hidden md:table-cell px-3 py-3">
                                     Funcionario Responsable (Nombre y cédula)
                                 </th>
-                                <th scope="col" className="hidden md:table-cell px-3 py-3">
+                                <th scope="col" className=" px-3 py-3">
                                     Observaciones
                                 </th>
                             </tr>
@@ -92,7 +92,7 @@ export default function AssetsTable() {
                             {reportRegister.map((asset: registerToReport, index: number) => (
                                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td className="px-3 py-4">{asset.reg_tomo}{","}{asset.reg_folio}{","}{asset.reg_asiento}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_no}</td>
+                                    <td className="px-3 py-4 ">{asset.assets_no}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_description}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.invoice_date?.toString().split('T')[0]}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_series}</td>
@@ -104,7 +104,7 @@ export default function AssetsTable() {
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.assets_acquisition_value}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.law_name}</td>
                                     <td className="px-3 py-4 hidden md:table-cell">{asset.usu_name}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.reg_observation}</td>
+                                    <td className="px-3 py-4 ">{asset.reg_observation}</td>
                                 </tr>
                             ))}
                         </tbody>
