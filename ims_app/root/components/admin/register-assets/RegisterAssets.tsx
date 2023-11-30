@@ -30,7 +30,19 @@ export default function RegisterAssets() {
         const { assent_law_id, assets_regis_location } = values
         const locationId = Number.parseInt(assets_regis_location);
         const invoice_date = new Date(values.invoice_date);
-        addAssets({ ...values,invoice_date:invoice_date, assets_curr_location: locationId , assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
+        addAssets({ ...values, invoice_date: invoice_date, assets_curr_location: locationId, assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
+    };
+    const handleReset = () => {
+        initialValues.assets_no = "";
+        initialValues.assets_description = "";
+        initialValues.assets_series = "";
+        initialValues.assets_brand = "";
+        initialValues.assets_model = "";
+        initialValues.assets_invoice_number = "";
+        initialValues.assets_regis_location = "";
+        initialValues.assent_law_id = "";
+        initialValues.assets_acquisition_value = "";
+        initialValues.invoice_date = "";
     };
     return (
         <div className="justify-center items-center">
@@ -93,9 +105,9 @@ export default function RegisterAssets() {
                                     ) : (
                                         <div className="flex flex-row">
                                             <div className="flex items-center justify-center w-1/2">
-                                            <p className="text-red">
-                                                No existen ubicaciones.
-                                            </p>
+                                                <p className="text-red">
+                                                    No existen ubicaciones.
+                                                </p>
                                             </div>
                                             <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                                                 <Link href="/admin/locations-management">Agregar ubicaciones</Link>
@@ -108,7 +120,7 @@ export default function RegisterAssets() {
                                             {laws.map((law) => {
                                                 return (
                                                     <option key={law.law_id} value={law.law_id}>
-                                                        {law.law_name}
+                                                        {law.law_description}
                                                     </option>
                                                 );
                                             })}
@@ -116,9 +128,9 @@ export default function RegisterAssets() {
                                     ) : (
                                         <div className="flex flex-row">
                                             <div className="flex items-center justify-center w-1/2">
-                                            <p className="text-red">
-                                                No existen leyes.
-                                            </p>
+                                                <p className="text-red">
+                                                    No existen leyes.
+                                                </p>
                                             </div>
                                             <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                                                 <Link href="/admin/laws-management">Agregar ley</Link>
@@ -127,15 +139,30 @@ export default function RegisterAssets() {
                                     )}
                                 </div>
                             </div>
-                            <div className="flex justify-center items-center">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className=" m-2 p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Insertar a la lista
-                                </motion.button>
+                            <div className="flex flex-row m-2 p-2 ">
+
+                                <div className="flex justify-center items-center">
+                                    <motion.button
+                                        type="reset"
+                                        onClick={handleReset}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className=" m-2 p-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                                    >
+                                        Limpiar Formulario
+                                    </motion.button>
+                                </div>
+                                <div className="flex justify-center items-center">
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className=" m-2 p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                    >
+                                        Insertar a la lista
+                                    </motion.button>
+                                </div>
                             </div>
+
                         </Form>
                     </Formik>
                 </div>
