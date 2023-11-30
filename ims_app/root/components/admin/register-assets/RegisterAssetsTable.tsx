@@ -28,11 +28,11 @@ export default function RegisterAssetsTable() {
         removeAssets(asset)
     }
     return (
-        <div className="w-1/3 rounded-lg  border border-gray-300 p-4 m-2  ">
+        <div className="md:w-1/3 rounded-lg  border border-gray-300 p-4 m-2  ">
             <h2 className="text-2xl font-bold  text-center ">
                 Lista de Bienes a Registrar
             </h2>
-            <div className="w-full max-h-96 overflow-hidden rounded-lg shadow-xs overflow-y-auto">
+            <div className="w-full max-h-52 md:max-h-96 overflow-hidden rounded-lg shadow-xs overflow-y-auto">
                 <div className="w-full overflow-x-auto">
                     <table className="max-h-96 w-full table-fixed overflow-y-auto">
                         <thead>
@@ -74,7 +74,7 @@ export default function RegisterAssetsTable() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleRegisterAssets}
-                    className="m-2 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="m-2 p-2 bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
                     Registrar Bienes
                 </motion.button>

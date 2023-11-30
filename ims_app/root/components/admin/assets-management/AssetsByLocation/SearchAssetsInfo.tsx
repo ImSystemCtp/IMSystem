@@ -34,9 +34,9 @@ export default function SearchAssetsInfo() {
         }
     };
     return (
-        <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-2 lg:p-2">
-            <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
-                <div className="w-full">
+        <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col md:flex-row md:m-2 md:p-2">
+            <div className="flex justify-center items-center m-2 w-96  md:w-1/2 mb-4 lg:mb-0">
+                <div className="w-96 md:w-full">
                     <form>
                         <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">
@@ -54,26 +54,29 @@ export default function SearchAssetsInfo() {
                     </form>
                 </div>
             </div>
-            <div className="flex justify-center items-center w-full  lg:w-1/4 lg:pl-4 mx-20">
-                <select
-                    onChange={handleSelect}
-                    id="locations"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                    {!locationSelect ? <option value="">Buscar por ubicacion</option> : ""}
-                    {locations.map((location) => {
-                        return <option key={location.location_id} value={location.location_id}>{location.location_name}</option>;
-                    })}
-                </select>
+            <div className="m-2 flex flex-row w-full md:flex-grow md:justify-end md:items-end md:mx-4 md:mr-2">
+                <div className="mx-4 md:w-60 md:px-4 ">
+                    <select
+                        onChange={handleSelect}
+                        id="locations"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                        {!locationSelect ? <option value="">Buscar por ubicacion</option> : ""}
+                        {locations.map((location) => {
+                            return <option key={location.location_id} value={location.location_id}>{location.location_name}</option>;
+                        })}
+                    </select>
+                </div>
+                <div className="mx-4 ">
+                    <button
+                        onClick={handleExcel}
+                        className="bg-neutral-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
+                    >
+                        Generar Excel!
+                    </button>
+                </div>
             </div>
-            <div className="flex justify-center items-center">
-                <button
-                    onClick={handleExcel}
-                    className="bg-sky-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
-                >
-                    Generar Excel!
-                </button>
-            </div>
+
         </div>
     )
 }

@@ -19,7 +19,7 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       </span>{' '}
       en el sistema. Por favor, accede al sistema para revisar y gestionar la solicitud.
     </p>
-    <div className="bg-blue-500 text-white p-4 mb-6 rounded-md">
+    <div className="bg-blue-700 text-white p-4 mb-6 rounded-md">
       <p className="text-sm font-semibold">Detalles de la Solicitud:</p>
       <ul className="list-disc pl-5">
         <li>Tipo:  {request.req_type === "Low" ? "Baja" : "Traslado"}</li>

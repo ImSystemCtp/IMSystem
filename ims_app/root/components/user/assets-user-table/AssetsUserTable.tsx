@@ -90,7 +90,7 @@ export default function AssetsUserTable() {
                                         {asset.assets_no}
                                     </td>
                                     <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
-                                    <td className="px-6 py-4 hidden md:table-cell">
+                                    <td className="px-6 py-4 ">
                                         <div className="flex items-center justify-center mb-4" onClick={() => {
                                             const checkbox = document.getElementById(`checkbox-${asset.assets_no}`) as HTMLInputElement;
                                             if (checkbox) {
@@ -111,7 +111,7 @@ export default function AssetsUserTable() {
                                         </div>
 
                                     </td>
-                                    <td className="px-6 py-4 hidden md:table-cell">
+                                    <td className="px-6 py-4 ">
                                         {isChecked(asset) && (
                                             <button className="rounded-lg p-2 bg-green-500 text-white" onClick={() => handleOpenModal(asset)}>
                                                 Agregar Detalle

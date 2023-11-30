@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function SearchAssets() {
     useLocation();
     const { getAssetsByLocation } = useAssetStore();
-    const { locations, setCurrentLocation,currentLocation } = useLocationStore();
+    const { locations, setCurrentLocation, currentLocation } = useLocationStore();
     const [locationSelect, setLocationSelect] = useState<string>("");
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         await setCurrentLocation(parseInt(event.target.value));
@@ -18,9 +18,9 @@ export default function SearchAssets() {
         getAssetsByQuery(noAssets);
     }
     return (
-        <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col lg:flex-row lg:m-2 lg:p-2">
-            <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
-                <div className="w-full">
+        <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col md:flex-row md:m-2 md:p-2">
+            <div className="flex justify-center items-center m-2 w-96  md:w-1/2 mb-4 lg:mb-0">
+                <div className="w-96 md:w-full">
                     <form>
                         <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">
@@ -38,11 +38,11 @@ export default function SearchAssets() {
                     </form>
                 </div>
             </div>
-            <div className="flex justify-center items-center w-full  lg:w-1/4 lg:pl-4 mx-20">
+            <div className="flex justify-center items-center m-2 p-4 w-96 md:w-full  lg:w-1/4 lg:pl-4 md:mx-20">
                 <select
                     onChange={handleSelect}
                     id="locations"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                     {!locationSelect ? <option value="">Buscar por ubicacion</option> : ""}
                     {locations.map((location) => {
@@ -51,6 +51,5 @@ export default function SearchAssets() {
                 </select>
             </div>
         </div>
-
     )
 }

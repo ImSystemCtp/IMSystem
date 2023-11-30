@@ -59,7 +59,7 @@ export default function RegisterLaw() {
         selectLawToEdit({ law_id: 0, law_name: "", law_description: null as string | null });
     };
     return (
-        <main className=" ">
+        <main className=" w-full">
             <div className="flex flex-col justify-center items-center">
                 <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300 p-4 w-3/4">
                     <h2 className="lg:w-full lg:m-4 text-center text-2xl font-bold m-4 pb-12">
