@@ -21,7 +21,7 @@ export default function MainPage() {
         checkUserRole();
     }, [getAuth, getUsers]);
     return (
-        <div className="bg-sky-400 h-screen flex justify-center items-center">
+        <div className="bg-neutral-400 h-screen flex justify-center items-center">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-md">
                 <h1 className="text-4xl font-bold text-center mb-4">
                     ¡Bienvenido a IM_System!

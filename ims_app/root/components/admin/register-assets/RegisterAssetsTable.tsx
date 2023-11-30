@@ -74,7 +74,7 @@ export default function RegisterAssetsTable() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleRegisterAssets}
-                    className="m-2 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="m-2 p-2 bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
                     Registrar Bienes
                 </motion.button>

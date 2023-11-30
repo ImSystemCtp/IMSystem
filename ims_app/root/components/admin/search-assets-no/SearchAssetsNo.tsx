@@ -7,7 +7,7 @@ export default function SearchAssetsNo() {
                     type="search"
                     placeholder="Buscar Bien..."
                 />
-                <button className="rounded-lg bg-blue-600 p-2 ">
+                <button className="text-white font-bold rounded-lg bg-blue-700 hover:bg-blue-700 p-2 ">
                     Buscar!
                 </button>
             </div>

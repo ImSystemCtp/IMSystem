@@ -68,7 +68,7 @@ export default function RequestManagement() {
                                         </td>
                                         <td className="px-4 py-3 text-sm hidden md:table-cell">{request.req_date?.toString().split('T')[0]}</td>
                                         <td className="px-2 md:px-4 py-3 text-sm ">
-                                            <Link onClick={handleRequestSelect(request)} href={'/admin/list-assets'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            <Link onClick={handleRequestSelect(request)} href={'/admin/list-assets'} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                                 Ver más...
                                             </Link>
                                         </td>

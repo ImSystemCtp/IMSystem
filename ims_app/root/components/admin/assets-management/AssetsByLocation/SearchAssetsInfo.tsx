@@ -70,7 +70,7 @@ export default function SearchAssetsInfo() {
                 <div className="mx-4 ">
                     <button
                         onClick={handleExcel}
-                        className="bg-sky-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
+                        className="bg-neutral-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
                     >
                         Generar Excel!
                     </button>

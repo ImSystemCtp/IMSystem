@@ -15,7 +15,7 @@ export default function AdminNavBar() {
     }
   };
   return (
-    <nav className="bg-sky-400 border-gray-200 dark:bg-gray-900">
+    <nav className="bg-neutral-400 border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-wrap items-center justify-between mx-auto px-8 py-4 w-full">
         <div className="text-center">
           <motion.button

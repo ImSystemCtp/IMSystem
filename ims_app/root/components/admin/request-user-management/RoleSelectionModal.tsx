@@ -43,7 +43,7 @@ export default function RoleSelectionModal({
             <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-usuario bg-sky-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+                className="btn-usuario bg-neutral-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {
                     onRoleSelect('Usuario');
                     onRequestClose();
@@ -54,7 +54,7 @@ export default function RoleSelectionModal({
             <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-administrador bg-sky-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+                className="btn-administrador bg-neutral-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {
                     onRoleSelect('Administrador');
                     onRequestClose();

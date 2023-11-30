@@ -28,7 +28,7 @@ return (
       <div className="flex justify-normal items-center">
         <button
           onClick={handleGetTotal}
-          className="bg-sky-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
+          className="bg-neutral-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
         >
           Obtener Bienes
         </button>

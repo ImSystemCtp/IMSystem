@@ -70,7 +70,7 @@ export default function UserManagement() {
                                             </div>
                                         </td>
                                         <td className="px-4 py-3 text-xs">
-                                            <span className="px-2 py-1 font-semibold leading-tight text-white bg-sky-400 rounded-full">
+                                            <span className="px-2 py-1 font-semibold leading-tight text-white bg-neutral-400 rounded-full">
                                                 {user.usu_role}
                                             </span>
                                         </td>
@@ -79,7 +79,7 @@ export default function UserManagement() {
                                                 whileHover={{ scale: 1.05 }}
                                                 onClick={() => handleAccept(user)}
                                                 whileTap={{ scale: 0.95 }}
-                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                className="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                             >
                                                 Editar
                                             </motion.button>
