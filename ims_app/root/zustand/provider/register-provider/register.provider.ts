@@ -1,4 +1,4 @@
-import { registerAsset } from '@/root/types'
+import { registerAsset } from '@/lib/definitions'
 import { EnumRegisterType, ims_register } from '@prisma/client';
 import axios from 'axios';
 const create = async (register: registerAsset) => {

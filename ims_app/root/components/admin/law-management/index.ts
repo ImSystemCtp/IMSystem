@@ -1,3 +1,3 @@
-export * from './edit-laws';
-export * from './law-management-main';
-export * from './register-laws';
+export {default as EditLaw} from './EditLaw';
+export {default as LawsManagementMain} from './LawManagementMain';
+export {default as RegisterLaw} from './RegisterLaws';

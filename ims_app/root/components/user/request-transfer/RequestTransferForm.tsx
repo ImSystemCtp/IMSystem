@@ -1,6 +1,6 @@
 "use client";
 import { Formik, Form } from "formik";
-import { motion } from "framer-motion";
+
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
@@ -90,12 +90,11 @@ export default function RequestTransferForm() {
                                 <CustomSelect label="Nueva ubicación del bien:" name="newLocation" placeholder="Nueva ubicación del bien" />
                             </div>
                             <div className="w-full text-center justify-center items-center">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                <button
+                                    
                                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="submit">
                                     Enviar Solicitud!
-                                </motion.button>
+                                </button>
                             </div>
                         </div>
                     </Form>

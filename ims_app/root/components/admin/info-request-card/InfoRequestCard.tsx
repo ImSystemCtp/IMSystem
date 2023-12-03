@@ -1,18 +1,15 @@
-"use client"
 import Link from "next/link";
 import { LoadingComponent } from "@/root/components";
 import { useUserNoRoleStore,useLoadingStore } from "@/root/zustand";
-import { motion } from "framer-motion";
+
 import { useUserPending } from "@/root/hooks";
 export default function InfoRequestCard() {
     useUserPending();
     const { usersPending ,isLoadUser } = useUserNoRoleStore();
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+        <div
+            
             className="p-4  relative flex flex-col min-w-0 break-words bg-gray-100 dark:bg-gray-800 w-full shadow-lg rounded"
         >
             <div className="flex flex-wrap items-center px-4 py-2">
@@ -65,6 +62,6 @@ export default function InfoRequestCard() {
                 )
                 )}
             </ul>
-        </motion.div >
+        </div >
     );
 }

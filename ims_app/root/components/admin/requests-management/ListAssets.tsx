@@ -4,7 +4,7 @@ import { generatePDF } from "@/root/reports";
 import {
     useRequestStore, useReportStore,
 } from "@/root/zustand";
-import { motion } from "framer-motion";
+
 import { useState } from "react";
 export default function ListAssets() {
     const { reportRequest } = useReportStore();
@@ -78,7 +78,7 @@ export default function ListAssets() {
             </div>
             <div className="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
                 <div className="w-full md:w-1/2 text-center">
-                    <motion.button
+                    <button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => {
@@ -89,10 +89,10 @@ export default function ListAssets() {
                         type="submit"
                     >
                         Rechazar
-                    </motion.button>
+                    </button>
                 </div>
                 <div className="w-full md:w-1/2 text-center">
-                    <motion.button
+                    <button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => {
@@ -103,7 +103,7 @@ export default function ListAssets() {
                         type="submit"
                     >
                         Aceptar
-                    </motion.button>
+                    </button>
                 </div>
             </div>
             <RequestManagementModal

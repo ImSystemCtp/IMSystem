@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { motion } from 'framer-motion';
+
 import { ims_assets } from '@prisma/client';
 type ModalProps = {
     isOpen: boolean;
@@ -61,14 +61,13 @@ export default function RequestAssetsModal({ isOpen, onRequestClose, asset, newD
                 />
             </div>
             <div className='flex justify-center items-center'>
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <button
+                
                 className="btn-agregar-detalle bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={handleSendDetail}
             >
                 Agregar Detalle
-            </motion.button>
+            </button>
             </div>
         </Modal>
     );

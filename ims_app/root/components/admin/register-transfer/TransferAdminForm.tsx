@@ -1,14 +1,14 @@
 "use client";
 import { Formik, Form } from "formik";
-import { motion } from "framer-motion";
+
 import {  CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import { EnumRegisterType, ims_register } from "@prisma/client";
-import { registerAsset } from "@/root/types";
 import toast from "react-hot-toast";
 import { useAssetStore, useAuthStore, useLocationStore, useRegisterStore } from "@/root/zustand";
 import { useAuth, useLocation } from "@/root/hooks";
 import Link from "next/link";
+import { registerAsset } from "@/lib/definitions";
 interface FormValues {
     newLocation: string;
     observation: string;
@@ -86,12 +86,11 @@ export default function TransferAdminForm() {
                                     )}
                             </div>
                             <div className="w-full text-center justify-center items-center">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                <button
+                                    
                                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="submit">
                                     Registrar
-                                </motion.button>
+                                </button>
                             </div>
                         </div>
                     </Form>

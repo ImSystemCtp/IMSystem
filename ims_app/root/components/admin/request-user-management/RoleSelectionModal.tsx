@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Modal from 'react-modal';
-import { motion } from 'framer-motion';
+
 
 type RoleSelectionModalProps = {
     isOpen: boolean;
@@ -40,9 +40,7 @@ export default function RoleSelectionModal({
                 </svg>
             </button>
             <h2>Por favor, seleccione el rol del usuario:</h2>
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <button
                 className="btn-usuario bg-neutral-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {
                     onRoleSelect('Usuario');
@@ -50,10 +48,8 @@ export default function RoleSelectionModal({
                 }}
             >
                 Usuario
-            </motion.button>
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            </button>
+            <button
                 className="btn-administrador bg-neutral-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {
                     onRoleSelect('Administrador');
@@ -61,7 +57,7 @@ export default function RoleSelectionModal({
                 }}
             >
                 Administrador
-            </motion.button>
+            </button>
         </Modal>
     );
 }

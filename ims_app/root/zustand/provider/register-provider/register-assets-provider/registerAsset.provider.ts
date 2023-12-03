@@ -1,5 +1,5 @@
 
-import { registerAsset } from '@/root/types';
+import { registerAsset } from '@/lib/definitions';
 import { ims_register } from '@prisma/client';
 import axios from 'axios';
 

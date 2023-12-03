@@ -1,4 +1,3 @@
-"use client"
 import { AssetsAdminTable, LowsAdminForm, SearchAssets,  } from "@/root/components";
 import { useClearAssetsByLocation } from "@/root/hooks";
 export default function RegisterLows() {

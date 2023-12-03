@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+
 import { ims_laws } from "@prisma/client";
 import { useLawStore } from "@/root/zustand";
 import toast from "react-hot-toast";
@@ -90,22 +90,22 @@ export default function RegisterLaw() {
                         </div>
                     </div>
                     <div className="w-full mt-4 flex justify-center">
-                        <motion.button
+                        <button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             onClick={handleCancel}
                         >
                             Cancelar
-                        </motion.button>
-                        <motion.button
+                        </button>
+                        <button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             onClick={handleSubmit}
                         >
                             {lawToEdit ? "Guardar Cambios" : "Registrar"}
-                        </motion.button>
+                        </button>
                     </div>
                 </div>
             </div>

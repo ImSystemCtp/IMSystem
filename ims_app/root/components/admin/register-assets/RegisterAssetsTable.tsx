@@ -2,7 +2,7 @@
 import { useAuth } from "@/root/hooks";
 import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
 import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
-import { motion } from "framer-motion";
+
 import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     useAuth();
@@ -54,14 +54,14 @@ export default function RegisterAssetsTable() {
                                     </td>
                                     <td className="px-4 py-3 text-sm">{asset.assets_model}</td>
                                     <td className="px-4 py-3 text-sm">
-                                            <motion.button
+                                            <button
                                                 whileHover={{ scale: 1.05 }}
                                                 whileTap={{ scale: 0.95 }}
                                                 onClick={() => handleDelete(asset)}
                                                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                             >
                                                 Eliminar
-                                            </motion.button>
+                                            </button>
                                         </td>
                                 </tr>
                             ))}
@@ -70,14 +70,13 @@ export default function RegisterAssetsTable() {
                 </div>
             </div>
             <div className="w-full flex justify-center items-center ">
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                <button
+                    
                     onClick={handleRegisterAssets}
                     className="m-2 p-2 bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
                     Registrar Bienes
-                </motion.button>
+                </button>
             </div>
         </div>
     )

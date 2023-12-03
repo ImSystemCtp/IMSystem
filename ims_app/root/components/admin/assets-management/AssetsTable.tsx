@@ -1,7 +1,7 @@
 "use client"
 import { useAssetStore, useReportStore } from "@/root/zustand";
 import { useEffect, useRef, useState } from "react";
-export default function AssetsTable() {
+export default  function AssetsTable() {
     const { seeMore } = useAssetStore();
     const { reportRegister } = useReportStore();
     const containerRef = useRef<HTMLDivElement | null>(null);

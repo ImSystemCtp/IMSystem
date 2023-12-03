@@ -5,7 +5,7 @@ import { EnumUserRole, ims_users } from '@prisma/client';
 import { Form, Formik } from 'formik';
 import { editUsersMessage } from '@/schemas';
 import { CustomInput, CustomSelect } from '@/root/components';
-import { motion } from 'framer-motion';
+
 import { useUserStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
 type ModalProps = {
@@ -104,13 +104,12 @@ export default function EditUserModal({
                                 </div>
                             </div>
                             <div className="flex justify-center items-center">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                <button
+                                    
                                     className=" m-2 p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                                 >
                                     Editar Usuario
-                                </motion.button>
+                                </button>
                             </div>
                         </Form>
                     </Formik>

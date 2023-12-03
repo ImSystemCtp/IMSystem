@@ -1,4 +1,3 @@
-"use client"
 import { AssetsAdminTable, SearchAssets, TransferAdminForm } from "@/root/components";
 import { useClearAssetsByLocation } from "@/root/hooks";
 export default function RegisterTransfer() {

@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
-import { motion } from 'framer-motion';
+
 import {EnumReqState, ims_assets,ims_details_asset,ims_register,ims_request } from '@prisma/client';
 import { useRegisterStore, useRequestStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
-import { registerAsset } from '@/root/types';
+import { registerAsset } from '@/lib/definitions';
 import { transformToImsAssets } from '@/root/functions';
 type ModalProps = {
     isOpen: boolean;
@@ -80,22 +80,20 @@ export default function RequestManagementModal({ isOpen, onRequestClose,option,r
             <h3 className='text-2xl font-bold  text-center'>¿Esta seguro que desea {option} la solicitud?</h3>
             </div>
             <div className='flex justify-center items-center'>
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <button
+                
                 className="btn-agregar-detalle bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={handleRequest}
             >
                 Estoy de acuerdo
-            </motion.button>
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            </button>
+            <button
+                
                 className="btn-agregar-detalle bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={onRequestClose}
             >
                 Cancelar
-            </motion.button>
+            </button>
             </div>
         </Modal>
     );

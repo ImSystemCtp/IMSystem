@@ -1,3 +1,3 @@
-export * from './edit-location';
-export * from './locatins-management-main';
-export * from './register-location';
+export {default as EditLocation} from './EditLocation';
+export {default as LocationsManagementMain} from './LocationsManagementMain';
+export {default as RegisterLocation} from './RegisterLocation';

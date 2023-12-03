@@ -1,7 +1,6 @@
-"use client"
 import { LoadingComponent } from "@/root/components";
 import { useAssetStore, useLoadingStore, useRegisterInStore } from "@/root/zustand";
-import { motion } from "framer-motion";
+
 export default function InfoCards() {
     const registerInState = useRegisterInStore();
     const { count } = useAssetStore();
@@ -76,7 +75,7 @@ export default function InfoCards() {
         },
         ];
 return (
-    <motion.div
+    <div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -93,6 +92,6 @@ return (
                 {option.data}
             </div>
         ))}
-    </motion.div>
+    </div>
 )
 }
