@@ -93,8 +93,6 @@ export default function RegisterAssets() {
                                     <button
                                         type="reset"
                                         onClick={handleReset}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
                                         className=" m-2 p-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                                     >
                                         Limpiar Formulario
@@ -102,8 +100,6 @@ export default function RegisterAssets() {
                                 </div>
                                 <div className="flex justify-center items-center">
                                     <button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
                                         className=" m-2 p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                                     >
                                         Insertar a la lista
