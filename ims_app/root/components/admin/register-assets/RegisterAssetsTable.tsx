@@ -55,8 +55,6 @@ export default function RegisterAssetsTable() {
                                     <td className="px-4 py-3 text-sm">{asset.assets_model}</td>
                                     <td className="px-4 py-3 text-sm">
                                             <button
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
                                                 onClick={() => handleDelete(asset)}
                                                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                             >

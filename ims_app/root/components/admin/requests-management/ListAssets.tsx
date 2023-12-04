@@ -79,8 +79,6 @@ export default function ListAssets() {
             <div className="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
                 <div className="w-full md:w-1/2 text-center">
                     <button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
                         onClick={() => {
                             handleOpenModal();
                             setOption('Rechazar');
@@ -93,8 +91,6 @@ export default function ListAssets() {
                 </div>
                 <div className="w-full md:w-1/2 text-center">
                     <button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
                         onClick={() => {
                             handleOpenModal();
                             setOption('Aceptar');

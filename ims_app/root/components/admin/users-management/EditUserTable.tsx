@@ -50,9 +50,7 @@ export default function EditUserTable() {
                                         </td>
                                         <td className="px-4 py-3 text-sm">
                                             <button
-                                                whileHover={{ scale: 1.05 }}
                                                 onClick={() => handleAccept(user)}
-                                                whileTap={{ scale: 0.95 }}
                                                 className="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                             >
                                                 Editar
