@@ -4,7 +4,9 @@ import Link from "next/link";
 export default function RequestTable() {
 
     const {getRequestToReport} = useReportStore();
-    const { requestPending, setRequestSelected, isLoadRequest , getRequestsPending} = useRequestStore();
+    const { requestPending} = useRequestStore((state) => ({ requestPending: state.requestPending }));
+    const {setRequestSelected} = useRequestStore();
+
     
     const handleRequestSelect =  (request: ims_request) => async () => {
         await getRequestToReport(request.req_id);

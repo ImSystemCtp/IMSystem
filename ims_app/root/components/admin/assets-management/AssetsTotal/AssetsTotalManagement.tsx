@@ -5,7 +5,9 @@ import { generateExcel } from "@/root/reports";
 import { useReportStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 export default function AssetsTotalManagement() {
-  const { getTotalRegister,reportRegister,clearReportRegister } = useReportStore();
+  const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }));
+  const { getTotalRegister } = useReportStore();
+
   useClearReportRegisters();
   const handleGetTotal = async () => {
     await getTotalRegister();

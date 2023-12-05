@@ -8,7 +8,7 @@ export default function SearchAssetsInfo() {
     useLocation();
     useClearReportRegisters();
     useClearAssetsByLocation();
-    const { reportRegister } = useReportStore();
+    const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }));
     const { getRegisterToReport } = useReportStore();
     const { locations } = useLocationStore((state) => ({ locations: state.locations }));
     const { setCurrentLocation } = useLocationStore();

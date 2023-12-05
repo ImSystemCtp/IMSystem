@@ -7,8 +7,8 @@ import {
 
 import { useState } from "react";
 export default function ListAssets() {
-    const { reportRequest } = useReportStore();
-    const { requestSelected } = useRequestStore();
+    const { reportRequest } = useReportStore((state) => ({ reportRequest: state.reportRequest }));
+    const { requestSelected } = useRequestStore((state) => ({ requestSelected: state.requestSelected }));
     const [option, setOption] = useState("");
     const [showModal, setShowModal] = useState(false);
     const handleCloseModal = () => { setShowModal(false); };

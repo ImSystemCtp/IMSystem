@@ -1,5 +1,5 @@
+import { registerAsset } from "@/lib/definitions";
 import { registerProvider } from "@/root/zustand";
-import { registerAsset,  } from "@/root/types";
 import { ims_assets, ims_register } from "@prisma/client";
 import { create } from "zustand";
 interface registerState {
