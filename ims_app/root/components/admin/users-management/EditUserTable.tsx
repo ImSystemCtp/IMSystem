@@ -1,12 +1,10 @@
 "use client"
-
 import { useUser, } from "@/root/hooks";
 import { useState } from "react";
 import { useUserStore } from "@/root/zustand";
 import { ims_users } from "@prisma/client";
 import { EditUserModal } from "@/root/components";
 export default function EditUserTable() {
-    useUser();
     const handleAccept = (user: ims_users) => {
         setUserSelect(user);
         setShowModal(true);

@@ -41,6 +41,7 @@ export default function EditUserModal({
             success: "Usuario editado exitosamente!",
             error: "No se pudo editar el usuario",
         });
+        onRequestClose();
     }
     return (
         <Modal
@@ -105,8 +106,7 @@ export default function EditUserModal({
                             </div>
                             <div className="flex justify-center items-center">
                                 <button
-                                    
-                                    className=" m-2 p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                    className=" m-2 p-2 bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded"
                                 >
                                     Editar Usuario
                                 </button>

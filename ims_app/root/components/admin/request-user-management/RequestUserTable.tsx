@@ -5,7 +5,6 @@ import { useState } from "react";
 import { EnumUserRole, ims_users } from "@prisma/client";
 import { RoleSelectionModal } from "@/root/components";
 export default function RequestUserTable() {
-    useUserPending();
     const {  usersPending, haveNextPage, pagine } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, haveNextPage: state.haveNextPage, pagine: state.pagine }));
     const { getNextPage,  getPreviousPage } = useUserNoRoleStore();
     const { updateUser, deleteUser, clearUserPending } = useUserStore();

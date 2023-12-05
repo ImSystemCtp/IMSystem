@@ -32,7 +32,7 @@ export default function ListAssets() {
                         onChange={handleObservationChange}
                     />
                     <div className="ml-auto">
-                        <button className="bg-green-600 p-2 m-2 rounded-lg text-white" onClick={handlePDF}>
+                        <button className="bg-cyan-600 p-2 m-2 rounded-lg text-white" onClick={handlePDF}>
                             Descargar PDF
                         </button>
                     </div>
@@ -95,7 +95,7 @@ export default function ListAssets() {
                             handleOpenModal();
                             setOption('Aceptar');
                         }}
-                        className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
+                        className="text-white bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
                         type="submit"
                     >
                         Aceptar

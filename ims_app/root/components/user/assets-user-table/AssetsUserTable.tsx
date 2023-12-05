@@ -120,7 +120,7 @@ export default function AssetsUserTable() {
                                     </td>
                                     <td className="px-6 py-4 ">
                                         {isChecked(asset) && (
-                                            <button className="rounded-lg p-2 bg-green-500 text-white" onClick={() => handleOpenModal(asset)}>
+                                            <button className="rounded-lg p-2 bg-cyan-700 hover:bg-cyan-600 text-white" onClick={() => handleOpenModal(asset)}>
                                                 Agregar Detalle
                                             </button>
                                         )}

@@ -2,10 +2,12 @@
 import { Form, Formik } from "formik";
 
 import { registerAssetsMessage } from "@/schemas";
-import { useAssetStore} from "@/root/zustand";
+import { useAssetStore, useLawStore, useLocationStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
-import { CustomInput, CustomSelectAssets, LoadingComponent, RegisterAssetsTable } from "@/root/components";
+import { CustomInput, CustomSelect, LoadingComponent, RegisterAssetsTable } from "@/root/components";
 import { Suspense } from "react";
+import { useLaw, useLocation } from "@/root/hooks";
+import Link from "next/link";
 interface FormValues {
     assets_no: string,
     assets_description: string,
@@ -21,6 +23,10 @@ interface FormValues {
 export const initialValues = {} as FormValues;
 export default function RegisterAssets() {
     const { addAssets } = useAssetStore()
+    useLocation();
+    useLaw();
+    const { laws } = useLawStore((state) => ({ laws: state.laws }));
+    const { locations } = useLocationStore((state) => ({ locations: state.locations }));
     const handleSubmit = async (values: FormValues) => {
         const { assent_law_id, assets_regis_location } = values
         const locationId = Number.parseInt(assets_regis_location);
@@ -82,9 +88,56 @@ export default function RegisterAssets() {
                                         name="assets_acquisition_value"
                                         inputType="text"
                                     />
-                                    <Suspense fallback={<LoadingComponent/>}></Suspense>
-                                    <CustomSelectAssets />
-                                    <Suspense/>
+                                    {locations.length > 0 ? (
+                                        <CustomSelect label="Ubicación:" name="assets_regis_location">
+                                            {!initialValues.assets_regis_location ? (
+                                                <option value="">Seleccione una ubicación</option>
+                                            ) : (
+                                                ""
+                                            )}
+                                            {locations.map((location) => {
+                                                return (
+                                                    <option key={location.location_id} value={location.location_id}>
+                                                        {location.location_name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                                <p className="text-red">
+                                                    No existen ubicaciones.
+                                                </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/locations-management">Agregar ubicaciones</Link>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {laws.length > 0 ? (
+                                        <CustomSelect label="Ley que financió:" name="assent_law_id">
+                                            {!initialValues.assent_law_id ? <option value="">Seleccione una ley</option> : ""}
+                                            {laws.map((law) => {
+                                                return (
+                                                    <option key={law.law_id} value={law.law_id}>
+                                                        {law.law_description}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                                <p className="text-red">
+                                                    No existen leyes.
+                                                </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/laws-management">Agregar ley</Link>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="flex flex-row m-2 p-2 ">
@@ -100,7 +153,7 @@ export default function RegisterAssets() {
                                 </div>
                                 <div className="flex justify-center items-center">
                                     <button
-                                        className=" m-2 p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                        className=" m-2 p-2 bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded"
                                     >
                                         Insertar a la lista
                                     </button>

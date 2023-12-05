@@ -83,7 +83,7 @@ return (
         {options.map((option, index) => (
             <div
                 key={index}
-                className="bg-neutral-400 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group"
+                className="bg-neutral-400 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-neutral-500 dark:border-gray-600 text-white font-medium group"
             >
                 <div className="flex justify-center items-center w-14 h-14 rounded-full transition-all duration-300 transform group-hover:rotate-12">
                     {option.icon}

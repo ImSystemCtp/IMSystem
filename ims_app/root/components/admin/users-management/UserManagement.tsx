@@ -2,7 +2,9 @@ import {LoadingComponent } from "@/root/components";
 import { useUserStore } from "@/root/zustand";
 import EditUserTable from "./EditUserTable";
 import { Suspense } from "react";
+import { useUser } from "@/root/hooks";
 export default function UserManagement() {
+    useUser();
     const { loadUser, users } = useUserStore((state) => ({ loadUser: state.loadUser, users: state.users }));
     return (
         <div
@@ -25,9 +27,7 @@ export default function UserManagement() {
                             </div>
                         </div>
                     ) : ((
-                        <Suspense fallback={<LoadingComponent/>}>
                             <EditUserTable />
-                        </Suspense>
                     ))}
                 </div>
             </div>

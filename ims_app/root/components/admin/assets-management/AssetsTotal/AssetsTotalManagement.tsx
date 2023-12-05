@@ -30,7 +30,7 @@ return (
       <div className="flex justify-normal items-center">
         <button
           onClick={handleGetTotal}
-          className="bg-neutral-400 hover:bg-sky-200 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
         >
           Obtener Bienes
         </button>
@@ -38,7 +38,7 @@ return (
       <div className="flex flex-grow justify-end items-center">
         <button
           onClick={handleExcel}
-          className="bg-lime-600 hover:bg-lime-400 text-white font-bold py-2 px-4 rounded"
+          className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded"
         >
           Generar Excel!
         </button>

@@ -41,7 +41,7 @@ export default function RoleSelectionModal({
             </button>
             <h2>Por favor, seleccione el rol del usuario:</h2>
             <button
-                className="btn-usuario bg-neutral-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+                className="btn-usuario bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {
                     onRoleSelect('Usuario');
                     onRequestClose();
@@ -50,7 +50,7 @@ export default function RoleSelectionModal({
                 Usuario
             </button>
             <button
-                className="btn-administrador bg-neutral-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+                className="btn-administrador bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {
                     onRoleSelect('Administrador');
                     onRequestClose();

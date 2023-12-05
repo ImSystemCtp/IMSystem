@@ -2,7 +2,9 @@ import { useUserNoRoleStore, useUserStore } from "@/root/zustand";
 
 import { LoadingComponent, RequestUserTable } from "@/root/components";
 import { Suspense } from "react";
+import { useUserPending } from "@/root/hooks";
 export default function RequestUserManagement() {
+    useUserPending();
     const { usersPending, isLoadUser } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     return (
         <div
