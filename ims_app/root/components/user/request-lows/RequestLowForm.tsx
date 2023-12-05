@@ -7,7 +7,9 @@ import { lowsAdminFormMessage } from "@/schemas";
 import { EmailStore, useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
-import { RequestType } from "@/root/types";
+import { RequestType } from "@/lib/definitions";
+import { stat } from "fs";
+
 interface FormValues {
     observation: string;
 }
@@ -17,10 +19,14 @@ const initialValues: FormValues = {
 export default function RequestLowForm() {
     const { addRequest } = useRequestStore();
     useAuth();
-    const { userAuth } = useAuthStore();
+    const { userAuth } = useAuthStore((state)=>({userAuth: state.userAuth}));
     const { sendEmail } = EmailStore();
-    const { assetsCheck, clearAssetsCheck, clearAssetsByLocation } = useAssetStore();
-    const { setDetailRequest, details } = useDetailsRequestStore();
+    const { assetsCheck } = useAssetStore((state) => ({ assetsCheck: state.assetsCheck }));
+    const {clearAssetsCheck, clearAssetsByLocation } = useAssetStore();
+
+    const {  details } = useDetailsRequestStore((state) => ({
+        details: state.details}));
+
     const checkedDetails = details.filter((detail) => {
         return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
     });

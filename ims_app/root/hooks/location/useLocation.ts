@@ -2,7 +2,8 @@
 import { useEffect } from "react";
 import { useAssetStore, useLoadingStore, useLocationStore } from "@/root/zustand";
 export const useLocation= () => {
-    const {getLocation,currentLocation} = useLocationStore();
+    const {getLocation,} = useLocationStore();
+
     useEffect(() => {
         async function checkLocationsChanges() {
             const locations = await getLocation();

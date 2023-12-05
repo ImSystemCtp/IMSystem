@@ -3,7 +3,9 @@ import { useAssetStore, useLoadingStore, useRegisterInStore } from "@/root/zusta
 
 export default function InfoCards() {
     const registerInState = useRegisterInStore();
-    const { count } = useAssetStore();
+    const { count } = useAssetStore((state) => ({
+        count: state.count
+        }));
     const currentRegisterIn = registerInState.registerIn;
     const isLoading = useLoadingStore((state) => state.isLoading);
     const options = [

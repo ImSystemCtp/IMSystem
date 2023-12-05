@@ -1,12 +1,16 @@
 "use client"
 import { LoadingComponent } from "@/root/components";
-import { useLawStore, useLoadingStore } from "@/root/zustand";
+import { useLawStore } from "@/root/zustand";
 import { ims_laws } from "@prisma/client";
 
 import { useLaw } from "@/root/hooks";
 export default function EditLaw() {
     useLaw();
-    const { selectLawToEdit, laws, loadingLaw } = useLawStore();
+    const { laws, loadingLaw } = useLawStore((state) => ({
+        laws: state.laws,
+        loadingLaw: state.loadingLaw}));
+    const { selectLawToEdit} = useLawStore();
+
     return (
         loadingLaw ? <LoadingComponent /> : laws.length === 0 ? (
             <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">

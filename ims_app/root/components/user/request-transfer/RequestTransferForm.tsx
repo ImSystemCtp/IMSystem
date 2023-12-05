@@ -6,8 +6,9 @@ import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
 import { EmailStore, useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
-import { RequestType } from "@/root/types";
 import { useAuth } from "@/root/hooks";
+import { RequestType } from "@/lib/definitions";
+import { stat } from "fs";
 interface FormValues {
     newLocation: string;
     observation: string;
@@ -22,9 +23,10 @@ export default function RequestTransferForm() {
     useAuth();
     const { sendEmail } = EmailStore();
     const {addRequest} = useRequestStore();
-    const { assetsCheck, clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
-    const { setDetailRequest,details } = useDetailsRequestStore();
-    const {userAuth} = useAuthStore()
+    const { assetsCheck } = useAssetStore((state)=> ({ assetsCheck: state.assetsCheck }));
+    const {  clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
+    const { details } = useDetailsRequestStore((state) => ({ details: state.details }));
+    const {userAuth} = useAuthStore((state)=>({userAuth: state.userAuth}))
     const checkedDetails = details.filter((detail) => {
         return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
     });

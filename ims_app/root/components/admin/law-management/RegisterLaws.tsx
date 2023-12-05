@@ -5,7 +5,9 @@ import { ims_laws } from "@prisma/client";
 import { useLawStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 export default function RegisterLaw() {
-    const { selectLawToEdit, createLaw, lawToEdit, updateLaw } = useLawStore();
+    const {lawToEdit } = useLawStore((state) => ({ lawToEdit: state.lawToEdit }));
+    const { selectLawToEdit, createLaw, updateLaw } = useLawStore();
+
     const [lawName, setLawName] = useState(
         lawToEdit ? lawToEdit.law_name : ""
     );

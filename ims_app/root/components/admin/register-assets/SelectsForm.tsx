@@ -6,7 +6,7 @@ import { initialValues } from "./RegisterAssets";
 export default function CustomSelectAssets() {
     useLocation();
     useLaw();
-    const { laws } = useLawStore();
+    const { laws } = useLawStore((state) => ({ laws: state.laws }));
     const { locations } = useLocationStore();
     return (
         <div>

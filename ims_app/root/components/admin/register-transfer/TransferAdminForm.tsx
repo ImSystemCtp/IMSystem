@@ -17,11 +17,17 @@ interface FormValues {
 const initialValues = {} as FormValues;
 export default function TransferAdminForm() {
     useLocation();
-    const { locations, setCurrentLocation,currentLocation } = useLocationStore();
-    const {assetsCheck,clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
+    const { locations } = useLocationStore((state) => ({
+        locations: state.locations
+    }));
+    const {assetsCheck } = useAssetStore((state) => ({
+        assetsCheck: state.assetsCheck
+    }));
+    const { clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
+
     const { addRegister } = useRegisterStore();
     useAuth();
-    const { userAuth } = useAuthStore();
+    const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Transfer,

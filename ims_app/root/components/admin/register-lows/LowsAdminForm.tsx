@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
-import {  useAssetStore, useAuthStore, useLocationStore } from "@/root/zustand";
+import {  useAssetStore, useAuthStore } from "@/root/zustand";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
@@ -19,10 +19,14 @@ const initialValues: FormValues = {
 };
 
 export default function LowsAdminForm() {
-    const {assetsCheck,clearAssetsCheck,clearAssetsByLocation,getAssetsByLocation } = useAssetStore();
+    const {assetsCheck } = useAssetStore((state) => ({
+        assetsCheck: state.assetsCheck
+        }));
+    const {clearAssetsCheck,clearAssetsByLocation } = useAssetStore();
+
     const { addRegister } = useRegisterStore();
     useAuth();
-    const { userAuth } = useAuthStore();
+    const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const handleSubmit = async (values: FormValues) => {
         const register = {
             reg_type: EnumRegisterType.Low,
