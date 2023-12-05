@@ -1,9 +1,9 @@
 import { prismaDB } from "@/lib/prisma";
-import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 import { USER_ROLES } from "../../enums/roles";
 import { currentUser } from "@clerk/nextjs";
 import { checkAuthorization } from "@/lib/authorization";
+import { ParameterId } from "@/lib/definitions";
 
 export async function GET(_request: Request, { params }: ParameterId) {
     try {

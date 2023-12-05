@@ -1,5 +1,4 @@
 import { prismaDB } from "@/lib/prisma";
-import { ParameterId } from "@/root/types";
 import { ims_details_asset } from "@prisma/client";
 import { NextResponse } from "next/server";
 

@@ -1,7 +1,7 @@
 import { prismaDB } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { EnumReqState, } from "@prisma/client";
-import { ParameterId } from "@/root/types";
+import { ParameterId } from "@/lib/definitions";
 export async function GET(_req: Request, { params }: ParameterId) {
     try {
         const id = params.id as string;

@@ -1,6 +1,6 @@
 import { prismaDB } from "@/lib";
+import { registerAsset } from "@/lib/definitions";
 import { NextResponse } from "next/server";
-import { registerAsset } from "@/root/types";
 export async function POST(req: Request) {
     try {
         const body = await req.json() as registerAsset;

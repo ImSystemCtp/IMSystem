@@ -1,4 +1,3 @@
-import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 import prismaDB from "@/lib/prisma/prismadb";
 

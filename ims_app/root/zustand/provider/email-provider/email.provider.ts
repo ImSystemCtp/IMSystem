@@ -1,4 +1,4 @@
-import { EmailType } from "@/root/types";
+import { EmailType } from "@/lib/definitions";
 import { ims_request } from "@prisma/client";
 import axios from "axios";
 const sendEmail = async (request:ims_request) => {

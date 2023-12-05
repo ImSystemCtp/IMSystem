@@ -1,4 +1,4 @@
-import { RequestType } from "@/root/types";
+import { RequestType } from "@/lib/definitions";
 import { requestProvider } from "@/root/zustand";
 import { ims_assets, ims_request } from "@prisma/client";
 import { create } from "zustand";

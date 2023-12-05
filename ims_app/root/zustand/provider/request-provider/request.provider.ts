@@ -1,4 +1,4 @@
-import { RequestType } from "@/root/types";
+import { RequestType } from "@/lib/definitions";
 import {ims_request } from "@prisma/client";
 import axios from "axios";
 const createRequest = async (requestDetails: RequestType) => {

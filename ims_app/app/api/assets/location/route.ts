@@ -1,7 +1,6 @@
 import getParams from "@/app/api/(function)/getParams";
 import { QueryOptions } from "@/app/types";
 import prismaDB from "@/lib/prisma/prismadb";
-import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 export async function GET(_req: Request ) {
     try {

@@ -1,5 +1,5 @@
+import { ParameterId } from "@/lib/definitions";
 import prismaDB from "@/lib/prisma/prismadb";
-import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 
 

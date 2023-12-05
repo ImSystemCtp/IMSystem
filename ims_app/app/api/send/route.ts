@@ -2,7 +2,7 @@ import { ims_request } from "@prisma/client";
 import  EmailTemplate, { EmailTemplateProps }  from "../(function)/email-template/EmailTemplate";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { EmailType } from "@/root/types";
+import { EmailType } from "@/lib/definitions";
 export async function POST(req: Request) {
     const body = await req.json() as EmailType;
     const resend = new Resend('re_hVWB1Sn9_M4pZs5Ppe68dGuTfVNA7cHgd');

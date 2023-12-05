@@ -33,3 +33,7 @@ export type User = {
     usu_password: string,
     usu_state: string
 }
+export type RegisterAsset = {
+    register: ims_register;
+    assets: ims_assets[];
+}

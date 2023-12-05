@@ -1,6 +1,6 @@
 import { prismaDB } from "@/lib";
+import { RequestType } from "@/lib/definitions";
 import { ims_details_asset } from "@prisma/client";
-import { RequestType } from "@/root/types";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {

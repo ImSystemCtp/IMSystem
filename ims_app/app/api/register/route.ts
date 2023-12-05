@@ -1,5 +1,4 @@
 import { prismaDB } from "@/lib";
-import { registerAsset } from "@/root/types";
 import { ims_registered_in } from "@prisma/client";
 import { NextResponse } from "next/server";
 

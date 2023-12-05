@@ -1,7 +1,7 @@
-import { ParameterId } from "@/root/types";
 import { NextResponse } from "next/server";
 import prismaDB from "@/lib/prisma/prismadb";
-import { ims_assets, ims_register } from "@prisma/client";
+import {ims_register } from "@prisma/client";
+import { ParameterId } from "@/lib/definitions";
 export async function GET(_req: Request, { params }: ParameterId) {
     try {
         const id = params.id as string;
