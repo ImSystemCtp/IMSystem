@@ -2,7 +2,7 @@ import { LoadingComponent, RequestTable } from "@/root/components";
 import { Suspense } from "react";
 import { useRequestStore } from "@/root/zustand";
 export default function RequestManagement() {
-    const { requestPending, isLoadRequest } = useRequestStore();
+    const { requestPending, isLoadRequest } = useRequestStore((state) => ({ requestPending: state.requestPending, isLoadRequest: state.isLoadRequest }));
     return (
         <div
             className="p-4 rounded-md mt-4"

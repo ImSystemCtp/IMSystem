@@ -5,7 +5,7 @@ import { useUserNoRoleStore,useLoadingStore } from "@/root/zustand";
 import { useUserPending } from "@/root/hooks";
 export default function InfoRequestCard() {
     useUserPending();
-    const { usersPending ,isLoadUser } = useUserNoRoleStore();
+    const { usersPending ,isLoadUser } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <div

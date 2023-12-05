@@ -3,7 +3,7 @@ import { useUserStore } from "@/root/zustand";
 import EditUserTable from "./EditUserTable";
 import { Suspense } from "react";
 export default function UserManagement() {
-    const { loadUser, users } = useUserStore();
+    const { loadUser, users } = useUserStore((state) => ({ loadUser: state.loadUser, users: state.users }));
     return (
         <div
             className=" p-4 rounded-md mt-4 "

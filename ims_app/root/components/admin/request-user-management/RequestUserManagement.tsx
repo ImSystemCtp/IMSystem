@@ -3,7 +3,7 @@ import { useUserNoRoleStore, useUserStore } from "@/root/zustand";
 import { LoadingComponent, RequestUserTable } from "@/root/components";
 import { Suspense } from "react";
 export default function RequestUserManagement() {
-    const { usersPending, isLoadUser } = useUserNoRoleStore();
+    const { usersPending, isLoadUser } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     return (
         <div
             className=" p-4 rounded-md mt-4 "

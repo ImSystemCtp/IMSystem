@@ -11,7 +11,9 @@ export default function EditUserTable() {
         setUserSelect(user);
         setShowModal(true);
     };
-    const { updateUser, deleteUser, loadUser, users } = useUserStore();
+    const {  users } = useUserStore((state)=>({users:state.users}));
+    const { deleteUser } = useUserStore();
+
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
     const handleDecline = (user: ims_users) => {
