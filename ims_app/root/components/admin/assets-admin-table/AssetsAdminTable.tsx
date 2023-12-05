@@ -2,9 +2,13 @@
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
 export default function AssetsAdminTable() {
-    const { assetsByLocation, deleteAssetsCheck, addAssetsCheck, seeMore, assetsCheck } = useAssetStore();
+    const { assetsByLocation, assetsCheck } = useAssetStore((state) => ({
+        assetsByLocation: state.assetsByLocation,
+        assetsCheck: state.assetsCheck
+    }));
+
+    const {  deleteAssetsCheck, addAssetsCheck, seeMore } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const container = containerRef.current;

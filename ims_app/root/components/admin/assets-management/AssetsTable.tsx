@@ -3,7 +3,9 @@ import { useAssetStore, useReportStore } from "@/root/zustand";
 import { useEffect, useRef, useState } from "react";
 export default  function AssetsTable() {
     const { seeMore } = useAssetStore();
-    const { reportRegister } = useReportStore();
+    const { reportRegister } = useReportStore((state)=>({
+        reportRegister: state.reportRegister
+        }))
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const container = containerRef.current;

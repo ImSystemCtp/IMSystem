@@ -1,11 +1,16 @@
 "use client"
 import { useLocation } from "@/root/hooks";
 import { useAssetStore, useLocationStore } from "@/root/zustand";
+import { stat } from "fs";
 import { useState } from "react";
 export default function SearchAssets() {
     useLocation();
     const { getAssetsByLocation } = useAssetStore();
-    const { locations, setCurrentLocation, currentLocation } = useLocationStore();
+    const { locations } = useLocationStore((state)=> ({
+        locations: state.locations
+    }));
+    const {  setCurrentLocation  } = useLocationStore();
+
     const [locationSelect, setLocationSelect] = useState<string>("");
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         await setCurrentLocation(parseInt(event.target.value));

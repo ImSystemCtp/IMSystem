@@ -6,9 +6,13 @@ import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
 import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     useAuth();
-    const { userAuth } = useAuthStore();
+    const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const { addRegisterAssets } = useRegisterAssetStore();
-    const { assets, clearAssets,removeAssets } = useAssetStore();
+    const { assets } = useAssetStore((state) => ({   
+        assets: state.assets
+        }));
+    const { clearAssets,removeAssets } = useAssetStore();
+
     const register = {
         reg_type: EnumRegisterType.Register,
         reg_date: new Date(),

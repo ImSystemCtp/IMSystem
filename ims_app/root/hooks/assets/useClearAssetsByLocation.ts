@@ -1,8 +1,10 @@
 "use client"
 import { useEffect } from "react";
-import { useAssetStore, useLawStore, useLoadingStore, useReportStore } from "@/root/zustand";
+import { useAssetStore} from "@/root/zustand";
 export const useClearAssetsByLocation= () => {
-    const { clearAllAssetsByLocation,assetsByLocation  } = useAssetStore();
+    const { assetsByLocation  } = useAssetStore((state) => ({ assetsByLocation: state.assetsByLocation }));
+    const { clearAllAssetsByLocation  } = useAssetStore();
+
     useEffect(() => {
         if (assetsByLocation.length > 0) {
             clearAllAssetsByLocation();
