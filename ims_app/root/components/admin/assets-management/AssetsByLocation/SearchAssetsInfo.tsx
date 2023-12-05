@@ -10,7 +10,9 @@ export default function SearchAssetsInfo() {
     useClearAssetsByLocation();
     const { reportRegister } = useReportStore();
     const { getRegisterToReport } = useReportStore();
-    const { locations, setCurrentLocation, currentLocation } = useLocationStore();
+    const { locations } = useLocationStore((state) => ({ locations: state.locations }));
+    const { setCurrentLocation } = useLocationStore();
+
     const [locationSelect, setLocationSelect] = useState<string>("");
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         await setCurrentLocation(parseInt(event.target.value));

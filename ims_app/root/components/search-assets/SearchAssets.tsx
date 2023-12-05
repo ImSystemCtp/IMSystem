@@ -1,7 +1,6 @@
 "use client"
 import { useLocation } from "@/root/hooks";
 import { useAssetStore, useLocationStore } from "@/root/zustand";
-import { stat } from "fs";
 import { useState } from "react";
 export default function SearchAssets() {
     useLocation();

@@ -8,7 +8,6 @@ import { EmailStore, useAssetStore, useAuthStore, useDetailsRequestStore, useReq
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { useAuth } from "@/root/hooks";
 import { RequestType } from "@/lib/definitions";
-import { stat } from "fs";
 interface FormValues {
     newLocation: string;
     observation: string;

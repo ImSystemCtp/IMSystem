@@ -7,7 +7,7 @@ export default function CustomSelectAssets() {
     useLocation();
     useLaw();
     const { laws } = useLawStore((state) => ({ laws: state.laws }));
-    const { locations } = useLocationStore();
+    const { locations } = useLocationStore((state) => ({ locations: state.locations }));
     return (
         <div>
             {locations.length > 0 ? (

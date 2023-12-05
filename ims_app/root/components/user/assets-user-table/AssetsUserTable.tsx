@@ -2,7 +2,6 @@
 import { RequestAssetsModal } from "@/root/components";
 import { useAssetStore, useDetailsRequestStore } from "@/root/zustand";
 import {  ims_assets, ims_details_asset } from "@prisma/client";
-import { stat } from "fs";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {

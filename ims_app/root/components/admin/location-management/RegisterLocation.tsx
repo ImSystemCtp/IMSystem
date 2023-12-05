@@ -6,7 +6,9 @@ import { ims_locations } from "@prisma/client";
 import toast from "react-hot-toast";
 
 export default function RegisterLocation() {
-    const { selectLocationToEdit,createLocation, locationToEdit,updateLocation } = useLocationStore();
+    const {locationToEdit } = useLocationStore((state) => ({ locationToEdit: state.locationToEdit }));
+    const { selectLocationToEdit,createLocation, updateLocation } = useLocationStore();
+
     const [isCancel, setIsCancel] = useState(false);
     const [locationName, setLocationName] = useState(
         locationToEdit ? locationToEdit.location_name : ""

@@ -6,7 +6,11 @@ import { ims_locations } from "@prisma/client";
 
 export default function EditLocation() {
     useLocation();
-    const { selectLocationToEdit, locations, loadingLocation } = useLocationStore();
+    const { locations, loadingLocation } = useLocationStore((state) => ({   
+        locations: state.locations,
+        loadingLocation: state.loadingLocation }));
+    const { selectLocationToEdit } = useLocationStore();
+
     return (
         loadingLocation ? <LoadingComponent /> : locations.length === 0 ? (
             <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
