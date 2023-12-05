@@ -1,7 +1,7 @@
 "use client";
 
 import type { Metadata } from 'next'
-import { UserNavBar, Footer, Navigation, SideBar } from '@/root/components';
+import { UserNavBar, Footer } from '@/root/components';
 import { Toaster } from "react-hot-toast";
 export const metadata: Metadata = {
   title: 'Admin',

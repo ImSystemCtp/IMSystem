@@ -9,9 +9,8 @@ export default function SideBar() {
     const isOpen = useSideBarStore((state) => state.isOpen);
     const [isDropdownUserOpen, setDropdownUserOpen] = useState(false);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
-    const handleToggle = () => {
-        useSideBarStore.getState().toggle();
-    };
+    const {toggle}=useSideBarStore()
+  
     const handleDropdownUserToggle = () => {
         setDropdownUserOpen(!isDropdownUserOpen);
     };
@@ -35,7 +34,7 @@ export default function SideBar() {
                 </h3>
                 <button
                     type="button"
-                    onClick={handleToggle} // Call the handler to hide the navigation
+                    onClick={toggle}
                     className="text-gray-400 bg-transparent hover:bg-slate-100 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                     <svg
