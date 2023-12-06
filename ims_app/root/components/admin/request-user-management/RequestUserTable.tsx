@@ -80,7 +80,7 @@ export default function RequestUserTable() {
                                     </div>
                                 </div>
                             </td>
-                            <td className="px-4 py-3 text-sm hidden md:table-cell">{pagine}</td>
+                            <td className="px-4 py-3 text-sm hidden md:table-cell">{user.usu_role}</td>
                             <td className="px-4 py-3 text-xs hidden md:table-cell">
                                 <span className="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
                                     Pendiente

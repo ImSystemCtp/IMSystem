@@ -24,15 +24,17 @@ export default function ListAssets() {
         <div>
             <h2 className="text-gray-500 text-2xl font-bold text-center">Lista de Bienes</h2>
             <div className="justify-center items-center flex flex-col">
-                <div className="flex flex-row justify-between p-2 m-2">
-                    <textarea
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Observación de Baja..."
-                        value={observation}
-                        onChange={handleObservationChange}
-                    />
-                    <div className="ml-auto">
-                        <button className="bg-cyan-600 p-2 m-2 rounded-lg text-white" onClick={handlePDF}>
+                <div className="flex justify-center items-center p-2 m-2">
+                    <div>
+                        <textarea
+                            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Observación de Baja..."
+                            value={observation}
+                            onChange={handleObservationChange}
+                        />
+                    </div>
+                    <div className="mx-4 ">
+                        <button className="bg-slate-500 hover:bg-slate-400  p-2 m-2 rounded-lg text-white" onClick={handlePDF}>
                             Descargar PDF
                         </button>
                     </div>
@@ -67,7 +69,7 @@ export default function ListAssets() {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-4 py-3 text-sm">{detail.assets_curr_location}</td>
+                                            <td className="px-4 py-3 text-sm">{detail.location_name}</td>
                                         </tr>
                                     );
                                 })}

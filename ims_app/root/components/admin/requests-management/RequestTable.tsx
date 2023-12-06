@@ -53,7 +53,7 @@ export default function RequestTable() {
                             </td>
                             <td className="px-4 py-3 text-sm hidden md:table-cell">{request.req_date?.toString().split('T')[0]}</td>
                             <td className="px-2 md:px-4 py-3 text-sm ">
-                                <Link onClick={handleRequestSelect(request)} href={'/admin/list-assets'} className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded">
+                                <Link onClick={handleRequestSelect(request)} href={'/admin/list-assets'} className="bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded">
                                     Ver más...
                                 </Link>
                             </td>

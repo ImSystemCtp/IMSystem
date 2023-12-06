@@ -3,11 +3,9 @@ import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { useSideBarStore } from "@/root/zustand";
 export default function AdminNavBar() {
-  
   const {toggle}=useSideBarStore()
- 
   return (
-    <nav className="bg-neutral-500 border-gray-200 dark:bg-gray-900">
+    <nav className="bg-neutral-400 border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-wrap items-center justify-between mx-auto px-8 py-4 w-full">
         <div className="text-center">
           <button

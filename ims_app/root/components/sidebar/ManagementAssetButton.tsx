@@ -21,12 +21,12 @@ const ManagementAssetButton = () => {
         </svg>
         }
     </button>
-    <ul id="dropdown-example" className={`py-2 space-y-2 mt-1.5 ${isDropdownOpen ? 'bg-blue-100 rounded-md ' : 'hidden'}`}>
+    <ul id="dropdown-example" className={`py-2 space-y-2 mt-1.5 ${isDropdownOpen ? 'bg-slate-200 rounded-md ' : 'hidden'}`}>
         <li>
             <Link
                 href={"/admin/assets-management/by-location"} prefetch={false}
                 className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
-                    pathname === "/admin/assets-management/by-location" ? 'bg-sky-200 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
                 }`}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
@@ -37,7 +37,9 @@ const ManagementAssetButton = () => {
         <li>
             <Link
                 href={"/admin/assets-management/total-assets"} prefetch={false}
-                className="flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
+                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
+                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                }`}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -48,7 +50,9 @@ const ManagementAssetButton = () => {
         <li>
             <Link
                 href={"/admin/register-assets"} prefetch={false}
-                className="flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
+                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
+                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                }`}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />

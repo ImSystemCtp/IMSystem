@@ -26,7 +26,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
         detail.assets_description,
         detail.assets_no,
         detail.assets_brand,
-        detail.assets_curr_location,
+        detail.location_name,
         detail.deta_description,
         detail.usu_name,
     ]);

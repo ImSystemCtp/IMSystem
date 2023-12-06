@@ -45,6 +45,7 @@ interface registerToReport {
 }
 interface requestToReport {
     usu_name: string;
+    location_name: string;
     req_id: number;
     req_description:string;
     req_state:string;

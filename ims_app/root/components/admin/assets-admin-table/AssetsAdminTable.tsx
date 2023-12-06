@@ -7,13 +7,11 @@ export default function AssetsAdminTable() {
         assetsByLocation: state.assetsByLocation,
         assetsCheck: state.assetsCheck
     }));
-
     const {  deleteAssetsCheck, addAssetsCheck, seeMore } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const container = containerRef.current;
         function handleScroll() {
-
             if (container) {
                 const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
 
