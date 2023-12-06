@@ -8,6 +8,7 @@
             "addWords": true
         }
     ],
+    "language": "es",
     "words": [
         "activos",
         "Administrador",
@@ -21,6 +22,7 @@
         "Descripción",
         "deta",
         "Direccion",
+        "drawer",
         "Educacion",
         "encontrado",
         "enviada",
@@ -39,6 +41,7 @@
         "Inservible",
         "interno",
         "logomep",
+        "lows",
         "Marca",
         "Ministerio",
         "Modelo",
@@ -60,12 +63,14 @@
         "Registro",
         "reporte",
         "Responsable",
+        "rounded",
         "Ruta",
         "Seleccionar",
         "seleccione",
         "Serie",
         "servidor",
         "Siguiente",
+        "slate",
         "Solicitud",
         "Tecnico",
         "titulo",

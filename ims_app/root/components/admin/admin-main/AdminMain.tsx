@@ -1,8 +1,6 @@
-"use client";
+
 import { InfoCards, InfoRequestCard, RequestManagement, SearchAssetsNo } from "@/root/components";
-import { useRegisterIn, useRequestPending } from "@/root/hooks";
 export default function AdminMain() {
-    useRegisterIn();
     return (
         <div className="">
             <div className="">

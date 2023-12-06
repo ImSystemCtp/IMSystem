@@ -1,7 +1,9 @@
 import { LoadingComponent } from "@/root/components";
+import { useRegisterIn } from "@/root/hooks";
 import { useAssetStore, useLoadingStore, useRegisterInStore } from "@/root/zustand";
 
 export default function InfoCards() {
+    useRegisterIn();
     const registerInState = useRegisterInStore();
     const { count } = useAssetStore((state) => ({
         count: state.count
