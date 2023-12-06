@@ -41,7 +41,7 @@ export default function SideBar() {
                     <span className="sr-only">Close menu</span>
                 </button>
                 <div className="py-4 overflow-y-auto">
-                    <ul className="space-y-2 font-medium">
+                    <ul className="space-y-2 font-medium dark:text-white">
                         <ManagementAssetButton/>
                         <li>
                             <Link
@@ -52,7 +52,7 @@ export default function SideBar() {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                                 </svg>
-                                <span className="text-black  flex-1 ml-3 whitespace-nowrap">
+                                <span className="  flex-1 ml-3 whitespace-nowrap">
                                     Ubicaciones
                                 </span>
                             </Link>
@@ -65,7 +65,7 @@ export default function SideBar() {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                                 </svg>
-                                <span className="text-black  flex-1 ml-3 whitespace-nowrap">Leyes</span>
+                                <span className=" flex-1 ml-3 whitespace-nowrap">Leyes</span>
                             </Link>
                         </li>
                         <ManagementUserButton/>
@@ -77,7 +77,7 @@ export default function SideBar() {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" />
                                 </svg>
-                                <span className="text-black  flex-1 ml-3 whitespace-nowrap">Bajas</span>
+                                <span className="  flex-1 ml-3 whitespace-nowrap">Bajas</span>
                             </Link>
                         </li>
                         <li>
@@ -88,7 +88,7 @@ export default function SideBar() {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                                 </svg>
-                                <span className="text-black  flex-1 ml-3 whitespace-nowrap">Traslados</span>
+                                <span className="  flex-1 ml-3 whitespace-nowrap">Traslados</span>
                             </Link>
                         </li>
                         <li>
@@ -99,7 +99,7 @@ export default function SideBar() {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
                                 </svg>
-                                <span className="text-black  flex-1 ml-3 whitespace-nowrap">Gestion de Solicitudes</span>
+                                <span className="  flex-1 ml-3 whitespace-nowrap">Gestion de Solicitudes</span>
                             </Link>
                         </li>
                     </ul>
