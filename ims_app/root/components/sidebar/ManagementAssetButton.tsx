@@ -24,7 +24,7 @@ const ManagementAssetButton = () => {
     <ul id="dropdown-example" className={`py-2 space-y-2 mt-1.5 ${isDropdownOpen ? 'bg-blue-100 rounded-md ' : 'hidden'}`}>
         <li>
             <Link
-                href={"/admin/assets-management/by-location"}
+                href={"/admin/assets-management/by-location"} prefetch={false}
                 className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
                     pathname === "/admin/assets-management/by-location" ? 'bg-sky-200 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
                 }`}>
@@ -36,7 +36,7 @@ const ManagementAssetButton = () => {
         </li>
         <li>
             <Link
-                href={"/admin/assets-management/total-assets"}
+                href={"/admin/assets-management/total-assets"} prefetch={false}
                 className="flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -47,7 +47,7 @@ const ManagementAssetButton = () => {
         </li>
         <li>
             <Link
-                href={"/admin/register-assets"}
+                href={"/admin/register-assets"} prefetch={false}
                 className="flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -58,7 +58,7 @@ const ManagementAssetButton = () => {
         </li>
     </ul>
 </li>
-  )
+)
 }
 
 export default ManagementAssetButton

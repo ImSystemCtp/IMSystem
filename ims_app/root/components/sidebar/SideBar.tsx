@@ -3,6 +3,7 @@ import { useSideBarStore } from "@/root/zustand";
 import Link from "next/link";
 import ManagementUserButton from "./ManagementUserButton";
 import ManagementAssetButton from "./ManagementAssetButton";
+import { useEffect } from "react";
 export default function SideBar() {
     const isOpen = useSideBarStore((state) => state.isOpen);
     const {toggle}=useSideBarStore()
@@ -45,7 +46,7 @@ export default function SideBar() {
                         <ManagementAssetButton/>
                         <li>
                             <Link
-                                href="/admin/locations-management"
+                                href="/admin/locations-management" prefetch={false}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -59,7 +60,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/laws-management"
+                                href="/admin/laws-management" prefetch={false}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -71,7 +72,7 @@ export default function SideBar() {
                         <ManagementUserButton/>
                         <li>
                             <Link
-                                href="/admin/register-lows"
+                                href="/admin/register-lows" prefetch={false}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -82,7 +83,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/register-transfers"
+                                href="/admin/register-transfers" prefetch={false}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -93,7 +94,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
-                                href="/admin/request-management"
+                                href="/admin/request-management" prefetch={false}
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

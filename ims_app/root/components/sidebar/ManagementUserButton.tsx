@@ -22,7 +22,7 @@ const ManagementUserButton = () => {
             <ul id="dropdown-example" className={`py-2 space-y-2 mt-1.5 ${isDropdownUserOpen ? 'bg-blue-100 rounded-md ' : 'hidden'}`}>
                 <li>
                     <Link
-                        href={"/admin/user-management"}
+                        href={"/admin/user-management"} prefetch={false}
                         className="flex items-center p-2 mx-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -33,7 +33,7 @@ const ManagementUserButton = () => {
                 </li>
                 <li>
                     <Link
-                        href={"/admin/request-users"}
+                        href={"/admin/request-users"} prefetch={false}
                         className="flex items-center p-2 mx-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
