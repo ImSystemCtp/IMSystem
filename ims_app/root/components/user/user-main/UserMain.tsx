@@ -40,7 +40,7 @@ export default function UserMain() {
                         </div>
                         <h2 className="text-lg text-gray-900 font-medium title-font mb-2 text-center"> {menuItem.title} </h2>
                         <div className="flex justify-center mt-4">
-                            <Link href={menuItem.link} className="w-52 text-center  hover:bg-gradient-to-br hover:from-cyan-500 hover:to-blue-500 hover:text-white border-2 border-blue-400 text-blue-500 font-bold py-2 px-4 rounded">
+                            <Link href={menuItem.link} prefetch={false} className="w-52 text-center  hover:bg-gradient-to-br hover:bg-neutral-400  hover:text-white border-2 border-neutral-400 text-blue-500 font-bold py-2 px-4 rounded">
                                 {" "}
                                 Ir!{" "}
                             </Link>

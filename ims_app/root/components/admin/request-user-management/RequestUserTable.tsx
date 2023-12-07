@@ -6,19 +6,9 @@ import { EnumUserRole, ims_users } from "@prisma/client";
 import { RoleSelectionModal } from "@/root/components";
 export default function RequestUserTable() {
     const {  usersPending, haveNextPage, pagine } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, haveNextPage: state.haveNextPage, pagine: state.pagine }));
-    const { getNextPage,  getPreviousPage } = useUserNoRoleStore();
     const { updateUser, deleteUser, clearUserPending } = useUserStore();
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
-    const handleNextPage = () => {
-        if (haveNextPage) {
-
-            getNextPage();
-        }
-    }
-    const handlePreviousPage = () => {
-        getPreviousPage();
-    }
     const handleAccept = (user: ims_users) => {
         setUserSelect(user);
         setShowModal(true);
@@ -112,28 +102,6 @@ export default function RequestUserTable() {
                 onRequestClose={handleCloseModal}
                 onRoleSelect={handleRoleSelect}
             />
-            <div className="flex justify-between"> {/* Utiliza flexbox para alinear los botones */}
-                <button
-                    onClick={handlePreviousPage}
-
-                    className="p-2 m-2 flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                    <svg className="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
-                    </svg>
-                    Anterior
-                </button>
-                <button
-                    onClick={handleNextPage}
-
-                    className="p-2 m-2 flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                    Siguiente
-                    <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </button>
-            </div>
         </div>
     )
 }

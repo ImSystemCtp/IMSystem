@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
-
+import { useRouter } from 'next/navigation'
 import { EnumReqState, ims_assets, ims_details_asset, ims_register, ims_request } from '@prisma/client';
 import { useRegisterStore, useRequestStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
@@ -18,6 +18,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
     const { addRegister } = useRegisterStore();
     const { updateRequestState } = useRequestStore();
     const imsAssetsList = useRef<ims_assets[]>([]);
+    const router = useRouter();
     useEffect(() => {
         async function checkAssetsLocationChanges() {
             if (isOpen) {
@@ -59,6 +60,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
             });
         }
         onRequestClose();
+        router.back();
     };
     return (
         <Modal
