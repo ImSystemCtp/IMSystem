@@ -3,7 +3,10 @@ import prismaDB from "@/lib/prisma/prismadb";
 
 export async function GET(req: Request) {
     try {
-        const registers = await prismaDB.$queryRaw<registerToReport[]>`SELECT r.* ,a.* ,l.location_name, la.law_name, u.usu_name FROM ims_assets a JOIN ims_register_assets ra on a.assets_no = ra.assets_no 
+        const registers = await prismaDB.$queryRaw<registerToReport[]>`
+        SELECT r.* ,a.* ,l.location_name, la.law_name, u.usu_name
+        FROM ims_assets a
+        JOIN ims_register_assets ra on a.assets_no = ra.assets_no
         JOin ims_register r on r.reg_id=ra.reg_id
         JOIN ims_locations l on l.location_id=a.assets_curr_location
         JOIN ims_laws la on la.law_id = a.assent_law_id
