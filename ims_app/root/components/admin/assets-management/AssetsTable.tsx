@@ -1,11 +1,11 @@
 "use client"
 import { useAssetStore, useReportStore } from "@/root/zustand";
 import { useEffect, useRef, useState } from "react";
-export default  function AssetsTable() {
+export default function AssetsTable() {
     const { seeMore } = useAssetStore();
-    const { reportRegister } = useReportStore((state)=>({
+    const { reportRegister } = useReportStore((state) => ({
         reportRegister: state.reportRegister
-        }))
+    }))
     const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const container = containerRef.current;
@@ -94,19 +94,25 @@ export default  function AssetsTable() {
                             {reportRegister.map((asset: registerToReport, index: number) => (
                                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td className="px-3 py-4">{asset.reg_tomo}{","}{asset.reg_folio}{","}{asset.reg_asiento}</td>
-                                    <td className="px-3 py-4 ">{asset.assets_no}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_description}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.invoice_date?.toString().split('T')[0]}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_series}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_brand}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_model}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_state}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.location_name}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_invoice_number}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.assets_acquisition_value}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.law_name}</td>
-                                    <td className="px-3 py-4 hidden md:table-cell">{asset.usu_name}</td>
-                                    <td className="px-3 py-4 ">{asset.reg_observation}</td>
+                                    {asset.reg_type == "Register" ? (
+                                        <>
+                                            <td className="px-3 py-4 ">{asset.assets_no}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_description}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.invoice_date?.toString().split('T')[0]}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_series}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_brand}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_model}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_state}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.location_name}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_invoice_number}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.assets_acquisition_value}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.law_name}</td>
+                                            <td className="px-3 py-4 hidden md:table-cell">{asset.usu_name}</td>
+                                            <td className="px-3 py-4 ">{asset.reg_observation}</td>
+                                        </>
+                                    ) : (
+                                        <td className=" px-3 py-4 ">{asset.reg_observation}</td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

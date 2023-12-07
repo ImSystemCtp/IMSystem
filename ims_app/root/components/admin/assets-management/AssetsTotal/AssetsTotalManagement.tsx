@@ -27,7 +27,7 @@ export default function AssetsTotalManagement() {
     <div className="w-full">
       <h2 className="text-2xl font-bold text-center">Gestión de Activos</h2>
       <div className="flex flex-row p-4 m-4 justify-center items-center">
-        <div className="flex justify-center items-center flex-grow  "> {/* Utilizando flex-grow para centrar */}
+        <div className="sm:ml-40 flex justify-center items-center flex-grow  "> {/* Utilizando flex-grow para centrar */}
           <button
             onClick={handleGetTotal}
             className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
