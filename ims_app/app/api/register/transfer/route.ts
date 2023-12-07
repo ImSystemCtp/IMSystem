@@ -38,7 +38,7 @@ export async function POST(req: Request) {
                     reg_id: updateRegister[0].reg_id,
                 },
                 data: {
-                    reg_observation: updateRegister[0].reg_observation + " " + `Ver ${response.reg_tomo},  ${response.reg_folio},  ${response.reg_asiento}`
+                    reg_observation: updateRegister[0].reg_observation + " " + ` T: Ver ${response.reg_tomo},  ${response.reg_folio},  ${response.reg_asiento}`
                 },
             });
             await prismaDB.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
