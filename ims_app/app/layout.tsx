@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider localization={esES}>
-      <html lang="es" suppressHydrationWarning = {true}>
+      <html lang="es">
         <body className="min-h-screen bg-slate-50 dark:bg-slate-800 flex flex-col flex-grow">
           <Toaster
             toastOptions={{
