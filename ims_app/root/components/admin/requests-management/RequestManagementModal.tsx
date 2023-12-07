@@ -60,7 +60,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
             });
         }
         onRequestClose();
-        router.back();
+        router.push('/admin/request-management');
     };
     return (
         <Modal

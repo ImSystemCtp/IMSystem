@@ -56,7 +56,7 @@ export default function SearchAssetsInfo() {
                     </form>
                 </div>
             </div>
-            <div className="justify-center items-center m-2 flex flex-col  w-full md:flex-grow md:justify-end md:items-end md:mx-4 md:mr-2">
+            <div className="justify-center items-center m-2 flex flex-col md:flex-row w-full md:flex-grow  md:mx-4 md:mr-2">
                 <div className="m-4 md:w-60 md:px-4 ">
                     <select
                         onChange={handleSelect}

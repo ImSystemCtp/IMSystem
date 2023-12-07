@@ -108,10 +108,18 @@ export default function AssetsTable() {
                                             <td className="px-3 py-4 hidden md:table-cell">{asset.assets_acquisition_value}</td>
                                             <td className="px-3 py-4 hidden md:table-cell">{asset.law_name}</td>
                                             <td className="px-3 py-4 hidden md:table-cell">{asset.usu_name}</td>
-                                            <td className="px-3 py-4 ">{asset.reg_observation}</td>
+                                            <td className="px-3 py-4">
+                                            <div className="max-w-xs overflow-x-auto whitespace-nowrap">
+                                                {asset.reg_observation}
+                                            </div>
+                                        </td>
                                         </>
                                     ) : (
-                                        <td className=" px-3 py-4 ">{asset.reg_observation}</td>
+                                        <td className="px-3 py-4">
+                                            <div className="max-w-xs overflow-x-auto whitespace-nowrap">
+                                                {asset.reg_observation}
+                                            </div>
+                                        </td>
                                     )}
                                 </tr>
                             ))}
