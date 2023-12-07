@@ -1,3 +1,4 @@
+'use client'
 import { InfoCards, InfoRequestCard, RequestManagement, SearchAssetsNo } from "@/root/components";
 export default function AdminMain() {
     return (

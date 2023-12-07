@@ -2,6 +2,7 @@ import { ims_assets } from "@prisma/client";
 import axios from 'axios';
 import { useLoadingStore } from "@/root/zustand";
 import { QueryOptions } from "@/app/types";
+import { SearchAssets } from "@/lib/definitions";
 const getAssets = async () => {
     useLoadingStore.getState().setIsLoading(true);
     const response = await axios.get('/api/assets');
@@ -41,12 +42,16 @@ const getAssetsNo = async (assetNo: string) => {
     useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_assets;
 }
-
+const searchAssets = async (query:SearchAssets) => {
+    const response = await axios.get(`/api/assets/search`, { params: query });
+    return response.data as ims_assets[];
+}
 export const assetsProvider = {
     getAssets,
     contAssets,
     getAssetsByLocation,
     getAssetsByLocationQuery,
     getAssetsByRequestId,
-    getAssetsNo
+    getAssetsNo,
+    searchAssets
 };

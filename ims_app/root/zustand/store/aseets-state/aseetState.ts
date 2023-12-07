@@ -2,6 +2,7 @@ import { EnumAssetsState, ims_assets } from "@prisma/client"
 import { create } from 'zustand'
 import { assetsProvider } from "@/root/zustand/provider"
 import { QueryOptions } from "@/app/types"
+import { SearchAssets } from "@/lib/definitions"
 const LIMIT = 5
 interface assetState {
     assets: ims_assets[]
@@ -27,6 +28,7 @@ interface assetState {
     clearAssetsByLocation: (assetsToClear: ims_assets[]) => Promise<void>
     removeAssets: (asset: ims_assets) => Promise<void>
     clearAllAssetsByLocation: () => Promise<void>
+    searchAssets: (query: SearchAssets) => Promise<void>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -99,6 +101,10 @@ export const useAssetStore = create<assetState>((set, get) => {
                 (currentAsset) => !assetsToClear.some((assetToClear) => assetToClear.assets_no === currentAsset.assets_no)
             );
             set({ assetsByLocation: filteredAssetsByLocation });
+        },
+        searchAssets: async (query: SearchAssets) => {
+            const assetsByLocation = await assetsProvider.searchAssets(query)
+            set({ assetsByLocation })
         },
         clearAllAssetsByLocation: async () => {
             set({ assetsByLocation: [] });

@@ -37,3 +37,7 @@ export type RegisterAsset = {
     register: ims_register;
     assets: ims_assets[];
 }
+export type SearchAssets = {
+    location: string
+    asset: string
+}
