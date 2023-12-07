@@ -13,7 +13,6 @@ export default function RequestManagement() {
                     <Suspense fallback={<LoadingComponent />}>
                         <RequestTable />
                     </Suspense>
-                    
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     doc.text('Solicitud de ' + (requestSelected.req_type === "Low" ? "Baja" : "Traslado"), doc.internal.pageSize.width / 2, 45, { align: 'center' });
     doc.setFont('helvetica', 'normal')
     doc.text('Descripcion: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 55, { align: 'center' });
-    const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripcion del Bien", "Numero Placa", "Marca", "Ubicacion", "Observacion", "Responsable"];
+    const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripcion del Bien", "Numero Placa", "Marca", "Ubicacion", "Observacion", "Responsable","Nueva Ubicacion"];
     const rows = reportRequest.map((detail: requestToReport) => [
         detail.req_date?.toString().split('T')[0],
         detail.invoice_date?.toString().split('T')[0],
@@ -29,6 +29,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
         detail.location_name,
         detail.deta_description,
         detail.usu_name,
+        detail.new_location_name
     ]);
     (doc as any).autoTable({
         head: [columns],

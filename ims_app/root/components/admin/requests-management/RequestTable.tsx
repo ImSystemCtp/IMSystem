@@ -13,7 +13,7 @@ export default function RequestTable() {
         await setRequestSelected(request);
     }
     return (
-        <div>
+        <div className="max-h-60 overflow-y-auto">
             {requestPending.length === 0 ? (
                 <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -45,7 +45,7 @@ export default function RequestTable() {
                                     </div>
                                 </div>
                             </td>
-                            <td className="px-2 md:px-4 py-3 text-sm">{request.req_type}</td>
+                            <td className="px-2 md:px-4 py-3 text-sm">{(request.req_type === "Low" ? "Baja" : "Traslado")}</td>
                             <td className="px-4 py-3 text-xs hidden md:table-cell">
                                 <span className={`px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full`}>
                                     {request.req_state}
