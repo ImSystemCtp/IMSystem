@@ -24,7 +24,7 @@ export default function SearchAssets() {
     return (
         <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col md:flex-row md:m-2 md:p-2">
             <div className="flex justify-center items-center m-2 w-96  md:w-1/2 mb-4 lg:mb-0">
-                <div className="w-96 md:w-full">
+                <div className="w-80 md:w-full">
                     <form>
                         <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">

@@ -141,7 +141,7 @@ export default function RegisterAssets() {
                                 </div>
                             </div>
                             <div className="flex flex-row m-2 p-2 ">
-                                <div className="flex justify-center items-center mx-36">
+                                <div className="flex justify-center items-center md:mx-36">
                                     <button
                                         type="reset"
                                         onClick={handleReset}

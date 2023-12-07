@@ -78,7 +78,7 @@ export default function ListAssets() {
                     )}
                 </div>
             </div>
-            <div className="flex flex-col md:flex-row mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
+            <div className="flex flex-row  mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
                 <div className="w-full md:w-1/2 text-center">
                     <button
                         onClick={() => {

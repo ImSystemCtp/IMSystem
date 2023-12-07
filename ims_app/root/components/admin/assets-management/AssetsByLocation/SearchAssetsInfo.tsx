@@ -38,7 +38,7 @@ export default function SearchAssetsInfo() {
     return (
         <div className="border-2  rounded-lg border-slate-300 shadow-sm shadow-slate-300 flex flex-col md:flex-row md:m-2 md:p-2">
             <div className="flex justify-center items-center m-2 w-96  md:w-1/2 mb-4 lg:mb-0">
-                <div className="w-96 md:w-full">
+                <div className="w-80 md:w-full">
                     <form>
                         <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">
@@ -56,8 +56,8 @@ export default function SearchAssetsInfo() {
                     </form>
                 </div>
             </div>
-            <div className="m-2 flex flex-row w-full md:flex-grow md:justify-end md:items-end md:mx-4 md:mr-2">
-                <div className="mx-4 md:w-60 md:px-4 ">
+            <div className="justify-center items-center m-2 flex flex-col  w-full md:flex-grow md:justify-end md:items-end md:mx-4 md:mr-2">
+                <div className="m-4 md:w-60 md:px-4 ">
                     <select
                         onChange={handleSelect}
                         id="locations"
