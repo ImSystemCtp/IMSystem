@@ -37,9 +37,9 @@ export async function GET(req: Request) {
                     equals: parseInt(location)
                 }
             });
-        }
-        if (Asset === '') {
-            assetQuery.take=100;
+            if (Asset === '') {
+                assetQuery.take=100;
+            }
         }
         console.log(assetQuery)
         const response = await prismaDB.ims_assets.findMany(assetQuery);

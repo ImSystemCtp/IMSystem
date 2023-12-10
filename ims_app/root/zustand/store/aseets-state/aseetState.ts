@@ -17,7 +17,7 @@ interface assetState {
     filterValue: string
     getAssetsByLocation: (locationId: number) => Promise<void>
     getAssetsByQuery: (assetNo: string) => Promise<void>
-    getAssets: () => Promise<void>
+    // getAssets: () => Promise<void>
     addAssets: (asset: ims_assets) => Promise<void>
     countAssets: () => Promise<number>
     seeMore: () => Promise<void>
@@ -43,10 +43,10 @@ export const useAssetStore = create<assetState>((set, get) => {
         filterBy: "",
         filterCondition: "",
         filterValue: "",
-        getAssets: async () => {
-            const assets = await assetsProvider.getAssets()
-            set({ assets })
-        },
+        // getAssets: async () => {
+        //     const assets = await assetsProvider.getAssets()
+        //     set({ assets })
+        // },
         countAssets: async () => {
             if (get().count > 0) return get().count
             const count = await assetsProvider.contAssets()

@@ -19,7 +19,7 @@ const SearchNoAssets = () => {
     },1000)
 
     return (
-    <div className="flex justify-center items-center m-2 w-96  md:w-1/2 mb-4 lg:mb-0">
+    <div className="flex justify-center items-center m-2 w-96 lg:w-3/4 md:w-1/2 mb-4 lg:mb-0">
     <div className="w-80 md:w-full">
         <form>
             <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

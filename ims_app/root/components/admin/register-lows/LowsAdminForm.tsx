@@ -48,35 +48,42 @@ export default function LowsAdminForm() {
         await clearAssetsCheck();
     };
     return (
-        <div className="w-full " >
+
+        <div className="m-2 lg:h-full">
+            <div className="m-2 h-80 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th className="px-6 py-3">Descripción</th>
+                            <th className="px-6 py-3">Número de Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            assetsCheck.length ? (
+                                assetsCheck.map((asset, index) => (
+                                    <tr key={index}>
+                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_no}</td>
+                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_description}</td>
+                                    </tr>
+                                ))) : (
+                                <tr>
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">No hay activos seleccionados</td>
+                                </tr>
+                            )}
+                    </tbody>
+                </table>
+            </div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={lowsAdminFormMessage}
                 onSubmit={handleSubmit}
             >
-                <div className="m-2 lg:h-full">
+                <div className="w-full  " >
                     <Form>
                         <div className="flex flex-col   w-full  ">
-                            <div className="m-2 max-h-40 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
-                                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                        <tr>
-                                            <th className="px-6 py-3">Descripción</th>
-                                            <th className="px-6 py-3">Número de Activo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {assetsCheck.map((asset, index) => (
-                                            <tr key={index}>
-                                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_no}</td>
-                                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_description}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="p-2 w-full h-full ">
-                                <CustomTextArea label="Observación:" name="observation" placeholder="Observacion" />
+                            <div className="p-2 w-full max-h-40  ">
+                                <CustomTextArea className="h-40 resize-none" label="Observación:" name="observation" placeholder="Observacion" />
                             </div>
                             <div className="w-full text-center justify-center items-center">
                                 <button

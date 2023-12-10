@@ -19,7 +19,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({ label, ...textareaProps
         <>
             <div className="relative z-0 w-full mb-6 group">
                 <label className=" peer-focus:font-medium text-gray-900 duration-300 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg mb-12">{label}</label>
-                <textarea {...field} {...textareaProps} className={textareaClassName} />
+                <textarea {...field} {...textareaProps} className={`resize-none ${textareaClassName}`} />
                 {meta.touched && meta.error && (
                     <div className=" w-full rounded-lg p-5">
                         <p className="text-red-500">{meta.error}</p>

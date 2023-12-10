@@ -2,36 +2,17 @@
 import { useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
+import ItemAsset from "./ItemAsset";
 export default function AssetsAdminTable() {
     const { assetsByLocation, assetsCheck } = useAssetStore((state) => ({
         assetsByLocation: state.assetsByLocation,
         assetsCheck: state.assetsCheck
     }));
-    const {  deleteAssetsCheck, addAssetsCheck, seeMore } = useAssetStore();
     const containerRef = useRef<HTMLDivElement | null>(null);
-    useEffect(() => {
-        const container = containerRef.current;
-        function handleScroll() {
-            if (container) {
-                const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
 
-                if (isAtBottom) {
-                    seeMore();
-                }
-            }
-        }
-        if (container) {
-            container.addEventListener('scroll', handleScroll);
-        }
-        return () => {
-            if (container) {
-                container.removeEventListener('scroll', handleScroll);
-            }
-        };
-    }, [seeMore]);
     return (
         <div>
-            <div ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+            <div ref={containerRef} className=" overflow-hidden overflow-y-auto border border-gray-300 my-2 w-full rounded-lg relative " style={{height: "65vh"}}>
                 {assetsByLocation.length === 0 ? (
                     <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -42,8 +23,8 @@ export default function AssetsAdminTable() {
                     </div>
                 </div>
                 ) : (
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                    <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700  uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
                                     Numero de Placa
@@ -56,38 +37,19 @@ export default function AssetsAdminTable() {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {assetsByLocation.map((asset: ims_assets, index: number) => (
-                                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                    >
-                                        {asset.assets_no}
-                                    </td>
-                                    <td className="px-6 py-4 hidden md:table-cell">{asset.assets_brand}</td>
-                                    <td className="px-6 py-4 ">
-                                        <div className="flex items-center justify-center mb-4" onClick={() => {
-                                            const checkbox = document.getElementById(`checkbox-${asset.assets_no}`) as HTMLInputElement;
-                                            if (checkbox) {
-                                                if (!checkbox.checked) {
-                                                    deleteAssetsCheck(asset);
-                                                } else {
-                                                    addAssetsCheck(asset);
-                                                }
-                                            }
-                                        }}>
-                                            <input
-                                                id={`checkbox-${asset.assets_no}`}
-                                                type="checkbox"
-                                                checked={assetsCheck.includes(asset)}
-                                                value=""
-                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                            />
-                                        </div>
-                                    </td>
-                                </tr>
+                        <tbody className=" overflow-y-scroll w-full" >
+                            {
+                            assetsCheck.map((asset: ims_assets) => (
+                                    <ItemAsset key={asset.assets_no} asset={asset} />
                             ))}
+                            {
+                            assetsByLocation.map((asset: ims_assets) => (
+                                assetsCheck.includes(asset) ? (
+                                    ""
+                                ) : (
+                                    <ItemAsset key={asset.assets_no} asset={asset} />
+                                )
+                                ))}
                         </tbody>
                     </table>
                 )}
