@@ -74,7 +74,6 @@ export default function RegisterAssetsTable() {
             </div>
             <div className="w-full flex justify-center items-center ">
                 <button
-                    
                     onClick={handleRegisterAssets}
                     className="m-2 p-2 bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >

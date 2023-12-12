@@ -8,7 +8,8 @@ const registerAssetsMessage  = Yup.object({
     assets_invoice_number: Yup.string().required("La factura es obligatoria"),
     assets_acquisition_value:  Yup.string ().required("El valor es obligatorio"),
     assets_regis_location:  Yup.number().required("La ubicación es obligatoria"),
-    assent_law_id:  Yup.number().required("La ley es obligatoria"),
+    asset_law_id:  Yup.number().required("La ley es obligatoria"),
+    asset_responsible_id:  Yup.number().required("El responsable es obligatorio"),
     invoice_date:  Yup.date().required("La fecha es obligatoria"),
 });
 

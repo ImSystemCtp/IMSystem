@@ -5,4 +5,5 @@ export * from './location';
 export * from './register';
 export * from './report';
 export * from './request';
+export * from './responsibles';
 export * from './users';

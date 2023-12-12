@@ -11,5 +11,6 @@ export * from './register-lows';
 export * from './register-transfer';
 export * from './request-user-management';
 export * from './requests-management';
+export * from './responsible-management';
 export * from './search-assets-no';
 export * from './users-management';

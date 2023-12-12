@@ -2,11 +2,11 @@
 import { Form, Formik } from "formik";
 
 import { registerAssetsMessage } from "@/schemas";
-import { useAssetStore, useLawStore, useLocationStore } from "@/root/zustand";
-import { ims_assets } from "@prisma/client";
+import { useAssetStore, useLawStore, useLocationStore, useResponsibleStore } from "@/root/zustand";
+import { EnumAssetsState, ims_assets } from "@prisma/client";
 import { CustomInput, CustomSelect, LoadingComponent, RegisterAssetsTable } from "@/root/components";
 import { Suspense } from "react";
-import { useLaw, useLocation } from "@/root/hooks";
+import { useLaw, useLocation, useResponsibles } from "@/root/hooks";
 import Link from "next/link";
 interface FormValues {
     assets_no: string,
@@ -16,7 +16,8 @@ interface FormValues {
     assets_model: string,
     assets_invoice_number: string,
     assets_regis_location: string,
-    assent_law_id: string,
+    asset_law_id: string,
+    assets_responsible_id: string,
     assets_acquisition_value: string,
     invoice_date: string,
 }
@@ -25,13 +26,23 @@ export default function RegisterAssets() {
     const { addAssets } = useAssetStore()
     useLocation();
     useLaw();
+    useResponsibles();
     const { laws } = useLawStore((state) => ({ laws: state.laws }));
     const { locations } = useLocationStore((state) => ({ locations: state.locations }));
+    const { responsibles } = useResponsibleStore((state) => ({ responsibles: state.responsibles }));
     const handleSubmit = async (values: FormValues) => {
-        const { assent_law_id, assets_regis_location } = values
+        const { asset_law_id, assets_regis_location, assets_responsible_id } = values
         const locationId = Number.parseInt(assets_regis_location);
         const invoice_date = new Date(values.invoice_date);
-        addAssets({ ...values, invoice_date: invoice_date, assets_curr_location: locationId, assent_law_id: Number.parseInt(assent_law_id), assets_regis_location: locationId } as ims_assets);
+        addAssets({
+            ...values,
+            assets_state: EnumAssetsState.Bueno,
+            invoice_date: invoice_date,
+            assets_curr_location: locationId,
+            asset_law_id: Number.parseInt(asset_law_id),
+            asset_responsible_id: Number.parseInt(assets_responsible_id),
+            assets_regis_location: locationId
+        } as ims_assets);
     };
     const handleReset = () => {
         initialValues.assets_no = "";
@@ -42,6 +53,7 @@ export default function RegisterAssets() {
         initialValues.assets_invoice_number = "";
         initialValues.assets_regis_location = "";
         initialValues.asset_law_id = "";
+        initialValues.assets_responsible_id = "";
         initialValues.assets_acquisition_value = "";
         initialValues.invoice_date = "";
     };
@@ -116,7 +128,7 @@ export default function RegisterAssets() {
                                         </div>
                                     )}
                                     {laws.length > 0 ? (
-                                        <CustomSelect label="Ley que financió:" name="assent_law_id">
+                                        <CustomSelect label="Ley que financió:" name="asset_law_id">
                                             {!initialValues.asset_law_id ? <option value="">Seleccione una ley</option> : ""}
                                             {laws.map((law) => {
                                                 return (
@@ -135,6 +147,29 @@ export default function RegisterAssets() {
                                             </div>
                                             <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                                                 <Link href="/admin/laws-management">Agregar ley</Link>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {responsibles.length > 0 ? (
+                                        <CustomSelect label="Funcionario Responsable:" name="asset_responsible_id">
+                                            {!initialValues.assets_responsible_id ? <option value="">Seleccione un Funcionario Responsable</option> : ""}
+                                            {responsibles.map((responsible) => {
+                                                return (
+                                                    <option key={responsible.responsible_id} value={responsible.responsible_id}>
+                                                        {responsible.responsible_name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                                <p className="text-red">
+                                                    No existen Funcionarios Responsables.
+                                                </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/responsibles-management">Agregar Funcionario Responsable</Link>
                                             </div>
                                         </div>
                                     )}

@@ -9,4 +9,5 @@ export * from './register-in-provider';
 export * from './register-provider';
 export * from './report-provider';
 export * from './request-provider';
+export * from './responsible-provider';
 export * from './users-provider';

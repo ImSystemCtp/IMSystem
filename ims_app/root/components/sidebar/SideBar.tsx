@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 export default function SideBar() {
     const isOpen = useSideBarStore((state) => state.isOpen);
-    const {toggle}=useSideBarStore()
+    const { toggle } = useSideBarStore()
     const pathname = usePathname();
     return (
         <div>
@@ -45,13 +45,12 @@ export default function SideBar() {
                 </button>
                 <div className="py-4 overflow-y-auto">
                     <ul className="space-y-2 font-medium dark:text-white">
-                        <ManagementAssetButton/>
+                        <ManagementAssetButton />
                         <li>
                             <Link
                                 href="/admin/locations-management" prefetch={false}
-                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
-                                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
-                                }`}
+                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                                    }`}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -64,10 +63,23 @@ export default function SideBar() {
                         </li>
                         <li>
                             <Link
+                                href="/admin/responsibles-management" prefetch={false}
+                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${pathname === "/admin/responsibles-management" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                                    }`}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                </svg>
+                                <span className="  flex-1 ml-3 whitespace-nowrap">
+                                Responsables
+                                </span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 href="/admin/laws-management" prefetch={false}
-                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
-                                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
-                                }`}
+                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                                    }`}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
@@ -75,13 +87,12 @@ export default function SideBar() {
                                 <span className=" flex-1 ml-3 whitespace-nowrap">Leyes</span>
                             </Link>
                         </li>
-                        <ManagementUserButton/>
+                        <ManagementUserButton />
                         <li>
                             <Link
                                 href="/admin/register-lows" prefetch={false}
-                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
-                                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
-                                }`}
+                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                                    }`}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" />
@@ -92,9 +103,8 @@ export default function SideBar() {
                         <li>
                             <Link
                                 href="/admin/register-transfers" prefetch={false}
-                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${
-                                    pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
-                                }`}
+                                className={`flex items-center mx-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-neutral-300 dark:hover:bg-gray-700 group ${pathname === "/admin/assets-management/by-location" ? 'bg-neutral-300 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'
+                                    }`}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
