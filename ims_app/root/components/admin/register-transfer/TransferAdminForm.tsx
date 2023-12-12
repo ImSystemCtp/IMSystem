@@ -5,7 +5,7 @@ import { CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import toast from "react-hot-toast";
-import { useAssetStore, useAuthStore, useLocationStore, useRegisterStore } from "@/root/zustand";
+import { useAssetCheckStore, useAssetStore, useAuthStore, useLocationStore, useRegisterStore } from "@/root/zustand";
 import { useAuth, useLocation } from "@/root/hooks";
 import Link from "next/link";
 import { registerAsset } from "@/lib/definitions";
@@ -20,10 +20,10 @@ export default function TransferAdminForm() {
     const { locations } = useLocationStore((state) => ({
         locations: state.locations
     }));
-    const { assetsCheck } = useAssetStore((state) => ({
+    const { assetsCheck } = useAssetCheckStore((state) => ({
         assetsCheck: state.assetsCheck
     }));
-    const { clearAssetsCheck, clearAssetsByLocation } = useAssetStore();
+    const { clearAssetsCheck } = useAssetCheckStore();
     const { addRegister } = useRegisterStore();
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
@@ -47,7 +47,6 @@ export default function TransferAdminForm() {
             success: "Transferencia registrados exitosamente!",
             error: "No se pudo registrar la transferencia de activos",
         });
-        await clearAssetsByLocation(assetsCheck);
         await clearAssetsCheck();
     };
     return (

@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import { CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
-import { EmailStore, useAssetStore, useAuthStore, useDetailsRequestStore, useLocationStore, useRequestStore } from "@/root/zustand";
+import { EmailStore, useAssetCheckStore, useAssetStore, useAuthStore, useDetailsRequestStore, useLocationStore, useRequestStore } from "@/root/zustand";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { useAuth } from "@/root/hooks";
 import { RequestType } from "@/lib/definitions";
@@ -25,8 +25,8 @@ export default function RequestTransferForm() {
     }));
     const { sendEmail } = EmailStore();
     const { addRequest } = useRequestStore();
-    const { assetsCheck } = useAssetStore((state) => ({ assetsCheck: state.assetsCheck }));
-    const { clearAssetsCheck, clearAssetsByLocation } = useAssetStore();
+    const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
+    const { clearAssetsCheck } = useAssetCheckStore();
     const { details } = useDetailsRequestStore((state) => ({ details: state.details }));
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }))
     const checkedDetails = details.filter((detail) => {
@@ -60,7 +60,6 @@ export default function RequestTransferForm() {
                 error: "No se pudo enviar la solicitud",
             });
             await sendEmail(request);
-            await clearAssetsByLocation(assetsCheck);
             await clearAssetsCheck();
         } catch (error) {
         }

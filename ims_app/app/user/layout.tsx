@@ -1,4 +1,4 @@
-
+'use client'
 import type { Metadata } from 'next'
 import { UserNavBar, Footer } from '@/root/components';
 import { Toaster } from "react-hot-toast";

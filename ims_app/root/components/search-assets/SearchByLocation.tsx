@@ -15,14 +15,14 @@ const SearchByLocation = () => {
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         const params = new URLSearchParams(searchParams);
         if (event.target.value) {
-           params.set("location", event.target.value);
+            params.set("location", event.target.value);
         }
         else {
             params.delete("location");
         }
         replace(`${pathname}?${params.toString()}`);
     }
-  return (
+    return (
     <div className="flex justify-center items-center m-2 p-4 w-96 md:w-full  lg:w-1/4 lg:pl-4 md:mx-20">
     <select
         value={searchParams.get("location") || "" }

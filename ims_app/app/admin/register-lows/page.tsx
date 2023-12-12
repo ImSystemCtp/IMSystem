@@ -1,6 +1,5 @@
 'use client'
 import { SearchAssets } from "@/lib/definitions";
-import { assetsProvider } from "@/root/zustand/provider";
 import { RegisterLows } from "@/root/components";
 import { useEffect } from "react";
 import { useAssetStore } from "@/root/zustand";

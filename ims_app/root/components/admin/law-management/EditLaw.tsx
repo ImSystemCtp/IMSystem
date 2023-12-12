@@ -35,7 +35,7 @@ export default function EditLaw() {
                                     Descripcion
                                 </th>
                                 <th scope="col" className=" px-6 py-3">
-                                    Eliminar
+                                    Editar
                                 </th>
                             </tr>
                         </thead>

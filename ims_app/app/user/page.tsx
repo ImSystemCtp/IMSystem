@@ -1,9 +1,9 @@
 'use client'
 import { UserMain } from "@/root/components";
-export default function AdminHome() {
+export default function UserHome() {
   return (
-      <div className=" ">
+    <div>
         <UserMain/>
-      </div>
+    </div>
   );
 }

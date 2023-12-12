@@ -19,10 +19,8 @@ export default function SearchAssetsInfo() {
         getRegisterToReport(parseInt(event.target.value));
     }
     const [noAssets, setNoAssets] = useState<string>("");
-    const { getAssetsByQuery } = useAssetStore();
     const handleSubmit = () => {
         if (noAssets === "") return;
-        getAssetsByQuery(noAssets);
     }
     const handleExcel = async () => {
         if (reportRegister.length > 0) {

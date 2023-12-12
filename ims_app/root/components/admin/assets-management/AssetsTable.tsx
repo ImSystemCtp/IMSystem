@@ -2,34 +2,10 @@
 import { useAssetStore, useReportStore } from "@/root/zustand";
 import { useEffect, useRef, useState } from "react";
 export default function AssetsTable() {
-    const { seeMore } = useAssetStore();
     const { reportRegister } = useReportStore((state) => ({
         reportRegister: state.reportRegister
     }))
     const containerRef = useRef<HTMLDivElement | null>(null);
-    useEffect(() => {
-        const container = containerRef.current;
-        function handleScroll() {
-
-            if (container) {
-                const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
-
-                if (isAtBottom) {
-                    seeMore();
-                }
-            }
-        }
-
-        if (container) {
-            container.addEventListener('scroll', handleScroll);
-        }
-
-        return () => {
-            if (container) {
-                container.removeEventListener('scroll', handleScroll);
-            }
-        };
-    }, [seeMore]);
     return (
         <div>
             <div ref={containerRef} className="max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">

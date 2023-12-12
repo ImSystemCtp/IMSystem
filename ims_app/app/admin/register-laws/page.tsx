@@ -1,7 +1,8 @@
+"use client";
 import { RegisterLaw } from "@/root/components";
 export default function RegisterLawPage() {
     return (
-        <main className="">
+        <main >
             <RegisterLaw/>
         </main>
     );

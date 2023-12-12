@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import { CustomTextArea } from "@/root/components";
 import { useAuth } from "@/root/hooks/auth";
 import { lowsAdminFormMessage } from "@/schemas";
-import { EmailStore, useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
+import { EmailStore, useAssetCheckStore, useAssetStore, useAuthStore, useDetailsRequestStore, useRequestStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/lib/definitions";
@@ -20,9 +20,8 @@ export default function RequestLowForm() {
     useAuth();
     const { userAuth } = useAuthStore((state)=>({userAuth: state.userAuth}));
     const { sendEmail } = EmailStore();
-    const { assetsCheck } = useAssetStore((state) => ({ assetsCheck: state.assetsCheck }));
-    const {clearAssetsCheck, clearAssetsByLocation } = useAssetStore();
-
+    const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
+    const {clearAssetsCheck } = useAssetCheckStore();
     const {  details } = useDetailsRequestStore((state) => ({
         details: state.details}));
 
@@ -56,7 +55,6 @@ export default function RequestLowForm() {
                 error: "No se pudo enviar la solicitud",
             });
             await sendEmail(request);
-            await clearAssetsByLocation(assetsCheck);
             await clearAssetsCheck();
         } catch (error) {
         }

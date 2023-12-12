@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
-import { useAssetStore, useAuthStore } from "@/root/zustand";
+import { useAssetCheckStore, useAssetStore, useAuthStore } from "@/root/zustand";
 import { EnumRegisterType, ims_register } from "@prisma/client";
 import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
@@ -19,11 +19,10 @@ const initialValues: FormValues = {
 };
 
 export default function LowsAdminForm() {
-    const { assetsCheck } = useAssetStore((state) => ({
+    const { assetsCheck } = useAssetCheckStore((state) => ({
         assetsCheck: state.assetsCheck
     }));
-    const { clearAssetsCheck, clearAssetsByLocation } = useAssetStore();
-
+    const {clearAssetsCheck} = useAssetCheckStore();
     const { addRegister } = useRegisterStore();
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
@@ -44,13 +43,12 @@ export default function LowsAdminForm() {
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",
         });
-        await clearAssetsByLocation(assetsCheck);
         await clearAssetsCheck();
     };
     return (
 
-        <div className="m-2 lg:h-full">
-            <div className="m-2 h-80 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
+        <div className=" m-2 lg:h-full">
+            <div className="m-2  h-40 border border-gray-300 my-2  rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

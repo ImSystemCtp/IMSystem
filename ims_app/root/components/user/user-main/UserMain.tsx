@@ -1,7 +1,6 @@
 "use client"
 import { MouseEventHandler } from 'react';
 import Link from "next/link"
-
 import { useRouter } from 'next/navigation'
 export default function UserMain() {
     const router = useRouter();

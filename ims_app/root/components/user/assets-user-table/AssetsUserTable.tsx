@@ -1,19 +1,20 @@
 "use client"
 import { RequestAssetsModal } from "@/root/components";
-import { useAssetStore, useDetailsRequestStore } from "@/root/zustand";
+import { useAssetCheckStore, useAssetStore, useDetailsRequestStore } from "@/root/zustand";
 import {  ims_assets, ims_details_asset } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
-    const { assetsByLocation ,assetsCheck } = useAssetStore((state)=> ({
-        assetsByLocation: state.assetsByLocation,
+    const { assetsBySearch  } = useAssetStore((state)=> ({
+        assetsBySearch: state.assetsBySearch,
+    }));
+    const {assetsCheck } = useAssetCheckStore((state)=> ({
         assetsCheck: state.assetsCheck
-    
     }));
     const { details } = useDetailsRequestStore((state)=>({details: state.details}));
     const { setDetailRequest } = useDetailsRequestStore();
 
-    const {  deleteAssetsCheck, addAssetsCheck, seeMore  } = useAssetStore();
+    const {  deleteAssetsCheck, addAssetsCheck,   } = useAssetCheckStore();
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [assetSelect, setAssetSelect] = useState<ims_assets>({} as ims_assets);
@@ -39,29 +40,10 @@ export default function AssetsUserTable() {
     function isChecked(asset: ims_assets): boolean {
         return assetsCheck.includes(asset);
     }
-    useEffect(() => {
-        const container = containerRef.current;
-        function handleScroll() {
-            if (container) {
-                const isAtBottom = container.scrollTop + container.clientHeight === container.scrollHeight;
-                if (isAtBottom) {
-                    seeMore();
-                }
-            }
-        }
-        if (container) {
-            container.addEventListener('scroll', handleScroll);
-        }
-        return () => {
-            if (container) {
-                container.removeEventListener('scroll', handleScroll);
-            }
-        };
-    }, [seeMore]);
     return (
         <div>
             <div ref={containerRef} className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
-                {assetsByLocation.length === 0 ? (
+                {assetsBySearch.length === 0 ? (
                     <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
@@ -89,7 +71,7 @@ export default function AssetsUserTable() {
                             </tr>
                         </thead>
                         <tbody>
-                            {assetsByLocation?.map((asset: ims_assets, index: number) => (
+                            {assetsBySearch?.map((asset: ims_assets, index: number) => (
                                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td
                                         scope="row"

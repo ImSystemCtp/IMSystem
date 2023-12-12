@@ -1,4 +1,4 @@
-import { useAssetStore } from "@/root/zustand";
+import { useAssetCheckStore, useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
 
 
@@ -7,8 +7,8 @@ interface AssetItemProps {
 }
 
 export default function ItemAsset( { asset }: AssetItemProps) {
-    const { deleteAssetsCheck, addAssetsCheck } = useAssetStore();
-    const assetsCheck = useAssetStore((state) => state.assetsCheck);
+    const { deleteAssetsCheck, addAssetsCheck } = useAssetCheckStore();
+    const assetsCheck = useAssetCheckStore((state) => state.assetsCheck);
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td
