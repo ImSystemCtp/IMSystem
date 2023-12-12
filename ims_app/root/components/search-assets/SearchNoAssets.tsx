@@ -16,7 +16,7 @@ const SearchNoAssets = () => {
             params.delete("Assets");
         }
         replace(`${pathname}?${params.toString()}`);
-    },1000)
+    },300)
 
     return (
     <div className="flex justify-center items-center m-2 w-96 lg:w-3/4 md:w-1/2 mb-4 lg:mb-0">
@@ -30,7 +30,7 @@ const SearchNoAssets = () => {
                     </svg>
                 </div>
                 <input
-                    value={searchParams.get("Assets") || ""}
+                    
                     type="search"
                     onChange={(e) => handleSearch(e.target.value)}
                     id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar activo por numero de placa o descripción" required />

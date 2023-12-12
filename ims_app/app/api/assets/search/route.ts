@@ -1,5 +1,6 @@
 import { prismaDB } from "@/lib/prisma";
 import { $Enums } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 
 export async function GET(req: Request) {
@@ -43,9 +44,9 @@ export async function GET(req: Request) {
         }
         console.log(assetQuery)
         const response = await prismaDB.ims_assets.findMany(assetQuery);
-        return Response.json(response);
+        return NextResponse.json(response);
     } catch (error) {
         console.log(error)
-        return new Response("Unauthorized", { status: 401 });
+        return new NextResponse("Unauthorized", { status: 401 });
     }
 }

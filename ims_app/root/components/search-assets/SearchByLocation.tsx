@@ -12,9 +12,6 @@ const SearchByLocation = () => {
     const { locations } = useLocationStore((state)=> ({
         locations: state.locations
     }));
-
-    const [locationSelect, setLocationSelect] = useState<string>("");
-
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         const params = new URLSearchParams(searchParams);
         if (event.target.value) {

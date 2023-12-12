@@ -1,6 +1,6 @@
+export * from './Formik';
 export * from './admin';
 export * from './footer';
-export * from './Formik';
 export * from './loading';
 export * from './main-page';
 export * from './search-assets';
