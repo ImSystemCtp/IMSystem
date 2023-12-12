@@ -41,7 +41,7 @@ export default function RegisterAssets() {
         initialValues.assets_model = "";
         initialValues.assets_invoice_number = "";
         initialValues.assets_regis_location = "";
-        initialValues.assent_law_id = "";
+        initialValues.asset_law_id = "";
         initialValues.assets_acquisition_value = "";
         initialValues.invoice_date = "";
     };
@@ -117,7 +117,7 @@ export default function RegisterAssets() {
                                     )}
                                     {laws.length > 0 ? (
                                         <CustomSelect label="Ley que financió:" name="assent_law_id">
-                                            {!initialValues.assent_law_id ? <option value="">Seleccione una ley</option> : ""}
+                                            {!initialValues.asset_law_id ? <option value="">Seleccione una ley</option> : ""}
                                             {laws.map((law) => {
                                                 return (
                                                     <option key={law.law_id} value={law.law_id}>

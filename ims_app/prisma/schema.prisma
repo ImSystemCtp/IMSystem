@@ -39,8 +39,10 @@ model ims_assets {
   assets_acquisition_value                                      String                @db.VarChar(30)
   assets_curr_location                                          Int?
   assets_invoice_number                                         String?
-  assent_law_id                                                 Int?
-  ims_laws                                                      ims_laws?             @relation(fields: [assent_law_id], references: [law_id])
+  asset_law_id                                                 Int?
+  asset_responsible_id                                          Int?
+  ims_laws                                                      ims_laws?             @relation(fields: [asset_law_id], references: [law_id])
+  ims_responsible                                               ims_responsible?      @relation(fields: [asset_responsible_id], references: [responsible_id])
   ims_details_assets                                            ims_details_asset[]
   ims_locations_ims_assets_assets_regis_locationToims_locations ims_locations         @relation("ims_assets_assets_regis_locationToims_locations", fields: [assets_regis_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_location")
   ims_locations_ims_assets_assets_curr_locationToims_locations  ims_locations?        @relation("ims_assets_assets_curr_locationToims_locations", fields: [assets_curr_location], references: [location_id], onDelete: Cascade, onUpdate: Cascade, map: "good_loc_curr")
@@ -118,9 +120,6 @@ enum EnumReqState {
   Denied
   Pending
 }
-
-
-
 enum EnumReqType {
   Low
   Transfer
@@ -147,5 +146,11 @@ model ims_laws {
   law_id          Int          @id @default(autoincrement())
   law_name        String       @db.VarChar(20)
   law_description String?      @db.VarChar(60)
+  ims_assets      ims_assets[]
+}
+
+model ims_responsible {
+  responsible_id          Int          @id @default(autoincrement())
+  responsible_name        String       @db.VarChar(20)
   ims_assets      ims_assets[]
 }
