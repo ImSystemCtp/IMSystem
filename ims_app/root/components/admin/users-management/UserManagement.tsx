@@ -1,7 +1,6 @@
 import {LoadingComponent } from "@/root/components";
 import { useUserStore } from "@/root/zustand";
 import EditUserTable from "./EditUserTable";
-import { Suspense } from "react";
 import { useUser } from "@/root/hooks";
 export default function UserManagement() {
     useUser();
