@@ -17,7 +17,7 @@ interface FormValues {
     assets_invoice_number: string,
     assets_regis_location: string,
     asset_law_id: string,
-    assets_responsible_id: string,
+    asset_responsible_id: string,
     assets_acquisition_value: string,
     invoice_date: string,
 }
@@ -31,7 +31,7 @@ export default function RegisterAssets() {
     const { locations } = useLocationStore((state) => ({ locations: state.locations }));
     const { responsibles } = useResponsibleStore((state) => ({ responsibles: state.responsibles }));
     const handleSubmit = async (values: FormValues) => {
-        const { asset_law_id, assets_regis_location, assets_responsible_id } = values
+        const { asset_law_id, assets_regis_location, asset_responsible_id } = values
         const locationId = Number.parseInt(assets_regis_location);
         const invoice_date = new Date(values.invoice_date);
         addAssets({
@@ -40,7 +40,7 @@ export default function RegisterAssets() {
             invoice_date: invoice_date,
             assets_curr_location: locationId,
             asset_law_id: Number.parseInt(asset_law_id),
-            asset_responsible_id: Number.parseInt(assets_responsible_id),
+            asset_responsible_id: Number.parseInt(asset_responsible_id),
             assets_regis_location: locationId
         } as ims_assets);
     };
@@ -53,7 +53,7 @@ export default function RegisterAssets() {
         initialValues.assets_invoice_number = "";
         initialValues.assets_regis_location = "";
         initialValues.asset_law_id = "";
-        initialValues.assets_responsible_id = "";
+        initialValues.asset_responsible_id = "";
         initialValues.assets_acquisition_value = "";
         initialValues.invoice_date = "";
     };
@@ -152,7 +152,7 @@ export default function RegisterAssets() {
                                     )}
                                     {responsibles.length > 0 ? (
                                         <CustomSelect label="Funcionario Responsable:" name="asset_responsible_id">
-                                            {!initialValues.assets_responsible_id ? <option value="">Seleccione un Funcionario Responsable</option> : ""}
+                                            {!initialValues.asset_responsible_id ? <option value="">Seleccione un Funcionario Responsable</option> : ""}
                                             {responsibles.map((responsible) => {
                                                 return (
                                                     <option key={responsible.responsible_id} value={responsible.responsible_id}>

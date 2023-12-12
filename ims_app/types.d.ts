@@ -38,6 +38,7 @@ interface registerToReport {
     assets_state: $Enums.EnumAssetsState;
     assets_acquisition_value: string;
     assets_invoice_number: string | null;
+    responsible_name: string;
     location_name: string;
     law_name: string;
     usu_name: string;
@@ -69,5 +70,6 @@ interface requestToReport {
     assets_acquisition_value: string;
     assets_curr_location:string;
     assets_invoice_number: string;
-    assent_law_id: number;
+    asset_law_id: number;
+    assets_responsible_id: number;
 }

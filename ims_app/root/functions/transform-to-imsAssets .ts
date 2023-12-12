@@ -12,6 +12,7 @@ export const transformToImsAssets = (request: requestToReport): ims_assets => {
         assets_acquisition_value: request.assets_acquisition_value,
         assets_curr_location: parseInt(request.assets_curr_location),
         assets_invoice_number: request.assets_invoice_number,
-        assent_law_id: request.assent_law_id,
+        asset_responsible_id: request.assets_responsible_id,
+        asset_law_id: request.asset_law_id,
     };
 };

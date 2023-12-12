@@ -3,11 +3,11 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'
 export const generatePDF = async (reportRequest: requestToReport[], requestSelected: ims_request) => {
     const doc = new jsPDF();
-    const logoLeft = '/logomep.png'; 
-    const logoRight = '/ctp-preview.png'; 
-    doc.setFontSize(10); 
-    doc.addImage(logoLeft, 'PNG', 10, 20, 20, 15); 
-    doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, 20, 17, 20); 
+    const logoLeft = '/logomep.png';
+    const logoRight = '/ctp-preview.png';
+    doc.setFontSize(10);
+    doc.addImage(logoLeft, 'PNG', 10, 20, 20, 15);
+    doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, 20, 17, 20);
     doc.setFont('helvetica', 'bold')
     doc.text('Ministerio de Educacion Publica', doc.internal.pageSize.width / 2, 20, { align: 'center', });
     doc.setFont('helvetica', 'normal')

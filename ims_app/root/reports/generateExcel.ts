@@ -35,7 +35,7 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
           J: String(asset.assets_invoice_number),
           K: asset.assets_acquisition_value,
           L: String(asset.law_name),
-          M: String(asset.usu_name),
+          M: String(asset.responsible_name),
           N: String(asset.reg_observation),
         })
         : tabla.push({
