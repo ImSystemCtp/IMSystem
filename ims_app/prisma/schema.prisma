@@ -14,6 +14,7 @@ model ims_institution {
   inst_location    String?             @db.VarChar(60)
   inst_phone       String?             @db.VarChar(20)
   inst_email       String?             @db.VarChar(60)
+  inst_current_no_plate Int            @default(0)
   ims_registers    ims_register[]
   ims_registers_in ims_registered_in[]
 }
