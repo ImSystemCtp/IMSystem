@@ -23,7 +23,7 @@ interface FormValues {
 }
 const initialValues = {} as FormValues;
 export default function RegisterAssets() {
-    const { addAssets } = useAssetStore()
+    const { addAssets } = useRegisterAssetStore()
     useLocation();
     useLaw();
     useResponsibles();
