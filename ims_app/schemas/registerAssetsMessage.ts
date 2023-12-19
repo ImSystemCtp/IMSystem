@@ -1,6 +1,5 @@
 import * as Yup from "yup";
 const registerAssetsMessage  = Yup.object({
-    assets_no: Yup.number().required("El número es obligatorio"),
     assets_description: Yup.string().required("La descripción es obligatoria"),
     assets_series: Yup.string().required("La serie es obligatoria"),
     assets_brand: Yup.string().required("La marca es obligatoria"),

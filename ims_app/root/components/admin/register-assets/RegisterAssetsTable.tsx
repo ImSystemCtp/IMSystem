@@ -1,17 +1,17 @@
 "use client"
 import { useAuth } from "@/root/hooks";
-import { useAssetStore, useAuthStore, useRegisterAssetStore } from "@/root/zustand";
+import { useAuthStore, useRegisAssetStore, useRegisterAssetStore } from "@/root/zustand";
 import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
 
 import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
-    const { addRegisterAssets } = useRegisterAssetStore();
-    const { assets } = useAssetStore((state) => ({
+    const { addRegisterAssets } = useRegisAssetStore();
+    const { assets  } = useRegisterAssetStore((state) => ({
         assets: state.assets
         }));
-    const { clearAssets,removeAssets } = useAssetStore();
+    const { clearAssets,removeAssets,updateAssetsNoPlate,putNoPlate } = useRegisterAssetStore();
 
     const register = {
         reg_type: EnumRegisterType.Register,
@@ -27,10 +27,12 @@ export default function RegisterAssetsTable() {
             error: "No se pudo registrar los activos",
         }).then(() => {
             clearAssets();
+            putNoPlate();
         })
     }
     const handleDelete = (asset:ims_assets) => {
         removeAssets(asset)
+        updateAssetsNoPlate()
     }
     return (
         <div className="md:w-1/3 rounded-lg  border border-gray-300 p-4 m-2  ">

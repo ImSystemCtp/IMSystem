@@ -2,14 +2,13 @@
 import { Form, Formik } from "formik";
 
 import { registerAssetsMessage } from "@/schemas";
-import { useAssetStore, useLawStore, useLocationStore, useResponsibleStore } from "@/root/zustand";
+import {  useLawStore, useLocationStore, useRegisterAssetStore, useResponsibleStore } from "@/root/zustand";
 import { EnumAssetsState, ims_assets } from "@prisma/client";
 import { CustomInput, CustomSelect, LoadingComponent, RegisterAssetsTable } from "@/root/components";
-import { Suspense } from "react";
-import { useLaw, useLocation, useResponsibles } from "@/root/hooks";
+import { Suspense, useState } from "react";
+import { useCurrentNoPlate, useLaw, useLocation, useResponsibles } from "@/root/hooks";
 import Link from "next/link";
 interface FormValues {
-    assets_no: string,
     assets_description: string,
     assets_series: string,
     assets_brand: string,
@@ -23,7 +22,9 @@ interface FormValues {
 }
 const initialValues = {} as FormValues;
 export default function RegisterAssets() {
-    const { addAssets } = useRegisterAssetStore()
+    useCurrentNoPlate();
+    const { addAssets,asset_current_no_plate,assets,updateNoPlate ,asset_get_no_plate} = useRegisterAssetStore()
+    const [count, setCount] = useState<number>(1);
     useLocation();
     useLaw();
     useResponsibles();
@@ -41,11 +42,15 @@ export default function RegisterAssets() {
             assets_curr_location: locationId,
             asset_law_id: Number.parseInt(asset_law_id),
             asset_responsible_id: Number.parseInt(asset_responsible_id),
-            assets_regis_location: locationId
+            assets_regis_location: locationId,
+            assets_no: Number(asset_get_no_plate) + count,
         } as ims_assets);
+        setCount(count + 1);
+        updateNoPlate();
+        console.log(asset_current_no_plate)
+        console.log(assets)
     };
     const handleReset = () => {
-        initialValues.assets_no = "";
         initialValues.assets_description = "";
         initialValues.assets_series = "";
         initialValues.assets_brand = "";
@@ -75,11 +80,6 @@ export default function RegisterAssets() {
                             <div className=" justify-center w-full flex flex-col sm:flex-row lg:p-4 lg:px-10">
                                 <div className="w-full h-full p-2">
                                     <CustomInput
-                                        label="Número de Patrimonio:"
-                                        name="assets_no"
-                                        inputType="text"
-                                    />
-                                    <CustomInput
                                         label="Descripción del Bien:"
                                         name="assets_description"
                                         inputType="text"
@@ -87,6 +87,29 @@ export default function RegisterAssets() {
                                     <CustomInput label="Serie:" name="assets_series" inputType="text" />
                                     <CustomInput label="Marca:" name="assets_brand" inputType="text" />
                                     <CustomInput label="Fecha de Factura:" name="invoice_date" inputType="date" />
+                                    {responsibles.length > 0 ? (
+                                        <CustomSelect label="Funcionario Responsable:" name="asset_responsible_id">
+                                            {!initialValues.asset_responsible_id ? <option value="">Seleccione un Funcionario Responsable</option> : ""}
+                                            {responsibles.map((responsible) => {
+                                                return (
+                                                    <option key={responsible.responsible_id} value={responsible.responsible_id}>
+                                                        {responsible.responsible_name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </CustomSelect>
+                                    ) : (
+                                        <div className="flex flex-row">
+                                            <div className="flex items-center justify-center w-1/2">
+                                                <p className="text-red">
+                                                    No existen Funcionarios Responsables.
+                                                </p>
+                                            </div>
+                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
+                                                <Link href="/admin/responsibles-management">Agregar Funcionario Responsable</Link>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="w-full p-2">
                                     <CustomInput label="Modelo:" name="assets_model" inputType="text" />
@@ -147,29 +170,6 @@ export default function RegisterAssets() {
                                             </div>
                                             <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                                                 <Link href="/admin/laws-management">Agregar ley</Link>
-                                            </div>
-                                        </div>
-                                    )}
-                                    {responsibles.length > 0 ? (
-                                        <CustomSelect label="Funcionario Responsable:" name="asset_responsible_id">
-                                            {!initialValues.asset_responsible_id ? <option value="">Seleccione un Funcionario Responsable</option> : ""}
-                                            {responsibles.map((responsible) => {
-                                                return (
-                                                    <option key={responsible.responsible_id} value={responsible.responsible_id}>
-                                                        {responsible.responsible_name}
-                                                    </option>
-                                                );
-                                            })}
-                                        </CustomSelect>
-                                    ) : (
-                                        <div className="flex flex-row">
-                                            <div className="flex items-center justify-center w-1/2">
-                                                <p className="text-red">
-                                                    No existen Funcionarios Responsables.
-                                                </p>
-                                            </div>
-                                            <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
-                                                <Link href="/admin/responsibles-management">Agregar Funcionario Responsable</Link>
                                             </div>
                                         </div>
                                     )}

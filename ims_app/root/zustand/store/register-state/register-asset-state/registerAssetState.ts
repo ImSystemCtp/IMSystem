@@ -8,7 +8,7 @@ interface registerAssetState {
     assets: ims_assets[];
     addRegisterAssets: (register: ims_register, assets: ims_assets[]) => Promise<void>;
 }
-export const useRegisterAssetStore = create<registerAssetState>((set) => {
+export const useRegisAssetStore = create<registerAssetState>((set) => {
     return {
         register: {} as ims_register,
         assets: [],
@@ -17,9 +17,9 @@ export const useRegisterAssetStore = create<registerAssetState>((set) => {
                 register,
                 assets,
             };
-            const newRegisterAsset = await registerAssetProvider.createRegister(registerAsset);
+            await registerAssetProvider.createRegister(registerAsset);
         },
     };
 });
 
-export default useRegisterAssetStore;
+export default useRegisAssetStore;
