@@ -1,0 +1,10 @@
+PUT http://localhost:3000/api/assets/plate-no HTTP/1.1
+content-type: application/json
+
+{
+    "no_plate": 199
+}
+
+
+
+# GET http://localhost:3000/api/assets/plate-no HTTP/1.1

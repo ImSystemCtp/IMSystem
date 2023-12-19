@@ -13,14 +13,17 @@ export async function GET(req: Request, res: Response) {
     }
 }
 export async function PUT(req: Request, res: Response) {
-    const  no_plate  = req.body;
+    
+    
+    const  {no_plate}  = await req.json() as any
+    console.log(no_plate)
     try {
         const response = await prismaDB.ims_institution.update({
             where: {
                 inst_id: 1
             },
             data: {
-                inst_current_no_plate: Number(no_plate)
+                inst_current_no_plate: no_plate
             }
         })
         return NextResponse.json(response?.inst_current_no_plate)
