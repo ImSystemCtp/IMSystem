@@ -57,7 +57,7 @@ export default function AssetsUserTable() {
                         <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Numero de Placa
+                                Número de Placa
                                 </th>
                                 <th scope="col" className="hidden md:table-cell  px-6 py-3">
                                     Marca

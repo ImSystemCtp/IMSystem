@@ -32,16 +32,16 @@ export default function RegisterLocation() {
         } else {
             if(locationToEdit){
                 toast.promise(updateLocation({ location_id: locationToEdit.location_id, location_name: locationName } as ims_locations), {
-                    loading: "Editando ubicacion...",
+                    loading: "Editando ubicación...",
                     success: "Ubicacion editada exitosamente!",
-                    error: "No se pudo editar la ubicacion",
+                    error: "No se pudo editar la ubicación",
                 });
             }
             else{
                 toast.promise( createLocation({ location_name: locationName } as ims_locations), {
-                    loading: "Registrando ubicacion...",
+                    loading: "Registrando ubicación...",
                     success: "Ubicacion registrada exitosamente!",
-                    error: "No se pudo registrar la ubicacion",
+                    error: "No se pudo registrar la ubicación",
                 });
             }
         }
@@ -65,7 +65,7 @@ export default function RegisterLocation() {
                                 type="text"
                                 value={locationName}
                                 onChange={handleNameChange}
-                                placeholder="Ingrese ubicacion"
+                                placeholder="Ingrese ubicación"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
                         </div>

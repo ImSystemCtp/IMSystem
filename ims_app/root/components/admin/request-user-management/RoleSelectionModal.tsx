@@ -38,7 +38,7 @@ export default function RoleSelectionModal({
                     />
                 </svg>
             </button>
-            <h2>Por favor, seleccione el rol del usuario:</h2>
+            <h2>Por favor, seleccione el role del usuario:</h2>
             <button
                 className="btn-usuario bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded m-2"
                 onClick={() => {

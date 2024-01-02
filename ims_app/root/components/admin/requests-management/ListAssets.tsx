@@ -48,7 +48,7 @@ export default function ListAssets() {
                         <table className="w-full max-h-96 overflow-x-auto">
                             <thead>
                                 <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                    <th className="px-4 py-3">Numero Placa</th>
+                                    <th className="px-4 py-3">Número Placa</th>
                                     <th className="px-4 py-3">Marca</th>
                                     <th className="px-4 py-3">Estado</th>
                                     <th className="px-4 py-3">Observacion</th>

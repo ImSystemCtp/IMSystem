@@ -13,8 +13,6 @@ export async function GET(req: Request, res: Response) {
     }
 }
 export async function PUT(req: Request, res: Response) {
-    
-    
     const  {no_plate}  = await req.json() as any
     console.log(no_plate)
     try {

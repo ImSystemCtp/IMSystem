@@ -9,17 +9,17 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     doc.addImage(logoLeft, 'PNG', 10, 20, 20, 15);
     doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, 20, 17, 20);
     doc.setFont('helvetica', 'bold')
-    doc.text('Ministerio de Educacion Publica', doc.internal.pageSize.width / 2, 20, { align: 'center', });
+    doc.text('Ministerio de Educacion Pública', doc.internal.pageSize.width / 2, 20, { align: 'center', });
     doc.setFont('helvetica', 'normal')
-    doc.text('Direccion Regional de Educacion Perez Zeledon Circuito 07', doc.internal.pageSize.width / 2, 25, { align: 'center' });
+    doc.text('Direccion Regional de Educacion Pérez Zeledon Circuito 07', doc.internal.pageSize.width / 2, 25, { align: 'center' });
     doc.text('Colegio Tecnico Profesional de Platanares', doc.internal.pageSize.width / 2, 30, { align: 'center' });
     doc.text('Codigo Presupuestario: 4167', doc.internal.pageSize.width / 2, 35, { align: 'center' });
     doc.setFont('helvetica', 'bold')
     doc.text('Boleta de control de activos', doc.internal.pageSize.width / 2, 40, { align: 'center' });
     doc.text('Solicitud de ' + (requestSelected.req_type === "Low" ? "Baja" : "Traslado"), doc.internal.pageSize.width / 2, 45, { align: 'center' });
     doc.setFont('helvetica', 'normal')
-    doc.text('Descripcion: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 55, { align: 'center' });
-    const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripcion del Bien", "Numero Placa", "Marca", "Ubicacion", "Observacion", "Responsable","Nueva Ubicacion"];
+    doc.text('Descripción: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 55, { align: 'center' });
+    const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripción del Bien", "Número Placa", "Marca", "Ubicacion", "Observacion", "Responsable","Nueva Ubicacion"];
     const rows = reportRequest.map((detail: requestToReport) => [
         detail.req_date?.toString().split('T')[0],
         detail.invoice_date?.toString().split('T')[0],

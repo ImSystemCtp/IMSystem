@@ -32,7 +32,7 @@ export default function PrivacyPolicyModal ({
                     />
                 </svg>
             </button>
-            <h2>Politica de privacidad:</h2>
+            <h2>Política de privacidad:</h2>
         </Modal>
     )
 }

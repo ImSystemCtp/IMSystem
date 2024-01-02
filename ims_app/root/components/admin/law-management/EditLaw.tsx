@@ -32,7 +32,7 @@ export default function EditLaw() {
                                     Ley
                                 </th>
                                 <th scope="col" className=" px-6 py-3">
-                                    Descripcion
+                                    Descripción
                                 </th>
                                 <th scope="col" className=" px-6 py-3">
                                     Editar

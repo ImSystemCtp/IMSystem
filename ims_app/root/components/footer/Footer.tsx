@@ -23,7 +23,7 @@ export default function Footer() {
                         <Link onClick={() => handleOpenAboutModal()} href="#" className="mr-4 hover:underline md:mr-6 ">Acerca de...</Link>
                     </li>
                     <li>
-                        <Link onClick={() => handleOpenPrivacyPolicyModal()} href="#" className="mr-4 hover:underline md:mr-6">Politica de privacidad</Link>
+                        <Link onClick={() => handleOpenPrivacyPolicyModal()} href="#" className="mr-4 hover:underline md:mr-6">Política de privacidad</Link>
                     </li>
                     <li>
                         <Link onClick={() => handleOpenContactModal()} href="#" className="hover:underline">Contacto</Link>

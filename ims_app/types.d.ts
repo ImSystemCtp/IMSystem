@@ -61,7 +61,7 @@ interface requestToReport {
     deta_assets_no:string;
     assets_regis_location: number;
     invoice_date: Date | null;
-    assets_no: string;
+    assets_no: number;
     assets_description: string;
     assets_brand: string;
     assets_model: string;

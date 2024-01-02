@@ -10,7 +10,7 @@ export default function UserManagement() {
             className=" p-4 rounded-md mt-4 "
         >
             <h2 className="text-gray-500 text-lg font-semibold pb-4">
-                Gestion de Usuarios
+                Gestión de Usuarios
             </h2>
             <div className="w-full overflow-hidden rounded-lg shadow-xs">
                 <div className="w-full overflow-x-auto">

@@ -80,7 +80,7 @@ export default function RegisterLaw() {
                         </div>
                         {errorName && <p className="text-red-500">{errorName}</p>}
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripcion de Ley:</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción de Ley:</label>
                             <input
                                 type="text"
                                 value={lawDescription?lawDescription:""}
