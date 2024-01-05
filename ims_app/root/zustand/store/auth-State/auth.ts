@@ -12,7 +12,6 @@ export const useAuthStore = create<authState>((set, get) => {
         userAuth: {} as ims_users,
         getUserAuth: async () => {
             const user = await loginProvider.isAuth() as ims_users;
-            
             if (user) {
                 set({ userAuth: user })
             }

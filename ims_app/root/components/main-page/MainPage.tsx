@@ -10,7 +10,6 @@ export default function MainPage() {
         async function checkUserRole() {
             const usersActions = await getUsers();
             const authActions = await getAuth();
-            console.log(authActions);
             if (authActions.usu_role === USER_ROLES.ADMIN) {
                 window.location.href = "/admin";
             }
