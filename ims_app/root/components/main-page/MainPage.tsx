@@ -1,6 +1,5 @@
 "use client"
 import { USER_ROLES } from "@/app/api/enums/roles";
-import { QueryOptions } from "@/app/types";
 import { useAuthStore, useUserStore } from "@/root/zustand";
 import { useEffect } from "react";
 export default function MainPage() {
