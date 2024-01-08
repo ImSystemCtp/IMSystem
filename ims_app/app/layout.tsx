@@ -1,3 +1,4 @@
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
@@ -17,6 +18,7 @@ export default function RootLayout({
     <ClerkProvider localization={esES}>
       <html lang="es">
         <body className="min-h-screen bg-slate-50 dark:bg-slate-800 flex flex-col flex-grow">
+         
           <Toaster
             toastOptions={{
               duration: 3000,

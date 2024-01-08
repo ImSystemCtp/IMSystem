@@ -15,6 +15,7 @@ export const useAuthStore = create<authState>((set, get) => {
             if (user) {
                 set({ userAuth: user })
             }
+            console.log(user)
             return get().userAuth;
         }
     }

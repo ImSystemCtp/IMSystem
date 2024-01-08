@@ -1,26 +1,26 @@
 "use client"
 import { USER_ROLES } from "@/app/api/enums/roles";
 import { useAuthStore, useUserStore } from "@/root/zustand";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 export default function MainPage() {
     const getAuth = useAuthStore(state => state.getUserAuth)!;
-    const getUsers = useUserStore(state => state.getUsers)!;
+    const router = useRouter();
+
     useEffect(() => {
         async function checkUserRole() {
-            const usersActions = await getUsers();
+            
             const authActions = await getAuth();
+            console.log(authActions)
             if (authActions.usu_role === USER_ROLES.ADMIN) {
-                window.location.href = "/admin";
+                router.push("/admin");
             }
             else if (authActions.usu_role === USER_ROLES.USER) {
-                window.location.href = "/user";
-            }
-            else {
-                window.location.href = "/sing-in"
+                router.push("/user");
             }
         }
         checkUserRole();
-    }, [getAuth, getUsers]);
+    }, [getAuth, router]);
     return (
         <div className="bg-neutral-400 h-screen flex justify-center items-center">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-md">

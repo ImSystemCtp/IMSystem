@@ -1,5 +1,5 @@
 "use client";
-import { AdminNavBar, Footer, SideBar } from '@/root/components';
+import { AdminNavBar, AuthorizedAdmin, Footer, SideBar } from '@/root/components';
 
 
 export default function AdminLayout({
@@ -9,6 +9,7 @@ export default function AdminLayout({
 }) {
   return (
     <main className="flex flex-col min-h-screen">
+       <AuthorizedAdmin/>
       <div>
       </div>
       <AdminNavBar />
