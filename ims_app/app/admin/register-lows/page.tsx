@@ -3,6 +3,7 @@ import { SearchAssets } from "@/lib/definitions";
 import { RegisterLows } from "@/root/components";
 import { useEffect } from "react";
 import { useAssetStore } from "@/root/zustand";
+import { useAuthorizedAdmin } from "@/root/hooks";
 export default function RegisterLowPage({
     searchParams
 }: {
@@ -11,6 +12,7 @@ export default function RegisterLowPage({
         Assets?: string
     }
 }) {
+    useAuthorizedAdmin()
     const Assets = searchParams?.Assets || "";
     const Location = searchParams?.location || "";
     const {searchAssets }=useAssetStore()

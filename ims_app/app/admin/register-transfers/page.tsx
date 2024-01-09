@@ -1,6 +1,7 @@
 "use client";
 import { SearchAssets } from "@/lib/definitions";
 import { RegisterTransfer } from "@/root/components";
+import { useAuthorizedAdmin } from "@/root/hooks";
 import { useAssetStore } from "@/root/zustand";
 import { useEffect } from "react";
 export default function RegisterTransferPage({
@@ -11,6 +12,7 @@ export default function RegisterTransferPage({
         Assets?: string
     }
 }) {
+    useAuthorizedAdmin()
     const Assets = searchParams?.Assets || "";
     const Location = searchParams?.location || "";
     const { searchAssets } = useAssetStore()

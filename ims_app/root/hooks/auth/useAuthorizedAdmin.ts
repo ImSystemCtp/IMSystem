@@ -5,10 +5,8 @@ import { useCheckingStore } from "@/root/zustand/store/checking-state/checkingSt
 import { usePathname , useRouter } from "next/navigation";
 import { useEffect } from "react"
 
-
-export const AuthorizedAdmin = () => {
-
-    const pathname = usePathname();
+export const useAuthorizedAdmin = () => {
+ 
     const authActions = useAuthStore(state => state.userAuth)!;
     const setIsAuthorized = useCheckingStore(state => state.setIsAuthorized);
     const router = useRouter();
@@ -16,9 +14,8 @@ export const AuthorizedAdmin = () => {
         async function checkUserRole() {
             setIsAuthorized(false)
             const userRole = authActions.usu_role
-            const path = pathname.split("/")
             console.log(userRole)
-            if (path.includes("admin") && userRole !== USER_ROLES.ADMIN) {
+            if (userRole !== USER_ROLES.ADMIN) {
                 if (userRole === USER_ROLES.USER) {
                     router.push("/user")
                 } else {
@@ -31,10 +28,6 @@ export const AuthorizedAdmin = () => {
         
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [authActions.usu_role, pathname, router])
+    }, [authActions.usu_role, router])
 
-    return (
-        <>
-        </>
-    )
 }

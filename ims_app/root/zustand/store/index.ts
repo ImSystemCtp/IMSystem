@@ -1,5 +1,6 @@
 export * from './aseets-state';
 export * from './auth-State';
+export * from './checking-state';
 export * from './details-request';
 export * from './email-state';
 export * from './isLoading-state';

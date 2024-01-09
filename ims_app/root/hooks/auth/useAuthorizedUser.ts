@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react"
 
 
-export const AuthorizedUser = () => {
+export const useAuthorizedUser = () => {
     const pathname = usePathname();
     const authActions = useAuthStore(state => state.userAuth)!;
     const router = useRouter();
@@ -32,8 +32,5 @@ export const AuthorizedUser = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [authActions.usu_role, pathname, router])
 
-    return (
-        <>
-        </>
-    )
+ 
 }

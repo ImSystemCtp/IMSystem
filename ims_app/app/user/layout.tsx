@@ -1,6 +1,7 @@
 'use client'
 // import type { Metadata } from 'next'
 import { UserNavBar, Footer, AuthorizedUser } from '@/root/components';
+import { useCheckingStore } from '@/root/zustand/store/checking-state/checkingState';
 import { Toaster } from "react-hot-toast";
 
 // export const metadata: Metadata = {
@@ -13,6 +14,8 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
+  const isAuthorized = useCheckingStore(state => state.isAuthorized);
+
   return (
     <main className="flex flex-col min-h-screen">
       <AuthorizedUser/>
@@ -25,7 +28,7 @@ export default function AdminLayout({
       </div>
       <UserNavBar />
       <div className="flex-1 flex">
-        <div className="flex-1 pl-4 pr-4 overflow-y-auto ">{children}</div>
+      <div className="flex-1 pl-4 pr-4 overflow-y-auto">{isAuthorized? children: ''}</div>
       </div>
       <div>
         <Footer />
