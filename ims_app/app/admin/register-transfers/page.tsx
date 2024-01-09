@@ -1,6 +1,6 @@
 "use client";
 import { SearchAssets } from "@/lib/definitions";
-import { RegisterTransfer } from "@/root/components";
+import { LoadingComponent, RegisterTransfer } from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
 import { useAssetStore } from "@/root/zustand";
 import { useEffect } from "react";
@@ -26,6 +26,9 @@ export default function RegisterTransferPage({
         };
         fetchData();
     }, [Assets, Location, searchAssets]);
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <main className="">
             <RegisterTransfer />

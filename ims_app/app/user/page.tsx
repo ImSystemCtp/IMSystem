@@ -1,7 +1,10 @@
 'use client'
-import { UserMain } from "@/root/components";
+import { LoadingComponent, UserMain } from "@/root/components";
+import { useAuthorizedUser } from "@/root/hooks";
 export default function UserHome() {
-  console.log("UserHome")
+  const isAuthorized = useAuthorizedUser();
+    if (!isAuthorized)
+        return <LoadingComponent/>
   return (
     <div>
         <UserMain/>

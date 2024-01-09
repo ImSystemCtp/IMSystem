@@ -1,11 +1,13 @@
 "use client";
-import { LawsManagementMain } from "@/root/components";
+import { LawsManagementMain, LoadingComponent } from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
 export default function LawsManagementPage() {
-    useAuthorizedAdmin()
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
-        <main className="">
-        <LawsManagementMain/>
+        <main >
+            <LawsManagementMain/>
         </main>
     );
 }

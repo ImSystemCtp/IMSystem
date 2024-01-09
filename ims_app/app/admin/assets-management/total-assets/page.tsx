@@ -1,10 +1,11 @@
 "use client";
-import { AssetsTotalManagement } from "@/root/components";
+import { AssetsTotalManagement, LoadingComponent } from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
 export default function LawsManagementPage() {
-    useAuthorizedAdmin()
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
-        
         <main className="">
         <AssetsTotalManagement/>
         </main>

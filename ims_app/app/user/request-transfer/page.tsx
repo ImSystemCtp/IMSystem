@@ -1,6 +1,7 @@
 "use client"
 import { SearchAssets } from "@/lib/definitions";
-import { RequestTransfer } from "@/root/components";
+import { useAuthorizedUser } from "@/root/hooks";
+import { LoadingComponent, RequestTransfer } from "@/root/components";
 import { useAssetStore } from "@/root/zustand";
 import { useEffect } from "react";
 export default function RequestTransferPage({
@@ -24,6 +25,9 @@ export default function RequestTransferPage({
         };
         fetchData();
     }, [Assets, Location, searchAssets]);
+    const isAuthorized = useAuthorizedUser();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <RequestTransfer/>
     );

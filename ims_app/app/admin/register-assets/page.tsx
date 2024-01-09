@@ -1,8 +1,10 @@
 
-import RegisterAssets  from "@/root/components/admin/register-assets/RegisterAssets";
+import {LoadingComponent, RegisterAssets}  from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
 export default function RegisterAssetsPage() {
-    useAuthorizedAdmin()
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <main className="">
         <RegisterAssets/>

@@ -1,8 +1,10 @@
 "use client";
-import { RequestManagement } from "@/root/components";
+import { LoadingComponent, RequestManagement } from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
 export default function RequestManagementPage() {
-    useAuthorizedAdmin()
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <main className="">
             <RequestManagement/>

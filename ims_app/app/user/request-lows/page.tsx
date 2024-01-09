@@ -1,6 +1,7 @@
 "use client"
 import { SearchAssets } from "@/lib/definitions";
-import { RequestLows } from "@/root/components";
+import { LoadingComponent, RequestLows } from "@/root/components";
+import { useAuthorizedUser } from "@/root/hooks";
 import { useAssetStore } from "@/root/zustand";
 import { useEffect } from "react";
 export default function RequestLowPage({
@@ -24,7 +25,9 @@ export default function RequestLowPage({
         };
         fetchData();
     }, [Assets, Location, searchAssets]);
-
+    const isAuthorized = useAuthorizedUser();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <RequestLows/>
     );
