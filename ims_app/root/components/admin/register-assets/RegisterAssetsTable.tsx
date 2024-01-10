@@ -1,4 +1,5 @@
 "use client"
+import { formatPlateNumber } from "@/root/functions";
 import { useAuth } from "@/root/hooks";
 import { useAuthStore, useRegisAssetStore, useRegisterAssetStore } from "@/root/zustand";
 import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
@@ -55,7 +56,7 @@ export default function RegisterAssetsTable() {
                                     <td className="px-4 py-3">
                                         <div className="flex items-center text-sm">
                                             <div>
-                                                <p className="font-semibold">{asset.assets_no}</p>
+                                                <p className="font-semibold">{formatPlateNumber(asset.assets_no)}</p>
                                             </div>
                                         </div>
                                     </td>

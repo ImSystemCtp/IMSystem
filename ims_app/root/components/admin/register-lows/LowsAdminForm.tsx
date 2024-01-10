@@ -9,6 +9,7 @@ import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 import { useAuth } from "@/root/hooks";
 import { registerAsset } from "@/lib/definitions";
+import { formatPlateNumber } from "@/root/functions";
 interface FormValues {
 
     observation: string;
@@ -61,7 +62,7 @@ export default function LowsAdminForm() {
                             assetsCheck.length ? (
                                 assetsCheck.map((asset, index) => (
                                     <tr key={index}>
-                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_no}</td>
+                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{formatPlateNumber(asset.assets_no)}</td>
                                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_description}</td>
                                     </tr>
                                 ))) : (

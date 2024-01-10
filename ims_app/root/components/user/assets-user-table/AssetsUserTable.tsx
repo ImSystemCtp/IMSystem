@@ -1,5 +1,6 @@
 "use client"
 import { RequestAssetsModal } from "@/root/components";
+import { formatPlateNumber } from "@/root/functions";
 import { useAssetCheckStore, useAssetStore, useDetailsRequestStore } from "@/root/zustand";
 import {  ims_assets, ims_details_asset } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
@@ -77,7 +78,7 @@ export default function AssetsUserTable() {
                                         scope="row"
                                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {asset.assets_no}
+                                        {formatPlateNumber(asset.assets_no)}
                                     </td>
                                     <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
                                     <td className="px-6 py-4 ">
