@@ -11,14 +11,11 @@ export const AuthorizedUser = () => {
     const authActions = useAuthStore(state => state.userAuth)!;
     const router = useRouter();
     const setIsAuthorized = useCheckingStore(state => state.setIsAuthorized);
-    
-    
     useEffect(() => {
         async function checkUserRole() {
         setIsAuthorized(false)
         const userRole = authActions.usu_role
         const path = pathname.split("/")
-        console.log(userRole)
         if (path.includes("user") && userRole !== USER_ROLES.USER) {
             if (userRole === USER_ROLES.ADMIN) {
                 router.push("/admin")

@@ -26,9 +26,6 @@ export default function RegisterTransferPage({
         };
         fetchData();
     }, [Assets, Location, searchAssets]);
-    const isAuthorized = useAuthorizedAdmin();
-    if (!isAuthorized)
-        return <LoadingComponent/>
     return (
         <main className="">
             <RegisterTransfer />

@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocationStore } from "@/root/zustand";
 import { ims_locations } from "@prisma/client";
-
 import toast from "react-hot-toast";
+import { useAuthorizedAdmin } from "@/root/hooks";
+import { LoadingComponent } from "@/root/components";
 
 export default function RegisterLocation() {
     const {locationToEdit } = useLocationStore((state) => ({ locationToEdit: state.locationToEdit }));
@@ -51,6 +52,9 @@ export default function RegisterLocation() {
         setLocationName("");
         selectLocationToEdit({ location_id: 0, location_name: "" });
     }
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <main className="w-full ">
             <div className="flex flex-col justify-center items-center">

@@ -1,7 +1,5 @@
-
+'use client';
 import Modal from 'react-modal';
-
-
 type RoleSelectionModalProps = {
     isOpen: boolean;
     onRequestClose: () => void;

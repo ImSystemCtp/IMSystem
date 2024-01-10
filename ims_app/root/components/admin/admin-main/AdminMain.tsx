@@ -1,6 +1,10 @@
 'use client'
-import { InfoCards, InfoRequestCard, RequestManagement, SearchAssetsNo } from "@/root/components";
+import { InfoCards, InfoRequestCard, LoadingComponent, RequestManagement, SearchAssetsNo } from "@/root/components";
+import { useAuthorizedAdmin } from "@/root/hooks";
 export default function AdminMain() {
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div className="">
             <div className="">

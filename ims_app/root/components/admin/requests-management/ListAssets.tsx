@@ -1,5 +1,6 @@
 "use client";
 import { LoadingComponent, RequestManagementModal } from "@/root/components";
+import { useAuthorizedAdmin } from "@/root/hooks";
 import { generatePDF } from "@/root/reports";
 import {
     useRequestStore, useReportStore,
@@ -20,6 +21,9 @@ export default function ListAssets() {
     const handlePDF = () => {
         generatePDF(reportRequest, requestSelected);
     }
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div>
             <h2 className="text-gray-500 text-2xl font-bold text-center">Lista de Bienes</h2>

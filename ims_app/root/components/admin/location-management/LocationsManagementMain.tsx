@@ -1,10 +1,11 @@
 'use client'
 import { EditLocation, LoadingComponent, RegisterLocation } from "@/root/components";
-import { Suspense, use, useEffect, useState } from "react";
+import { useAuthorizedAdmin } from "@/root/hooks";
+import { Suspense, } from "react";
 export default function LocationsManagementMain() {
-    useEffect(() => {
-        console.log("CUALQUIER COSA")
-    }, [])
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div className="w-full h-full">
             <h1 className="text-neutral-400 text-2xl font-bold pb-12 text-center ">Gestión de Ubicaciones</h1>

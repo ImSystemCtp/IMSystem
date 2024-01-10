@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { ims_laws } from "@prisma/client";
 import { useLawStore } from "@/root/zustand";
 import toast from "react-hot-toast";
+import { useAuthorizedAdmin } from "@/root/hooks";
+import { LoadingComponent } from "@/root/components";
 export default function RegisterLaw() {
     const {lawToEdit } = useLawStore((state) => ({ lawToEdit: state.lawToEdit }));
     const { selectLawToEdit, createLaw, updateLaw } = useLawStore();
@@ -60,6 +62,9 @@ export default function RegisterLaw() {
         setLawDescription("");
         selectLawToEdit({ law_id: 0, law_name: "", law_description: null as string | null });
     };
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <main className=" w-full">
             <div className="flex flex-col justify-center items-center">

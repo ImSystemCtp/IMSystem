@@ -1,7 +1,10 @@
-import { AssetsAdminTable, SearchAssets, TransferAdminForm } from "@/root/components";
-import { useClearAssetsByLocation } from "@/root/hooks";
+import { AssetsAdminTable, LoadingComponent, SearchAssets, TransferAdminForm } from "@/root/components";
+import { useAuthorizedAdmin, useClearAssetsByLocation } from "@/root/hooks";
 export default function RegisterTransfer() {
   useClearAssetsByLocation();
+  const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
   return (
     <div className="w-full">
       <h2 className="text-2xl font-bold  text-center">Registrar Traslados</h2>

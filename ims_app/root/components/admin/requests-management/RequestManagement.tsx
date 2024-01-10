@@ -1,6 +1,10 @@
 import { LoadingComponent, RequestTable } from "@/root/components";
+import { useAuthorizedAdmin } from "@/root/hooks";
 import { Suspense } from "react";
 export default function RequestManagement() {
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div
             className="p-4 rounded-md mt-4"

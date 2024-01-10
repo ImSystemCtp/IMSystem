@@ -1,10 +1,13 @@
 import {LoadingComponent } from "@/root/components";
 import { useUserStore } from "@/root/zustand";
 import EditUserTable from "./EditUserTable";
-import { useUser } from "@/root/hooks";
+import { useAuthorizedAdmin, useUser } from "@/root/hooks";
 export default function UserManagement() {
     useUser();
     const { loadUser, users } = useUserStore((state) => ({ loadUser: state.loadUser, users: state.users }));
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div
             className=" p-4 rounded-md mt-4 "

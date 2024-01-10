@@ -1,10 +1,6 @@
 'use client'
-import { AdminMain, LoadingComponent } from "@/root/components";
-import { useAuthorizedAdmin } from "@/root/hooks";
+import { AdminMain } from "@/root/components";
 export default function AdminHome() {
-    const isAuthorized = useAuthorizedAdmin();
-    if (!isAuthorized)
-        return <LoadingComponent/>
     return (
         <main className="">
             <AdminMain/>

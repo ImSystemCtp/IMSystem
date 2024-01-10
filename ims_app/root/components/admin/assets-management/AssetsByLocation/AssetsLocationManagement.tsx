@@ -1,6 +1,10 @@
 import { AssetsTable, LoadingComponent, SearchAssetsInfo, } from "@/root/components";
+import { useAuthorizedAdmin } from "@/root/hooks";
 import { Suspense } from "react";
 export default function AssetsLocationManagement() {
+  const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
   return (
     <div className="w-full">
       <h2 className="text-2xl font-bold text-center">Gestión de Activos</h2>

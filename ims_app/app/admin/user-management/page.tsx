@@ -1,10 +1,6 @@
 "use client";
-import { LoadingComponent, UserManagement } from "@/root/components";
-import { useAuthorizedAdmin } from "@/root/hooks";
+import { UserManagement } from "@/root/components";
 export default function UserManagementPage() {
-    const isAuthorized = useAuthorizedAdmin();
-    if (!isAuthorized)
-        return <LoadingComponent/>
     return (
         <main className="">
             <UserManagement/>

@@ -11,7 +11,6 @@ export default function MainPage() {
         async function checkUserRole() {
             
             const authActions = await getAuth();
-            console.log(authActions)
             if (authActions.usu_role === USER_ROLES.ADMIN) {
                 router.push("/admin");
             }

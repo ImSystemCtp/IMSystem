@@ -2,6 +2,8 @@
 import { MouseEventHandler } from 'react';
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
+import {  useAuthorizedUser } from '@/root/hooks';
+import { LoadingComponent } from '@/root/components';
 export default function UserMain() {
     const router = useRouter();
     const optionsList = [
@@ -29,6 +31,9 @@ export default function UserMain() {
             router.push(link);
         };
     };
+    const isAuthorized = useAuthorizedUser();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div className="flex flex-col md:flex-row items-center justify-center w-full h-screen">
             {optionsList.map((menuItem, index) => (

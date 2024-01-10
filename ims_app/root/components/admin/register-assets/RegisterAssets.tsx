@@ -1,12 +1,11 @@
 "use client";
 import { Form, Formik } from "formik";
-
 import { registerAssetsMessage } from "@/schemas";
 import {  useLawStore, useLocationStore, useRegisterAssetStore, useResponsibleStore } from "@/root/zustand";
 import { EnumAssetsState, ims_assets } from "@prisma/client";
 import { CustomInput, CustomSelect, LoadingComponent, RegisterAssetsTable } from "@/root/components";
 import { Suspense, useState } from "react";
-import { useCurrentNoPlate, useLaw, useLocation, useResponsibles } from "@/root/hooks";
+import { useAuthorizedAdmin, useCurrentNoPlate, useLaw, useLocation, useResponsibles } from "@/root/hooks";
 import Link from "next/link";
 interface FormValues {
     assets_description: string,
@@ -47,8 +46,6 @@ export default function RegisterAssets() {
         } as ims_assets);
         setCount(count + 1);
         updateNoPlate();
-        console.log(asset_current_no_plate)
-        console.log(assets)
     };
     const handleReset = () => {
         initialValues.assets_description = "";
@@ -62,6 +59,9 @@ export default function RegisterAssets() {
         initialValues.assets_acquisition_value = "";
         initialValues.invoice_date = "";
     };
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div className="justify-center items-center">
             <div className="flex flex-col md:flex-row">

@@ -1,6 +1,6 @@
 "use client"
-import { AssetsTable, SearchAssetsInfo, } from "@/root/components";
-import { useClearReportRegisters } from "@/root/hooks";
+import { AssetsTable, LoadingComponent, SearchAssetsInfo, } from "@/root/components";
+import { useAuthorizedAdmin, useClearReportRegisters } from "@/root/hooks";
 import { generateExcel } from "@/root/reports";
 import { useReportStore } from "@/root/zustand";
 import toast from "react-hot-toast";
@@ -23,6 +23,9 @@ export default function AssetsTotalManagement() {
       toast.error('No hay activos para generar el reporte');
     }
   };
+  const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
   return (
     <div className="w-full">
       <h2 className="text-2xl font-bold text-center">Gestión de Activos</h2>

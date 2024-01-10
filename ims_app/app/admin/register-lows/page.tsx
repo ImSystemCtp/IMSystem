@@ -1,9 +1,8 @@
 'use client'
 import { SearchAssets } from "@/lib/definitions";
-import { LoadingComponent, RegisterLows } from "@/root/components";
+import {  RegisterLows } from "@/root/components";
 import { useEffect } from "react";
 import { useAssetStore } from "@/root/zustand";
-import { useAuthorizedAdmin } from "@/root/hooks";
 export default function RegisterLowPage({
     searchParams
 }: {
@@ -26,8 +25,5 @@ export default function RegisterLowPage({
 
         fetchData();
     }, [Assets, Location, searchAssets]);
-    const isAuthorized = useAuthorizedAdmin();
-    if (!isAuthorized)
-        return <LoadingComponent />
     return (<RegisterLows />);
 }

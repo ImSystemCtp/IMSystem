@@ -1,6 +1,10 @@
 import { Suspense } from "react";
 import { EditLaw, LoadingComponent, RegisterLaw } from "@/root/components";
+import { useAuthorizedAdmin } from "@/root/hooks";
 export default function LawsManagementMain() {
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div className="w-full h-full">
             <h1 className="text-black text-2xl font-bold pb-12 text-center">Gestión de Leyes</h1>

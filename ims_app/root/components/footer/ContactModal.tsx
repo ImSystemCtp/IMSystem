@@ -1,3 +1,4 @@
+'use client';
 import Modal from 'react-modal';
 type ModalProps = {
     isOpen: boolean;

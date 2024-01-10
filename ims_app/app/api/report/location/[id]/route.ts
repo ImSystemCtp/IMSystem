@@ -16,7 +16,6 @@ export async function GET(_req: Request, { params }: ParameterId) {
         WHERE a.assets_curr_location = ${id} and a.assets_state != 'Malo'`;
         return NextResponse.json(registers);
     } catch (error) {
-        console.log(error)
         return new NextResponse("Error interno del servidor", { status: 500 });
     }
 }

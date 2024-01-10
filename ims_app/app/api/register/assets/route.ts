@@ -27,8 +27,6 @@ export async function POST(req: Request) {
         }
         return new NextResponse("type no .... ", { status: 401 });
     } catch (error) {
-
-        console.log(error)
         return new NextResponse("Unauthorized", { status: 401 });
     }
 }

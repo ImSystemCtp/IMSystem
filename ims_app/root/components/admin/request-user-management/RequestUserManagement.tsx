@@ -1,11 +1,13 @@
 import { useUserNoRoleStore, useUserStore } from "@/root/zustand";
-
 import { LoadingComponent, RequestUserTable } from "@/root/components";
 import { Suspense } from "react";
-import { useUserPending } from "@/root/hooks";
+import { useAuthorizedAdmin, useUserPending } from "@/root/hooks";
 export default function RequestUserManagement() {
     useUserPending();
     const { usersPending, isLoadUser } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
+    const isAuthorized = useAuthorizedAdmin();
+    if (!isAuthorized)
+        return <LoadingComponent/>
     return (
         <div
             className=" p-4 rounded-md mt-4 "

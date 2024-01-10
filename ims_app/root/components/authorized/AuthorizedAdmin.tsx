@@ -17,7 +17,6 @@ export const AuthorizedAdmin = () => {
             setIsAuthorized(false)
             const userRole = authActions.usu_role
             const path = pathname.split("/")
-            console.log(userRole)
             if (path.includes("admin") && userRole !== USER_ROLES.ADMIN) {
                 if (userRole === USER_ROLES.USER) {
                     router.push("/user")
