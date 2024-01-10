@@ -5,11 +5,11 @@ import { useSideBarStore } from "@/root/zustand";
 export default function AdminNavBar() {
   const {toggle}=useSideBarStore()
   return (
-    <nav className="bg-neutral-400 border-gray-200 dark:bg-gray-900">
+    <nav className="bg-neutral-400 border-gray-200 dark:bg-gray-700">
       <div className=" flex flex-wrap items-center justify-between mx-auto px-8 py-4 w-full">
         <div className="text-center">
           <button
-            className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-gray-600 dark:hover:bg-gray-500 focus:outline-none dark:focus:ring-neutral-800"
             type="button"
             onClick={toggle}
           >

@@ -51,7 +51,7 @@ export default function RegisterResponsibles() {
         <main className=" w-full">
             <div className="flex flex-col justify-center items-center">
                 <div className="border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300 p-4 w-3/4">
-                    <h2 className="lg:w-full lg:m-4 text-center text-2xl font-bold m-4 pb-12">
+                    <h2 className="dark:text-white lg:w-full lg:m-4 text-center text-2xl font-bold m-4 pb-12">
                         Registrar Funcionarios Responsables
                     </h2>
                     <div className="w-full flex flex-col mt-4 mx-auto">
@@ -69,7 +69,7 @@ export default function RegisterResponsibles() {
                     </div>
                     <div className="w-full mt-4 flex justify-center">
                         <button
-                            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
                             onClick={handleCancel}
                         >
                             Cancelar

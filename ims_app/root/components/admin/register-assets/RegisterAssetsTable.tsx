@@ -37,7 +37,7 @@ export default function RegisterAssetsTable() {
     }
     return (
         <div className="md:w-1/3 rounded-lg  border border-gray-300 p-4 m-2  ">
-            <h2 className="text-2xl font-bold  text-center ">
+            <h2 className="text-2xl dark:text-white font-bold  text-center ">
                 Lista de Bienes a Registrar
             </h2>
             <div className="w-full max-h-52 md:max-h-96 overflow-hidden rounded-lg shadow-xs overflow-y-auto">

@@ -19,7 +19,7 @@ export default function SideBar() {
             >
                 <h3
                     id="drawer-navigation-label"
-                    className="text-base font-semibold text-gray-400 uppercase dark:text-gray-400"
+                    className="text-base font-semibold text-gray-400 uppercase dark:text-white"
                 >
                     Menu
                 </h3>

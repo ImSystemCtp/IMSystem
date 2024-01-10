@@ -7,7 +7,7 @@ export default function RegisterTransfer() {
         return <LoadingComponent/>
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold  text-center">Registrar Traslados</h2>
+      <h2 className="text-2xl font-bold dark:text-white  text-center">Registrar Traslados</h2>
       <SearchAssets/>
       <div className=" flex flex-col lg:flex-row lg:m-2 lg:p-2">
         <div className=" w-full lg:w-3/5 pr-0 lg:pr-4">

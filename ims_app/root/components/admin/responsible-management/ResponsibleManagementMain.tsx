@@ -7,7 +7,7 @@ export default function ResponsibleManagementMain() {
         return <LoadingComponent/>
     return (
         <div className="w-full h-full">
-            <h1 className="text-black text-2xl font-bold pb-12 text-center">Gestión de Funcionarios Responsables</h1>
+            <h1 className="text-black dark:text-white text-2xl font-bold pb-12 text-center">Gestión de Funcionarios Responsables</h1>
             <div className="flex flex-col lg:flex-row">
                 <div className="w-full lg:w-1/2">
                     <Suspense fallback={<LoadingComponent />}>

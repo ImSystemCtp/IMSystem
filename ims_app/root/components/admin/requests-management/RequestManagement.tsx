@@ -9,7 +9,7 @@ export default function RequestManagement() {
         <div
             className="p-4 rounded-md mt-4"
         >
-            <h2 className="text-gray-500 text-2xl font-bold md:text-center">
+            <h2 className="text-gray-500 dark:text-white  text-2xl font-bold md:text-center">
                 Solicitudes Pendientes
             </h2>
             <div className="w-96 md:w-full overflow-hidden rounded-lg shadow-xs">

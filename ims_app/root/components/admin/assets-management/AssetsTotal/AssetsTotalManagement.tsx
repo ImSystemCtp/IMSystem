@@ -28,7 +28,7 @@ export default function AssetsTotalManagement() {
         return <LoadingComponent/>
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold text-center">Gestión de Activos</h2>
+      <h2 className="text-2xl font-bold text-center dark:text-white">Gestión de Activos</h2>
       <div className="flex flex-row p-4 m-4 justify-center items-center">
         <div className="sm:ml-40 flex justify-center items-center flex-grow  "> {/* Utilizando flex-grow para centrar */}
           <button

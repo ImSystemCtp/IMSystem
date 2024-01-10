@@ -38,13 +38,13 @@ export default function UserMain() {
         <div className="flex flex-col md:flex-row items-center justify-center w-full h-screen">
             {optionsList.map((menuItem, index) => (
                 <div className="flex flex-col md:flex-row m-4 items-center justify-center" key={index}>
-                    <button onClick={handleGo(menuItem.link)} className=" shadow-drop-bottom-right  hover:bg-blue-50 flex flex-col justify-center items-center border-4 border-gray p-6 md:p-3 lg:px-8 rounded-lg bg-white">
+                    <button onClick={handleGo(menuItem.link)} className=" shadow-drop-bottom-right  hover:bg-blue-50 flex flex-col justify-center items-center border-4 border-gray p-6 md:p-3 lg:px-8 rounded-lg bg-white dark:bg-gray-700 dark:hover:bg-gray-600">
                         <div className="w-10 h-10 items-center justify-center item-center flex rounded-full bg-purple-100 text-blue-500 mb-4 border-2 border-blue-500">
                             {menuItem.icon}
                         </div>
                         <h2 className="text-lg text-gray-900 font-medium title-font mb-2 text-center"> {menuItem.title} </h2>
                         <div className="flex justify-center mt-4">
-                            <Link href={menuItem.link} prefetch={false} className="w-52 text-center  hover:bg-gradient-to-br hover:bg-neutral-400  hover:text-white border-2 border-neutral-400 text-blue-500 font-bold py-2 px-4 rounded">
+                            <Link href={menuItem.link} prefetch={false} className="w-52 text-center  hover:bg-gradient-to-br hover:bg-neutral-400  hover:text-white border-2 border-neutral-400 text-blue-500 font-bold py-2 px-4 rounded dark:hover:bg-gray-700">
                                 {" "}
                                 Ir!{" "}
                             </Link>

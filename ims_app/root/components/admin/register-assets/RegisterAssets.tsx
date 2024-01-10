@@ -73,7 +73,7 @@ export default function RegisterAssets() {
                     >
                         <Form className="w-full ">
                             <div>
-                                <h2 className="text-2xl font-bold  text-center">
+                                <h2 className="text-2xl dark:text-white font-bold  text-center">
                                     Registrar Bienes
                                 </h2>
                             </div>

@@ -7,7 +7,7 @@ export default function AssetsLocationManagement() {
         return <LoadingComponent/>
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold text-center">Gestión de Activos</h2>
+      <h2 className="text-2xl font-bold text-center dark:text-white">Gestión de Activos</h2>
       <Suspense fallback={<LoadingComponent/>}>
       <SearchAssetsInfo />
       </Suspense>
