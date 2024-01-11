@@ -9,7 +9,6 @@ import { useAssetCheckStore, useAssetStore, useAuthStore, useLocationStore, useR
 import { useAuth, useLocation } from "@/root/hooks";
 import Link from "next/link";
 import { registerAsset } from "@/lib/definitions";
-import { formatPlateNumber } from "@/root/functions";
 interface FormValues {
     newLocation: string;
     observation: string;
@@ -71,7 +70,7 @@ export default function TransferAdminForm() {
                                     <tbody>
                                         {assetsCheck.map((asset, index) => (
                                             <tr key={index}>
-                                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{formatPlateNumber(asset.assets_no)}</td>
+                                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_no}</td>
                                                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_description}</td>
                                             </tr>
                                         ))}

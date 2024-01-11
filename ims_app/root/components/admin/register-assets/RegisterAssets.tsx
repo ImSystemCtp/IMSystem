@@ -7,6 +7,7 @@ import { CustomInput, CustomSelect, LoadingComponent, RegisterAssetsTable } from
 import { Suspense, useState } from "react";
 import { useAuthorizedAdmin, useCurrentNoPlate, useLaw, useLocation, useResponsibles } from "@/root/hooks";
 import Link from "next/link";
+import { formatPlateNumber } from "@/root/functions";
 interface FormValues {
     assets_description: string,
     assets_series: string,
@@ -42,7 +43,7 @@ export default function RegisterAssets() {
             asset_law_id: Number.parseInt(asset_law_id),
             asset_responsible_id: Number.parseInt(asset_responsible_id),
             assets_regis_location: locationId,
-            assets_no: Number(asset_get_no_plate) + count,
+            assets_no: formatPlateNumber(Number(asset_get_no_plate) + count),
         } as ims_assets);
         setCount(count + 1);
         updateNoPlate();

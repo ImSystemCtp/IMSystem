@@ -23,7 +23,7 @@ model ims_details_asset {
   deta_id          Int         @id @default(autoincrement())
   deta_description String?     @db.VarChar(100)
   deta_req_id      Int
-  deta_assets_no   Int
+  deta_assets_no   String
   ims_assets       ims_assets  @relation(fields: [deta_assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "assets_details")
   ims_request      ims_request @relation(fields: [deta_req_id], references: [req_id], onDelete: Cascade, onUpdate: Cascade, map: "request_details")
 }
@@ -31,7 +31,7 @@ model ims_details_asset {
 model ims_assets {
   assets_regis_location                                         Int
   invoice_date                                                  DateTime?
-  assets_no                                                     Int                @id
+  assets_no                                                     String                @id
   assets_description                                            String                @db.VarChar(30)
   assets_brand                                                  String                @db.VarChar(15)
   assets_model                                                  String                @db.VarChar(20)
@@ -86,7 +86,7 @@ enum EnumRegisterType {
 }
 
 model ims_register_assets {
-  assets_no    Int
+  assets_no    String
   reg_id       Int
   ims_assets   ims_assets   @relation(fields: [assets_no], references: [assets_no], onDelete: Cascade, onUpdate: Cascade, map: "register_assets_fk01")
   ims_register ims_register @relation(fields: [reg_id], references: [reg_id], onDelete: Cascade, onUpdate: Cascade, map: "register_assets_fk02")

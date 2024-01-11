@@ -1,8 +1,5 @@
-import { formatPlateNumber } from "@/root/functions";
 import { useAssetCheckStore, useAssetStore } from "@/root/zustand";
 import { ims_assets } from "@prisma/client";
-
-
 interface AssetItemProps {
     asset: ims_assets
 }
@@ -16,7 +13,7 @@ export default function ItemAsset( { asset }: AssetItemProps) {
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             >
-                {formatPlateNumber(asset.assets_no)}
+                {asset.assets_no}
             </td>
             <td className="px-6 py-4 hidden md:table-cell">{asset.assets_brand}</td>
             <td className="px-6 py-4 ">

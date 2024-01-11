@@ -1,9 +1,8 @@
 "use client"
 import { RequestAssetsModal } from "@/root/components";
-import { formatPlateNumber } from "@/root/functions";
 import { useAssetCheckStore, useAssetStore, useDetailsRequestStore } from "@/root/zustand";
 import {  ims_assets, ims_details_asset } from "@prisma/client";
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
     const { assetsBySearch  } = useAssetStore((state)=> ({
@@ -78,7 +77,7 @@ export default function AssetsUserTable() {
                                         scope="row"
                                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        {formatPlateNumber(asset.assets_no)}
+                                        {asset.assets_no}
                                     </td>
                                     <td className="px-6 py-4 hidden md:table-cell  ">{asset.assets_brand}</td>
                                     <td className="px-6 py-4 ">
