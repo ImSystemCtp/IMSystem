@@ -15,7 +15,9 @@ export async function GET(req: Request) {
         JOIN ims_users u on u.usu_id = r.reg_usu_id
         JOIN ims_responsible re on re.responsible_id = a.asset_responsible_id
         ORDER by r.reg_tomo, r.reg_folio, r.reg_asiento`;
+        console.log(registers)
         const registrosUnicos = filterUniqueEntries(registers);
+        
         return NextResponse.json(registrosUnicos);
     } catch (error) {
         return new NextResponse("Error interno del servidor", { status: 500 });
