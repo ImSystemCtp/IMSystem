@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import prismaDB from "@/lib/prisma/prismadb";
-import { filterUniqueEntries } from "../../(function)/filterUniqueEntries";
+import {EnumAssetsState} from '@prisma/client'
+import { filterUniqueEntries } from "@/app/api/(function)/filterUniqueEntries";
 
 export async function GET(req: Request) {
     try {
@@ -14,6 +15,7 @@ export async function GET(req: Request) {
         JOIN ims_laws la on la.law_id = a.asset_law_id
         JOIN ims_users u on u.usu_id = r.reg_usu_id
         JOIN ims_responsible re on re.responsible_id = a.asset_responsible_id
+        where a.assets_state != ${EnumAssetsState.Malo}
         ORDER by r.reg_tomo, r.reg_folio, r.reg_asiento`;
         const registrosUnicos = filterUniqueEntries(registers);
         return NextResponse.json(registrosUnicos);
@@ -21,3 +23,5 @@ export async function GET(req: Request) {
         return new NextResponse("Error interno del servidor", { status: 500 });
     }
 }
+
+
