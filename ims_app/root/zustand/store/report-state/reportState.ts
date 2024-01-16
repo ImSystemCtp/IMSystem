@@ -5,6 +5,8 @@ interface reportState {
     reportRequest: requestToReport[];
     getRegisterToReport: (id: number) => Promise<void>;
     getTotalRegister: () => Promise<void>;
+    getTotalAssets: () => Promise<void>;
+    getTotalLows: () => Promise<void>;
     clearReportRegister: () => void;
     getRequestToReport: (id: number) => Promise<void>;
 }
@@ -18,6 +20,14 @@ export const useReportStore = create<reportState>((set) => {
         },
         getTotalRegister: async () => {
             const response = await reportProvider.getTotalRegister();
+            set({ reportRegister: response });
+        },
+        getTotalAssets: async () => {
+            const response = await reportProvider.getTotalAssets();
+            set({ reportRegister: response });
+        },
+        getTotalLows: async () => {
+            const response = await reportProvider.getTotalLows();
             set({ reportRegister: response });
         },
         clearReportRegister: () => {

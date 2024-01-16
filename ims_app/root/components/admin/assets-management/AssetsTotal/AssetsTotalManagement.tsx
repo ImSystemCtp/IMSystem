@@ -6,11 +6,17 @@ import { useReportStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 export default function AssetsTotalManagement() {
   const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }));
-  const { getTotalRegister } = useReportStore();
+  const { getTotalRegister,getTotalAssets,getTotalLows } = useReportStore();
 
   useClearReportRegisters();
   const handleGetTotal = async () => {
     await getTotalRegister();
+  }
+  const handleGetTotalLows = async () => {
+    await getTotalLows();
+  }
+  const handleGetTotalAssets = async () => {
+    await getTotalAssets() ;
   }
   const handleExcel = async () => {
     if (reportRegister.length > 0) {
@@ -32,10 +38,22 @@ export default function AssetsTotalManagement() {
       <div className="flex flex-row p-4 m-4 justify-center items-center">
         <div className="sm:ml-40 flex justify-center items-center flex-grow  "> {/* Utilizando flex-grow para centrar */}
           <button
-            onClick={handleGetTotal}
-            className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+            onClick={handleGetTotalAssets}
+            className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-4 rounded"
           >
             Obtener Bienes
+          </button>
+          <button
+            onClick={handleGetTotalLows}
+            className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-4 rounded"
+          >
+            Obtener Bajas
+          </button>
+          <button
+            onClick={handleGetTotal}
+            className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-4 rounded"
+          >
+            Obtener Registro Total
           </button>
         </div>
         <div className="flex justify-end items-center">
