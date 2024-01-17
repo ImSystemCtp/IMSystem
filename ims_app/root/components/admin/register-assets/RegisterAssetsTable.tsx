@@ -8,8 +8,9 @@ export default function RegisterAssetsTable() {
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const { addRegisterAssets } = useRegisAssetStore();
-    const { assets  } = useRegisterAssetStore((state) => ({
-        assets: state.assets
+    const { assets , asset_get_no_plate  } = useRegisterAssetStore((state) => ({
+        assets: state.assets,
+        asset_get_no_plate: state.asset_get_no_plate
         }));
     const { clearAssets,removeAssets,updateAssetsNoPlate,putNoPlate } = useRegisterAssetStore();
 

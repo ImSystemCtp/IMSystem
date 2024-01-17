@@ -5,7 +5,7 @@ INSERT INTO ims_locations (location_name)
 VALUES ('Ubicación A');
 
 INSERT INTO ims_registered_in (tomo, folio, asiento, inst_id)
-VALUES (1, 101, 1001, 1);
+VALUES (1, 1, 1, 1);
 
 INSERT INTO ims_users (usu_name, usu_surnames, usu_email, usu_role)
 VALUES ('Usuario1', 'Apellidos1', 'usuario1@ejemplo.com', 'Admin');
