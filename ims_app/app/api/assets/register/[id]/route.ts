@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma";
 import {ims_register } from "@prisma/client";
 import { ParameterId } from "@/lib/definitions";
 export async function GET(_req: Request, { params }: ParameterId) {

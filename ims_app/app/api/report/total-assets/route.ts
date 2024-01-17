@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma";
 import { filterUniqueEntries } from "../../(function)/filterUniqueEntries";
 
 export async function GET(req: Request) {

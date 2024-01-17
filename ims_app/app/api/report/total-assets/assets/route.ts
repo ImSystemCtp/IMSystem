@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma";
 import { EnumRegisterType} from '@prisma/client'
 import { filterUniqueEntries } from "@/app/api/(function)/filterUniqueEntries";
 

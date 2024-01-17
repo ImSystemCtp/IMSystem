@@ -1,5 +1,5 @@
 import { QueryOptions } from "@/app/types";
-import prisma from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
 import {  NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";

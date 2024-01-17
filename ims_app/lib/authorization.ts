@@ -1,5 +1,5 @@
 // import { USER_ROLES } from "@/app/api/interfaces/users";
-// import prismadb from "@/lib/prismadb";
+// import prismadb from "@/lib";
 
 import { USER_ROLES } from "@/app/api/enums/roles";
 import prisma from "./prisma";
