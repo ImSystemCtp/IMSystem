@@ -1,9 +1,9 @@
 import prisma from "@/lib/prisma/prismadb";
-import { currentUser } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
+import { User, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-export async function GET() {
+export async function POST(_req : Request) {
     try {
+
         const user = await currentUser() as User;
         if (!user) {
             throw new Error("User not found");
@@ -26,8 +26,8 @@ export async function GET() {
             },
         });
         return NextResponse.json(postUser);
-    } catch (error) {
-        return new NextResponse("Unauthorized", { status: 401 });
+    } catch (error :any) {
+        return NextResponse.json({ error:error }, { status: 500 })
 
     }
 }
