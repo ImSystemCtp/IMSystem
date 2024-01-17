@@ -1,11 +1,11 @@
 import { ParameterId } from "@/lib/definitions";
-import { prismaDB } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const response = await prismaDB.ims_details_asset.findMany ({
+        const response = await prisma.ims_details_asset.findMany ({
             where: {
                 deta_req_id: id
             }

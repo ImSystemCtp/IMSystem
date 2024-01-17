@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import prismaDB from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma/prismadb";
 import {EnumRegisterType} from '@prisma/client'
 import { filterUniqueEntries } from "@/app/api/(function)/filterUniqueEntries";
 
 export async function GET(req: Request) {
     try {
 
-        const registers = await prismaDB.$queryRaw<registerToReport[]>`
+        const registers = await prisma.$queryRaw<registerToReport[]>`
         SELECT r.* ,a.* ,l.location_name, la.law_name, u.usu_name,  re.responsible_name
         FROM ims_assets a
         JOIN ims_register_assets ra on a.assets_no = ra.assets_no

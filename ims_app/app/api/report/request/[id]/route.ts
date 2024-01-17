@@ -1,11 +1,11 @@
-import { prismaDB } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { EnumReqState, } from "@prisma/client";
 import { ParameterId } from "@/lib/definitions";
 export async function GET(_req: Request, { params }: ParameterId) {
     try {
         const id = params.id as string;
-        const requests = await prismaDB.$queryRaw<requestToReport[]>`
+        const requests = await prisma.$queryRaw<requestToReport[]>`
         SELECT r.* ,a.* ,da.*, u.usu_name, l.location_name, l2.location_name as new_location_name
         FROM ims_assets a JOIN ims_details_asset da on a.assets_no = da.deta_assets_no
         JOIN ims_request r on r.req_id=da.deta_req_id

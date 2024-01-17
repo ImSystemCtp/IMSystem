@@ -1,12 +1,12 @@
 import { ParameterId } from "@/lib/definitions";
-import prismaDB from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
 
-        const response = await prismaDB.ims_responsible.findUnique({
+        const response = await prisma.ims_responsible.findUnique({
             where: {
                 responsible_id: id
             }
@@ -25,7 +25,7 @@ export async function PUT(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
         const body = await _request.json();
-        const response = await prismaDB.ims_responsible.update({
+        const response = await prisma.ims_responsible.update({
             where: {  responsible_id: id },
             data: body,
         });

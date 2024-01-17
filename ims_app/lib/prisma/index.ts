@@ -1,1 +1,1 @@
-export {default as prismaDB} from './prismadb';
+export {default as prisma} from './prismadb';

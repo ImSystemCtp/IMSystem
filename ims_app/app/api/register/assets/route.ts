@@ -1,4 +1,4 @@
-import { prismaDB } from "@/lib";
+import prisma from "@/lib/prisma";
 import { registerAsset } from "@/lib/definitions";
 import { NextResponse } from "next/server";
 import { getNextNumber, getNumRegister, updateRegisterNumber } from "../../(function)";
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
         if (type == 'Register') {
                 for (const element of assets) {
 
-                    const reg = await prismaDB.ims_register.create({
+                    const reg = await prisma.ims_register.create({
                         data: {
                         reg_inst_id: 1,
                         reg_folio: currentRegisterin.folio,
@@ -23,8 +23,8 @@ export async function POST(req: Request) {
                         reg_date: body.register.reg_date,
                         },
                     });
-                    await prismaDB.ims_assets.create({ data:{...element, assets_curr_location:element.assets_regis_location} });
-                    await prismaDB.ims_register_assets.create({ data: { reg_id: reg.reg_id, assets_no: element.assets_no } });
+                    await prisma.ims_assets.create({ data:{...element, assets_curr_location:element.assets_regis_location} });
+                    await prisma.ims_register_assets.create({ data: { reg_id: reg.reg_id, assets_no: element.assets_no } });
                     currentRegisterin =await  getNextNumber(currentRegisterin)
                 }
                 updateRegisterNumber(currentRegisterin.tomo, currentRegisterin.folio, currentRegisterin.asiento)

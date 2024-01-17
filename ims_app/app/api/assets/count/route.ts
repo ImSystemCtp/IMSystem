@@ -1,11 +1,11 @@
-import prismaDB from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET() {
 
     try {
 
-        const result = await prismaDB.ims_assets.count();
+        const result = await prisma.ims_assets.count();
         return NextResponse.json(result);
 
     } catch (error) {

@@ -1,5 +1,5 @@
 import { QueryOptions } from "@/app/types";
-import prismaDB from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma/prismadb";
 import { currentUser } from "@clerk/nextjs";
 import {  NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";
@@ -9,7 +9,7 @@ import getParams from "../(function)/getParams";
 
 /* export async function GET() {
     try {
-        const response = await prismaDB.ims_users.findMany();
+        const response = await prisma.ims_users.findMany();
         return NextResponse.json(response);
     } catch (error) {
         return new NextResponse("Unauthorized", { status: 401 });
@@ -54,7 +54,7 @@ export async function GET(_req: Request) {
 
         let users;
         if (hasPaginationData && hasOrderData) {
-            users = await prismaDB.ims_users.findMany({
+            users = await prisma.ims_users.findMany({
                 skip: parseInt(offset),
                 take: parseInt(limit),
                 orderBy: {
@@ -63,13 +63,13 @@ export async function GET(_req: Request) {
                 where: whereCondition.where,
             });
         } else if (hasPaginationData) {
-            users = await prismaDB.ims_users.findMany({
+            users = await prisma.ims_users.findMany({
                 skip: parseInt(offset),
                 take: parseInt(limit),
                 where: whereCondition.where,
             });
         } else if (hasOrderData) {
-            users = await prismaDB.ims_users.findMany({
+            users = await prisma.ims_users.findMany({
                 orderBy: {
                     [orderBy]: order,
                 },
@@ -77,7 +77,7 @@ export async function GET(_req: Request) {
             });
         }
         else {
-            users = await prismaDB.ims_users.findMany();
+            users = await prisma.ims_users.findMany();
         }
         return NextResponse.json(users);
     } catch (error) {
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
             return new NextResponse("Missing required fields", { status: 400 });
         }
 
-        const newUser = await prismaDB.ims_users.create({
+        const newUser = await prisma.ims_users.create({
             data: {
                 ...(body as ims_users),
             },
@@ -109,7 +109,7 @@ export async function POST(req: Request) {
 }
 export async function PUT(req: Request) {
     const body = await req.json() as ims_users;
-    const response = await prismaDB.ims_users.update({
+    const response = await prisma.ims_users.update({
         where: { usu_id: body.usu_id },
         data: {
             ...body

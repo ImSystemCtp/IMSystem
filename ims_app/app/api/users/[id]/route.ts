@@ -1,11 +1,11 @@
-import { prismaDB } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { ParameterId } from "@/lib/definitions";
 
 export async function GET(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const response = await prismaDB.ims_users.findUnique({
+        const response = await prisma.ims_users.findUnique({
             where: {
                 usu_id: id
             }
@@ -24,7 +24,7 @@ export async function PUT(req: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
         const body = await req.json();
-        const response = await prismaDB.ims_users.update({
+        const response = await prisma.ims_users.update({
             where: { usu_id: Number(id) },
             data: {
                 ...body
@@ -57,7 +57,7 @@ export async function DELETE(_request: Request, { params }: ParameterId) {
             });
         }
  */
-        const deletedUser = await prismaDB.ims_users.delete({
+        const deletedUser = await prisma.ims_users.delete({
             where: {
                 usu_id:id
             },

@@ -2,7 +2,7 @@
 // import prismadb from "@/lib/prismadb";
 
 import { USER_ROLES } from "@/app/api/enums/roles";
-import { prismaDB } from "./prisma";
+import prisma from "./prisma";
 
 const hasMatchingRole = (roles: string, permissions: USER_ROLES[]) => {
     const rolesArray = roles.split(',');
@@ -15,7 +15,7 @@ export const checkAuthorization = async (
     permissions: USER_ROLES[]
 ): Promise<boolean> => {
 
-    const userAuthorized = await prismaDB.ims_users.findFirst({
+    const userAuthorized = await prisma.ims_users.findFirst({
         where: {
             usu_email: email
         }

@@ -1,9 +1,9 @@
-import { prismaDB } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { EnumReqState } from "@prisma/client";
 export async function GET() {
     try {
-        const response = await prismaDB.ims_request.findMany({
+        const response = await prisma.ims_request.findMany({
             where: {
                 req_state: EnumReqState.Pending
             },

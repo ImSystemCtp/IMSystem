@@ -1,6 +1,6 @@
 import getParams from "@/app/api/(function)/getParams";
 import { QueryOptions } from "@/app/types";
-import prismaDB from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma/prismadb";
 import { NextResponse } from "next/server";
 export async function GET(_req: Request ) {
     try {
@@ -22,7 +22,7 @@ export async function GET(_req: Request ) {
 
         let assents;
         if (hasPaginationData && hasOrderData) {
-            assents = await prismaDB.ims_assets.findMany({
+            assents = await prisma.ims_assets.findMany({
                 skip: parseInt(offset),
                 take: parseInt(limit),
                 orderBy: {
@@ -31,13 +31,13 @@ export async function GET(_req: Request ) {
                 where: whereCondition.where,
             });
         } else if (hasPaginationData) {
-            assents = await prismaDB.ims_assets.findMany({
+            assents = await prisma.ims_assets.findMany({
                 skip: parseInt(offset),
                 take: parseInt(limit),
                 where: whereCondition.where,
             });
         } else if (hasOrderData) {
-            assents = await prismaDB.ims_assets.findMany({
+            assents = await prisma.ims_assets.findMany({
                 orderBy: {
                     [orderBy]: order,
                 },
@@ -45,7 +45,7 @@ export async function GET(_req: Request ) {
             });
         }
         else {
-            assents = await prismaDB.ims_assets.findMany();
+            assents = await prisma.ims_assets.findMany();
         }
         return NextResponse.json(assents);
 

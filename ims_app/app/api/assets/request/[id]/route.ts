@@ -1,11 +1,11 @@
 import { ParameterId } from "@/lib/definitions";
-import { prismaDB } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(_request: Request, { params }: ParameterId) {
     try {
         const id = Number.parseInt(params.id);
-        const response = await prismaDB.$queryRaw`
+        const response = await prisma.$queryRaw`
         SELECT a.* 
         FROM ims_details_asset da 
         JOIN ims_request r ON da.deta_req_id = r.req_id 

@@ -1,4 +1,4 @@
-import { prismaDB } from "@/lib";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { EnumAssetsState, ims_assets, ims_register, ims_registered_in } from "@prisma/client";
 import { registerAsset } from "@/lib/definitions";
@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     try {
         const body = await req.json() as registerAsset;
         const assets = body.assets;
-        const response = await prismaDB.ims_register.create({
+        const response = await prisma.ims_register.create({
             data: {
                 reg_folio: 1,
                 reg_inst_id: 1,
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
             }
         });
         assets.forEach(async (element: ims_assets) => {
-                await prismaDB.ims_assets.update({
+                await prisma.ims_assets.update({
                 where: {
                     assets_no: element.assets_no,
                 },
@@ -29,11 +29,11 @@ export async function POST(req: Request) {
                     assets_curr_location: element.assets_curr_location,
                 },
             });
-            const updateRegister = await prismaDB.$queryRaw<ims_register[]>`
+            const updateRegister = await prisma.$queryRaw<ims_register[]>`
                 SELECT r.* FROM ims_register r JOIN ims_register_assets rs on r.reg_id = rs.reg_id
                         JOIN ims_assets a on a.assets_no= rs.assets_no
                         WHERE a.assets_no = ${element.assets_no} and r.reg_type = 'Register'`
-            await prismaDB.ims_register.update({
+            await prisma.ims_register.update({
                 where: {
                     reg_id: updateRegister[0].reg_id,
                 },
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
                     reg_observation: updateRegister[0].reg_observation + " " + ` T: Ver ${response.reg_tomo},  ${response.reg_folio},  ${response.reg_asiento}`
                 },
             });
-            await prismaDB.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
+            await prisma.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
         });
 
         return NextResponse.json({ message: "Low" });

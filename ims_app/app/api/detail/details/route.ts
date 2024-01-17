@@ -1,4 +1,4 @@
-import { prismaDB } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { ims_details_asset } from "@prisma/client";
 import { NextResponse } from "next/server";
 
@@ -9,7 +9,7 @@ export async function PUT(req: Request) {
         let response: ims_details_asset[] = [];
         body.forEach(async (element) => {
 
-            const detail = await prismaDB.ims_details_asset.update({
+            const detail = await prisma.ims_details_asset.update({
                 where: { deta_id: element.deta_id },
                 data: {
                     ...element
