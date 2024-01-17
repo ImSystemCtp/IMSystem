@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma/prismadb";
+import prisma from "@/lib/prisma";
 import { User, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 export async function POST(_req : Request) {
