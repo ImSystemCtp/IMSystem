@@ -1,13 +1,14 @@
 import { LoadingComponent } from "@/root/components";
-import { useRegisterIn } from "@/root/hooks";
-import { useAssetStore, useLoadingStore, useRegisterInStore } from "@/root/zustand";
-
+import { useInfoCards } from "@/root/hooks";
+import { useAssetStore, useLoadingStore, useLowStore, useRegisterInStore, useRequestStore } from "@/root/zustand";
 export default function InfoCards() {
-    useRegisterIn();
+    useInfoCards();
     const registerInState = useRegisterInStore();
     const { count } = useAssetStore((state) => ({
         count: state.count
-        }));
+    }));
+    const {countPending} = useRequestStore();
+    const {countLows} = useLowStore();
     const currentRegisterIn = registerInState.registerIn;
     const isLoading = useLoadingStore((state) => state.isLoading);
     const options = [
@@ -23,7 +24,7 @@ export default function InfoCards() {
                     <p className="text-2xl">
                         {count}
                     </p>
-                    <p>Activos</p>
+                    <p>Cantidad de Activos</p>
                 </div>
             ),
         },
@@ -38,14 +39,14 @@ export default function InfoCards() {
             data: (
                 <div className="text-right">
                     <p className="text-2xl">
-                        200
+                        {countPending}
                     </p>
                     <p>Solicitudes Pendientes</p>
                 </div>
             ),
         },
         {
-            title: "Registros último mes",
+            title: "Cantidad de Bajas",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                     <path fillRule="evenodd" d="M10.5 3.75a6 6 0 00-5.98 6.496A5.25 5.25 0 006.75 20.25H18a4.5 4.5 0 002.206-8.423 3.75 3.75 0 00-4.133-4.303A6.001 6.001 0 0010.5 3.75zm2.25 6a.75.75 0 00-1.5 0v4.94l-1.72-1.72a.75.75 0 00-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 10-1.06-1.06l-1.72 1.72V9.75z" clipRule="evenodd" />
@@ -54,9 +55,9 @@ export default function InfoCards() {
             data:  (
                 <div className="text-right">
                     <p className="text-2xl">
-                        200
+                        {countLows}
                     </p>
-                    <p>Registros ultimo mes</p>
+                    <p>Cantidad de Bajas</p>
                 </div>
             ),
         },

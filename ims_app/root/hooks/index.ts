@@ -1,5 +1,6 @@
 export * from './assets';
 export * from './auth';
+export * from './InfoCards';
 export * from './law';
 export * from './location';
 export * from './register';

@@ -5,7 +5,7 @@ import { Resend } from "resend";
 import { EmailType } from "@/lib/definitions";
 export async function POST(req: Request) {
     const body = await req.json() as EmailType;
-    const resend = new Resend('re_hVWB1Sn9_M4pZs5Ppe68dGuTfVNA7cHgd');
+    const resend = new Resend(process.env.RESEND_API_KEY as string);
     try {
         const { data, error } = await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",

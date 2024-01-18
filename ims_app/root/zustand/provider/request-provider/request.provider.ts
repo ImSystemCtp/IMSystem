@@ -13,8 +13,13 @@ const updateRequestState = async (request: ims_request) => {
     const response = await axios.put(`/api/request/${request.req_id}`,request);
     return response.data as ims_request;
 }
+const countRequestsPending = async () => {
+    const response = await axios.get('/api/request/pending/count');
+    return response.data as number;
+}
 export const requestProvider = {
     createRequest,
     getRequestsPending,
     updateRequestState,
+    countRequestsPending,
 }

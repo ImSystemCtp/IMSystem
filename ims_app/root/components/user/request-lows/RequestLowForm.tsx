@@ -1,6 +1,5 @@
 "use client";
 import { Formik, Form } from "formik";
-
 import { CustomTextArea } from "@/root/components";
 import { useAuth } from "@/root/hooks/auth";
 import { lowsAdminFormMessage } from "@/schemas";
@@ -8,7 +7,7 @@ import { EmailStore, useAssetCheckStore, useAssetStore, useAuthStore, useDetails
 import toast from "react-hot-toast";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/lib/definitions";
-
+import {useRouter} from "next/navigation"
 interface FormValues {
     observation: string;
 }
@@ -18,6 +17,7 @@ const initialValues: FormValues = {
 export default function RequestLowForm() {
     const { addRequest } = useRequestStore();
     useAuth();
+    const router = useRouter();
     const { userAuth } = useAuthStore((state)=>({userAuth: state.userAuth}));
     const { sendEmail } = EmailStore();
     const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
@@ -56,6 +56,8 @@ export default function RequestLowForm() {
             });
             await sendEmail(request);
             await clearAssetsCheck();
+            router.push("/user/request-lows");
+
         } catch (error) {
         }
     };

@@ -1,6 +1,6 @@
 "use client";
 import { Formik, Form } from "formik";
-
+import {useRouter} from "next/navigation"
 import { CustomSelect, CustomTextArea } from "@/root/components";
 import { transferAdminFormMessage } from "@/schemas";
 import toast from "react-hot-toast";
@@ -20,6 +20,7 @@ const initialValues: FormValues = {
 
 export default function RequestTransferForm() {
     useAuth();
+    const router = useRouter();
     const { locations } = useLocationStore((state)=> ({
         locations: state.locations
     }));
@@ -61,6 +62,8 @@ export default function RequestTransferForm() {
             });
             await sendEmail(request);
             await clearAssetsCheck();
+            router.push("/user/request-transfers");
+
         } catch (error) {
         }
     };

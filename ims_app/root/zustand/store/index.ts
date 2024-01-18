@@ -6,6 +6,7 @@ export * from './email-state';
 export * from './isLoading-state';
 export * from './laws-state';
 export * from './location-state';
+export * from './lows-state';
 export * from './register-in-state';
 export * from './register-state';
 export * from './report-state';

@@ -5,6 +5,7 @@ export * from './email-provider';
 export * from './law-provider';
 export * from './locations-provider';
 export * from './login-provider';
+export * from './low-provider';
 export * from './register-in-provider';
 export * from './register-provider';
 export * from './report-provider';

@@ -1,14 +1,15 @@
 "use client"
-import { useUserPending, } from "@/root/hooks";
 import { useUserNoRoleStore, useUserStore } from "@/root/zustand";
-import { useState } from "react";
+import { use, useState } from "react";
 import { EnumUserRole, ims_users } from "@prisma/client";
 import { RoleSelectionModal } from "@/root/components";
+import {useRouter} from "next/navigation";
 export default function RequestUserTable() {
-    const {  usersPending} = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, haveNextPage: state.haveNextPage, pagine: state.pagine }));
+    const {  usersPending} = useUserNoRoleStore((state) => ({ usersPending: state.usersPending }));
     const { updateUser, deleteUser, clearUserPending } = useUserStore();
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
+    const router = useRouter();
     const handleAccept = (user: ims_users) => {
         setUserSelect(user);
         setShowModal(true);
@@ -31,6 +32,7 @@ export default function RequestUserTable() {
                 };
                 updateUser(userToUpdate);
                 clearUserPending(userToUpdate);
+                router.push("/admin");
             }
             if (role === "Usuario") {
                 const userToUpdate = {
@@ -42,6 +44,7 @@ export default function RequestUserTable() {
                 };
                 updateUser(userToUpdate);
                 clearUserPending(userToUpdate);
+                router.push("/admin");
             }
         }
     };

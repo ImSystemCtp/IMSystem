@@ -5,6 +5,7 @@ import { create } from "zustand";
 interface requestState {
     request: ims_request;
     requestSelected: ims_request;
+    countPending: number;
     assets: ims_assets[];
     requestPending: ims_request[];
     isLoadRequest: boolean;
@@ -12,16 +13,23 @@ interface requestState {
     getRequestsPending: () => Promise<void>;
     setRequestSelected: (requestSelected: ims_request) => void;
     updateRequestState: (request: ims_request) => Promise<void>;
+    countRequestsPending: () => Promise<number>;
 }
 export const useRequestStore = create<requestState>((set,get) => {
     return {
         request: {} as ims_request,
         requestSelected: {} as ims_request,
+        countPending: 0,
         assets: [],
         isLoadRequest: false,
         requestPending: [],
         addRequest: async ( requestDetails: RequestType) => {
             await requestProvider.createRequest(requestDetails);
+        },
+        countRequestsPending: async () => {
+            const countPending = await requestProvider.countRequestsPending();
+            set({ countPending });
+            return countPending;
         },
         getRequestsPending: async () => {
             set({ isLoadRequest: true })
