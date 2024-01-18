@@ -10,7 +10,16 @@ const getAssets = async () => {
     return response.data as ims_assets[];
 }
 const contAssets = async () => {
-    const response = await axios.get('/api/assets/count');
+    const response = await axios.get('/api/assets/count',
+        {
+            headers: {
+                'Cache-Control': 'no-cache',
+                'Pragma': 'no-cache',
+                'Expires': '0',
+            },
+        }
+    )
+
     return response.data as number;
 }
 const getAssetsByLocation = async (locationId: number) => {
@@ -42,7 +51,7 @@ const getAssetsNo = async (assetNo: string) => {
     useLoadingStore.getState().setIsLoading(false);
     return response.data as ims_assets;
 }
-const searchAssets = async (query:SearchAssets) => {
+const searchAssets = async (query: SearchAssets) => {
     const response = await axios.get(`/api/assets/search`, { params: query });
     return response.data as ims_assets[];
 }
