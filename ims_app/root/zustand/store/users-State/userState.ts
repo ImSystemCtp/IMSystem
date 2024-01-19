@@ -13,6 +13,7 @@ interface userState {
     cursor: number
     count: number
     haveNextPage: boolean
+    isLoadUser: boolean
     getUsers: () => Promise<void>
     updateUser: (user: ims_users) => Promise<void>
     deleteUser: (user: ims_users) => Promise<void>
@@ -26,6 +27,7 @@ export const useUserStore = create<userState>((set, get) => {
     return {
         users: [],
         usersPending: [],
+        isLoadUser: false,
         cursorPending: 0,
         haveNextPage: true,
         pagine: 0,
@@ -51,11 +53,10 @@ export const useUserStore = create<userState>((set, get) => {
             }));
         },
         getUserPending: async () => {
-            const usersPending = await userProvider.getUsers({ offset: get().cursorPending + 5, limit: LIMIT, filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions) as ims_users[];
-            set({ usersPending, cursorPending: get().cursorPending + 5, pagine: 1 })
-            if (usersPending?.length < 5) {
-                set({ haveNextPage: false })
-            }
+            set({ isLoadUser: true })
+            const usersPending = await userProvider.getUsers({   filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions) as ims_users[];
+            set({ usersPending, users: usersPending })
+            set({ isLoadUser: false })
         },
         getNextPage: async () => {
             const usersPending = await userProvider.getUsers({ offset: get().cursorPending - 5, limit: LIMIT, filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions);

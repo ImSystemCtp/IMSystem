@@ -1,6 +1,5 @@
 import { LoadingComponent, RequestTable } from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
-import { Suspense } from "react";
 export default function RequestManagement() {
     const isAuthorized = useAuthorizedAdmin();
     if (!isAuthorized)
@@ -12,11 +11,9 @@ export default function RequestManagement() {
             <h2 className="text-gray-500 dark:text-white  text-2xl font-bold md:text-center">
                 Solicitudes Pendientes
             </h2>
-            <div className="w-96 md:w-full overflow-hidden rounded-lg shadow-xs">
-                <div className="w-96 md:w-full overflow-x-auto">
-                    <Suspense fallback={<LoadingComponent />}>
+            <div className="md:w-full overflow-hidden rounded-lg shadow-xs">
+                <div className="md:w-full overflow-x-auto">
                         <RequestTable />
-                    </Suspense>
                 </div>
             </div>
         </div>

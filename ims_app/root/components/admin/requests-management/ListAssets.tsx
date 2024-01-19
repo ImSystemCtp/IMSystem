@@ -5,7 +5,7 @@ import { generatePDF } from "@/root/reports";
 import {
     useRequestStore, useReportStore,
 } from "@/root/zustand";
-
+import toast from "react-hot-toast";
 import { useState } from "react";
 export default function ListAssets() {
     const { reportRequest } = useReportStore((state) => ({ reportRequest: state.reportRequest }));
@@ -19,7 +19,11 @@ export default function ListAssets() {
         setObservation(event.target.value);
     };
     const handlePDF = () => {
-        generatePDF(reportRequest, requestSelected);
+        toast.promise(generatePDF(reportRequest, requestSelected), {
+            loading: 'Generando el reporte...',
+            success: 'Reporte generado con éxito',
+            error: 'Error al generar el reporte',
+        });
     }
     const isAuthorized = useAuthorizedAdmin();
     if (!isAuthorized)

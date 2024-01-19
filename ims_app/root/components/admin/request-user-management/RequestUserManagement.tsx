@@ -1,10 +1,10 @@
-import { useUserNoRoleStore, useUserStore } from "@/root/zustand";
+import { useUserStore } from "@/root/zustand";
 import { LoadingComponent, RequestUserTable } from "@/root/components";
 import { Suspense } from "react";
 import { useAuthorizedAdmin, useUserPending } from "@/root/hooks";
 export default function RequestUserManagement() {
     useUserPending();
-    const { usersPending, isLoadUser } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
+    const { usersPending, isLoadUser } = useUserStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     const isAuthorized = useAuthorizedAdmin();
     if (!isAuthorized)
         return <LoadingComponent/>

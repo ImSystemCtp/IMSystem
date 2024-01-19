@@ -3,18 +3,7 @@ import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
 import {  NextResponse } from "next/server";
 import { ims_users } from "@prisma/client";
-
 import getParams from "../(function)/getParams";
-
-
-/* export async function GET() {
-    try {
-        const response = await prisma.ims_users.findMany();
-        return NextResponse.json(response);
-    } catch (error) {
-        return new NextResponse("Unauthorized", { status: 401 });
-    }
-} */
 
 export async function GET(_req: Request) {
     try {
@@ -22,24 +11,9 @@ export async function GET(_req: Request) {
         const url = _req.url
         const parameters = getParams(url, object)
         const { limit, offset, orderBy, order, filterBy, filterValue, filterCondition } = parameters
-
-        /*     const user = await currentUser();
-    
-            const loginEmail = user!.emailAddresses[0].emailAddress || null;
-            if (!loginEmail) {
-                return new NextResponse("Unauthorized", { status: 401 });
-            }
-    
-            const hasPermission = await checkAuthorization(loginEmail, [USER_ROLES.ADMIN]);
-            if (!hasPermission) {
-                return new NextResponse("Additional Permissions Required", {
-                    status: 403,
-                });
-            } */
         const hasPaginationData = offset && limit;
 
         const hasOrderData = orderBy && order;
-
 
         const whereCondition = (filterBy && filterCondition && filterValue)
             ? {
@@ -50,8 +24,7 @@ export async function GET(_req: Request) {
                 },
             }
             : {};
-
-
+            console.log(whereCondition)
         let users;
         if (hasPaginationData && hasOrderData) {
             users = await prisma.ims_users.findMany({
@@ -77,7 +50,7 @@ export async function GET(_req: Request) {
             });
         }
         else {
-            users = await prisma.ims_users.findMany();
+            users = await prisma.ims_users.findMany({where: whereCondition.where});
         }
         return NextResponse.json(users);
     } catch (error) {

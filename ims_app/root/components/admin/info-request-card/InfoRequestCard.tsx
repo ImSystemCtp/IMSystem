@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { LoadingComponent } from "@/root/components";
-import { useUserNoRoleStore,useLoadingStore } from "@/root/zustand";
+import { useUserStore,useLoadingStore } from "@/root/zustand";
 
 import { useUserPending } from "@/root/hooks";
 export default function InfoRequestCard() {
     useUserPending();
-    const { usersPending ,isLoadUser } = useUserNoRoleStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
+    const { usersPending ,isLoadUser } = useUserStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <div

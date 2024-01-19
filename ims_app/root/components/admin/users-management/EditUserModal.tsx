@@ -5,7 +5,7 @@ import { EnumUserRole, ims_users } from '@prisma/client';
 import { Form, Formik } from 'formik';
 import { editUsersMessage } from '@/schemas';
 import { CustomInput, CustomSelect } from '@/root/components';
-
+import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
 type ModalProps = {
@@ -31,6 +31,7 @@ export default function EditUserModal({
         usu_email: user.usu_email,
         usu_role: user.usu_role,
     } as FormValues;
+    const router = useRouter();
     const handleSubmit = async (values: FormValues) => {
         user.usu_name = values.usu_name;
         user.usu_surnames = values.usu_surnames;
@@ -42,6 +43,7 @@ export default function EditUserModal({
             error: "No se pudo editar el usuario",
         });
         onRequestClose();
+        router.push('/admin/users-management')
     }
     return (
         <Modal
