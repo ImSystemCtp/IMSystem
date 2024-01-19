@@ -10,11 +10,11 @@ export default function SideBar() {
     const { toggle } = useSideBarStore()
     const pathname = usePathname();
     return (
-        <div className="border-2 border-slate-300 dark:border-white">
+        <div className="">
             <div
                 id="drawer-navigation"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform ${isOpen ? "translate-x-0 " : "-translate-x-full"
-                    } bg-slate-50 dark:bg-gray-800`}
+                    } bg-slate-50 dark:bg-gray-800 border-2 border-slate-300 dark:border-white rounded-md` }
                 aria-labelledby="drawer-navigation-label"
             >
                 <h3

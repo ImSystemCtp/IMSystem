@@ -6,15 +6,15 @@ import { registerAsset } from "@/lib/definitions";
 interface assetState {
     assets: ims_assets[]
     addAssets: (asset: ims_assets) => Promise<void>
-    asset_current_no_plate: Number
-    asset_get_no_plate: Number
+    asset_current_no_plate: number
+    asset_get_no_plate: number
     putNoPlate: () => Promise<void>
     clearAssets: () => Promise<void>
     getCurrentNoPlate: () => Promise<void>
     removeAssets: (asset: ims_assets) => Promise<void>
     updateNoPlate: () => Promise<void>
     updateAssetsNoPlate: () => Promise<void>
-    addRegisterAssets: (register: ims_register, assets: ims_assets[]) => Promise<void>;
+    addRegisterAssets: (register: ims_register, assets: ims_assets[], plate_num:number ) => Promise<void>;
 }
 
 export const useRegisterAssetStore = create<assetState>((set, get) => {
@@ -56,10 +56,11 @@ export const useRegisterAssetStore = create<assetState>((set, get) => {
             }));
             set({ assets: newAssets });
         },
-        addRegisterAssets: async (register: ims_register, assets: ims_assets[]) => {
+        addRegisterAssets: async (register: ims_register, assets: ims_assets[], plate_num:number ) => {
             const registerAsset: registerAsset = {
                 register,
                 assets,
+                plate_num
             };
             await registerAssetsProvider.createRegister(registerAsset);
         },

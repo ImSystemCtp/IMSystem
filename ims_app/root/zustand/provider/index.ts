@@ -1,5 +1,4 @@
 export * from './assets-provider';
-export * from './count-data-provider';
 export * from './details-request-provider';
 export * from './email-provider';
 export * from './law-provider';
