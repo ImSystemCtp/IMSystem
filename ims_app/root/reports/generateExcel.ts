@@ -26,7 +26,7 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
           A: String(asset.reg_tomo) + "," + String(asset.reg_folio) + "," + String(asset.reg_asiento),
           B: asset.assets_no,
           C: asset.assets_description,
-          D: String(asset.invoice_date),
+          D: String(asset.invoice_date?.toString().split('T')[0]),
           E: asset.assets_series,
           F: asset.assets_brand,
           G: asset.assets_model,

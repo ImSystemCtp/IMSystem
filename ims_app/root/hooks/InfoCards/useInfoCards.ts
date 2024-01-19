@@ -1,6 +1,6 @@
 "use client"
 import { useEffect } from "react";
-import { useAssetStore, useLoadingStore, useLowStore, useRegisterInStore, useRequestStore } from "@/root/zustand";
+import { useAssetStore, useLowStore, useRegisterInStore, useRequestStore } from "@/root/zustand";
 export const useInfoCards = () => {
     const getRegisterIn = useRegisterInStore(state => state.getRegisterIn)!;
     const {countAssets} = useAssetStore();

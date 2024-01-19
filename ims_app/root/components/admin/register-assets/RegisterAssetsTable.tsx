@@ -1,13 +1,13 @@
 "use client"
 import { useAuth } from "@/root/hooks";
-import { useAuthStore, useRegisAssetStore, useRegisterAssetStore } from "@/root/zustand";
+import { useAuthStore,  useRegisterAssetStore } from "@/root/zustand";
 import { EnumRegisterType, ims_assets, ims_register } from "@prisma/client";
 
 import toast from "react-hot-toast";
 export default function RegisterAssetsTable() {
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
-    const { addRegisterAssets } = useRegisAssetStore();
+    const { addRegisterAssets } = useRegisterAssetStore();
     const { assets , asset_get_no_plate  } = useRegisterAssetStore((state) => ({
         assets: state.assets,
         asset_get_no_plate: state.asset_get_no_plate

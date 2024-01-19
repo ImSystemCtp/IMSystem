@@ -39,19 +39,19 @@ export default function AssetsTotalManagement() {
         <div className=" flex justify-left  items-left flex-col md:flex-row  gap-4 mr-4">
           <button
             onClick={handleGetTotalAssets}
-            className="bg-blue-700 hover:bg-blue-400 text-white font-semibold md:font-bold py-2 px-4 mx-4 rounded"
+            className="bg-slate-500 hover:bg-slate-400 text-white font-semibold md:font-bold py-2 px-4 mx-4 rounded"
           >
             Obtener Bienes
           </button>
           <button
             onClick={handleGetTotalLows}
-            className="bg-blue-700 hover:bg-blue-400 text-white font-semibold md:font-bold py-2 px-4 mx-4 rounded"
+            className="bg-slate-500 hover:bg-slate-400 text-white font-semibold md:font-bold py-2 px-4 mx-4 rounded"
           >
             Obtener Bajas
           </button>
           <button
             onClick={handleGetTotal}
-            className="bg-blue-700   hover:bg-blue-400 text-white font-semibold md:font-bold py-2 px-4 mx-4 rounded"
+            className="bg-slate-500 hover:bg-slate-400 text-white font-semibold md:font-bold py-2 px-4 mx-4 rounded"
           >
             Obtener Registro Total
           </button>

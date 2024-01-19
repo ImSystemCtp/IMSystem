@@ -2,24 +2,17 @@ import { create } from 'zustand'
 import { ims_users } from "@prisma/client"
 import { userProvider } from '@/root/zustand';
 import { QueryOptions } from '@/app/types';
-
 const LIMIT = 5
 interface userState {
     users: ims_users[]
     usersPending: ims_users[],
     loadUser: boolean,
-    cursorPending: number,
-    pagine: number,
-    cursor: number
     count: number
-    haveNextPage: boolean
     isLoadUser: boolean
     getUsers: () => Promise<void>
     updateUser: (user: ims_users) => Promise<void>
     deleteUser: (user: ims_users) => Promise<void>
     getUserPending: () => Promise<void>
-    getNextPage: () => Promise<void>
-    getPeviusPage: () => Promise<void>
     clearUserPending: (userToDelete: ims_users) => void
 }
 
@@ -28,10 +21,6 @@ export const useUserStore = create<userState>((set, get) => {
         users: [],
         usersPending: [],
         isLoadUser: false,
-        cursorPending: 0,
-        haveNextPage: true,
-        pagine: 0,
-        cursor: 0,
         count: 0,
         loadUser: false,
         getUsers: async () => {
@@ -57,17 +46,6 @@ export const useUserStore = create<userState>((set, get) => {
             const usersPending = await userProvider.getUsers({   filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions) as ims_users[];
             set({ usersPending, users: usersPending })
             set({ isLoadUser: false })
-        },
-        getNextPage: async () => {
-            const usersPending = await userProvider.getUsers({ offset: get().cursorPending - 5, limit: LIMIT, filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions);
-            set({ usersPending, cursorPending: get().cursorPending - 5, pagine: get().pagine - 1, haveNextPage: true })
-        },
-        getPeviusPage: async () => {
-            const usersPending = await userProvider.getUsers({ offset: get().cursorPending + 5, limit: LIMIT, filterBy: "usu_role", filterCondition: "equals", filterValue: "noRole" } as QueryOptions) as ims_users[];
-            set({ usersPending, cursorPending: get().cursorPending + 5, pagine: 1 })
-            if (usersPending?.length < 5) {
-                set({ haveNextPage: false })
-            }
         },
         clearUserPending: (userToDelete: ims_users) => {
             set((state: userState) => ({

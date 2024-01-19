@@ -12,16 +12,11 @@ const create = async (register: registerAsset) => {
         return response.data as ims_register
     }
 }
-const getRegister = async () => {
-    const response = await axios.get('/api/register');
-    return response.data as ims_register[];
-}
 const getRegisterByAssetId = async (id: string) => {
     const response = await axios.get(`/api/assets/register/${id}`);
     return response.data as ims_register;
 }
 export const registerProvider = {
-    getRegister,
     create,
     getRegisterByAssetId
 };

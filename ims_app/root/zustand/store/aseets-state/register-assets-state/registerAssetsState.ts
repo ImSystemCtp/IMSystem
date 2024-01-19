@@ -1,7 +1,8 @@
-import { ims_assets } from "@prisma/client"
+import { ims_assets, ims_register } from "@prisma/client"
 import { create } from 'zustand'
-import { registerAssetsProvider } from "@/root/zustand/provider"
+import {  registerAssetsProvider } from "@/root/zustand/provider"
 import { formatPlateNumber } from "@/root/functions"
+import { registerAsset } from "@/lib/definitions";
 interface assetState {
     assets: ims_assets[]
     addAssets: (asset: ims_assets) => Promise<void>
@@ -13,6 +14,7 @@ interface assetState {
     removeAssets: (asset: ims_assets) => Promise<void>
     updateNoPlate: () => Promise<void>
     updateAssetsNoPlate: () => Promise<void>
+    addRegisterAssets: (register: ims_register, assets: ims_assets[]) => Promise<void>;
 }
 
 export const useRegisterAssetStore = create<assetState>((set, get) => {
@@ -53,6 +55,13 @@ export const useRegisterAssetStore = create<assetState>((set, get) => {
                 assets_no: formatPlateNumber(Number(asset_get_no_plate) + index + 1)
             }));
             set({ assets: newAssets });
-        }
+        },
+        addRegisterAssets: async (register: ims_register, assets: ims_assets[]) => {
+            const registerAsset: registerAsset = {
+                register,
+                assets,
+            };
+            await registerAssetsProvider.createRegister(registerAsset);
+        },
     }
 })

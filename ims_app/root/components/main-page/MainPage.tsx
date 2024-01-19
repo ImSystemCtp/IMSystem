@@ -6,10 +6,8 @@ import { useEffect } from "react";
 export default function MainPage() {
     const getAuth = useAuthStore(state => state.getUserAuth)!;
     const router = useRouter();
-
     useEffect(() => {
         async function checkUserRole() {
-            
             const authActions = await getAuth();
             if (authActions.usu_role === USER_ROLES.ADMIN) {
                 router.push("/admin");
@@ -21,7 +19,7 @@ export default function MainPage() {
         checkUserRole();
     }, [getAuth, router]);
     return (
-        <div className="bg-neutral-400 h-screen flex justify-center items-center">
+        <div className="bg-neutral-400 h-screen m-4 flex justify-center items-center">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-md">
                 <h1 className="text-4xl font-bold text-center mb-4">
                     ¡Bienvenido a IM_System!

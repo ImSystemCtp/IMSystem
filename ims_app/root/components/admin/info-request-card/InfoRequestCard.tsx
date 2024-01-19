@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { LoadingComponent } from "@/root/components";
-import { useUserStore,useLoadingStore } from "@/root/zustand";
+import { useUserStore } from "@/root/zustand";
 
 import { useUserPending } from "@/root/hooks";
 export default function InfoRequestCard() {
     useUserPending();
     const { usersPending ,isLoadUser } = useUserStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
-    const isLoading = useLoadingStore((state) => state.isLoading);
     return (
         <div
             className="p-4  relative flex flex-col min-w-0 break-words bg-gray-100 dark:bg-gray-700 w-full shadow-lg rounded"
@@ -18,7 +17,7 @@ export default function InfoRequestCard() {
                     </div>
                 </div>
                 <div className="relative w-full max-w-full flex-grow flex-1 text-right">
-                    <Link href={"/admin/request-users"} className="bg-blue-700 hover:bg-blue-400 text-white active:bg-blue-600 dark:bg-gray-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Ver todo</Link>
+                    <Link href={"/admin/request-users"} className="bg-blue-700 hover:bg-blue-400 text-white active:bg-blue-600 dark:bg-gray-600 dark:text-gray-800 -700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Ver todo</Link>
                 </div>
             </div>
             <ul className="my-1">

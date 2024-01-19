@@ -1,6 +1,6 @@
 import { LoadingComponent } from "@/root/components";
 import { useInfoCards } from "@/root/hooks";
-import { useAssetStore, useLoadingStore, useLowStore, useRegisterInStore, useRequestStore } from "@/root/zustand";
+import { useAssetStore, useLowStore, useRegisterInStore, useRequestStore } from "@/root/zustand";
 export default function InfoCards() {
     useInfoCards();
     const registerInState = useRegisterInStore();
@@ -10,7 +10,6 @@ export default function InfoCards() {
     const {countPending} = useRequestStore();
     const {countLows} = useLowStore();
     const currentRegisterIn = registerInState.registerIn;
-    const isLoading = useLoadingStore((state) => state.isLoading);
     const options = [
         {
             title: "Bienes",
@@ -69,7 +68,7 @@ export default function InfoCards() {
                     <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
                 </svg>
             ),
-            data: isLoading ? <LoadingComponent /> : (
+            data:  (
                 <div className="text-right">
                     <p className="text-2xl">
                         {`${currentRegisterIn.tomo}, ${currentRegisterIn.folio}, ${currentRegisterIn.asiento}`}

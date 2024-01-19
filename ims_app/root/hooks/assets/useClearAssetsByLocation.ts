@@ -4,7 +4,6 @@ import { useAssetStore} from "@/root/zustand";
 export const useClearAssetsByLocation= () => {
     const { assetsBySearch  } = useAssetStore((state) => ({ assetsBySearch: state.assetsBySearch }));
     const { clearAllAssetsByLocation  } = useAssetStore();
-
     useEffect(() => {
         if (assetsBySearch.length > 0) {
             clearAllAssetsByLocation();
