@@ -22,7 +22,7 @@ export default function RegisterAssetsTable() {
         reg_inst_id: 1,
     } as ims_register
     const handleRegisterAssets = async () => {
-        await toast.promise(addRegisterAssets(register, assets), {
+        await toast.promise(addRegisterAssets(register, assets, asset_get_no_plate), {
             loading: "Registrando activos...",
             success: "Activos registrados exitosamente!",
             error: "No se pudo registrar los activos",

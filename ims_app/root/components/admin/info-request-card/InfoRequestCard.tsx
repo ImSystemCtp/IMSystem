@@ -8,23 +8,23 @@ export default function InfoRequestCard() {
     const { usersPending ,isLoadUser } = useUserStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     return (
         <div
-            className="p-4  relative flex flex-col min-w-0 break-words bg-gray-100 dark:bg-gray-700 w-full shadow-lg rounded"
+            className="p-2 flex flex-col  break-words bg-gray-100 dark:bg-gray-700 w-full shadow-lg rounded"
         >
-            <div className="flex flex-wrap items-center px-4 py-2">
-                <div className="relative w-full max-w-full flex-grow flex-1">
-                    <div className="relative w-full max-w-full flex-grow flex-1">
+            <div className="flex flex-col items-center ">
+                <div className=" w-full ">
+                    <div className=" w-full ">
                         <h3 className="font-semibold text-base text-gray-900 dark:text-gray-50">Solicitudes de Usuarios </h3>
                     </div>
                 </div>
-                <div className="relative w-full max-w-full flex-grow flex-1 text-right">
-                    <Link href={"/admin/request-users"} className="bg-blue-700 hover:bg-blue-400 text-white active:bg-blue-600 dark:bg-gray-600 dark:text-gray-800 -700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Ver todo</Link>
+                <div className="w-full text-right">
+                    <Link href={"/admin/request-users"} className="bg-blue-700 hover:bg-blue-400 text-white active:bg-blue-600 dark:bg-gray-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Ver todo</Link>
                 </div>
             </div>
             <ul className="my-1">
             {isLoadUser ? (
                     <LoadingComponent />
                 ) : usersPending.length === 0 ? (
-                    <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
+                    <div className=" p-3 mt-2 flex items-center justify-center bg-blue-100 rounded-lg  text-sm text-blue-700" role="alert">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                         </svg>
