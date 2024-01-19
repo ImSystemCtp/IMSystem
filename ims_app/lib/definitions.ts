@@ -14,7 +14,8 @@ export type ParameterId = {
 };
 export type registerAsset ={
     register: ims_register,
-    assets: ims_assets[]
+    assets: ims_assets[],
+    plate_num?: number, 
 }
 export type registerTransfer ={
     register: ims_register,

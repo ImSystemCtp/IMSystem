@@ -7,6 +7,7 @@ export async function POST(req: Request) {
         const body = await req.json() as registerAsset;
         const type = body.register.reg_type;
         const assets = body.assets;
+        const register_num = body.plate_num
         let currentRegisterin = await getNumRegister()
         if (type == 'Register') {
                 for (const element of assets) {
