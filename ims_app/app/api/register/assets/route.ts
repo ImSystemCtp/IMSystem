@@ -3,6 +3,7 @@ import { registerAsset } from "@/lib/definitions";
 import { NextResponse } from "next/server";
 import { getNextNumber, getNumRegister, updateRegisterNumber } from "../../(function)";
 import { ims_assets } from "@prisma/client";
+import {updatePlateNumber} from "../../(function)/plateUpdate";
 export async function POST(req: Request) {
     try {
         const body = await req.json() as registerAsset;
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
         console.log(register_num == dbNumRegister)
         if (register_num != dbNumRegister) {
             assets = await updatePlateNumber(assets, dbNumRegister)
-           
+
         }
         let currentRegisterin = await getNumRegister()
         if (type == 'Register') {
@@ -45,19 +46,3 @@ export async function POST(req: Request) {
     }
 }
 
-const updatePlateNumber = async (assets: ims_assets[], plate_num: number) => {
-
-
-    const newAssets = assets.map((asset, index) => ({
-        ...asset,
-        assets_no: formatPlateNumber(Number(plate_num) + index + 1)
-    }));
-    return newAssets as ims_assets[];
-}
-
-
-export const formatPlateNumber = (number: Number) => {
-    const plateNumber = String(number);
-    const formattedNumber = plateNumber.padStart(4, '0');
-    return `4167-${formattedNumber}`;
-}
