@@ -8,29 +8,16 @@ import { CustomInput, CustomSelect } from '@/root/components';
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/root/zustand';
 import toast from 'react-hot-toast';
-type ModalProps = {
-    isOpen: boolean;
-    onRequestClose: () => void;
-    user: ims_users;
-};
+type ModalProps = { isOpen: boolean; onRequestClose: () => void; user: ims_users; };
 interface FormValues {
     usu_name: string;
     usu_surnames: string;
     usu_email: string;
     usu_role: EnumUserRole;
 }
-export default function EditUserModal({
-    isOpen,
-    onRequestClose,
-    user,
-}: ModalProps) {
+export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalProps) {
     const {updateUser} = useUserStore();
-    const initialValues = {
-        usu_name: user.usu_name,
-        usu_surnames: user.usu_surnames,
-        usu_email: user.usu_email,
-        usu_role: user.usu_role,
-    } as FormValues;
+    const initialValues = {} as FormValues;
     const router = useRouter();
     const handleSubmit = async (values: FormValues) => {
         user.usu_name = values.usu_name;

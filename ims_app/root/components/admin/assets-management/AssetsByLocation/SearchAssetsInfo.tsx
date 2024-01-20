@@ -1,7 +1,7 @@
 "use client"
 import { useClearAssetsByLocation, useClearReportRegisters, useLocation } from "@/root/hooks";
 import { generateExcel } from "@/root/reports";
-import { useAssetStore, useLocationStore, useReportStore } from "@/root/zustand";
+import {  useLocationStore, useReportStore } from "@/root/zustand";
 import { useState } from "react";
 import toast from "react-hot-toast";
 export default function SearchAssetsInfo() {
@@ -12,7 +12,6 @@ export default function SearchAssetsInfo() {
     const { getRegisterToReport } = useReportStore();
     const { locations } = useLocationStore((state) => ({ locations: state.locations }));
     const { setCurrentLocation } = useLocationStore();
-
     const [locationSelect, setLocationSelect] = useState<string>("");
     const handleSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         await setCurrentLocation(parseInt(event.target.value));

@@ -9,12 +9,7 @@ const createRegister = async (register: registerAsset) => {
     const response = await axios.post('/api/register/assets', register);
     return response.data as ims_register;
 };
-const putNoPlate = async (no_plate:Number) => {
-    const response = await axios.put('/api/assets/plate-no', { no_plate });
-    return response.data;
-}
 export const registerAssetsProvider = {
     getCurrentNoPlate,
-    createRegister,
-    putNoPlate
+    createRegister
 };

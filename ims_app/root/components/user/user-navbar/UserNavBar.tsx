@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image";
-
 import { UserButton } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation'
 import Link from "next/link";

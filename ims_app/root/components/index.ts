@@ -1,4 +1,5 @@
 export * from './admin';
+export * from './alert';
 export * from './footer';
 export * from './Formik';
 export * from './loading';

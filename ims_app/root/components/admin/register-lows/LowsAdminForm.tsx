@@ -1,6 +1,5 @@
 "use client";
 import { Formik, Form } from "formik";
-
 import { CustomTextArea } from "@/root/components";
 import { lowsAdminFormMessage } from "@/schemas";
 import { useAssetCheckStore, useAssetStore, useAuthStore } from "@/root/zustand";
@@ -9,20 +8,12 @@ import { useRegisterStore } from "@/root/zustand";
 import toast from "react-hot-toast";
 import { useAuth } from "@/root/hooks";
 import { registerAsset } from "@/lib/definitions";
-interface FormValues {
-
-    observation: string;
-}
-
-const initialValues: FormValues = {
-    observation: "",
-};
+interface FormValues { observation: string; }
+const initialValues: FormValues = { observation: "", };
 
 export default function LowsAdminForm() {
-    const { assetsCheck } = useAssetCheckStore((state) => ({
-        assetsCheck: state.assetsCheck
-    }));
-    const {clearAssetsCheck} = useAssetCheckStore();
+    const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
+    const { clearAssetsCheck } = useAssetCheckStore();
     const { addRegister } = useRegisterStore();
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
@@ -46,7 +37,6 @@ export default function LowsAdminForm() {
         await clearAssetsCheck();
     };
     return (
-
         <div className=" m-2 lg:h-full">
             <div className="m-2  h-40 border border-gray-300  rounded-lg relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -64,19 +54,14 @@ export default function LowsAdminForm() {
                                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_no}</td>
                                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_description}</td>
                                     </tr>
-                                ))) : (
-                                <tr>
+                                ))) : (<tr>
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">No hay activos seleccionados</td>
                                 </tr>
                             )}
                     </tbody>
                 </table>
             </div>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={lowsAdminFormMessage}
-                onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} validationSchema={lowsAdminFormMessage}onSubmit={handleSubmit}>
                 <div className="w-full  " >
                     <Form>
                         <div className="flex flex-col   w-full  ">

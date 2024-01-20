@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 export default function AssetsTotalManagement() {
   const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }));
   const { getTotalRegister,getTotalAssets,getTotalLows } = useReportStore();
-
   useClearReportRegisters();
   const handleGetTotal = async () => {
     await getTotalRegister();
@@ -75,6 +74,4 @@ export default function AssetsTotalManagement() {
       </div>
     </div>
   );
-
-
 }

@@ -1,8 +1,7 @@
 "use client"
-import { LoadingComponent } from "@/root/components";
+import { AlertMessage, LoadingComponent } from "@/root/components";
 import { useLawStore } from "@/root/zustand";
 import { ims_laws } from "@prisma/client";
-
 import { useLaw } from "@/root/hooks";
 export default function EditLaw() {
     useLaw();
@@ -10,17 +9,9 @@ export default function EditLaw() {
         laws: state.laws,
         loadingLaw: state.loadingLaw}));
     const { selectLawToEdit} = useLawStore();
-
     return (
         loadingLaw ? <LoadingComponent /> : laws.length === 0 ? (
-            <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                </svg>
-                <div>
-                    No hay leyes registradas!.
-                </div>
-            </div>
+            <AlertMessage message="No hay leyes registradas!."/>
         ) :
             <div className=" border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
                 <h2 className="text-center text-2xl dark:text-white font-bold pb-12 p-2">Leyes</h2>

@@ -17,7 +17,6 @@ export async function GET(req: Request) {
         JOIN ims_responsible re on re.responsible_id = a.asset_responsible_id
         where r.reg_type = ${EnumRegisterType.Low}
         ORDER by r.reg_tomo, r.reg_folio, r.reg_asiento`;
-        console.log(registers)
         const registrosUnicos = filterUniqueEntries(registers);
         return NextResponse.json(registrosUnicos);
     } catch (error) {

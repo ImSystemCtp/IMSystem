@@ -3,7 +3,6 @@ import { ims_assets } from "@prisma/client";
 interface AssetItemProps {
     asset: ims_assets
 }
-
 export default function ItemAsset( { asset }: AssetItemProps) {
     const { deleteAssetsCheck, addAssetsCheck } = useAssetCheckStore();
     const assetsCheck = useAssetCheckStore((state) => state.assetsCheck);

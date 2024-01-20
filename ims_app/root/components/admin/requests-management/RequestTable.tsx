@@ -3,6 +3,7 @@ import { useRequestPending } from "@/root/hooks";
 import { useReportStore, useRequestStore } from "@/root/zustand";
 import { ims_request } from "@prisma/client";
 import Link from "next/link";
+import { AlertMessage } from "../..";
 export default function RequestTable() {
     useRequestPending();
     const { getRequestToReport } = useReportStore();
@@ -15,14 +16,8 @@ export default function RequestTable() {
     return (
         <div className="max-h-60 overflow-y-auto">
             {requestPending.length === 0 ? (
-                <div className="flex items-center justify-center bg-blue-100 rounded-lg  p-4 mb-4 text-sm text-blue-700" role="alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                    </svg>
-                    <div>
-                        No hay solicitudes pendientes.
-                    </div>
-                </div>) : <table className="w-96 p-2  md:w-full">
+                <AlertMessage message="No hay solicitudes pendientes."/>
+                ) : <table className="w-96 p-2  md:w-full">
                 <thead>
                     <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th className="px-2 md:px-4 py-3">Usuario</th>

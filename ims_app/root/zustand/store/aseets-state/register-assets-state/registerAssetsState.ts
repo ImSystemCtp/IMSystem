@@ -8,7 +8,6 @@ interface assetState {
     addAssets: (asset: ims_assets) => Promise<void>
     asset_current_no_plate: number
     asset_get_no_plate: number
-    putNoPlate: () => Promise<void>
     clearAssets: () => Promise<void>
     getCurrentNoPlate: () => Promise<void>
     removeAssets: (asset: ims_assets) => Promise<void>
@@ -16,7 +15,6 @@ interface assetState {
     updateAssetsNoPlate: () => Promise<void>
     addRegisterAssets: (register: ims_register, assets: ims_assets[], plate_num:number ) => Promise<void>;
 }
-
 export const useRegisterAssetStore = create<assetState>((set, get) => {
     return {
         assets: [],
@@ -38,10 +36,6 @@ export const useRegisterAssetStore = create<assetState>((set, get) => {
         updateNoPlate: async () => {
             const { asset_current_no_plate } = get();
             set({ asset_current_no_plate: Number(asset_current_no_plate)+1 });
-        },
-        putNoPlate: async () => {
-            const { asset_current_no_plate } = get();
-            await registerAssetsProvider.putNoPlate(asset_current_no_plate);
         },
         clearAssets: async () => {
             set((state) => ({

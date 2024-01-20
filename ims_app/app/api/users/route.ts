@@ -24,7 +24,6 @@ export async function GET(_req: Request) {
                 },
             }
             : {};
-            console.log(whereCondition)
         let users;
         if (hasPaginationData && hasOrderData) {
             users = await prisma.ims_users.findMany({

@@ -10,16 +10,9 @@ export default function RequestUserTable() {
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
     const router = useRouter();
-    const handleAccept = (user: ims_users) => {
-        setUserSelect(user);
-        setShowModal(true);
-    };
-    const handleDecline = (user: ims_users) => {
-        deleteUser(user);
-    };
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+    const handleAccept = (user: ims_users) => { setUserSelect(user); setShowModal(true); };
+    const handleDecline = (user: ims_users) => { deleteUser(user); };
+    const handleCloseModal = () => { setShowModal(false); };
     const handleRoleSelect = (role: string) => {
         if (userSelect) {
             if (role === "Administrador") {
@@ -62,15 +55,11 @@ export default function RequestUserTable() {
                 </thead>
                 <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     {usersPending.map((user, index) => (
-                        <tr
-                            key={index}
-                            className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
-                        >
+                        <tr key={index}
+                            className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400" >
                             <td className="px-4 py-3">
                                 <div className="flex items-center text-sm">
-                                    <div>
-                                        <p className="font-semibold">{user.usu_name + ' ' + user.usu_surnames}</p>
-                                    </div>
+                                    <div> <p className="font-semibold">{user.usu_name + ' ' + user.usu_surnames}</p> </div>
                                 </div>
                             </td>
                             <td className="px-4 py-3 text-sm hidden md:table-cell">{user.usu_role}</td>
@@ -80,31 +69,18 @@ export default function RequestUserTable() {
                                 </span>
                             </td>
                             <td className="px-4 py-3 text-sm">
-                                <button
-                                    onClick={() => handleDecline(user)}
-                                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Rechazar
-                                </button>
+                                <button onClick={() => handleDecline(user)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" > Rechazar </button>
                             </td>
                             <td className="px-4 py-3 text-sm">
-                                <button
-                                    onClick={() => handleAccept(user)}
-                                    className="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Aceptar
-                                </button>
+                                <button onClick={() => handleAccept(user)}
+                                    className="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > Aceptar </button>
                             </td>
                         </tr>
                     ))
                     }
                 </tbody>
             </table>
-            <RoleSelectionModal
-                isOpen={showModal}
-                onRequestClose={handleCloseModal}
-                onRoleSelect={handleRoleSelect}
-            />
+            <RoleSelectionModal isOpen={showModal} onRequestClose={handleCloseModal} onRoleSelect={handleRoleSelect} />
         </div>
     )
 }
