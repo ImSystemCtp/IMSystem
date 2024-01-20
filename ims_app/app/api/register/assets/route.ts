@@ -13,6 +13,7 @@ export async function POST(req: Request) {
         console.log(register_num == dbNumRegister)
         if (register_num != dbNumRegister) {
             assets = await updatePlateNumber(assets, dbNumRegister)
+           
         }
         let currentRegisterin = await getNumRegister()
         if (type == 'Register') {
@@ -35,6 +36,7 @@ export async function POST(req: Request) {
                 currentRegisterin = await getNextNumber(currentRegisterin)
             }
             updateRegisterNumber(currentRegisterin.tomo, currentRegisterin.folio, currentRegisterin.asiento)
+            await prisma.ims_institution.update({ where: { inst_id: 1 }, data: { inst_current_no_plate: dbNumRegister + assets.length } })
             return NextResponse.json({ message: "Register" });
         }
         return new NextResponse("type no .... ", { status: 401 });
