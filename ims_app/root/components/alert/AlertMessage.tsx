@@ -1,5 +1,5 @@
 interface AlertProps { message: string; }
-export default function AlertMessag ({ message }:AlertProps)  {
+export default function AlertMessage ({ message }:AlertProps)  {
   return (
     <div className="flex items-center justify-center bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

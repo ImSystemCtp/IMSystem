@@ -2,6 +2,7 @@ export * from './admin-main';
 export * from './admin-navbar';
 export * from './assets-admin-table';
 export * from './assets-management';
+export * from './generic-register-form';
 export * from './info-cards';
 export * from './info-request-card';
 export * from './law-management';
