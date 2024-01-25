@@ -1,5 +1,5 @@
 'use client'
-import { InfoCards, InfoRequestCard, LoadingComponent, RequestManagement, SearchAssetsNo } from "@/root/components";
+import { InfoCards, RequestUsersCard, LoadingComponent, RequestManagement, SearchAssetsNo } from "@/root/components";
 import { useAuthorizedAdmin } from "@/root/hooks";
 export default function AdminMain() {
     const isAuthorized = useAuthorizedAdmin();
@@ -16,7 +16,7 @@ export default function AdminMain() {
                     <div className=" flex justify-center items-center">
                     </div>
                     <div className="w-full">
-                        <InfoRequestCard />
+                        <RequestUsersCard />
                     </div>
                 </div>
                 <RequestManagement />

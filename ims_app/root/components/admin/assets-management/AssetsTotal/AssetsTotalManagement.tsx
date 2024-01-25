@@ -1,5 +1,5 @@
 "use client"
-import { AssetsTable, LoadingComponent, SearchAssetsInfo, } from "@/root/components";
+import { AssetsTableReport, LoadingComponent, SearchAssetsInfo, } from "@/root/components";
 import { useAuthorizedAdmin, useClearReportRegisters } from "@/root/hooks";
 import { generateExcel } from "@/root/reports";
 import { useReportStore } from "@/root/zustand";
@@ -69,7 +69,7 @@ export default function AssetsTotalManagement() {
       </div>
       <div className="flex flex-col lg:flex-row lg:m-2 lg:p-2">
         <div className="w-full pr-0 lg:pr-4">
-          <AssetsTable />
+          <AssetsTableReport />
         </div>
       </div>
     </div>

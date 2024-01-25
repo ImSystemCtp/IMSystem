@@ -78,7 +78,6 @@ export default function SearchAssetsInfo() {
                     </button>
                 </div>
             </div>
-
         </div>
     )
 }

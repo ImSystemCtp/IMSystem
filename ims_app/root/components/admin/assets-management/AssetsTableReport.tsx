@@ -2,7 +2,7 @@
 import { useReportStore } from "@/root/zustand";
 import {  useRef } from "react";
 import { AlertMessage } from "@/root/components";
-export default function AssetsTable() {
+export default function AssetsTableReport() {
     const { reportRegister } = useReportStore((state) => ({
         reportRegister: state.reportRegister
     }))

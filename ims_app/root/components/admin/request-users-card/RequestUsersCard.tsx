@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AlertMessage, LoadingComponent } from "@/root/components";
 import { useUserStore } from "@/root/zustand";
 import { useUserPending } from "@/root/hooks";
-export default function InfoRequestCard() {
+export default function RequestUsersCard() {
     useUserPending();
     const { usersPending ,isLoadUser } = useUserStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     return (
