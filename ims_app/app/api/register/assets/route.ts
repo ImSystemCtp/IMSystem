@@ -11,7 +11,6 @@ export async function POST(req: Request) {
         let assets: ims_assets[] = body.assets;
         const register_num = body.plate_num || 0
         const dbNumRegister = await prisma.ims_institution.findMany().then((res) => res[0].inst_current_no_plate)
-        console.log(register_num == dbNumRegister)
         if (register_num != dbNumRegister) {
             assets = await updatePlateNumber(assets, dbNumRegister)
 

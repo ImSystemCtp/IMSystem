@@ -1,6 +1,5 @@
 "use client"
-import React, { useState } from "react";
-import { RequestLowForm, AssetsUserTable, SearchAssets } from "@/root/components";
+import { AssetsUserTable, RequestLowForm, SearchAssets } from "@/root/components";
 import { useClearAssetsByLocation } from "@/root/hooks";
 export default function RequestLows() {
   useClearAssetsByLocation();

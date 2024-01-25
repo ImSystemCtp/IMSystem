@@ -27,9 +27,7 @@ export default function UserMain() {
         }
     ];
     const handleGo = (link: string): MouseEventHandler<HTMLButtonElement> => {
-        return (event) => {
-            router.push(link);
-        };
+        return (event) => {  router.push(link); };
     };
     const isAuthorized = useAuthorizedUser();
     if (!isAuthorized)

@@ -1,4 +1,3 @@
-import { ims_request } from "@prisma/client";
 import  EmailTemplate, { EmailTemplateProps }  from "../(function)/email-template/EmailTemplate";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";

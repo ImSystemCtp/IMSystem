@@ -10,9 +10,7 @@ export default function EditLaw() {
         loadingLaw: state.loadingLaw}));
     const { selectLawToEdit} = useLawStore();
     return (
-        loadingLaw ? <LoadingComponent /> : laws.length === 0 ? (
-            <AlertMessage message="No hay leyes registradas!."/>
-        ) :
+        loadingLaw ? <LoadingComponent /> : laws.length === 0 ? ( <AlertMessage message="No hay leyes registradas!."/> ) :
             <div className=" border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
                 <h2 className="text-center text-2xl dark:text-white font-bold pb-12 p-2">Leyes</h2>
                 <div className="w-full max-h-60 overflow-y-auto">

@@ -1,5 +1,5 @@
 "use client"
-import {  AssetsUserTable,RequestTransferForm, SearchAssets, TransferAdminForm } from "@/root/components";
+import {  AssetsUserTable, RequestTransferForm, SearchAssets } from "@/root/components";
 import { useAuth, useClearAssetsByLocation } from "@/root/hooks";
 export default function RequestTransfer() {
     useClearAssetsByLocation();
