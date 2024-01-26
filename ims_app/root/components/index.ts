@@ -1,5 +1,6 @@
 export * from './admin';
 export * from './alert';
+export * from './assets-table';
 export * from './footer';
 export * from './Formik';
 export * from './loading';
