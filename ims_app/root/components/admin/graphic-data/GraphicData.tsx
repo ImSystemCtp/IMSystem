@@ -11,18 +11,12 @@ export default function GraphicData ()  {
     const labels = ["Activos", "Bajas", "Traslados"];
     const customColors = ["#FF5733", "#3399FF", "#FFFF66"];
     const chartData = {
-        datasets: [{
-            data,
-            backgroundColor: customColors,
-        }],
+        datasets: [{ data, backgroundColor: customColors, }],
         labels,
     };
     const chartOptions = {
         plugins: {
-            legend: {
-                display: true,
-                position: 'bottom' as const,
-            },
+            legend: { display: true, position: 'bottom' as const, },
         },
     };
     return (

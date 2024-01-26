@@ -10,19 +10,14 @@ type ModalProps = {
 };
 export default function RequestAssetsModal({ isOpen, onRequestClose, asset, newDetailAsset }: ModalProps) {
     const [detailAsset, setDetailAsset] = useState("");
-    const handleDetailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDetailAsset(event.target.value);
-    };
+    const handleDetailChange = (event: React.ChangeEvent<HTMLInputElement>) => { setDetailAsset(event.target.value); };
     const handleSendDetail = () => {
         newDetailAsset(asset, detailAsset);
         onRequestClose
         setDetailAsset("");
     }
     return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-            contentLabel="Información del Activo"
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Información del Activo"
             className="modal-content bg-white rounded-md p-8 max-w-90vw max-h-90vh relative"
             overlayClassName="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" >
             <button

@@ -1,7 +1,7 @@
 "use client"
 import { LoadingComponent } from "@/root/components";
 import { useResponsibles } from "@/root/hooks";
-import { useLawStore, useResponsibleStore } from "@/root/zustand";
+import {  useResponsibleStore } from "@/root/zustand";
 import { ims_responsible } from "@prisma/client";
 export default function EditResponsible() {
     useResponsibles();
@@ -15,9 +15,7 @@ export default function EditResponsible() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                 </svg>
-                <div>
-                    No hay Funcionario Responsable!.
-                </div>
+                <div> No hay Funcionario Responsable!. </div>
             </div>
         ) :
             <div className=" border-2 rounded-lg border-slate-300 shadow-sm shadow-slate-300  p-4">
@@ -41,8 +39,7 @@ export default function EditResponsible() {
                                         {responsibles.responsible_name}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button
-                                            onClick={() => selectResponsibleToEdit(responsibles)}
+                                        <button onClick={() => selectResponsibleToEdit(responsibles)}
                                             className="text-white bg-slate-500 hover:bg-slate-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600" type="submit">
                                             Editar
                                         </button>

@@ -3,9 +3,7 @@ import { ims_laws, ims_locations, ims_responsible } from "@prisma/client";
 import Link from "next/link";
 import {  useLaw, useLocation, useResponsibles } from "@/root/hooks";
 import { useLawStore, useLocationStore, useResponsibleStore } from "@/root/zustand";
-interface RegisterAssetsSelectsProps {
-    initialValues: AssetsFormValues;
-}
+interface RegisterAssetsSelectsProps { initialValues: AssetsFormValues; }
 export default function RegisterAssetsSelects({ initialValues,}: RegisterAssetsSelectsProps) {
     useLocation();
     useLaw();
@@ -29,9 +27,7 @@ export default function RegisterAssetsSelects({ initialValues,}: RegisterAssetsS
             ) : (
                 <div className="flex flex-row">
                     <div className="flex items-center justify-center w-1/2">
-                        <p className="text-red">
-                            No existen Funcionarios Responsables.
-                        </p>
+                        <p className="text-red"> No existen Funcionarios Responsables. </p>
                     </div>
                     <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                         <Link href="/admin/responsibles-management">Agregar Funcionario Responsable</Link>
@@ -56,9 +52,7 @@ export default function RegisterAssetsSelects({ initialValues,}: RegisterAssetsS
             ) : (
                 <div className="flex flex-row">
                     <div className="flex items-center justify-center w-1/2">
-                        <p className="text-red">
-                            No existen ubicaciones.
-                        </p>
+                        <p className="text-red"> No existen ubicaciones. </p>
                     </div>
                     <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                         <Link href="/admin/locations-management">Agregar ubicaciones</Link>
@@ -79,9 +73,7 @@ export default function RegisterAssetsSelects({ initialValues,}: RegisterAssetsS
             ) : (
                 <div className="flex flex-row">
                     <div className="flex items-center justify-center w-1/2">
-                        <p className="text-red">
-                            No existen leyes.
-                        </p>
+                        <p className="text-red"> No existen leyes. </p>
                     </div>
                     <div className="w-1/2 bg-yellow-500 text-white text-center rounded-lg p-2 m-2">
                         <Link href="/admin/laws-management">Agregar ley</Link>

@@ -1,15 +1,11 @@
 "use client"
 import { useReportStore } from "@/root/zustand";
-import {  useRef } from "react";
 import { AlertMessage } from "@/root/components";
 export default function AssetsTableReport() {
-    const { reportRegister } = useReportStore((state) => ({
-        reportRegister: state.reportRegister
-    }))
-    const containerRef = useRef<HTMLDivElement | null>(null);
+    const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }))
     return (
         <div>
-            <div ref={containerRef} className="max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+            <div className="max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                 {reportRegister.length === 0 ? (
                     <AlertMessage message="No hay Activos en esta ubicación!." />
                 ) : (

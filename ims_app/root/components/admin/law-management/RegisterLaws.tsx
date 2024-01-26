@@ -8,12 +8,8 @@ import { GenericRegisterForm, LoadingComponent } from "@/root/components";
 export default function RegisterLaw() {
     const { lawToEdit } = useLawStore((state) => ({ lawToEdit: state.lawToEdit }));
     const { selectLawToEdit, createLaw, updateLaw } = useLawStore();
-    const [lawName, setLawName] = useState(
-        lawToEdit ? lawToEdit.law_name : ""
-    );
-    const [lawDescription, setLawDescription] = useState(
-        lawToEdit ? lawToEdit.law_description : ""
-    );
+    const [lawName, setLawName] = useState( lawToEdit ? lawToEdit.law_name : "" );
+    const [lawDescription, setLawDescription] = useState( lawToEdit ? lawToEdit.law_description : "" );
     useEffect(() => {
         if (lawToEdit) {
             setLawName(lawToEdit.law_name);

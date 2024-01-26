@@ -8,22 +8,13 @@ import { EmailStore, useAssetCheckStore, useAssetStore, useAuthStore, useDetails
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { useAuth } from "@/root/hooks";
 import { RequestType } from "@/lib/definitions";
-interface FormValues {
-    newLocation: string;
-    observation: string;
+interface FormValues { newLocation: string; observation: string;
 }
-
-const initialValues: FormValues = {
-    newLocation: "",
-    observation: "",
-};
-
+const initialValues: FormValues = { newLocation: "", observation: "", };
 export default function RequestTransferForm() {
     useAuth();
     const router = useRouter();
-    const { locations } = useLocationStore((state)=> ({
-        locations: state.locations
-    }));
+    const { locations } = useLocationStore((state)=> ({ locations: state.locations }));
     const { sendEmail } = EmailStore();
     const { addRequest } = useRequestStore();
     const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
@@ -31,11 +22,9 @@ export default function RequestTransferForm() {
     const { details } = useDetailsRequestStore((state) => ({ details: state.details }));
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }))
     const checkedDetails = details.filter((detail) => {
-        return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
-    });
+        return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no); });
     const assetsWithoutDetails = assetsCheck.filter((checkedAsset) => {
-        return !checkedDetails.some((detail) => detail.deta_assets_no === checkedAsset.assets_no);
-    });
+        return !checkedDetails.some((detail) => detail.deta_assets_no === checkedAsset.assets_no); });
     assetsWithoutDetails.forEach((asset) => {
         checkedDetails.push({
             deta_assets_no: asset.assets_no,
@@ -63,9 +52,7 @@ export default function RequestTransferForm() {
             await sendEmail(request);
             await clearAssetsCheck();
             router.push("/user/request-transfers");
-
-        } catch (error) {
-        }
+        } catch (error) {}
     };
     return (
         <div className="w-full">
@@ -87,11 +74,7 @@ export default function RequestTransferForm() {
                     </tbody>
                 </table>
             </div>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={transferAdminFormMessage}
-                onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} validationSchema={transferAdminFormMessage} onSubmit={handleSubmit}>
                 <div className=" lg:h-full">
                     <Form>
                         <div className="flex flex-col   w-full  ">
@@ -100,9 +83,7 @@ export default function RequestTransferForm() {
                                     <CustomSelect label="Ubicación:" name="newLocation">
                                         {!initialValues.newLocation ? (
                                             <option value="">Seleccione una ubicación</option>
-                                        ) : (
-                                            ""
-                                        )}
+                                        ) : ("")}
                                         {locations.map((location) => {
                                             return (
                                                 <option key={location.location_id} value={location.location_id}>

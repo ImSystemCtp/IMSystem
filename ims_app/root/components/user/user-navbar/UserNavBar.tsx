@@ -8,9 +8,7 @@ export default function UserNavBar() {
     const handleClick = () => {router.push("/user"); }
     const toggleMenu = () => {
         const navbarDefault = document.getElementById("navbar-default");
-        if (navbarDefault) {
-            navbarDefault.classList.toggle("hidden");
-        }
+        if (navbarDefault) { navbarDefault.classList.toggle("hidden"); }
     };
     return (
         <nav className="bg-neutral-400 border-gray-200 dark:bg-gray-700">

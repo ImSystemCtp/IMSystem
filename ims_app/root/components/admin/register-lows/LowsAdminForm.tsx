@@ -10,7 +10,6 @@ import { useAuth } from "@/root/hooks";
 import { registerAsset } from "@/lib/definitions";
 interface FormValues { observation: string; }
 const initialValues: FormValues = { observation: "", };
-
 export default function LowsAdminForm() {
     const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
     const { clearAssetsCheck } = useAssetCheckStore();
@@ -25,10 +24,7 @@ export default function LowsAdminForm() {
             reg_usu_id: userAuth.usu_id,
             reg_inst_id: 1,
         } as ims_register
-        const registerLow = {
-            register,
-            assets: assetsCheck,
-        } as registerAsset
+        const registerLow = { register, assets: assetsCheck, } as registerAsset
         await toast.promise(addRegister(registerLow), {
             loading: "Registrando activos...",
             success: "Activos registrados exitosamente!",

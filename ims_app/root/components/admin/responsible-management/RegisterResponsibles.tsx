@@ -7,10 +7,7 @@ import { GenericRegisterForm } from "@/root/components";
 export default function RegisterResponsibles() {
     const {responsibleToEdit } = useResponsibleStore((state) => ({ responsibleToEdit: state.responsibleToEdit }));
     const { selectResponsibleToEdit,createResponsible,updateResponsible } = useResponsibleStore();
-
-    const [responsibleName, setResponsibleName] = useState(
-        responsibleToEdit ? responsibleToEdit.responsible_name : ""
-    );
+    const [responsibleName, setResponsibleName] = useState( responsibleToEdit ? responsibleToEdit.responsible_name : "" );
     useEffect(() => {
         if (responsibleToEdit) {
             setResponsibleName(responsibleToEdit.responsible_name);
@@ -44,10 +41,7 @@ export default function RegisterResponsibles() {
             }
         }
     };
-    const handleCancel = () => {
-        setResponsibleName("");
-        selectResponsibleToEdit({ responsible_id: 0, responsible_name: "" });
-    };
+    const handleCancel = () => { setResponsibleName(""); selectResponsibleToEdit({ responsible_id: 0, responsible_name: "" }); };
     return (
         <>
         <GenericRegisterForm title={"Registrar Funcionarios Responsables"}

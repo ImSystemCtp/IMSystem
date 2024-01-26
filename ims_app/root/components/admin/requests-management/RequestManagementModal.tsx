@@ -21,9 +21,7 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
     const router = useRouter();
     useEffect(() => {
         async function checkAssetsLocationChanges() {
-            if (isOpen) {
-                imsAssetsList.current = reportRequest.map(transformToImsAssets);
-            }
+            if (isOpen) { imsAssetsList.current = reportRequest.map(transformToImsAssets); }
         }
         checkAssetsLocationChanges();
     }, [isOpen, reportRequest]);
@@ -68,12 +66,10 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
             onRequestClose={onRequestClose}
             contentLabel="Información del Activo"
             className="modal-content bg-white rounded-md p-8 max-w-90vw max-h-90vh relative"
-            overlayClassName="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-        >
+            overlayClassName="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" >
             <button
                 onClick={onRequestClose}
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none"
-            >
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none" >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -84,16 +80,11 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
             <div className='flex justify-center items-center'>
                 <button
                     className="btn-agregar-detalle bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2"
-                    onClick={onRequestClose}
-                >
-                    Cancelar
+                    onClick={onRequestClose} > Cancelar
                 </button>
                 <button
                     className="btn-agregar-detalle bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
-                    onClick={handleRequest}
-                >
-                    Estoy de acuerdo!
-                </button>
+                    onClick={handleRequest} > Estoy de acuerdo! </button>
             </div>
         </Modal>
     );

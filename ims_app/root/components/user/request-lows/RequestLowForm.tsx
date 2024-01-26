@@ -8,12 +8,8 @@ import toast from "react-hot-toast";
 import { EnumRegisterType, ims_details_asset, ims_request } from "@prisma/client";
 import { RequestType } from "@/lib/definitions";
 import {useRouter} from "next/navigation"
-interface FormValues {
-    observation: string;
-}
-const initialValues: FormValues = {
-    observation: "",
-};
+interface FormValues { observation: string; }
+const initialValues: FormValues = { observation: "", };
 export default function RequestLowForm() {
     const { addRequest } = useRequestStore();
     useAuth();
@@ -22,15 +18,11 @@ export default function RequestLowForm() {
     const { sendEmail } = EmailStore();
     const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
     const {clearAssetsCheck } = useAssetCheckStore();
-    const {  details } = useDetailsRequestStore((state) => ({
-        details: state.details}));
-
+    const {  details } = useDetailsRequestStore((state) => ({ details: state.details}));
     const checkedDetails = details.filter((detail) => {
-        return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no);
-    });
+        return assetsCheck.some((checkedAsset) => checkedAsset.assets_no === detail.deta_assets_no); });
     const assetsWithoutDetails = assetsCheck.filter((checkedAsset) => {
-        return !checkedDetails.some((detail) => detail.deta_assets_no === checkedAsset.assets_no);
-    });
+        return !checkedDetails.some((detail) => detail.deta_assets_no === checkedAsset.assets_no); });
     assetsWithoutDetails.forEach((asset) => {
         checkedDetails.push({
             deta_assets_no: asset.assets_no,
@@ -57,9 +49,7 @@ export default function RequestLowForm() {
             await sendEmail(request);
             await clearAssetsCheck();
             router.push("/user/request-lows");
-
-        } catch (error) {
-        }
+        } catch (error) {}
     };
     return (
         <div className="w-full">
@@ -81,11 +71,7 @@ export default function RequestLowForm() {
                     </tbody>
                 </table>
             </div>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={lowsAdminFormMessage}
-                onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} validationSchema={lowsAdminFormMessage} onSubmit={handleSubmit}>
                 <div className=" lg:h-full">
                     <Form>
                         <div className="flex flex-col   w-full  ">

@@ -5,9 +5,7 @@ export default function RequestManagement() {
     if (!isAuthorized)
         return <LoadingComponent/>
     return (
-        <div
-            className="p-4 rounded-md mt-4"
-        >
+        <div className="p-4 rounded-md mt-4" >
             <h2 className="text-gray-500 dark:text-white  text-2xl font-bold md:text-center">
                 Solicitudes Pendientes
             </h2>

@@ -5,15 +5,11 @@ import { ims_locations } from "@prisma/client";
 import toast from "react-hot-toast";
 import { useAuthorizedAdmin } from "@/root/hooks";
 import { GenericRegisterForm, LoadingComponent } from "@/root/components";
-
 export default function RegisterLocation() {
     const { locationToEdit } = useLocationStore((state) => ({ locationToEdit: state.locationToEdit }));
     const { selectLocationToEdit, createLocation, updateLocation } = useLocationStore();
-
     const [isCancel, setIsCancel] = useState(false);
-    const [locationName, setLocationName] = useState(
-        locationToEdit ? locationToEdit.location_name : ""
-    );
+    const [locationName, setLocationName] = useState( locationToEdit ? locationToEdit.location_name : "" );
     useEffect(() => {
         if (locationToEdit) {
             setLocationName(locationToEdit.location_name);

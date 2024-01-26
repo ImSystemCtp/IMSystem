@@ -7,8 +7,7 @@ export default function RequestUsersCard() {
     const { usersPending ,isLoadUser } = useUserStore((state) => ({ usersPending: state.usersPending, isLoadUser: state.isLoadUser }));
     return (
         <div
-            className="p-2 flex flex-col  break-words bg-gray-100 dark:bg-gray-700 w-full shadow-lg rounded"
-        >
+            className="p-2 flex flex-col  break-words bg-gray-100 dark:bg-gray-700 w-full shadow-lg rounded" >
             <div className="flex flex-col items-center ">
                 <div className=" w-full ">
                     <div className=" w-full ">
@@ -35,11 +34,8 @@ export default function RequestUsersCard() {
                         <div className="flex-grow flex items-center border-b border-gray-100 dark:border-gray-400 text-sm text-gray-600 dark:text-gray-100 py-2">
                             <div className="flex-grow flex justify-between items-center">
                                 <div className="self-center">
-                                    <a
-                                        className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100"
-                                        href="#0"
-                                        style={{ outline: 'none' }}
-                                    >
+                                    <a className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100"
+                                        href="#0" style={{ outline: 'none' }} >
                                         {`${user.usu_name} ${user.usu_surnames}`}
                                     </a>
                                 </div>

@@ -9,10 +9,7 @@ export default function RequestTable() {
     const { getRequestToReport } = useReportStore();
     const { requestPending } = useRequestStore((state) => ({ requestPending: state.requestPending }));
     const { setRequestSelected } = useRequestStore();
-    const handleRequestSelect = (request: ims_request) => async () => {
-        await getRequestToReport(request.req_id);
-        await setRequestSelected(request);
-    }
+    const handleRequestSelect = (request: ims_request) => async () => { await getRequestToReport(request.req_id); await setRequestSelected(request); }
     return (
         <div className="max-h-60 overflow-y-auto">
             {requestPending.length === 0 ? (
@@ -31,8 +28,7 @@ export default function RequestTable() {
                     {requestPending.map((request, index) => (
                         <tr
                             key={index}
-                            className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
-                        >
+                            className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400" >
                             <td className="px-2 md:px-4 py-3">
                                 <div className="flex items-center text-sm">
                                     <div>

@@ -5,21 +5,13 @@ import { useUserStore } from "@/root/zustand";
 import { ims_users } from "@prisma/client";
 import { EditUserModal } from "@/root/components";
 export default function EditUserTable() {
-    const handleAccept = (user: ims_users) => {
-        setUserSelect(user);
-        setShowModal(true);
-    };
+    const handleAccept = (user: ims_users) => { setUserSelect(user); setShowModal(true); };
     const {  users } = useUserStore((state)=>({users:state.users}));
     const { deleteUser } = useUserStore();
-
     const [showModal, setShowModal] = useState(false);
     const [userSelect, setUserSelect] = useState<ims_users | null>(null);
-    const handleDecline = (user: ims_users) => {
-        deleteUser(user);
-    };
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+    const handleDecline = (user: ims_users) => { deleteUser(user); };
+    const handleCloseModal = () => { setShowModal(false); };
     return (
         <div>
             <table className="w-full">
@@ -32,10 +24,8 @@ export default function EditUserTable() {
                             </thead>
                             <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                 {users.map((user, index) => (
-                                    <tr
-                                        key={index}
-                                        className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
-                                    >
+                                    <tr key={index}
+                                        className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                                         <td className="px-4 py-3">
                                             <div className="flex items-center text-sm">
                                                 <div>
@@ -49,10 +39,8 @@ export default function EditUserTable() {
                                             </span>
                                         </td>
                                         <td className="px-4 py-3 text-sm">
-                                            <button
-                                                onClick={() => handleAccept(user)}
-                                                className="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                            >
+                                            <button onClick={() => handleAccept(user)}
+                                                className="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                 Editar
                                             </button>
                                         </td>
@@ -64,7 +52,6 @@ export default function EditUserTable() {
                         <EditUserModal
                         isOpen={showModal}
                         onRequestClose={handleCloseModal}
-                        user={userSelect ? userSelect : {} as ims_users}
-                    />
+                        user={userSelect ? userSelect : {} as ims_users}/>
         </div>
     )}

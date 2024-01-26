@@ -5,9 +5,7 @@ import { ims_laws } from "@prisma/client";
 import { useLaw } from "@/root/hooks";
 export default function EditLaw() {
     useLaw();
-    const { laws, loadingLaw } = useLawStore((state) => ({
-        laws: state.laws,
-        loadingLaw: state.loadingLaw}));
+    const { laws, loadingLaw } = useLawStore((state) => ({ laws: state.laws, loadingLaw: state.loadingLaw}));
     const { selectLawToEdit} = useLawStore();
     return (
         loadingLaw ? <LoadingComponent /> : laws.length === 0 ? ( <AlertMessage message="No hay leyes registradas!."/> ) :
@@ -38,10 +36,8 @@ export default function EditLaw() {
                                         {law.law_description}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button
-                                            onClick={() => selectLawToEdit(law)}
-                                            className="text-white bg-slate-500 hover:bg-slate-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600" type="submit">
-                                            Editar
+                                        <button onClick={() => selectLawToEdit(law)}
+                                            className="text-white bg-slate-500 hover:bg-slate-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600" type="submit"> Editar
                                         </button>
                                     </td>
                                 </tr>

@@ -28,9 +28,7 @@ export default function RegisterAssetsTable() {
             clearAssets();
         })
     }
-    const handleDelete = (asset:ims_assets) => {
-        removeAssets(asset)
-    }
+    const handleDelete = (asset:ims_assets) => { removeAssets(asset) }
     return (
         <div className="md:w-1/3 rounded-lg  border border-gray-300 p-4 m-2  ">
             <h2 className="text-2xl dark:text-white font-bold  text-center ">
@@ -58,11 +56,8 @@ export default function RegisterAssetsTable() {
                                     </td>
                                     <td className="px-4 py-3 text-sm">{asset.assets_model}</td>
                                     <td className="px-4 py-3 text-sm">
-                                            <button
-                                                onClick={() => handleDelete(asset)}
-                                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                            >
-                                                Eliminar
+                                            <button onClick={() => handleDelete(asset)}
+                                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" > Eliminar
                                             </button>
                                         </td>
                                 </tr>
@@ -72,11 +67,8 @@ export default function RegisterAssetsTable() {
                 </div>
             </div>
             <div className="w-full flex justify-center items-center ">
-                <button
-                    onClick={handleRegisterAssets}
-                    className="m-2 p-2 bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                >
-                    Registrar Bienes
+                <button onClick={handleRegisterAssets}
+                    className="m-2 p-2 bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > Registrar Bienes
                 </button>
             </div>
         </div>

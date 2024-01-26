@@ -15,8 +15,7 @@ export const RegisterAssetsForm = ({ initialValues, handleReset, handleSubmit}: 
             <Formik
                 initialValues={initialValues}
                 validationSchema={registerAssetsMessage}
-                onSubmit={handleSubmit}
-            >
+                onSubmit={handleSubmit} >
                 <Form className="w-full ">
                     <div>
                         <h2 className="text-2xl dark:text-white font-bold  text-center">
@@ -52,9 +51,7 @@ export const RegisterAssetsForm = ({ initialValues, handleReset, handleSubmit}: 
                         </div>
                         <div className="flex justify-center items-center">
                             <button
-                                className=" m-2 p-2 bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded"
-                            >
-                                Insertar a la lista
+                                className=" m-2 p-2 bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded" > Insertar a la lista
                             </button>
                         </div>
                     </div>

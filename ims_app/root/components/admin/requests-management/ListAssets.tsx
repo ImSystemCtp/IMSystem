@@ -90,8 +90,7 @@ export default function ListAssets() {
                 onRequestClose={handleCloseModal}
                 option={option}
                 requestSelected={requestSelected}
-                reportRequest={reportRequest}
-            />
+                reportRequest={reportRequest} />
         </div>
     );
 }

@@ -18,9 +18,7 @@ export default function InfoCards() {
             ),
             data: (
                 <div className="text-right">
-                    <p className="text-2xl">
-                        {count}
-                    </p>
+                    <p className="text-2xl"> {count} </p>
                     <p>Cantidad de Activos</p>
                 </div>
             ),
@@ -35,9 +33,7 @@ export default function InfoCards() {
             ),
             data: (
                 <div className="text-right">
-                    <p className="text-2xl">
-                        {countPending}
-                    </p>
+                    <p className="text-2xl"> {countPending} </p>
                     <p>Solicitudes Pendientes</p>
                 </div>
             ),
@@ -51,9 +47,7 @@ export default function InfoCards() {
             ),
             data:  (
                 <div className="text-right">
-                    <p className="text-2xl">
-                        {countLows}
-                    </p>
+                    <p className="text-2xl"> {countLows} </p>
                     <p>Cantidad de Bajas</p>
                 </div>
             ),
@@ -77,14 +71,10 @@ export default function InfoCards() {
         },
         ];
 return (
-    <div
-        className="w-96 md:w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4"
-    >
+    <div className="w-96 md:w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4" >
         {options.map((option, index) => (
-            <div
-                key={index}
-                className="bg-neutral-400 dark:bg-gray-700 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-neutral-500 dark:border-gray-600 text-white font-medium group"
-            >
+            <div key={index}
+                className="bg-neutral-400 dark:bg-gray-700 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-neutral-500 dark:border-gray-600 text-white font-medium group" >
                 <div className="flex justify-center items-center w-14 h-14 rounded-full transition-all duration-300 transform group-hover:rotate-12">
                     {option.icon}
                 </div>
