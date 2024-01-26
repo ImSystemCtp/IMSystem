@@ -9,7 +9,7 @@ interface detailsRequestState {
     getDetailsRequestByRequestId: (requestId: string) => Promise<void>;
     addDetailsCheck: (detail: ims_details_asset) => Promise<void>;
     deleteDetailsCheck: (detail: ims_details_asset) => Promise<void>;
-    updateDetailsRequestState: (details: ims_details_asset[]) => Promise<void>;
+    updateDetailRequest: (detail: ims_details_asset) => Promise<void>;
 }
 export const useDetailsRequestStore = create<detailsRequestState>((set, get) => {
     return {
@@ -30,17 +30,10 @@ export const useDetailsRequestStore = create<detailsRequestState>((set, get) => 
             const detailsCheck = get().detailsCheck.filter((item: ims_details_asset) => item && item.deta_id !== detail.deta_id);
             set({ detailsCheck });
         },
-        updateDetailsRequestState: async (details: ims_details_asset[]) => {
-            const detailsRequestUpdated = await detailsRequestProvider.updateDetailsRequestState(details);
-            set((state: detailsRequestState) => ({
-                detailsByIdRequest: [
-                    ...state.detailsByIdRequest.filter((item) =>
-                        !detailsRequestUpdated.some((updatedItem) => updatedItem.deta_id === item.deta_id)
-                    ),
-                    ...detailsRequestUpdated,
-                ],
-            }));
-        }
+        updateDetailRequest: async (detail: ims_details_asset) => {
+            const updatedDetails = get().details.map((d) => (d.deta_id === detail.deta_id ? detail : d));
+            set({ details: updatedDetails });
+        },
 
     };
 });

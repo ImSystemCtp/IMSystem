@@ -1,34 +1,39 @@
 "use client"
 import { AlertMessage, AssetTable, RequestAssetsModal } from "@/root/components";
 import { useAssetCheckStore, useAssetStore, useDetailsRequestStore, useModalStore } from "@/root/zustand";
-import {  ims_assets, ims_details_asset } from "@prisma/client";
+import { ims_assets, ims_details_asset } from "@prisma/client";
 import { stat } from "fs";
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 export default function AssetsUserTable() {
-    const { clearAsset }= useModalStore();
-    const { isSelect, asset }= useModalStore( (state)=> ({ isSelect: state.isSelect, asset: state.asset }));
+    const { clearAsset } = useModalStore();
+    const { isSelect, asset } = useModalStore((state) => ({ isSelect: state.isSelect, asset: state.asset }));
 
-    const { assetsBySearch  } = useAssetStore((state)=> ({ assetsBySearch: state.assetsBySearch, }));
-    const {assetsCheck } = useAssetCheckStore((state)=> ({ assetsCheck: state.assetsCheck }));
-    const { details } = useDetailsRequestStore((state)=>({details: state.details}));
-    const { setDetailRequest } = useDetailsRequestStore();
+    const { assetsBySearch } = useAssetStore((state) => ({ assetsBySearch: state.assetsBySearch, }));
+    const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
+    const { details } = useDetailsRequestStore((state) => ({ details: state.details }));
+    const { setDetailRequest, updateDetailRequest } = useDetailsRequestStore();
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const assetTables = [...assetsCheck, assetsBySearch.map((asset: ims_assets) =>
         !assetsCheck.includes(asset) ? asset : null)].flat() as ims_assets[];
 
-    const newDetailAsset = async (asset: ims_assets, detail: string) => {
-        if (details.some((d) => d.deta_assets_no === asset.assets_no)) {
-            toast.error("Ya se ha agregado un detalle para este activo")
+    const handleNewDetailAsset = async (asset: ims_assets, detail: string) => {
+        const existingDetail = details.find((d) => d.deta_assets_no === asset.assets_no);
+        if (existingDetail) {
+            // Si ya existe un detalle para este activo, actualiza el detalle existente
+            const updatedDetail = { ...existingDetail, deta_description: detail } as ims_details_asset;
+            await updateDetailRequest(updatedDetail);
+            toast.success("Detalle actualizado exitosamente");
         } else {
-            const request = { deta_assets_no: asset.assets_no, deta_description: detail, } as ims_details_asset;
-            await setDetailRequest(request)
+            // Si no existe un detalle para este activo, crea uno nuevo
+            const newDetail = { deta_assets_no: asset.assets_no, deta_description: detail } as ims_details_asset;
+            await setDetailRequest(newDetail);
+            toast.success("Detalle agregado exitosamente");
         }
-        clearAsset()
-
-    }
+        clearAsset();
+    };
     function isChecked(asset: ims_assets): boolean { return assetsCheck.includes(asset); }
     return (
         <div>
@@ -42,7 +47,7 @@ export default function AssetsUserTable() {
                     isOpen={isSelect}
                     onRequestClose={clearAsset}
                     asset={asset}
-                    newDetailAsset={newDetailAsset}
+                    newDetailAsset={handleNewDetailAsset}
                 />
             </div>
         </div>

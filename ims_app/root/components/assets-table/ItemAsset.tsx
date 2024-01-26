@@ -42,7 +42,6 @@ export default function ItemAsset( { asset, isAdminTable }: AssetItemProps) {
                 </div>
             </td>
             {
-                
                 !isAdminTable?(
                     <td className="px-6 py-4 ">
                     {isChecked(asset) && (
@@ -52,7 +51,7 @@ export default function ItemAsset( { asset, isAdminTable }: AssetItemProps) {
                             Agregar Detalle
                         </button>
                     )}
-                </td>):("las")
+                </td>):("")
             }
         </tr>
     )

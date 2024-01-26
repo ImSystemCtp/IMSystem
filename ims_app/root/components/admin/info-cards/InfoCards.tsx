@@ -4,9 +4,7 @@ import { useAssetStore, useLowStore, useRegisterInStore, useRequestStore } from 
 export default function InfoCards() {
     useInfoCards();
     const registerInState = useRegisterInStore();
-    const { count } = useAssetStore((state) => ({
-        count: state.count
-    }));
+    const { count } = useAssetStore((state) => ({  count: state.count }));
     const {countPending} = useRequestStore();
     const {countLows} = useLowStore();
     const currentRegisterIn = registerInState.registerIn;

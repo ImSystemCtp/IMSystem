@@ -3,6 +3,7 @@ export * from './admin-navbar';
 export * from './assets-admin-table';
 export * from './assets-management';
 export * from './generic-register-form';
+export * from './graphic-data';
 export * from './info-cards';
 export * from './law-management';
 export * from './location-management';
