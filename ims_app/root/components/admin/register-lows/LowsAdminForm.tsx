@@ -51,7 +51,7 @@ export default function LowsAdminForm() {
                                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{asset.assets_description}</td>
                                     </tr>
                                 ))) : (<tr>
-                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">No hay activos seleccionados</td>
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-cyan-600">No hay activos seleccionados</td>
                                 </tr>
                             )}
                     </tbody>

@@ -4,7 +4,9 @@ import { useAuthorizedAdmin } from "@/root/hooks";
 import { generatePDF } from "@/root/reports";
 import { useRequestStore, useReportStore, } from "@/root/zustand";
 import toast from "react-hot-toast";
+import pdfLogo from "@/public/icons/pdf-svgrepo-com.svg"
 import { useState } from "react";
+import Image from "next/image";
 export default function ListAssets() {
     const { reportRequest } = useReportStore((state) => ({ reportRequest: state.reportRequest }));
     const { requestSelected } = useRequestStore((state) => ({ requestSelected: state.requestSelected }));
@@ -23,7 +25,7 @@ export default function ListAssets() {
     }
     const isAuthorized = useAuthorizedAdmin();
     if (!isAuthorized)
-        return <LoadingComponent/>
+        return <LoadingComponent />
     return (
         <div>
             <h2 className="text-gray-500 text-2xl font-bold text-center">Lista de Bienes</h2>
@@ -33,8 +35,11 @@ export default function ListAssets() {
                         <textarea className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Observación de Baja..." value={observation} onChange={handleObservationChange} />
                     </div>
-                    <div className="mx-4 ">
-                        <button className="bg-slate-500 hover:bg-slate-400  p-2 m-2 rounded-lg text-white" onClick={handlePDF}>
+                    <div className="flex items-center bg-white rounded-lg m-2 p-2 shadow-md">
+                        <div className="mr-2">
+                            <Image src={pdfLogo} alt="pdf" width={30} height={30} />
+                        </div>
+                        <button className="p-2 rounded-lg text-red-600 bg-gray-100 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none" onClick={handlePDF}>
                             Descargar PDF
                         </button>
                     </div>
@@ -76,13 +81,17 @@ export default function ListAssets() {
             </div>
             <div className="flex flex-row  mt-4 space-y-2 md:space-y-0 md:space-x-2 justify-center items-center">
                 <div className="w-full md:w-1/2 text-center">
-                    <button onClick={() => { handleOpenModal(); setOption('Rechazar'); }} className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
-                        type="submit" > Rechazar </button>
+                    <button onClick={() => { handleOpenModal(); setOption('Rechazar'); }} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-400 to-red-600 group-hover:from-red-400 group-hover:to-red-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800"
+                        type="submit" > <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Rechazar
+                        </span></button>
                 </div>
                 <div className="w-full md:w-1/2 text-center">
                     <button onClick={() => { handleOpenModal(); setOption('Aceptar'); }}
-                        className="text-white bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
-                        type="submit" > Aceptar </button>
+                        className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                        type="submit" ><span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Aceptar
+                        </span> </button>
                 </div>
             </div>
             <RequestManagementModal

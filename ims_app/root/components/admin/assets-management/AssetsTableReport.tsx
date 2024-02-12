@@ -4,7 +4,7 @@ import { AlertMessage } from "@/root/components";
 export default function AssetsTableReport() {
     const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }))
     return (
-        <div>
+        <div className="h-full">
             <div className="max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
                 {reportRegister.length === 0 ? (
                     <AlertMessage message="No hay Activos en esta ubicación!." />

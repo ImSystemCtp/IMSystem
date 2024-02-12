@@ -1,4 +1,4 @@
-import {LoadingComponent } from "@/root/components";
+import { LoadingComponent } from "@/root/components";
 import { useUserStore } from "@/root/zustand";
 import EditUserTable from "./EditUserTable";
 import { useAuthorizedAdmin, useUser } from "@/root/hooks";
@@ -7,12 +7,14 @@ export default function UserManagement() {
     const { loadUser, users } = useUserStore((state) => ({ loadUser: state.loadUser, users: state.users }));
     const isAuthorized = useAuthorizedAdmin();
     if (!isAuthorized)
-        return <LoadingComponent/>
+        return <LoadingComponent />
     return (
         <div className=" p-4 rounded-md mt-4 ">
-            <h2 className="text-gray-500 dark:text-white text-lg font-semibold pb-4">
-                Gestión de Usuarios
-            </h2>
+            <header>
+                <h2 className="text-gray-500 text-center dark:text-white text-2xl font-semibold pb-4">
+                    Gestión de Usuarios
+                </h2>
+            </header>
             <div className="w-full overflow-hidden rounded-lg shadow-xs">
                 <div className="w-full overflow-x-auto">
                     {loadUser ? (
@@ -24,7 +26,7 @@ export default function UserManagement() {
                             </svg>
                             <div> No hay usuarios. </div>
                         </div>
-                    ) : (( <EditUserTable /> ))}
+                    ) : ((<EditUserTable />))}
                 </div>
             </div>
         </div>

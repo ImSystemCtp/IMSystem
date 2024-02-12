@@ -74,17 +74,21 @@ export default function RequestManagementModal({ isOpen, onRequestClose, option,
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <div className=' flex flex-col'>
+            <header className=' m-4 flex flex-col'>
                 <h3 className='text-2xl font-bold  text-center'>¿Esta seguro que desea {option} la solicitud?</h3>
-            </div>
+            </header>
             <div className='flex justify-center items-center'>
                 <button
-                    className="btn-agregar-detalle bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2"
-                    onClick={onRequestClose} > Cancelar
+                    className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-400 to-red-600 group-hover:from-red-400 group-hover:to-red-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800"
+                    onClick={onRequestClose} > <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Cancelar
+                    </span>
                 </button>
                 <button
-                    className="btn-agregar-detalle bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
-                    onClick={handleRequest} > Estoy de acuerdo! </button>
+                    className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                    onClick={handleRequest} > <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Aceptar
+                    </span> </button>
             </div>
         </Modal>
     );
