@@ -75,14 +75,14 @@ export default function AssetsTableReport() {
                                             <td className="px-3 py-4 hidden md:table-cell">{asset.law_name}</td>
                                             <td className="px-3 py-4 hidden md:table-cell">{asset.responsible_name}</td>
                                             <td className="px-3 py-4">
-                                            <div className="max-w-xs overflow-x-auto whitespace-nowrap">
-                                                {asset.reg_observation}
-                                            </div>
-                                        </td>
+                                                <div className="max-w-xs overflow-auto">
+                                                    {asset.reg_observation}
+                                                </div>
+                                            </td>
                                         </>
                                     ) : (
-                                        <td className="px-3 py-4">
-                                            <div className="max-w-xs overflow-x-auto whitespace-nowrap">
+                                        <td className="px-3 py-4 w-full">
+                                            <div className="max-w-xs overflow-auto">
                                                 {asset.reg_observation}
                                             </div>
                                         </td>

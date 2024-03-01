@@ -9,8 +9,8 @@ const updateLocation = async (locationToUpdate: ims_locations) => {
     return response.data as ims_locations;
 }
 const getLocation = async () => {
-    const response = await axios.get('/api/locations');
-    return response.data as ims_locations[];
+    const response = await axios.get<ims_locations[]>('/api/locations');
+    return response.data
 }
 const getLocationById = async (location: number) => {
     const response = await axios.get(`/api/locations/${location}`);
