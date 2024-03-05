@@ -21,7 +21,7 @@ export default function AdminNavBar() {
         </div>
         <Link href="/admin" className="text-white flex items-center">
           <Image src="/ctp-preview.png" alt="Logo" className="h-10 w-auto mr-3" width={400} height={400} />
-          <p className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IM_System</p>
+          <p className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CTP Platanares CA</p>
         </Link>
         <div className="w-auto" >
           <UserButton />

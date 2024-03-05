@@ -6,8 +6,14 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     const logoLeft = '/logomep.png';
     const logoRight = '/ctp-preview.png';
     doc.setFontSize(10);
-    doc.addImage(logoLeft, 'PNG', 10, 20, 20, 15);
-    doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, 20, 17, 20);
+    const logoWidth = 65; // Establece el ancho deseado del logo
+    const aspectRatio = 2576 / 704; // Calcula la relación de aspecto del logo
+    const logoHeight = logoWidth / aspectRatio; // Calcula la altura correspondiente
+    const logoY = 25;
+    const logoRightY = logoY;
+    doc.addImage(logoLeft, 'PNG', 5, logoY, logoWidth, logoHeight);
+    doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, logoRightY, 17, 20);
+
     doc.setFont('helvetica', 'bold')
     doc.text('Ministerio de Educacion Pública', doc.internal.pageSize.width / 2, 20, { align: 'center', });
     doc.setFont('helvetica', 'normal')
@@ -19,7 +25,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     doc.text('Solicitud de ' + (requestSelected.req_type === "Low" ? "Baja" : "Traslado"), doc.internal.pageSize.width / 2, 45, { align: 'center' });
     doc.setFont('helvetica', 'normal')
     doc.text('Descripción: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 55, { align: 'center' });
-    const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripción del Bien", "Número Placa", "Marca", "Ubicacion", "Observacion", "Responsable","Nueva Ubicacion"];
+    const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripción del Bien", "Número Placa", "Marca", "Ubicacion", "Observacion", "Responsable", "Nueva Ubicacion"];
     const rows = reportRequest.map((detail: requestToReport) => [
         detail.req_date?.toString().split('T')[0],
         detail.invoice_date?.toString().split('T')[0],
@@ -53,11 +59,11 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
             2: { cellWidth: 20 },
             3: { cellWidth: 20 },
             4: { cellWidth: 20 },
-            5: {cellWidth: 20},
-            6: {cellWidth: 20},
-            7: {cellWidth: 20},
-            8: {cellWidth: 20},
-            9: {cellWidth: 20},
+            5: { cellWidth: 20 },
+            6: { cellWidth: 20 },
+            7: { cellWidth: 20 },
+            8: { cellWidth: 20 },
+            9: { cellWidth: 20 },
         },
     });
     doc.save(`Solicitud_${requestSelected.req_type === 'Low' ? 'Baja' : 'Traslado'}_${requestSelected.req_date}.pdf`);

@@ -36,11 +36,9 @@ export default function ListAssets() {
                             placeholder="Observación de Baja..." value={observation} onChange={handleObservationChange} />
                     </div>
                     <div className="flex items-center bg-white rounded-lg m-2 p-2 shadow-md">
-                        <div className="mr-2">
-                            <Image src={pdfLogo} alt="pdf" width={30} height={30} />
-                        </div>
-                        <button className="p-2 rounded-lg text-red-600 bg-gray-100 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none" onClick={handlePDF}>
-                            Descargar PDF
+                        <button className="flex items-center p-2 rounded-lg text-red-600 bg-gray-100 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none" onClick={handlePDF}>
+                            <Image src={pdfLogo} alt="pdf" width={30} height={30} className="mr-2" />
+                            <span>Descargar PDF</span>
                         </button>
                     </div>
                 </div>

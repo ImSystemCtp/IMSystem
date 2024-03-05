@@ -18,7 +18,7 @@ export interface AssetsFormValues {
     assets_acquisition_value: string,
     invoice_date: string,
 }
-const initialValues = {} as AssetsFormValues;
+export const initialValues = {} as AssetsFormValues;
 export default function RegisterAssets() {
     useCurrentNoPlate();
     const { addAssets,asset_current_no_plate,assets,updateNoPlate ,asset_get_no_plate} = useRegisterAssetStore()
@@ -40,7 +40,7 @@ export default function RegisterAssets() {
         setCount(count + 1);
         updateNoPlate();
     };
-    const handleReset = () => {
+      const handleReset = () => {
         initialValues.assets_description = "";
         initialValues.assets_series = "";
         initialValues.assets_brand = "";
