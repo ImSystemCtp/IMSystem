@@ -37,7 +37,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
         startY: 65,
         theme: 'grid',
         styles: {
-            fontSize: 10,
+            fontSize: 8,
             textColor: [0, 0, 0],
             cellPadding: 1,
             halign: 'center',
@@ -53,6 +53,11 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
             2: { cellWidth: 20 },
             3: { cellWidth: 20 },
             4: { cellWidth: 20 },
+            5: {cellWidth: 20},
+            6: {cellWidth: 20},
+            7: {cellWidth: 20},
+            8: {cellWidth: 20},
+            9: {cellWidth: 20},
         },
     });
     doc.save(`Solicitud_${requestSelected.req_type === 'Low' ? 'Baja' : 'Traslado'}_${requestSelected.req_date}.pdf`);
