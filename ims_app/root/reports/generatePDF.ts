@@ -3,28 +3,26 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'
 export const generatePDF = async (reportRequest: requestToReport[], requestSelected: ims_request) => {
     const doc = new jsPDF();
-    const logoLeft = '/logomep.png';
-    const logoRight = '/ctp-preview.png';
-    doc.setFontSize(10);
-    const logoWidth = 65; // Establece el ancho deseado del logo
-    const aspectRatio = 2576 / 704; // Calcula la relación de aspecto del logo
-    const logoHeight = logoWidth / aspectRatio; // Calcula la altura correspondiente
-    const logoY = 25;
-    const logoRightY = logoY;
-    doc.addImage(logoLeft, 'PNG', 5, logoY, logoWidth, logoHeight);
-    doc.addImage(logoRight, 'PNG', doc.internal.pageSize.width - 40, logoRightY, 17, 20);
+    const logoLeft = '/logomep.png'; // Asegúrate de reemplazar esto con la ruta correcta al logo izquierdo
+    const logoRight = '/ctp-preview.png'; // Asegúrate de reemplazar esto con la ruta correcta al logo derecho
 
+    doc.addImage(logoLeft, 'PNG', 0, 5,130, 30);
+
+
+    doc.setFontSize(8);
     doc.setFont('helvetica', 'bold')
-    doc.text('Ministerio de Educacion Pública', doc.internal.pageSize.width / 2, 20, { align: 'center', });
-    doc.setFont('helvetica', 'normal')
-    doc.text('Direccion Regional de Educacion Pérez Zeledon Circuito 07', doc.internal.pageSize.width / 2, 25, { align: 'center' });
-    doc.text('Colegio Tecnico Profesional de Platanares', doc.internal.pageSize.width / 2, 30, { align: 'center' });
-    doc.text('Codigo Presupuestario: 4167', doc.internal.pageSize.width / 2, 35, { align: 'center' });
+    doc.text('Dirección Regional de Educación Pérez Zeledón', 120, 18);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Supervisión Educativa Circuito 07', 120, 21);
+    doc.text('Colegio Técnico Profesional de Platanares', 120, 24);
+
+    doc.addImage(logoRight, 'PNG', 187, 12, 15, 15);
+
+    doc.setFontSize(15);
     doc.setFont('helvetica', 'bold')
-    doc.text('Boleta de control de activos', doc.internal.pageSize.width / 2, 40, { align: 'center' });
-    doc.text('Solicitud de ' + (requestSelected.req_type === "Low" ? "Baja" : "Traslado"), doc.internal.pageSize.width / 2, 45, { align: 'center' });
+    doc.text('Solicitud de ' + (requestSelected.req_type === "Low" ? "Baja" : "Traslado"), doc.internal.pageSize.width / 2, 40, { align: 'center' });
     doc.setFont('helvetica', 'normal')
-    doc.text('Descripción: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 55, { align: 'center' });
+    doc.text('Descripción: ' + (requestSelected.req_description), doc.internal.pageSize.width / 2, 45, { align: 'center' });
     const columns = ["Fecha de Solicitud", "Fecha de Registro", "Descripción del Bien", "Número Placa", "Marca", "Ubicacion", "Observacion", "Responsable", "Nueva Ubicacion"];
     const rows = reportRequest.map((detail: requestToReport) => [
         detail.req_date?.toString().split('T')[0],
@@ -40,7 +38,7 @@ export const generatePDF = async (reportRequest: requestToReport[], requestSelec
     (doc as any).autoTable({
         head: [columns],
         body: rows,
-        startY: 65,
+        startY: 55,
         theme: 'grid',
         styles: {
             fontSize: 8,
