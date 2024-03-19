@@ -19,6 +19,7 @@ export default function TransferAdminForm() {
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const handleSubmit = async (values: FormValues) => {
+        if(assetsCheck.length === 0) return toast.error("No hay activos seleccionados");
         const register = {
             reg_type: EnumRegisterType.Transfer,
             reg_date: new Date(),

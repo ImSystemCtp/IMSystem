@@ -17,6 +17,7 @@ export default function LowsAdminForm() {
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const handleSubmit = async (values: FormValues) => {
+        if(assetsCheck.length === 0) return toast.error("No hay activos seleccionados");
         const register = {
             reg_type: EnumRegisterType.Low,
             reg_date: new Date(),

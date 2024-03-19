@@ -30,6 +30,7 @@ export default function RequestLowForm() {
         } as ims_details_asset);
     });
     const handleSubmit = async (values: FormValues) => {
+        if(checkedDetails.length === 0) return toast.error("No hay activos seleccionados");
         const request = {
             req_type: EnumRegisterType.Low,
             req_date: new Date(),

@@ -32,6 +32,7 @@ export default function RequestTransferForm() {
         } as ims_details_asset);
     });
     const handleSubmit = async (values: FormValues) => {
+        if(checkedDetails.length === 0) return toast.error("No hay activos seleccionados");
         const request = {
             req_type: EnumRegisterType.Transfer,
             req_date: new Date(),

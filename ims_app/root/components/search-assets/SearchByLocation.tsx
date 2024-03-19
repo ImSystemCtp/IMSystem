@@ -17,7 +17,8 @@ const SearchByLocation = () => {
         replace(`${pathname}?${params.toString()}`);
     }
     return (
-    <div className="flex justify-center items-center m-2 p-4 w-96 md:w-full  lg:w-1/4 lg:pl-4 md:mx-20">
+    <div className="flex flex-col justify-center items-center m-2 p-4 w-96 md:w-full  lg:w-1/4 lg:pl-4 md:mx-20">
+    <p  className="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Buscar por ubicacion.</p>
     <select value={searchParams.get("location") || "" }
         onChange={handleSelect} id="locations"
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

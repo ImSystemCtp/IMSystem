@@ -14,8 +14,9 @@ const SearchNoAssets = () => {
     return (
     <div className="flex justify-center items-center m-2 w-96 lg:w-3/4 md:w-1/2 mb-4 lg:mb-0">
     <div className="w-80 md:w-full">
+        <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Buscar activo por numero de placa o descripción</label>
         <form>
-            <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
             <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
