@@ -1,20 +1,21 @@
 "use client"
-import { useAssetStore } from "@/root";
-import {  AssetsFormValues, RegisterAssetsForm, SearchAssetsNo, initialValues } from "@/root/components";
-import { useEffect } from "react";
+
+import { SearchAssets } from "@/root/components";
+import { EditAssetsTable } from ".";
+
 export default function EditAssets() {
+    
     return (
-        <>
-            <SearchAssetsNo />
-            <div className="w-full h-full p-2 flex flex-col break-words bg-gray-100 dark:bg-gray-700 shadow-lg rounded">
-                <div className="flex flex-col items-center">
-                    <div className="w-full">
-                        <header className="w-full">
-                            <h3 className="m-4 font-semibold text-2xl text-gray-900 dark:text-gray-50">Editar Activo. </h3>
-                        </header>
-                    </div>
+        <div className="w-full">
+            <h2 className="text-2xl font-bold dark:text-white  text-center">Editar Activo</h2>
+            <SearchAssets />
+            <div className=" flex flex-col lg:flex-row lg:m-2 lg:p-2">
+                <div className=" w-full ">
+                    <EditAssetsTable />
                 </div>
             </div>
-        </>
+        </div>
+
+
     );
 }
