@@ -1,9 +1,14 @@
 import { ims_assets } from "@prisma/client";
 import EditAssetsItem from "./EditAssetsItem";
 import { useAssetStore } from "@/root/zustand";
+import EditAssetsForm from "./edit-assets-form/EditAssetsForm";
+import { useState } from "react";
 export default function EditAssetsTable() {
     const { assetToEdit } = useAssetStore((state) => ({ assetToEdit: state.editAssets }));
+    const [showModal, setShowModal] = useState(false);
+    const handleCloseModal = () => { setShowModal(false); };
     return (
+        <div>
         <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700  uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -25,6 +30,9 @@ export default function EditAssetsTable() {
                     <th scope="col" className="px-6 py-3">
                         Número de Factura
                     </th>
+                    <th scope="col" className="px-6 py-3">
+                        Editar
+                    </th>
                 </tr>
             </thead>
             <tbody className=" overflow-y-scroll w-full" >
@@ -35,5 +43,7 @@ export default function EditAssetsTable() {
                 }
             </tbody>
         </table>
+        <EditAssetsForm isOpen={showModal} onRequestClose={handleCloseModal}  />
+        </div>
     );
 }
