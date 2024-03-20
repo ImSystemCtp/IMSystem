@@ -19,6 +19,9 @@ export default function EditAssetsItem({ asset }: AssetItemProps) {
             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {asset.assets_invoice_number}
             </td>
+            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <button className="bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded" > Editar</button>
+            </td>
         </tr>
     )
 }

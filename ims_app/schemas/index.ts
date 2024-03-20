@@ -1,3 +1,4 @@
+export {default as editAssetsMessage} from './edit-assets-message';
 export {default as lawMessage} from './law-message';
 export {default as locationMessage} from './location-message';
 export {default as lowsAdminFormMessage} from './lows-admin-form-message';
