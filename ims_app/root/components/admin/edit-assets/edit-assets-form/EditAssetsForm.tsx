@@ -7,6 +7,7 @@ type FormModalProps = {
 import { CustomInput } from "@/root/components";
 import { editAssetsMessage } from "@/schemas";
 import { Form, Formik } from "formik";
+import { useAssetStore } from '@/root/zustand';
 
 export interface AssetsFormValues {
     assets_description: string,
@@ -22,6 +23,7 @@ export default function EditAssetsForm({
     isOpen,
     onRequestClose,
 }: FormModalProps) {
+    const {editAssets} = useAssetStore((state) => ({ editAssets: state.editAssets }));
     const handleSubmit = (values: AssetsFormValues) => {
         console.log(values);
     }

@@ -1,7 +1,7 @@
 import { ims_assets } from "@prisma/client";
 
-interface AssetItemProps { asset: ims_assets }
-export default function EditAssetsItem({ asset }: AssetItemProps) {
+interface AssetItemProps { asset: ims_assets, handleChange: (asset:ims_assets) => void}
+export default function EditAssetsItem({ asset,handleChange }: AssetItemProps) {
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td scope="row"
@@ -20,7 +20,7 @@ export default function EditAssetsItem({ asset }: AssetItemProps) {
                 {asset.assets_invoice_number}
             </td>
             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <button className="bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded" > Editar</button>
+                <button onClick={() => handleChange(asset)} className="bg-slate-500 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded" > Editar</button>
             </td>
         </tr>
     )

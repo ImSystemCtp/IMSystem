@@ -6,12 +6,15 @@ import EditAssetsForm from "./edit-assets-form/EditAssetsForm";
 import { useState } from "react";
 export default function EditAssetsTable() {
     const { assetToEdit } = useAssetStore((state) => ({ assetToEdit: state.assetsBySearch }));
-
+    const {setEditAssets} = useAssetStore((state) => ({ setEditAssets: state.setEditAssets }));
     const [showModal, setShowModal] = useState(false);
     const handleCloseModal = () => { setShowModal(false); };
+    const handleChange = (asset:ims_assets) => {
+        setShowModal(true);
+        setEditAssets(asset)
+    };
     return (
-        
-          <main> <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <main> <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700  uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" className="px-6 py-3">
@@ -42,18 +45,16 @@ export default function EditAssetsTable() {
                     <div></div>
                 ) : (
                     assetToEdit.map((asset: ims_assets, index) => (asset !== null &&
-                        <EditAssetsItem key={index} asset={asset} />
+                        <EditAssetsItem key={index} asset={asset} handleChange={handleChange} />
                     )))}
             </tbody>
-       
         </table>
-        {assetToEdit.length === 0 ? (
+            {assetToEdit.length === 0 ? (
                 <AlertMessage message="No se encontraron activos" />
             ) : (
                 <div></div>
             )}
-     
-        <EditAssetsForm isOpen={showModal} onRequestClose={handleCloseModal}  />
+            <EditAssetsForm isOpen={showModal} onRequestClose={handleCloseModal} />
         </main>
     );
 }
