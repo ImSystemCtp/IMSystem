@@ -5,7 +5,6 @@ export default function ItemAsset( { asset, isAdminTable }: AssetItemProps) {
     const { deleteAssetsCheck, addAssetsCheck } = useAssetCheckStore();
     const assetsCheck = useAssetCheckStore((state) => state.assetsCheck);
     const { setAsset }= useModalStore();
-    console.log(isAdminTable)
     function isChecked(asset: ims_assets): boolean { return assetsCheck.includes(asset); }
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
