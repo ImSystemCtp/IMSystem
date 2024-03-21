@@ -10,6 +10,7 @@ interface assetState {
     clearAllAssetsByLocation: () => Promise<void>
     searchAssets: (query: SearchAssets) => Promise<void>
     setEditAssets: (assets: ims_assets) => void
+    putAssets: (assets: ims_assets) => Promise<ims_assets>
 }
 
 export const useAssetStore = create<assetState>((set, get) => {
@@ -32,6 +33,10 @@ export const useAssetStore = create<assetState>((set, get) => {
         },
         clearAllAssetsByLocation: async () => {
             set({ assetsBySearch: [] });
+        },
+        putAssets: async (assets: ims_assets) => {
+            const response = await assetsProvider.putAssets(assets)
+            return response
         }
     }
 })
