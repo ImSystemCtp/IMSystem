@@ -8,6 +8,7 @@ import { CustomInput } from "@/root/components";
 import { editAssetsMessage } from "@/schemas";
 import { Form, Formik } from "formik";
 import { useAssetStore } from '@/root/zustand';
+import toast from 'react-hot-toast';
 
 export interface AssetsFormValues {
     assets_description: string,
@@ -23,6 +24,7 @@ export default function EditAssetsForm({
     onRequestClose,
 }: FormModalProps) {
     const { editAssets } = useAssetStore((state) => ({ editAssets: state.editAssets }));
+    const {putAssets} = useAssetStore((state) => ({ putAssets: state.putAssets }));
     const invoiceDate = editAssets.invoice_date ? new Date(editAssets.invoice_date).toISOString().substring(0, 10) : "";
     const initialValues = {
         assets_description: editAssets.assets_description,
@@ -33,11 +35,20 @@ export default function EditAssetsForm({
         assets_invoice_number: editAssets.assets_invoice_number,
         assets_acquisition_value: editAssets.assets_acquisition_value,
     } as AssetsFormValues;
-    const handleSubmit = (values: AssetsFormValues) => {
-        console.log(values);
-    }
-    const handleCancel = () => {
-        console.log("Cancel");
+    const  handleSubmit = async (values: AssetsFormValues) => {
+        editAssets.assets_description = values.assets_description;
+        editAssets.assets_series = values.assets_series;
+        editAssets.assets_brand = values.assets_brand;
+        editAssets.invoice_date = new Date(values.invoice_date);
+        editAssets.assets_model = values.assets_model;
+        editAssets.assets_invoice_number = values.assets_invoice_number;
+        editAssets.assets_acquisition_value = values.assets_acquisition_value;
+        await toast.promise(putAssets(editAssets), {
+            loading: "Editando Activo...",
+            success: "Activo editado exitosamente!",
+            error: "No se pudo editar el Activo",
+        });
+        onRequestClose();
     }
     return (
         <Modal
@@ -80,7 +91,7 @@ export default function EditAssetsForm({
                         <div className="flex justify-center items-center ">
                             <button
                                 className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-400 to-red-600 group-hover:from-red-400 group-hover:to-red-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800"
-                                onClick={handleCancel} > <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                onClick={onRequestClose} > <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                                     Cancelar
                                 </span>
                             </button>

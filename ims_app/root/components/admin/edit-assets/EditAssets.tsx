@@ -4,7 +4,6 @@ import { SearchAssets } from "@/root/components";
 import { EditAssetsTable } from ".";
 
 export default function EditAssets() {
-    
     return (
         <div className="w-full">
             <h2 className="text-2xl font-bold dark:text-white  text-center">Editar Activo</h2>

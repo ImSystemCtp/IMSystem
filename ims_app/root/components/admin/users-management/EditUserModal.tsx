@@ -30,7 +30,7 @@ export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalPr
         user.usu_surnames = values.usu_surnames;
         user.usu_email = values.usu_email;
         user.usu_role = values.usu_role;
-        toast.promise(updateUser(user), {
+        await toast.promise(updateUser(user), {
             loading: "Editando Usuario...",
             success: "Usuario editado exitosamente!",
             error: "No se pudo editar el usuario",
