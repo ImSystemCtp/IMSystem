@@ -19,6 +19,11 @@ const contAssets = async () => {
 
     return response.data as number;
 }
+const putAssets = async (asset: ims_assets) => {
+    const response = await axios.put(`/api/assets/${asset.assets_no}`, asset);
+    return response.data as ims_assets;
+}
+
 const getAssetsByLocation = async (locationId: number) => {
     const response = await axios.get(`/api/assets/location/${locationId}`);
     return response.data as ims_assets[];
@@ -44,6 +49,7 @@ const searchAssets = async (query: SearchAssets) => {
     return response.data as ims_assets[];
 }
 export const assetsProvider = {
+    putAssets,
     getAssets,
     contAssets,
     getAssetsByLocation,

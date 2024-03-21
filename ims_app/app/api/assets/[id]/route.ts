@@ -14,5 +14,23 @@ export async function GET(_request: Request, { params }: ParameterId) {
 
         return NextResponse.json(response);
     } catch (error) {
+        return new NextResponse("Error", { status: 500 });
+    }
+}
+
+export async function PUT(request: Request, { params }: ParameterId) {
+    try {
+        const id = params.id
+        const body = await request.json();
+        const response = await prisma.ims_assets.update({
+            where: {
+                assets_no: id
+            },
+            data: body
+        });
+
+        return NextResponse.json(response);
+    } catch (error) {
+        return new NextResponse("Error", { status: 500 });
     }
 }
