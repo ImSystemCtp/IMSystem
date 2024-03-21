@@ -18,12 +18,21 @@ export interface AssetsFormValues {
     assets_acquisition_value: string,
     invoice_date: string,
 }
-export const initialValues = {} as AssetsFormValues;
 export default function EditAssetsForm({
     isOpen,
     onRequestClose,
 }: FormModalProps) {
     const {editAssets} = useAssetStore((state) => ({ editAssets: state.editAssets }));
+    const invoiceDate = editAssets.invoice_date ? new Date(editAssets.invoice_date).toISOString().substring(0, 10) : "";
+    const initialValues = {
+        assets_description: editAssets.assets_description,
+        assets_series: editAssets.assets_series,
+        assets_brand: editAssets.assets_brand,
+        invoice_date:  invoiceDate,
+        assets_model: editAssets.assets_model,
+        assets_invoice_number: editAssets.assets_invoice_number,
+        assets_acquisition_value: editAssets.assets_acquisition_value,
+    } as AssetsFormValues;
     const handleSubmit = (values: AssetsFormValues) => {
         console.log(values);
     }
@@ -52,11 +61,11 @@ export default function EditAssetsForm({
                             validationSchema={editAssetsMessage}
                             onSubmit={handleSubmit} >
                             <Form className="w-full ">
-                                <div>
+                                <header>
                                     <h2 className="text-2xl dark:text-white font-bold  text-center">
                                         Editar Bienes
                                     </h2>
-                                </div>
+                                </header>
                                 <div className=" justify-center w-full flex flex-col sm:flex-row lg:p-4 lg:px-10">
                                     <div className="w-full h-full p-2">
                                         <CustomInput label="Descripción del Bien:" name="assets_description" inputType="text" />

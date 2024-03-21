@@ -16,8 +16,14 @@ interface FormValues {
     usu_role: EnumUserRole;
 }
 export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalProps) {
+    console.log(user);
     const {updateUser} = useUserStore();
-    const initialValues = {} as FormValues;
+    const initialValues = {
+        usu_name: user.usu_name,
+        usu_surnames: user.usu_surnames,
+        usu_email: user.usu_email,
+        usu_role: user.usu_role,
+    }
     const router = useRouter();
     const handleSubmit = async (values: FormValues) => {
         user.usu_name = values.usu_name;
@@ -30,7 +36,6 @@ export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalPr
             error: "No se pudo editar el usuario",
         });
         onRequestClose();
-        router.push('/admin/users-management')
     }
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Seleccionar Rol"
@@ -51,7 +56,7 @@ export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalPr
                             </div>
                             <div className=" justify-center w-full flex flex-col sm:flex-row lg:p-4 lg:px-10">
                                 <div className="w-full h-full p-2">
-                                    <CustomInput label="Nombre:" name="usu_name" inputType="text"/>
+                                    <CustomInput label="Nombre:" name="usu_name" inputType="text" />
                                     <CustomInput label="Apellidos:" name="usu_surnames" inputType="text"/>
                                 </div>
                                 <div className="w-full p-2">
