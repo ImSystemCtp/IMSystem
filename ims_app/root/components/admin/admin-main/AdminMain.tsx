@@ -8,9 +8,6 @@ export default function AdminMain() {
     return (
         <div className="">
             <div className="">
-                <div className="justify-end items-end w-full ">
-                    <SearchAssetsNo />
-                </div>
                 <InfoCards />
                 <div className="w-full  grid grid-cols-1 md:grid-cols-2 p-3 gap-4">
                     <div className=" flex justify-center items-center">

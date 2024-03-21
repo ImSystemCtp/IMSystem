@@ -39,7 +39,7 @@ export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalPr
     }
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Seleccionar Rol"
-            className="modal-content bg-white rounded-md p-8 max-w-90vw max-h-90vh relative"
+            className="modal-content bg-white dark:bg-slate-800 rounded-md p-8 max-w-90vw max-h-90vh relative"
             overlayClassName="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
         <button onClick={onRequestClose}
             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none">
@@ -51,9 +51,9 @@ export default function EditUserModal({ isOpen, onRequestClose, user, }: ModalPr
                 <div className="flex flex-column">
                     <Formik initialValues={initialValues} validationSchema={editUsersMessage} onSubmit={handleSubmit}>
                         <Form className="w-full ">
-                            <div>
-                                <h2 className="text-2xl font-bold  text-center"> Editar Usuario </h2>
-                            </div>
+                            <header>
+                                <h2 className="text-2xl font-bold text-white text-center"> Editar Usuario </h2>
+                            </header>
                             <div className=" justify-center w-full flex flex-col sm:flex-row lg:p-4 lg:px-10">
                                 <div className="w-full h-full p-2">
                                     <CustomInput label="Nombre:" name="usu_name" inputType="text" />
