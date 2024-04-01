@@ -28,7 +28,7 @@ export default function ListAssets() {
         return <LoadingComponent />
     return (
         <div>
-            <h2 className="text-white text-2xl font-bold text-center">Lista de Bienes</h2>
+            <h2 className="dark:text-white text-2xl font-bold text-center">Lista de Bienes</h2>
             <div className="justify-center items-center flex flex-col">
                 <div className="flex justify-center items-center p-2 m-2">
                     <div>
