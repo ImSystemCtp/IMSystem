@@ -1,6 +1,7 @@
 import * as XLSX from "xlsx";
 export const generateExcel = async (reportRegister: registerToReport[]) => {
   const lengths = [20, 20, 20, 20, 20, 20, 20, 20, 30, 20, 20, 30, 20];
+  console.log(reportRegister);
   const handleDownload = () => {
     let tabla = [
       {
@@ -20,7 +21,8 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
         N: "Observaciones",
       },
     ];
-    reportRegister.forEach((asset) => {
+    for(const asset of reportRegister){
+      console.log(asset);
       asset.reg_type === "Register"
         ? tabla.push({
           A: String(asset.reg_tomo) + "," + String(asset.reg_folio) + "," + String(asset.reg_asiento),
@@ -43,7 +45,7 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
           B: String(asset.reg_observation),
           C: "",D: "",E: "",F: "",G: "",H: "",I: "",J: "",K: "",L: "",M: "",N: "",
         });
-    });
+      };
     const dataFinal = [...tabla];
     setTimeout(() => {
       creandoArchivo(dataFinal);
@@ -52,25 +54,7 @@ export const generateExcel = async (reportRegister: registerToReport[]) => {
 
   const creandoArchivo = (dataFinal: any) => {
     const book = XLSX.utils.book_new();
-
     const sheet = XLSX.utils.json_to_sheet(dataFinal, { skipHeader: true });
-
-    sheet["!merges"] = [
-      XLSX.utils.decode_range("A1:A3"),
-      XLSX.utils.decode_range("B1:B3"),
-      XLSX.utils.decode_range("C1:C3"),
-      XLSX.utils.decode_range("D1:D3"),
-      XLSX.utils.decode_range("E1:E3"),
-      XLSX.utils.decode_range("F1:F3"),
-      XLSX.utils.decode_range("G1:G3"),
-      XLSX.utils.decode_range("H1:H3"),
-      XLSX.utils.decode_range("I1:I3"),
-      XLSX.utils.decode_range("J1:J3"),
-      XLSX.utils.decode_range("K1:K3"),
-      XLSX.utils.decode_range("L1:L3"),
-      XLSX.utils.decode_range("M1:M3"),
-      XLSX.utils.decode_range("N1:N3"),
-    ];
     let properties: any = [];
     lengths.forEach((col) => {
       properties.push({

@@ -27,7 +27,7 @@ export default function RegisterLocation() {
         if (!locationName.trim()) {
             setError("Por favor, complete el campo.");
         } else {
-            if (locationToEdit) {
+            if (locationToEdit?.location_id) {
                 toast.promise(updateLocation({ location_id: locationToEdit.location_id, location_name: locationName } as ims_locations), {
                     loading: "Editando ubicación...",
                     success: "Ubicacion editada exitosamente!",

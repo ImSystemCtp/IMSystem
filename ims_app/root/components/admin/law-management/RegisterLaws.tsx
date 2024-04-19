@@ -7,6 +7,7 @@ import { useAuthorizedAdmin } from "@/root/hooks";
 import { GenericRegisterForm, LoadingComponent } from "@/root/components";
 export default function RegisterLaw() {
     const { lawToEdit } = useLawStore((state) => ({ lawToEdit: state.lawToEdit }));
+    const [isRegister, setIsRegister] = useState<boolean>(true);
     const { selectLawToEdit, createLaw, updateLaw } = useLawStore();
     const [lawName, setLawName] = useState( lawToEdit ? lawToEdit.law_name : "" );
     const [lawDescription, setLawDescription] = useState( lawToEdit ? lawToEdit.law_description : "" );
@@ -35,7 +36,7 @@ export default function RegisterLaw() {
         } else if (!lawDescription?.trim()) {
             setErrorDescription("Por favor, complete el campo.");
         } else {
-            if (lawToEdit) {
+            if (lawToEdit?.law_id) {
                 toast.promise(updateLaw({ law_id: lawToEdit.law_id, law_name: lawName, law_description: lawDescription } as ims_laws), {
                     loading: "Editando ley...",
                     success: "Ley editada exitosamente!",

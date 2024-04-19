@@ -25,7 +25,7 @@ export default function RegisterResponsibles() {
         if (!responsibleName.trim()) {
             setErrorName("Por favor, complete el campo.");
         }  else {
-            if(responsibleToEdit){
+            if(responsibleToEdit?.responsible_id){
                 toast.promise(updateResponsible({ responsible_id: responsibleToEdit.responsible_id, responsible_name: responsibleName } as ims_responsible), {
                     loading: "Editando Funcionario Responsable...",
                     success: "Funcionario Responsable editado exitosamente!",
