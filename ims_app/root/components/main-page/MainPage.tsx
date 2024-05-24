@@ -22,7 +22,7 @@ export default function MainPage() {
         <div className="bg-neutral-400 h-screen m-4 flex justify-center items-center">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-md">
                 <h1 className="text-4xl font-bold text-center mb-4">
-                    ¡Bienvenido a IM_System!
+                    ¡Bienvenido a CTP Platanares CA!
                 </h1>
                 <p className="text-lg text-center text-gray-600 mb-8">
                     Por favor, espera mientras te otorgamos acceso.

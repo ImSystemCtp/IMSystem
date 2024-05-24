@@ -6,7 +6,7 @@ import { esES } from "@clerk/localizations";
 import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
-  title: 'IMSystem',
+  title: 'CTPP-CA',
 }
 
 export default function RootLayout({
