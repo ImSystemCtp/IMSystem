@@ -1,8 +1,21 @@
 "use client"
 import { useReportStore } from "@/root/zustand";
 import { AlertMessage } from "@/root/components";
+import toast from "react-hot-toast";
 export default function AssetsTableReport() {
     const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }))
+
+    const handleLinkClick = (id: string) => {
+        id = id.replace(/[, ]/g, "");
+        console.log(id)
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            toast.error("No se pudo encontrar el registro")
+        }
+    };
+
     return (
         <div className="h-full">
             <div className="max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
@@ -56,10 +69,10 @@ export default function AssetsTableReport() {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+                        <tbody>
                             {reportRegister.map((asset: registerToReport, index: number) => (
-                                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td className="px-3 py-4">{asset.reg_tomo}{","}{asset.reg_folio}{","}{asset.reg_asiento}</td>
+                                <tr key={index} id={`${asset.reg_tomo}${asset.reg_folio}${asset.reg_asiento}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td className="px-3 py-4">{`${asset.reg_tomo}, ${asset.reg_folio}, ${asset.reg_asiento}`}</td>
                                     {asset.reg_type == "Register" ? (
                                         <>
                                             <td className="px-3 py-4 ">{asset.assets_no}</td>
@@ -76,7 +89,19 @@ export default function AssetsTableReport() {
                                             <td className="px-3 py-4 hidden md:table-cell">{asset.responsible_name}</td>
                                             <td className="px-3 py-4">
                                                 <div className="max-w-xs overflow-auto">
-                                                    {asset.reg_observation}
+                                                    {asset.reg_observation?.split('-').map((obs, idx) => (
+                                                        obs.startsWith("B:Ver") || obs.startsWith("T:Ver") ? (
+                                                            <button 
+                                                                key={idx}
+                                                                className="text-blue-500 underline mr-2"
+                                                                onClick={() => handleLinkClick(obs.split("Ver ")[1])}
+                                                            >
+                                                                {obs}
+                                                            </button>
+                                                        ) : (
+                                                            <span key={idx} className="mr-2">{obs}</span>
+                                                        )
+                                                    ))}
                                                 </div>
                                             </td>
                                         </>

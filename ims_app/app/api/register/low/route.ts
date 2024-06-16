@@ -20,7 +20,7 @@ export async function POST(req: Request) {
                 reg_date: body.register.reg_date,
             }
         });
-        assets.forEach(async (element: ims_assets) => {
+        for (const element of assets) {
                 await prisma.ims_assets.update({
                 where: {
                     assets_no: element.assets_no,
@@ -38,12 +38,12 @@ export async function POST(req: Request) {
                     reg_id: updateRegister[0].reg_id,
                 },
                 data: {
-                    reg_observation: updateRegister[0].reg_observation + " " + ` B: Ver ${response.reg_tomo},  ${response.reg_folio},  ${response.reg_asiento}`
+                    reg_observation: updateRegister[0].reg_observation + "-" + `B:Ver ${response.reg_tomo},${response.reg_folio},${response.reg_asiento}`
                 },
             });
             await prisma.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
             currentRegisterin =await  getNextNumber(currentRegisterin)
-        });
+        }
         updateRegisterNumber(currentRegisterin.tomo, currentRegisterin.folio, currentRegisterin.asiento)
         return NextResponse.json({ message: "Low" });
     } catch (error : any) {

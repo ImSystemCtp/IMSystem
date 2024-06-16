@@ -21,7 +21,7 @@ export interface AssetsFormValues {
 export const initialValues = {} as AssetsFormValues;
 export default function RegisterAssets() {
     useCurrentNoPlate();
-    const { addAssets,asset_current_no_plate,assets,updateNoPlate ,asset_get_no_plate} = useRegisterAssetStore()
+    const { addAssets,asset_current_no_plate,assets,updateNoPlate ,asset_get_no_plate, updateAssetsNoPlate} = useRegisterAssetStore()
     const [count, setCount] = useState<number>(1);
     const handleSubmit = async (values: AssetsFormValues) => {
         const { asset_law_id, assets_regis_location, asset_responsible_id } = values
@@ -39,6 +39,7 @@ export default function RegisterAssets() {
         } as ims_assets);
         setCount(count + 1);
         updateNoPlate();
+        updateAssetsNoPlate();
     };
       const handleReset = () => {
         initialValues.assets_description = "";

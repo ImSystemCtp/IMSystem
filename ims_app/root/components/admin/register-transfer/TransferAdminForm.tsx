@@ -9,13 +9,17 @@ import { useAuth, useLocation } from "@/root/hooks";
 import Link from "next/link";
 import { registerAsset } from "@/lib/definitions";
 interface FormValues {newLocation: string;observation: string;}
-const initialValues = {} as FormValues;
 export default function TransferAdminForm() {
     useLocation();
     const { locations } = useLocationStore((state) => ({locations: state.locations}));
     const { assetsCheck } = useAssetCheckStore((state) => ({assetsCheck: state.assetsCheck}));
     const { clearAssetsCheck } = useAssetCheckStore();
     const { addRegister } = useRegisterStore();
+    const initialObservation = assetsCheck.map(asset => asset.assets_no).join(", ");
+    const initialValues: FormValues = { 
+        newLocation: "",
+        observation: initialObservation, 
+    };
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
     const handleSubmit = async (values: FormValues) => {
@@ -38,7 +42,7 @@ export default function TransferAdminForm() {
     };
     return (
         <div className="w-full">
-            <Formik initialValues={initialValues} validationSchema={transferAdminFormMessage} onSubmit={handleSubmit} >
+            <Formik initialValues={initialValues} validationSchema={transferAdminFormMessage} onSubmit={handleSubmit} enableReinitialize>
                 <div className=" lg:h-full">
                     <Form>
                         <div className="flex flex-col   w-full  ">

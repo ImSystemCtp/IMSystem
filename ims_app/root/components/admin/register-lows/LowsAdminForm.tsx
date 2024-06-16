@@ -9,13 +9,16 @@ import toast from "react-hot-toast";
 import { useAuth } from "@/root/hooks";
 import { registerAsset } from "@/lib/definitions";
 interface FormValues { observation: string; }
-const initialValues: FormValues = { observation: "", };
 export default function LowsAdminForm() {
     const { assetsCheck } = useAssetCheckStore((state) => ({ assetsCheck: state.assetsCheck }));
     const { clearAssetsCheck } = useAssetCheckStore();
     const { addRegister } = useRegisterStore();
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
+    const initialObservation = assetsCheck.map(asset => asset.assets_no).join(", ");
+    const initialValues: FormValues = { 
+        observation: initialObservation, 
+    };
     const handleSubmit = async (values: FormValues) => {
         if(assetsCheck.length === 0) return toast.error("No hay activos seleccionados");
         const register = {
@@ -58,7 +61,7 @@ export default function LowsAdminForm() {
                     </tbody>
                 </table>
             </div>
-            <Formik initialValues={initialValues} validationSchema={lowsAdminFormMessage}onSubmit={handleSubmit}>
+            <Formik initialValues={initialValues} validationSchema={lowsAdminFormMessage}onSubmit={handleSubmit} enableReinitialize>
                 <div className="w-full  " >
                     <Form>
                         <div className="flex flex-col   w-full  ">

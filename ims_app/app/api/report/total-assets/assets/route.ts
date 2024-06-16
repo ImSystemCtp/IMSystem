@@ -15,7 +15,7 @@ export async function GET(req: Request) {
         JOIN ims_laws la on la.law_id = a.asset_law_id
         JOIN ims_users u on u.usu_id = r.reg_usu_id
         JOIN ims_responsible re on re.responsible_id = a.asset_responsible_id
-        where r.reg_type != ${EnumRegisterType.Low}
+        where r.reg_type != ${EnumRegisterType.Low} and r.reg_type != ${EnumRegisterType.Transfer}
         ORDER by r.reg_tomo, r.reg_folio, r.reg_asiento`;
         const registrosUnicos = filterUniqueEntries(registers);
         return NextResponse.json(registrosUnicos);
