@@ -15,7 +15,7 @@ export default function LowsAdminForm() {
     const { addRegister } = useRegisterStore();
     useAuth();
     const { userAuth } = useAuthStore((state) => ({ userAuth: state.userAuth }));
-    const initialObservation = assetsCheck.map(asset => asset.assets_no).join(", ");
+    const initialObservation = assetsCheck.map(asset => asset.assets_no.split("-")[1]).join(", ");
     const initialValues: FormValues = { 
         observation: initialObservation, 
     };

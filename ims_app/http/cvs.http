@@ -1,0 +1,103 @@
+POST http://localhost:3000/api/register/cvs HTTP/1.1
+content-type: application/json
+
+{
+    "register": {
+        "reg_type": "Register",
+        "reg_observation": "Register1",
+        "reg_usu_id": 1
+    },
+    "assets": [
+    {
+        "assets_no": "4167-0043",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "28",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    },
+    {
+        "assets_no": "4167-0044",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "28",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    },
+    {
+        "assets_no": "4167-0045",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "8",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    },
+    {
+        "assets_no": "4167-0046",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "8",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    },
+    {
+        "assets_no": "4167-0047",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "28",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    },
+    {
+        "assets_no": "4167-0048",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "28",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    },
+    {
+        "assets_no": "4167-0049",
+        "assets_description": "Silla negra acolchada",
+        "invoice_date": "13-5-2011",
+        "assets_series": "N/I",
+        "assets_brand": "N/I",
+        "assets_model": "N/I",
+        "assets_regis_location": "Aula Labor@",
+        "assets_invoice_number": "6291",
+        "assets_acquisition_value": "28",
+        "asset_law_id": "7372",
+        "asset_responsible_id": "Docente de A. Labor@"
+    }
+]
+}
