@@ -1,16 +1,28 @@
-
+"use client"
 import { useSideBarStore } from "@/root/zustand";
 import Link from "next/link";
 import ManagementUserButton from "./ManagementUserButton";
 import ManagementAssetButton from "./ManagementAssetButton";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 export default function SideBar() {
     const isOpen = useSideBarStore((state) => state.isOpen);
     const { toggle } = useSideBarStore()
+    const sideBarRef = useRef<HTMLDivElement>(null);
+    function handleClickOutside(event: MouseEvent) {
+        if (sideBarRef.current && !(sideBarRef.current as HTMLElement).contains(event.target as Node) && isOpen) {
+            toggle();
+        }
+    }
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
     const pathname = usePathname();
     return (
-        <div className="">
+        <div ref={sideBarRef}>
             <div
                 id="drawer-navigation"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform ${isOpen ? "translate-x-0 " : "-translate-x-full"
