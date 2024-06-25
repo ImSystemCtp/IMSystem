@@ -15,7 +15,7 @@ export default function EditAssetsTable() {
     };
     return (
         <main> <table className=" max-h-96  border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
-            <thead className="text-xs text-gray-700  uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <thead className="text-xs   uppercase bg-gray-100 dark:bg-gray-700 dark:text-white">
                 <tr>
                     <th scope="col" className="px-6 py-3">
                         Número de Placa
@@ -40,7 +40,7 @@ export default function EditAssetsTable() {
                     </th>
                 </tr>
             </thead>
-            <tbody className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto" >
+            <tbody className="text-white max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto" >
                 {assetToEdit.length === 0 ? (
                     <div></div>
                 ) : (

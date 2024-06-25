@@ -65,7 +65,7 @@ export default function RegisterAssetsSelects({ initialValues,}: RegisterAssetsS
                     {laws.map((law) => {
                         return (
                             <option key={law.law_id} value={law.law_id}>
-                                {law.law_description}
+                                {law.law_name}
                             </option>
                         );
                     })}
