@@ -9,7 +9,7 @@ export default function GraphicData ()  {
     const {countLows} = useLowStore();
     const data = [count, countLows, 0];
     const labels = ["Activos", "Bajas", "Traslados"];
-    const customColors = ["#FF5733", "#3399FF", "#FFFF66"];
+    const customColors = ["#3399FF", "#FF5733", "#FFFF66"];
     const chartData = {
         datasets: [{ data, backgroundColor: customColors, }],
         labels,

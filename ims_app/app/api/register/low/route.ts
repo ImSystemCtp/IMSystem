@@ -42,8 +42,8 @@ export async function POST(req: Request) {
                 },
             });
             await prisma.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
-            currentRegisterin =await  getNextNumber(currentRegisterin)
         }
+        currentRegisterin =await  getNextNumber(currentRegisterin)
         updateRegisterNumber(currentRegisterin.tomo, currentRegisterin.folio, currentRegisterin.asiento)
         return NextResponse.json({ message: "Low" });
     } catch (error : any) {
