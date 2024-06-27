@@ -13,6 +13,8 @@ export default function ItemAsset( { asset, isAdminTable }: AssetItemProps) {
                 {asset.assets_no}
             </td>
             <td className="px-6 py-4 hidden md:table-cell">{asset.assets_brand}</td>
+            <td className="px-6 py-4 hidden md:table-cell">{asset.assets_model}</td>
+            <td className="px-6 py-4 hidden md:table-cell">{asset.assets_description}</td>
             <td className="px-6 py-4 ">
                 <div className="flex items-center justify-center mb-4" onClick={() => {
                     const checkbox = document.getElementById(`checkbox-${asset.assets_no}`) as HTMLInputElement;

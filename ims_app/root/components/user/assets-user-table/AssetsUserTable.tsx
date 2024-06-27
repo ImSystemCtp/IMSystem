@@ -29,8 +29,8 @@ export default function AssetsUserTable() {
     };
     function isChecked(asset: ims_assets): boolean { return assetsCheck.includes(asset); }
     return (
-        <div>
-            <div  className="max-h-80 border border-gray-300 my-2 w-full rounded-lg relative overflow-x-auto">
+        <div className="flex flex-col flex-1">
+            <div  className="overflow-hidden overflow-y-auto border border-gray-300 my-2 w-full rounded-lg relative flex-1">
                 {assetsBySearch.length === 0 ? (
                     <AlertMessage message="No hay Activos en esta ubicación!." />
                 ) : ( <AssetTable assets={assetTables} isAdminTable={false} /> )}
