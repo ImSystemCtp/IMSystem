@@ -72,7 +72,7 @@ export default function AssetsTableReport() {
                         <tbody>
                             {reportRegister.map((asset: registerToReport, index: number) => (
                                 <tr key={index} id={`${asset.reg_tomo}${asset.reg_folio}${asset.reg_asiento}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td className="px-3 py-4">{`${asset.reg_tomo}, ${asset.reg_folio}, ${asset.reg_asiento}`}</td>
+                                    <td className="px-3 py-4 whitespace-nowrap">{`${asset.reg_tomo}, ${asset.reg_folio}, ${asset.reg_asiento}`}</td>
                                     {asset.reg_type == "Register" ? (
                                         <>
                                             <td className="px-3 py-4 ">{asset.assets_no}</td>
@@ -91,7 +91,7 @@ export default function AssetsTableReport() {
                                                 <div className="max-w-xs overflow-auto">
                                                     {asset.reg_observation?.split('-').map((obs, idx) => (
                                                         obs.startsWith("B:Ver") || obs.startsWith("T:Ver") ? (
-                                                            <button 
+                                                            <button
                                                                 key={idx}
                                                                 className="text-blue-500 underline mr-2"
                                                                 onClick={() => handleLinkClick(obs.split("Ver ")[1])}
@@ -106,8 +106,8 @@ export default function AssetsTableReport() {
                                             </td>
                                         </>
                                     ) : (
-                                        <td className="px-3 py-4 w-full">
-                                            <div className="max-w-xs overflow-auto">
+                                        <td className="px-3 py-4 w-full" colSpan={14}>
+                                            <div className="overflow-auto">
                                                 {asset.reg_observation}
                                             </div>
                                         </td>

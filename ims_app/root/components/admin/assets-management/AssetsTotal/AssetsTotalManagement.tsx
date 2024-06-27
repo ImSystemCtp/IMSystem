@@ -8,9 +8,27 @@ export default function AssetsTotalManagement() {
   const { reportRegister } = useReportStore((state) => ({ reportRegister: state.reportRegister }));
   const { getTotalRegister, getTotalAssets, getTotalLows } = useReportStore();
   useClearReportRegisters();
-  const handleGetTotal = async () => { await getTotalRegister(); }
-  const handleGetTotalLows = async () => { await getTotalLows(); }
-  const handleGetTotalAssets = async () => { await getTotalAssets(); }
+  const handleGetTotal = async () => {
+    toast.promise(getTotalRegister(), {
+      loading: 'Obteniendo el registro total...',
+      success: 'Registro total obtenido con éxito',
+      error: 'Error al obtener el registro total',
+    });
+  }
+  const handleGetTotalLows = async () => {
+    toast.promise(getTotalLows(), {
+      loading: 'Obteniendo las bajas...',
+      success: 'Bajas obtenidas con éxito',
+      error: 'Error al obtener las bajas',
+    });
+  }
+  const handleGetTotalAssets = async () => {
+    toast.promise(getTotalAssets(), {
+      loading: 'Obteniendo los activos...',
+      success: 'Activos obtenidos con éxito',
+      error: 'Error al obtener los activos',
+    });
+  }
   const handleExcel = async () => {
     if (reportRegister.length > 0) {
       toast.promise(generateExcel(reportRegister), {
