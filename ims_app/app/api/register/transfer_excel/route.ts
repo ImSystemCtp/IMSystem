@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { EnumRegisterType , ims_register } from "@prisma/client";
+import { EnumAssetsState, EnumRegisterType , ims_register } from "@prisma/client";
 
 type low_excel = {
     tomo:number,
@@ -7,6 +7,7 @@ type low_excel = {
     asiento:number,
     plate:string,
     observation:string,
+    location:string,
 }
 
 
@@ -34,9 +35,24 @@ export async function POST(req: Request) {
             }
         }
     })
-
+    let location = await prisma.ims_locations.findFirst({
+        where: { location_name: body.location }
+    });
+    if (location === null) {
+        location = await prisma.ims_locations.create({
+            data: { location_name: body.location }
+        });
+    }
     for (const element of assets) {
-      
+        await prisma.ims_assets.update({
+            where: {
+                assets_no: element.assets_no,
+            },
+            data: {
+                assets_state: EnumAssetsState.Regular,
+                assets_curr_location: location.location_id,
+            },
+        });
     const updateRegister = await prisma.$queryRaw<ims_register[]>`
         SELECT r.* FROM ims_register r JOIN ims_register_assets rs on r.reg_id = rs.reg_id
                 JOIN ims_assets a on a.assets_no= rs.assets_no
@@ -56,17 +72,17 @@ export async function POST(req: Request) {
 }
 
 function formatString(input: string): string[] {
-    // Separar la cadena de entrada en un arreglo de strings
+  
     const numbers = input.split(',');
 
-    // Mapear cada número para formatearlo
+
     const formattedNumbers = numbers.map(num => {
-        // Añadir ceros a la izquierda si el número tiene menos de 4 dígitos
+     
         const paddedNum = num.padStart(4, '0');
-        // Concatenar el prefijo "4167-" con el número formateado
+      
         return `4167-${paddedNum}`;
     });
 
-    // Retornar el nuevo arreglo de strings formateadas
+  
     return formattedNumbers;
 }

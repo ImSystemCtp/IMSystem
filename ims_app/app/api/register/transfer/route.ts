@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { EnumAssetsState, ims_assets, ims_register, ims_registered_in } from "@prisma/client";
+import { EnumAssetsState, ims_register } from "@prisma/client";
 import { registerAsset } from "@/lib/definitions";
 import { getNextNumber, getNumRegister, updateRegisterNumber } from "../../(function)";
 export async function POST(req: Request) {
