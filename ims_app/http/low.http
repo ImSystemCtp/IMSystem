@@ -1,0 +1,12 @@
+POST http://localhost:3000/api/register/low_excel HTTP/1.1
+content-type: application/json
+
+
+{
+
+    "tomo": 2,
+    "folio": 2,
+    "asiento": 2,
+    "plate": "string",
+    "observation": "string",
+}

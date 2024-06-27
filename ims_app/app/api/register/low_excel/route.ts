@@ -1,17 +1,18 @@
 import prisma from "@/lib/prisma";
 import { EnumAssetsState, ims_register } from "@prisma/client";
+import { NextResponse } from "next/server";
 
-type low_excel = {
-    tomo:number,
-    folio:number,
-    asiento:number,
-    plate:string,
-    observation:string,
+type excel = {
+    tomo: number,
+    folio: number,
+    asiento: number,
+    plate: string,
+    observation: string,
 }
 
 
 export async function POST(req: Request) {
-    const body = await req.json() as low_excel;
+    const body = await req.json() as excel;
     const plate = body.plate;
     const response = await prisma.ims_register.create({
         data: {
@@ -28,37 +29,43 @@ export async function POST(req: Request) {
     const platesFormatted = formatString(plate);
 
     const assets = await prisma.ims_assets.findMany({
-        where: {
+        where:
+        {
             assets_no: {
                 in: platesFormatted
-            }
+            },
+            assets_state: EnumAssetsState.Bueno
         }
     })
-
+    if (assets.length === 0) {
+        return NextResponse.json({ message: "register_sin" }, { status: 401 });
+    }
     for (const element of assets) {
         await prisma.ims_assets.update({
-        where: {
-            assets_no: element.assets_no,
-        },
-        data: {
-            assets_state: EnumAssetsState.Malo,
-        },
-    });
-    const updateRegister = await prisma.$queryRaw<ims_register[]>`
+            where: {
+                assets_no: element.assets_no,
+            },
+            data: {
+                assets_state: EnumAssetsState.Malo,
+            },
+        });
+        const updateRegister = await prisma.$queryRaw<ims_register[]>`
         SELECT r.* FROM ims_register r JOIN ims_register_assets rs on r.reg_id = rs.reg_id
                 JOIN ims_assets a on a.assets_no= rs.assets_no
                 WHERE a.assets_no = ${element.assets_no} and r.reg_type = 'Register'`
-    await prisma.ims_register.update({
-        where: {
-            reg_id: updateRegister[0].reg_id,
-        },
-        data: {
-            reg_observation: updateRegister[0].reg_observation + "-" + `B:Ver ${response.reg_tomo},${response.reg_folio},${response.reg_asiento}`
-        },
-    });
-    await prisma.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
-}
-    
+        await prisma.ims_register.update({
+            where: {
+                reg_id: updateRegister[0].reg_id,
+            },
+            data: {
+                reg_observation: updateRegister[0].reg_observation + "-" + `B:Ver ${response.reg_tomo},${response.reg_folio},${response.reg_asiento}`
+            },
+        });
+        await prisma.ims_register_assets.create({ data: { reg_id: response.reg_id, assets_no: element.assets_no } })
+    }
+
+    return NextResponse.json({ message: "Low" });
+
 
 }
 
