@@ -12,4 +12,5 @@ export * from './report-state';
 export * from './request-state';
 export * from './responsible-state';
 export * from './siderbar-state';
+export * from './transfer-state';
 export * from './users-State';
