@@ -25,7 +25,7 @@ const AssetTable = ({ assets, isAdminTable }: Props) => {
                         ):("")}
                 </tr>
             </thead>
-            <tbody className=" overflow-y-scroll w-full" >
+            <tbody className=" w-full" >
                 {
                     assets.map((asset: ims_assets, index) => ( asset !== null &&
                         <ItemAsset key={index} asset={asset} isAdminTable={isAdminTable} />

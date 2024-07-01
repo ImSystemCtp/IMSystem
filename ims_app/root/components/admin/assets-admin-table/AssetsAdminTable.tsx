@@ -7,13 +7,17 @@ import { AssetTable, AlertMessage } from "@/root/components";
 export default function AssetsAdminTable() {
     const { assetsBySearch } = useAssetStore((state) => ({ assetsBySearch: state.assetsBySearch }));
     const { assetsCheck } = useAssetCheckStore();
-    const assetTables = [...assetsCheck, assetsBySearch.map((asset: ims_assets) =>
-        !assetsCheck.includes(asset) ? asset : null)].flat() as ims_assets[];
+    const filteredAssetsBySearch = assetsBySearch.filter(
+        (asset: ims_assets) => !assetsCheck.some((checkedAsset: ims_assets) => checkedAsset.assets_no === asset.assets_no)
+    );
+
+    // Combina assetsCheck con los activos filtrados.
+    const assetTables = [...assetsCheck, ...filteredAssetsBySearch];
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     return (
         <div className="flex flex-col flex-1">
-            <div ref={containerRef} className="overflow-hidden overflow-y-auto border border-gray-300 my-2 w-full rounded-lg relative flex-1">
+            <div ref={containerRef} className="max-h-96 overflow-y-auto border border-gray-300 my-2 w-full rounded-lg relative flex-1">
                 {assetsBySearch.length === 0 ? (
                     <AlertMessage message="No hay Activos en esta ubicación!." />
                 ) : (

@@ -10,7 +10,7 @@ export default function RequestTransfer() {
         router.push("/user/request-tranfers/form");
     }
     return (
-        <div className="w-full h-screen flex flex-col">
+        <div className="w-full flex flex-col">
             <h2 className="text-2xl font-bold dark:text-white text-center my-4">Registrar Solicitudes de Traslados</h2>
             <h4 className="text-center text-lg dark:text-white">Paso 1: Selecciona los activos que deseas dar de baja</h4>
             <div className="flex-1 overflow-auto">
